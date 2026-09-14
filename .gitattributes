@@ -1,0 +1,24 @@
+# raFTI.v6 repository policy
+
+# По умолчанию автоматически определять текстовые файлы
+* text=auto
+
+# Исходники всегда хранить в LF
+*.php text eol=lf
+*.sql text eol=lf
+*.md  text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.xml text eol=lf
+
+# Windows-скрипты оставить CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Бинарные файлы никогда не конвертировать
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.zip binary
