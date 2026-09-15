@@ -121,7 +121,7 @@ function nfc_api($step, $arg_val) {
                     print_r(nfc_match($rows)); //, 'MySQL'));
                     break;
                 case 21:
-                    $wines = [67164];//[89892,89895];
+                    $wines = [216575];//[89892,89895];
                     //$wines = db_query("SELECT id from gustos.gustos_wine where name regexp 'purcari'")->fetchAll(\PDO::FETCH_COLUMN);
                     // [81557, 140737, 142760, 142901, 143335, 143341, 143858, 143892, 156214, 171972, 172163, 172165];
                     // $wines = [765,815,6508,8266,8645,8803,8941,9067,9072,9077,9080,9154,10465,10769];

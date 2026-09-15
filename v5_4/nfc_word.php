@@ -1702,6 +1702,7 @@ function nfc_synonyms_create() {
     ['sparkling','spakling'],
     ['sparkling','sumivé'],
     ['sparkling','игристое'],
+    ['sparkling','игристоe'],
     ['sparkling','шампанское'],
     ['sparkling','иристое'],
     ['sparkling','iгристе'],
