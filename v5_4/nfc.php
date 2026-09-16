@@ -46,7 +46,7 @@ global $fti_seg, $fti_max_level, $fti_sq, $fti_sqr, $fti_expra, $fti_frpm_re, $f
   $fti_scnRaALL, $fti_scnRaVINE, $fti_scnRaGRAP, $fti_scnRaNAM, $fti_latin_ext,$fti_latin_spc,
   $fti_update_limit, $fti_register_src,$fti_fspFormUnstNumb,
   $fti_wineTYPE, $fti_gsGRAPE,$fti_gsMIX_NEW,$fti_gsMIX_DINAMIC,$fti_gsMIX_STORED, $fti_gustos_db,
-  $fti_seg_next,$fti_seg_mask,$fti_seg_start,$fti_type__arP;
+  $fti_seg_next,$fti_seg_mask,$fti_seg_start,$fti_type__arP,$fti_attr_still;
 
   $FTI_SEP_VAL = FTI_SEP_VAL;
   $FTI_SEP_COMM = FTI_SEP_COMM;
@@ -156,6 +156,12 @@ try {
         $literal = "fti_$dsP";
         $key = $arP = check_hex($desc_VAL);
         break;
+      case '__eNV':
+        $val = $dsP = $old__dsP;
+        $literal = "fti_$dsP";
+        $var_name = "fti_$desc_VAL";
+        $key = $arP = $$var_name;
+        break;
       case '__eN':
         $val = $key;
         $key = $dsP;
@@ -168,8 +174,7 @@ try {
     $fti_var[$kval][$val] = $key;
   }
 } catch (Exception $e) {
-  $msg = "load nfc_type__arP_P1 kval=" . $row->kval . ", dsP=" . $row->dsP . ", val=" . $val . ", old__dsP=" . $row->old__dsP
-          . ", desc_VAL=" . $row->desc_VAL . ", ". $e->getMessage();
+  $msg = "load nfc_type__arP_P1 kval=$kval, dsP=$dsP, val=" . $val . ", old__dsP=$old__dsP, desc_VAL=$desc_VAL, ". $e->getMessage();
   dop($msg);
   throw new Exception($msg . $e->getTraceAsString());
 }
@@ -2608,7 +2613,7 @@ function reg_wine_blend($grap) {
 
 function reg_wine_attr($arP = 0, $sq_mode = 0) {
   global $fti_var, $fti_terme, $fti_sqr, $fti_expra, $fti_terms, $fti_seg, $fti_sq,
-        $fti_row,$fti_exWINE, $fti_var, $fti_wineTYPE, $mix__arr, $fti_exREGI, $fti_exGRAP, $fti_exVINE;
+        $fti_row,$fti_exWINE, $fti_var, $fti_wineTYPE, $mix__arr, $fti_exREGI, $fti_exGRAP, $fti_exVINE, $fti_attr_still;
   if (!isset($fti_sq['wine'])) {
     $fti_sq['wine']['color'] = $fti_sq['wine']['co2'] = $fti_sq['wine']['regi'] = $fti_sq['wine']['grap'] = $fti_sq['wine']['vine'] = $fti_sq['wine']['col'] = $fti_sq['wine']['co2'] = 0;
   }
@@ -2767,7 +2772,8 @@ function reg_wine_attr($arP = 0, $sq_mode = 0) {
     }
     $wiCo2 = 'attr_' . dechex($attrTITLE__eMB & $wiAttrCo2);
     //d("p4", $fti_row, $fti_expra, $mix__arr, $fti_terms, $wiColor, $wiCo2);
-    if (isset($fti_var[$wiCo2])) {
+    // if (isset($fti_var[$wiCo2])) {
+    if (isset($fti_var[$wiCo2]) && ($fti_var[$wiCo2] != $fti_attr_still || !$co2)) { // skeep if (new co2 is fti_attr_still) && (old co2 != 0) -- so new stile wine has low priority
       $fti_sq['wine']['co2']++;
       if ($fti_var[$wiCo2] != $co2) {
         $exTYPE[] = "$wineTITLE, 1, $id, $co2, " . $fti_var[$wiCo2];
@@ -3217,6 +3223,15 @@ function nfc_update() {
     dog($msg);
     throw new Exception($msg . (strpos($errs, 'ErrFTI(') === false ? $e->getTraceAsString() : ''));
   }
+}
+
+function nfc_update_arr($class_name, array $arr) {
+  //d($class_name, $arr);
+  db_query("DELETE FROM nfc_expr_updates__arS");
+  $sql = "INSERT INTO nfc_expr_updates__arS (source__dsP, action__eC, action__id) VALUES\n('$class_name','acUpd',"
+      . (implode("),\n('$class_name','acUpd',", $arr)) . ")\n";
+  db_query($sql);
+  nfc_update();
 }
 
 function nfc_reg_synonyms_word() {

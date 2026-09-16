@@ -125,31 +125,32 @@ function nfc_api($step, $arg_val) {
                     //$wines = db_query("SELECT id from gustos.gustos_wine where name regexp 'purcari'")->fetchAll(\PDO::FETCH_COLUMN);
                     // [81557, 140737, 142760, 142901, 143335, 143341, 143858, 143892, 156214, 171972, 172163, 172165];
                     // $wines = [765,815,6508,8266,8645,8803,8941,9067,9072,9077,9080,9154,10465,10769];
-                    db_query("DELETE FROM nfc_expr_updates__arS");
-                    $sql = "INSERT INTO nfc_expr_updates__arS (source__dsP, action__eC, action__id) VALUES\n('wine','acUpd',"
-                        . (implode("),\n('wine','acUpd',", $wines)) . ")\n";
-                    db_query($sql);
+                    nfc_update_arr('wine', $wines);
+                    break;
                 case 22:
                     nfc_update();
                     break;
                 case 23:
                     $regions = [16661];
-                    db_query("DELETE FROM nfc_expr_updates__arS");
-                    $sql = "INSERT INTO nfc_expr_updates__arS (source__dsP, action__eC, action__id) VALUES\n('region','acUpd',"
-                        . (implode("),\n('region','acUpd',", $regions)) . ")\n";
-                    //d($sql);
-                    db_query($sql);
-                    nfc_update();
+                    nfc_update_arr('region', $regions);
                     break;                            
                 case 24:
                     $vineyards = [902];
-                    db_query("DELETE FROM nfc_expr_updates__arS");
-                    $sql = "INSERT INTO nfc_expr_updates__arS (source__dsP, action__eC, action__id) VALUES\n('vineyard','acUpd',"
-                        . (implode("),\n('vineyard','acUpd',", $vineyards)) . ")\n";
-                    //d($sql);
-                    db_query($sql);
-                    nfc_update();
+                    nfc_update_arr('vineyard', $vineyards);
                     break;                                                        
+                case 25:
+                    GLOBAL $fti_attr_still;
+                    $sql =
+                    "SELECT a1.wine__id
+                      FROM nfc_expr_wine__acPG as a1
+                        left join nfc_type__arP as a2 on a2.val = a1.expr__eS
+                      where 1 = 1
+                        and a2.dsP = 'wineTITLE'
+                        and a1.from__id != 0
+                        and a1.to__id = $fti_attr_still
+                    ";
+                    nfc_update_arr('wine', db_query($sql)->fetchAll(\PDO::FETCH_BOUND|\PDO::FETCH_COLUMN));
+                    break;
                 case 60:
                     //parsed__exDB_laad_country();
                     //parsed__exDB_laad_region();
