@@ -3,7 +3,6 @@ global $fti_gustos_db, $fti_sq, $fti_gustos_region_db, $fti_parsedwine__exDB;
 
 include_once "nfc_macro.php";
 
-$fti_gustos_db = config('database.connections.gustosapp.database'); // 'gustos';//
 $fti_gustos_region_db = $fti_gustos_db;
 $fti_parsedwine__exDB = "parsedwine";
 

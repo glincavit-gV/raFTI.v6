@@ -39,6 +39,7 @@ class FTIService implements BaseServiceInterface
                $fti_scnMyNAM, $fti_scnMyNVV, $fti_scnMyALL, $fti_scnRaNAM, $fti_scnRaNVV, $fti_scnRaALL,
                $fti_expr_cnt, $fti_word_cnt, $fti_tables, $fti_gustos_db, $fti_project_db;
         $fti_project_db = 'parsedwine';
+        $fti_gustos_db = config('database.connections.gustosapp.database'); // 'gustos';//
         // echo "\nHello from FTI\n";
     }
 

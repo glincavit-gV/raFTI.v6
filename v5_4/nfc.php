@@ -2521,7 +2521,7 @@ function reg_vineyards() {
       $max_id = db_query("SELECT max(id) from nfc_expr__arP where expr__eS = $exVINE")->fetchColumn() ?? 0;
       $rows = db_query("CALL nfc_expr__asPL_vine_gustosapp($max_id, 0)")->fetchAll(PDO::FETCH_ASSOC); // 26525
       $fti_entry_done = $fti_entry_cnt;
-      dop("Next " . FTI_VINEYARD_BL_20000 . " rows vineyards registration, prior rows number: $fti_entry_done, start id: " . $max_id + 1);
+      dop("Next " . FTI_VINEYARD_BL_20000 . " rows vineyards registration, prior rows number: $fti_entry_done, start id: " . ($max_id + 1));
       foreach ($rows as $fti_row) {
         echo "\r Vineyard entries=" . $fti_entry_cnt++ . ", ID=" . $fti_row['id'];
         $fti_row['expr__eMI'] = $link__eMI;
