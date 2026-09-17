@@ -13,6 +13,9 @@ use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
+global $fti_gustos_db;
+$fti_gustos_db = config('database.connections.gustosapp.database'); // 'gustos';//
+
 include_once 'v5_4/nfc.php';
 include_once 'v5_4/nfc_api.php';
 include_once 'v5_4/nfc_rs.php';
@@ -39,7 +42,6 @@ class FTIService implements BaseServiceInterface
                $fti_scnMyNAM, $fti_scnMyNVV, $fti_scnMyALL, $fti_scnRaNAM, $fti_scnRaNVV, $fti_scnRaALL,
                $fti_expr_cnt, $fti_word_cnt, $fti_tables, $fti_gustos_db, $fti_project_db;
         $fti_project_db = 'parsedwine';
-        $fti_gustos_db = config('database.connections.gustosapp.database'); // 'gustos';//
         // echo "\nHello from FTI\n";
     }
 
