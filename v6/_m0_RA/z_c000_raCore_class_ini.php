@@ -3,6 +3,7 @@
 function _o000a_raCore__asPH_iniTables() {_raCore_iniTables();}
 function _raCore_iniTables() {
   global $RA;
+  $RA['__acAKV']['_']
   $RA['__acAKV']['_o010a:__arPL'][''] = [
       ['_fccSD__arDP', '_explan__svKS', '_cxF__arP'],
       ['_d0', 'Content : this document in format : __arPL<AGG<Register<Primary<List', '__arPL'],

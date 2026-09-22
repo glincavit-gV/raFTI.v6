@@ -283,6 +283,7 @@ function nfc_synonyms_create() {
     ['fspFormUnstWord','lisboa'],
     ['fspFormUnstWord','valencia'],
     ['fspFormUnstWord','anatolia'],
+    ['fspFormUnstWord','millesimato'],
   ];
   $synonym__acPG = [
     ['fspBaseUnstPunct__dsP', FTI_SEP_PATH_PARENT],
@@ -305,6 +306,9 @@ function nfc_synonyms_create() {
     ['fspBaseUnstDigit__dsP', '7'],
     ['fspBaseUnstDigit__dsP', '8'],
     ['fspBaseUnstDigit__dsP', '9'],
+    ['millesimato','millasimato'],
+    ['millesimato','milasimato'],
+    ['millesimato','milesimato'],
     ['anatolia','anatolie'],
     ['anatolia','anatolien'],
     ['anatolia','antolia'],
@@ -2731,6 +2735,7 @@ function nfc_term__arPD_exclude_log_restore() {
    ('Rocca','exVINE-2'),
    ('Rock','exVINE-2'),
    ('Rojo','exVINE-2'),
+   ('rose','exVINE-2'),
    ('Ruby Dolce','exVINE-2'),
    ('Rosa','exGRAP-8'),
    ('Saint Emilion Grand Cru','exVINE-2'),

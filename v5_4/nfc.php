@@ -452,15 +452,15 @@ function norm_it($in_str, $is_elim_salpha = 0) {
   // 9. change some number styles designation before digits to normalized form (no \d+)
   preg_replace("/(\bno|\bn|#) *(?=\d+)|№/ium", " num ",   
   // 8. eliminate some case sensitive stop words without their legal analog. Example: (Al) and (al) to exclude but not (AL)
-  preg_replace("/(?<=[[:alpha:]]\w)`(?=\w)|\b((i|I)(n|l)|(a|A|d|D)l|(l|L)a|lui|LUI)\b/um", "", // |(c|C)a // \\b[^ ]\\s*\´
+  preg_replace("/\b((i|I)(n|l)|(a|A|d|D)l|(l|L)a|lui|LUI)\b/um", " ", // |(c|C)a // \\b[^ ]\\s*\´
   //preg_replace("/(?<=[[:alpha:]]\w)`(?=\w)|\b((d|D)(o|u|e|E)|(c|C)a|(i|I)(n|l)|(a|A)l|(l|L)a|lui|LUI)\b|(?<!(\w|`))[[:alpha:]](?!(\w|$))/um", "",
   // 7. change rest of punctuations and extra spaces to one space
-  preg_replace("/ y +| +|\v+|\t+|[%?$!\^]+|(?<=[[:alpha:]])\s*[-.]\s*|(?<=\d)[-.]\s*(?=[[:alpha:]])/ium"," ",
+  preg_replace("/ y +| +|\v+|\t+|[%?$!\^]+|(?<=[[:alpha:]])\s*[-.]\s*|(?<=\d)[-.]\s*(?=[[:alpha:]])|`[[:alpha:]]`|(?<=\b\w)[\/\\\\]/ium"," ",
   // 6. change some different styles of abbreviation to one without punctuations at all
   //preg_replace("/\d*[.]?\d+\s*((((m|)l|g(r|)|alc))\.?(?!\w)|%)|(?<!\.|\w)0?\.\d+(?!\.|\w)|(\d|\b)[[:alpha:]]\K\s*\.\s*(?!([[:alpha:]]\w|\d))|-do\b/ium", "",
   preg_replace("/(\bal(c\.?|\.)\s*)?\d*[.]?\b\d+\s*(((m|)l|g(r|)|alc)\.?(?!\w)|%(\s*alc(\.|\b))?)|\bvol\b|(?<!\.|\w)0?\.\d+(?!\.|\w)|(\d|\b)[[:alpha:]]\K\s*\.\s*(?!([[:alpha:]]\w|\d))|-do\b/ium", "",
   // 5. change all different punctuation near \w to dot
-  preg_replace("/(?<=\d)\s*[`,\/\\\\*+\-@#$!&_:;<>?|!]+(?=\d)|(?<=\b\w)\s*[`\/\\\\*+\-@#$!&_:;<>?|!]+\s*(?=\w)/um", ".",
+  preg_replace("/(?<=\d)\s*[`,\/\\\\*+\-@#$!&_:;<>?|!]+(?=\d)|(?<=\b\w)\s*[`\/\\\\*+\-@#$!&_:;<>?|!]+\s*(?=\w\b)/um", ".",
   //preg_replace("/(?<=\w)\s*[,\/\\\\*+\-@#$!&_:;<>?|!]+\s*(?=\w)/um", ".",
   // 4. change some special punctuation sequence to comma (not complete)
   preg_replace("/\s+-\s*|(?<=[[:alpha:]]\w)\s*[|\/\\\\+@&]\s*/um", ",",
@@ -469,7 +469,8 @@ function norm_it($in_str, $is_elim_salpha = 0) {
   // 2. eliminate some apostrophes after some words when was used as grammatic form - (this is bad rule but was used as compromise)
   preg_replace("/(?<=\w\w)` /um", " ", //(?<=\w\w)` //\b[[:alpha:]]\s*`//
   // 1. change extend punctuation to 'comma' and 'apostrophe' like symbols to 'back apostrophe' and 1-st round converting diacritic to its analogs
-  preg_replace("/[\x{0300}-\x{036f}]|\b[[:alpha:]]\s*`(?![[:alpha:]]\b)/um","", normalizer_normalize(strtr($in_str, $fti_latin_spc), Normalizer::FORM_D))
+  //preg_replace("/[\x{0300}-\x{036f}]|\b[[:alpha:]]\s*`(?!`|[[:alpha:]]\b)|(?<=[[:alpha:]]\w)`(?=\w)/um","", normalizer_normalize(strtr($in_str, $fti_latin_spc), Normalizer::FORM_D))
+  preg_replace("/[\x{0300}-\x{036f}]|^[[:alpha:]]\s*`(?!`|[[:alpha:]]\b)|(?<=\s)[[:alpha:]]\s*`(?!`|[[:alpha:]]\b)|(?<=[[:alpha:]]\w)`(?=(\w\s|\w\w|\w$))/um","", normalizer_normalize(strtr($in_str, $fti_latin_spc), Normalizer::FORM_D))
     ,1))))
 ))
 )
@@ -3706,9 +3707,9 @@ function search_terms($search__eMI = 0, $rule__eMI = 0) {
             }
             if (count($term_found_AttrExtend) && $rule__eMI == $exVINE) {
               $terme_diff = array_diff($fti_terme[$j], $term_found_AttrExtend);
-              array_splice($fti_terme, ++$j, 0, [$terme_diff]);
               array_splice($fti_terme, ++$j, 0, [array_merge($terme_diff,$term_found_AttrExtend)]);
               array_splice($fti_terme, ++$j, 0, [array_merge($term_found_AttrExtend,$terme_diff)]);
+              array_splice($fti_terme, ++$j, 0, [$terme_diff]);
               $term_found_AttrExtend__cnt += 2;
             }
             $terme_cnt += $term_found_AttrExtend__cnt;
@@ -4219,10 +4220,10 @@ function nfc_match_create_sql__raFTI_v5($sq_limit = 1, $sq_mode = 0, $gw_wine = 
   if ($vineyard) {
     $vineyard__to_id = $fti_seg['vine_link'][$vineyard] ?? $vineyard;
     $sc_exe += $sc_vine;
-    $sq_calc .= ",
-      GREATEST(b1.vine__lvl, $vine__lvl) as vine__sub"
-    ;
     if ($vine__id) {
+      $sq_calc .= ",
+        GREATEST(b1.vine__lvl, $vine__lvl) + sc_vine__sub as vine__sub"
+      ;
       $vine__terms = '';
       foreach (explode(',', $vine__term) as $vine__term_id) {
         $vine__terms .= " or FIND_IN_SET($vine__term_id, b1.vine__term) > 0";
@@ -4231,7 +4232,6 @@ function nfc_match_create_sql__raFTI_v5($sq_limit = 1, $sq_mode = 0, $gw_wine = 
       $vine__to_id = $fti_seg['vine_link'][$vine__id] ?? $vine__id;
       $__to_ids = implode(',', array_flip(array_flip(explode(',', "$vineyard__to_id,$vine__to_id"))));
       $__ids = implode(',', array_flip(array_flip(explode(',', "$vineyard,$vine__id"))));
-      //d($__ids,$__to_ids,$vineyard,$vine__id,$vineyard__to_id,$vine__to_id);
       $sq_where_sum .= "
           + if(b1.vineyard in ($__ids) or b1.vine__id in ($__ids) or b3.vine__id in ($__to_ids), $sc_ext, 0)"
       ;
@@ -4239,9 +4239,12 @@ function nfc_match_create_sql__raFTI_v5($sq_limit = 1, $sq_mode = 0, $gw_wine = 
       if(b1.vineyard in ($__ids) or b1.vine__id in ($__ids),
             $sc_vine, if(b3.vine__id in ($__to_ids), $sc_ext, b1.vine__lvl - $sc_ext)) as sc_vine,
       if(b1.vine__id = $vine__id, $sc_name, if(b3.vine__id in ($__to_ids), 1, 0)
-      ) - if(b1.vine__id = 0 $vine__terms, 0, 1) as sc_vine_new"
+      ) - sc_vine__sub as sc_vine_new"
       ;
     } else {
+      $sq_calc .= ",
+        GREATEST(b1.vine__lvl, $vine__lvl) as vine__sub"
+      ;
       $sq_where_sum .= "
           + if(b1.vineyard in ($vineyard__to_id) or b1.vine__id in ($vineyard__to_id) or b3.vine__id in ($vineyard__to_id), $sc_ext, 0)"
       ;
@@ -4285,13 +4288,18 @@ function nfc_match_create_sql__raFTI_v5($sq_limit = 1, $sq_mode = 0, $gw_wine = 
       0 as sc_co2"
     ;
   }
-  if ($word__cnt || $blend__arS) {
+  if ($word__cnt || $blend__arS || $vine__id) {
     $sq_from = "(
       SELECT
         $sq_fields1,
         $sq_fields2,
         b1.attrTYPE__cnt, b1.attrTITLE__cnt, b1.attrTITLE__eMB"
     ;
+    if ($vine__id) {
+      $sq_from .= ",
+        if(b1.vine__id = 0 $vine__terms, 0, 1) as sc_vine__sub"
+      ;
+    }
     if ($term__cnt) {
       $sq_from .= ",
         ($count_term) as count_term"

@@ -135,7 +135,7 @@ function nfc_api($step, $arg_val) {
                     nfc_update_arr('region', $regions);
                     break;                            
                 case 24:
-                    $vineyards = [902];
+                    $vineyards = [245];
                     nfc_update_arr('vineyard', $vineyards);
                     break;                                                        
                 case 25:
@@ -254,12 +254,16 @@ function nfc_api($step, $arg_val) {
                         //"Aimé Roquesante";
                         " E.B's PI.SpA dd:fg&hfh -d&f&g  3+4 a .s. d&hf'g L.Ii: ak, ou V. & Co. T:iare &Soc. 'S'empl. 100 % S\$u@m^m?:er Can'tine Do-Re-Mi Wine-N-More Soc.ieta' Agricola) / Vaccarèse/ Brun Argenté";
                     $name = "Karija l'Osü"; // "Sparkling wine \"Botter Brut\" 0.75л";
-                    $name = "J2L 12'23-44 asda 2'23-44 ssss a'f'g. sdf s'Oro The I’M Winery 2018 E.B's The Albă 12% alc Gris sec alc 12% 0.75alc. Governor’s D/DULCE DIVUS D/D c/sel CABER.SAUV/RARA.NEAGRA rosu alc. 0.75l, anul 2022 the";
-                    //$name = "Winemaker station ( Виноробна станція / ТОВ \"Таїрове\")";
+                    $name = "ca`d'or J2L 12'23-44 asda 2'23-44 ssss a'f'g. sdf s'Oro The I’M Winery 2018 E.B's The Albă 12% alc Gris sec alc 12% 0.75alc. Governor’s D/DULCE DIVUS D/D c/sel CABER.SAUV/RARA.NEAGRA rosu alc. 0.75l, anul 2022 the";
+                    $rname = "ca or j2l 12.23.44 asda 2.23.44 ssss afg sdf oro the im winery 2018 ebs the alba gris sec governors d dulce divus dd c sel caber sauv,rara neagra rosu , anul 2022 the";
+                    $nname = norm_it($name);
+                    if ($rname != $nname) {
+                        dd("norm_it() from\n$name\n - is not equal to expected:\n$rname");
+                    }
                     $fti_row['countries'] = ''; //995;
                     $fti_row['type__cnt'] = $fti_row['title__cnt'] = 0;
                     $fti_expra = [];
-                    $nnane = parse_name($fti_var['exWINE'],preg_replace('/\s*[&+]\s*/u', ' ', $name),  $fti_var['syGroupRP']);
+                    parse_name($fti_var['exWINE'],$name,  $fti_var['syGroupWT']);
                     $terms = [];
                     if (isset($fti_expra['term'])) {
                         foreach($fti_expra['term'] as $term => $val) {
@@ -280,7 +284,7 @@ function nfc_api($step, $arg_val) {
                     if (isset($mix__arr[$regiTYPE]['attr__eMB'])) {
                         $term_arr = $fti_expra['attr'];
                     }
-                    dd($name,norm_it($name),$nnane, $fti_expra,'terms=', $fti_terms,"fti_terme=", $fti_terme, "terme=", $terme, $terms, $mix__arr, $term_arr, $fti_row);
+                    dd($name,$nname, $fti_expra,'terms=', $fti_terms,"fti_terme=", $fti_terme, "terme=", $terme, $terms, $mix__arr, $term_arr, $fti_row);
                     break;
                 case 91:
                     //$name = "Lombard (Israel)";
