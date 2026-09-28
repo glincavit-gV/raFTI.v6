@@ -3411,7 +3411,6 @@ function search_terms($search__eMI = 0, $rule__eMI = 0) {
               if (($pos = strpos($dsP, $term__dsP)) !== false && !($pos % FTI_RANG_SZ)) {
                 $mix__RV = [];
                 $found_word__cnt = $found__cnt = 0;
-                $isset__RV = false;
 //    var_dump($term__dsP,$dsP, $typa);
                 foreach ($typa as $typ_expr => $ids) {
 //  echo "\nP2a. dsP=$dsP, term__dsP=$term__dsP, j=$j, typ_expr=$typ_expr, typ_hex=".dechex($typ_expr).", search__eMI_hex=".dechex($search__eMI).",found=".implode(',', (array_map('hexdec', str_split($term__dsP, FTI_RANG_SZ)))); // print_r($ids);
@@ -3485,7 +3484,7 @@ function search_terms($search__eMI = 0, $rule__eMI = 0) {
                           }
                         }
                         if (1 != 1
-                              || $rule__eMI != $exWINE
+                              ||  $rule__eMI != $exWINE
                               || ($search__eMI & $syGroupRP) == $syGroupRP
                               || !($typ_expr & $syGroupRV)
                               || !$country__ids
@@ -3503,7 +3502,6 @@ function search_terms($search__eMI = 0, $rule__eMI = 0) {
                                 )
                         ) {
                           if (($typ_expr & $syGroupRV) && $search__eMI != $syGroupGRP) {
-                            $isset__RV = true;
                             $is_vine = ($typ_expr == $exVINE && $vineyard && $vineyard == $id);
                             if (1 != 1
                                   || !isset($mix__RV[$typ_expr])
@@ -3522,7 +3520,7 @@ function search_terms($search__eMI = 0, $rule__eMI = 0) {
                               $mix__RV[$typ_expr]['term__arP'] = $found_term__arP;
                               $mix__RV[$typ_expr]['term_found'] = $term_found;
                               $found__cnt |= FTI_FOUND__RV;
-//  echo "\nP2a-RV";
+//  echo "\nP2a-RV is_vine=$is_vine, vineyard=$vineyard, cnt=".$mix__RV[$typ_expr]['cnt'];
                             }
                           } else {
                             $fti_terms[$typ_expr][$found_term__arP] = $id;
@@ -3533,7 +3531,7 @@ function search_terms($search__eMI = 0, $rule__eMI = 0) {
                             $found__cnt |= FTI_FOUND__rest;
 //  echo "\nP2a-rest";                              
                           }
-                          if ($found__cnt && $found__cnt != FTI_FOUND__RV && $typ_expr != $wineTRIG) {
+                          if ($found__cnt && $typ_expr != $wineTRIG) {
                             if (($typ_expr & $syGroupAttrTitle)) {
                               $found_TITLE++;
                             }
@@ -3555,15 +3553,9 @@ function search_terms($search__eMI = 0, $rule__eMI = 0) {
                     }
                   }
                 }
-                if ($isset__RV) {
-//  echo "\nP2a-delete words, found_term__arP=$found_term__arP";// print_r($mix__RV);
-                  $found__cnt |= FTI_FOUND__RV;
-                  $words = array_diff_key($words, $term_found);
-                  $isset__RV = false;
-                }
-//  echo "\nP2b"; if (($id??0)) echo " j=$j, id=$id, el__id=$el__id, dsP($dsP), typ_expr($typ_expr), found__cnt($found__cnt), terme=" . implode(',', $fti_terme[$j]) . ", words=" . implode(',', $words) . ", found=" . implode(',', $term_found); print_r($mix__arr);
+//  echo "\nP2b"; if (($id??0)) echo " j=$j, id=$id, el__id=$el__id, dsP($dsP), typ_expr($typ_expr), found__cnt($found__cnt), terme=" . implode(',', $fti_terme[$j]) . ", words=" . implode(',', $words) . ", found=" . implode(',', $term_found).",TARAs="; print_r($country__ids); print_r($mix__arr);
                 if ($found__cnt) {
-                  if (($found__cnt & FTI_FOUND__RV)) {
+                  if ($found__cnt == FTI_FOUND__RV) {
                     $typ_arr = (isset($mix__RV[$exREGI]) ? [0 => $exREGI] : []) + (isset($mix__RV[$exVINE]) ? [1 => $exVINE] : []);
                     foreach ($typ_arr as $typ_expr) {
                       $id = $mix__RV[$typ_expr]['id'];
@@ -3582,14 +3574,11 @@ function search_terms($search__eMI = 0, $rule__eMI = 0) {
                                 )
                             )
                         ) {
-                          if ($found__cnt == FTI_FOUND__RV) {
-                            $words += $mix__arr[$typ_expr]['term_found'];
-                          }
+                          $words += $mix__arr[$typ_expr]['term_found'];
                           unset($mix__arr[$typ_expr]);
                           unset($fti_terms[$typ_expr]);
                         } else {
                           $found_term__arP = 0;
-                          $words += $term_found;
                         }
                       }                      
                       if ($found_term__arP) {
@@ -3605,6 +3594,7 @@ function search_terms($search__eMI = 0, $rule__eMI = 0) {
                         $mix__arr[$typ_expr]['arP'][$id]['cnt'] = $mix__RV[$typ_expr]['cnt'];
                         $mix__arr[$typ_expr]['arP'][$id]['el__id'] = $mix__RV[$typ_expr]['el__id'];
                         $mix__arr[$typ_expr]['term_found'] = $mix__arr[$typ_expr]['arP'][$id]['term_found'] = $mix__RV[$typ_expr]['term_found'];
+                        $words = array_diff_key($words, $term_found);
                       }
                     }
                   }

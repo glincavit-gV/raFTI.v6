@@ -163,6 +163,7 @@ function regions_preserv_create() {
   if ((db_query("SELECT count(*) from src_old_regions")->fetchColumn())) {
       dd("regions_preserv_create_e1 - preserved regions in table(src_old_regions) is not empty!");
   } else {
+    $fti_sqr['r0'][] = "SET @FTI_TRIGGERS_STOP = 1";
     $fti_sqr['r0'][] = "SELECT @regi__1st_appellation := min(a1.tid) from $fti_gustos_db.taxonomy_term_data as a1 where a1.description = 'APPELLATION'";
     $fti_sqr['r0'][] = "SELECT @regi__1st_continent := min(a1.id) from $fti_gustos_db.region as a1 where a1.type = 'CONTINENT'";
     $fti_sqr['r0'][] = "TRUNCATE src_old_regions";
@@ -285,7 +286,8 @@ function regions_preserv_create() {
         )
       )
     ";
-  $fti_sqr['r0'][] = "SELECT @regi_created_ids := ROW_COUNT()";  
+  $fti_sqr['r0'][] = "SELECT @regi_created_ids := ROW_COUNT()";
+  $fti_sqr['r0'][] = "SET @FTI_TRIGGERS_STOP = 0";
   //print_r($fti_sqr);  exit;
   reg_expr();
   dop("   regions_preserv_rp1 - a - regi__id's preserved : " . db_query("SELECT @regi_preserved_ids")->fetchColumn());
