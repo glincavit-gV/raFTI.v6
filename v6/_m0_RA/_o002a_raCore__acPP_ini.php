@@ -1,11 +1,15 @@
 <?php
+include_once '_o001a_raCore__acPP_macros.php';
+include_once '_o002a_raCore__acPP_ini.php';
 
-// _p001a
+$pp = '_p002a';
 function _raCore_iniTables() {
   global $RA;
-// _p001b
-  $src['__arPA']['_raTY__arDS'] = [
-    ['cn__arDS', 'cxN__arDS', 'cxF__EXPR', 'expl__vbKB', '__tyFLD', 'rule__EXPR', 'te__EXPR'],
+
+  extract($RA['__tySEP']);
+$pp = '_p002b';
+  $src['_raTY__arDS'] = [
+    [RA_cn__arDS, 'cxN__arDS', 'cxF__EXPR', 'expl__vbKB', 'val__tyFLD', 'rule__EXPR', 'te__EXPR'],
 //                                                ===== rule__EXPR ====, te__EXPR
 //                                               '(dsCX),(dsCN),(dsABR)'
     ['_OM', '', '', 'Object Model -- ', '__enZB', '_ZZ , _WA , _CCC', '_(ds)'],
@@ -36,7 +40,7 @@ function _raCore_iniTables() {
     ['_fcoR', '_omFCC', 'fco', 'result -- functor : @fcm + @fca + @fco ', '__evPQ', '_cxN_ND , _WA , _sCC', '(ds)'],
     ['fcd', '_omFCC', '', 'documents -- name space: "d" + @_fcoR', '__evPQ', '_cxN_ND , _WA , _sCC', '(ds)'],
     ['fcp', '_omFCC', '', 'programm -- points - name space : "p" + @_fcoR', '__evPQ', '_cxN_ND , _WS , _sCC', '(ds)'],
-    ['fce', '_omFCC', '', 'errors -- name space : "e" + @_fcoR', , '__evPQ', '_cxN_ND , _WA , _sCC', '(ds)'],
+    ['fce', '_omFCC', '', 'errors -- name space : "e" + @_fcoR', '__evPQ', '_cxN_ND , _WA , _sCC', '(ds)'],
     ['fcs', '_omFCC', '', 'short -- mesage - name space : "s" + @_fcoR', '__evPQ', '_cxN_ND , _WA , _sCC', '(ds)'],
     ['fcf', '_omFCC', '', 'filed -- name space : "s" + @_fcoR', '__evPQ', '_cxN_ND , _WA , _sCC', '(ds)'],
     ['_altNUM', '_omALT', '', 'numbers', '__enZB', '_cxN_NA , _AT , _sCC', '_(ds)'],
@@ -199,16 +203,16 @@ function _raCore_iniTables() {
     ['_sCs', '_dsABR', '_abS + _abC + _abS', 'camila singlet like abris', '__enZB', '_ZZ , _cxF_NA , _sCs', '_(ds)'],
     ['_CsC', '_dsABR', '_abC + _abS + _abC', 'camila duplet like abris', '__enZB', '_ZZ , _cxF_NA , _CsC', '_(ds)'],
     ['__tySEP', '_omTY', '', 'separator', '__enZB', '_cxN_NA , _AT , _sCC', '__(ds)'],
-    ['_sepCN', '__tySEP', '', 'content -- or hierarchy level separator : (_)', '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
-    ['_sepTY', '__tySEP', '', 'type -- prefix : (__)', '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
-    ['_sepAD', '__tySEP', '', 'add -- or concatinate contexts : ( + )', '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
-    ['_sepMI', '__tySEP', '', 'minus -- or deconcatinate contexts : ( - )', '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
-    ['_sepMU', '__tySEP', '', 'multiply -- content separator : ( * )', '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
-    ['_sepVA', '__tySEP', '', 'value -- or high level nod contexts : ( : )', '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
-    ['_sepLO', '__tySEP', '', 'low -- level nod contexts : ( :: )', '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
-    ['_sepLI', '__tySEP', '', 'list -- content separator : ( , )', '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
-    ['_sepAL', '__tySEP', '', 'alternatives -- content separator : ( / )', '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
-    ['_sepRE', '__tySEP', '', 'remarc -- content separator : ( -- )', '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
+    ['_sepCN', '__tySEP', '', "content -- or hierarchy level separator : ($_sepCN)", '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
+    ['_sepTY', '__tySEP', '', "type -- prefix : ($_sepTY)", '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
+    ['_sepADD', '__tySEP', '', "add -- or concatinate contexts : ($_sepADD)", '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
+    ['_sepMINUS', '__tySEP', '', "minus -- or deconcatinate contexts : ($_sepMINUS)", '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
+    ['_sepMULTIPLY', '__tySEP', '', "multiply -- content separator : ($_sepMULTIPLY)", '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
+    ['_sepVALUE', '__tySEP', '', "value -- or high level nod contexts : ($_sepVALUE)", '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
+    ['_sepBACKREF', '__tySEP', '', "low -- level nod contexts : ($_sepBACKREF)", '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
+    ['_sepLIST', '__tySEP', '', "list -- content separator : ($_sepLIST)", '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
+    ['_sepALT', '__tySEP', '', "alternatives -- content separator : ($_sepALT)", '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
+    ['_sepREM', '__tySEP', '', "remarc -- content separator : ($_sepREM)", '__evQB', '_cxN_NA , _AD , _sCC', '_(ds)'],
     ['ds', '_dsTE', '', ' -- main functor', '__enZB', '_cxN_XA , _ZZ , _sss', '(ds)'],
     ['dsa', '_dsTE', '', 'alternative -- to main functorwith with its own parameters', '__enZB', '_cxN_XA , _WA , _sss', '(ds)'],
     ['dst', '_dsTE', '', '__tyOBJ -- use object type', '__enZB', '_cxN_XA , _AS , _sss', '(ds)'],
@@ -216,7 +220,7 @@ function _raCore_iniTables() {
 
     ['__tyAGG', '_omTY', '_hieA', 'agg. -- types', '__enZB', '_cxN_NA , _AT , _sCC', '__(ds)'],
     ['__tyGK', '_omTY', '', 'global key -- type ', '__enZB', '_cxN_NA , _WA , _sCC', '__(ds)'],
-    ['__tyOBJ : _omTY', '', 'objects type ', '__enZB', '_cxN_NA , _AT , _sCC', '__(ds)'],
+    ['__tyOBJ', '_omTY', '', 'objects type ', '__enZB', '_cxN_NA , _AT , _sCC', '__(ds)'],
     ['__tyFLD', '_omTY', '', 'field -- type ', '__enZB', '_cxN_NA , _CT , _sCC', '__(ds)'],
     ['__tyIND', '_omTY', '', 'index -- type ', '__enZB', '_cxN_NA , _CT , _sCC', '__(ds)'],
     ['__tyOFI', '_omTY', '', '__tyOBJ + __tyFLD + __tyIND', '__enZB', '_cxN_NA , _NS , _zCC', '__(ds)'],
@@ -233,14 +237,14 @@ function _raCore_iniTables() {
     ['_gkR', '__tyGK', '', 'revers -- key for refernce to inverse (unusual direction) - 1 to many rels', '__enZB', '_cxN_NA , _WA , _sCC', '_(ds)'],
     ['_gkU', '__tyGK', '', 'unical -- key or index as _gkF but is unical - 1 to 1 rels', '__enZB', '_cxN_NA , _WA , _sCC', '_(ds)'],
     ['_gkI', '__tyGK', '', 'index -- not key and not unical index', '__enZB', '_cxN_NA , _WA , _sCC', '_(ds)'],
-    ['__arP', '__tyAR', '_gkP : __tyOBJ : __tyOFI', 'primary register reference', '__enZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
-    ['__arS', '__tyAR', '_gkS : __tyOBJ : __tyOFI', 'secondary register reference', '__enZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
-    ['__arT', '__tyAR', '_gkT : __tyOBJ : __tyOFI', 'tertiary register reference', '__enZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
-    ['__arDS', '__tyAR', '_gkDS : __tyOBJ : __tyOFI', 'designation register reference', '__enZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
-    ['__arPD', '__tyAR', '_gkP + _gkD : __tyOBJ : __tyOFI', 'primary detalisation reference', '__enZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
-    ['__arPA', '__tyAR', '_gkP + _gkA : __tyOBJ : __tyOFI', 'primary array reference', '__enZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
-    ['__arSD', '__tyAR', '_gkS + _gkD : __tyOBJ : __tyOFI', 'secondary detalisation reference', '__enZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
-    ['__arTD', '__tyAR', '_gkT + _gkD : __tyOBJ : __tyOFI', 'tertiary detalisation reference', '__enZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
+    ['__arP', '__tyAR', '_gkP :  __tyOBJ : __tyOFI', 'primary register reference : __nuDB', '__evZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
+    ['__arS', '__tyAR', '_gkS : __tyOBJ : __tyOFI', 'secondary register reference : __nuDB', '__evZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
+    ['__arT', '__tyAR', '_gkT : __tyOBJ : __tyOFI', 'tertiary register reference : __nuDB', '__evZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
+    ['__arDS', '__tyAR', '_gkDS : __tyOBJ : __tyOFI', 'designation register reference : __vbPQ', '__evZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
+    ['__arPD', '__tyAR', '_gkP + _gkD : __tyOBJ : __tyOFI', 'primary detalisation reference : __arP', '__evZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
+    ['__arPA', '__tyAR', '_gkP + _gkA : __tyOBJ : __tyOFI', 'primary array reference : ', '__evZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
+    ['__arSD', '__tyAR', '_gkS + _gkD : __tyOBJ : __tyOFI', 'secondary detalisation reference : __arS', '__evZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
+    ['__arTD', '__tyAR', '_gkT + _gkD : __tyOBJ : __tyOFI', 'tertiary detalisation reference : __arT', '__evZB', '_cxN_AA , _cxF_NA , _sCC', '__(ds)'],
     ['_acG', '__tyAC', '', 'grid -- ordered union ', '__enZB', '_cxN_NA , _WA , _sCC', '_(ds)'],
     ['_acU', '__tyAC', '', 'union -- simple union', '__enZB', '_cxN_NA , _WA , _sCC', '_(ds)'],
     ['_acP', '__tyAC', '', 'php -- file', '__enZB', '_cxN_NA , _WA , _sCC', '_(ds)'],
@@ -272,7 +276,6 @@ function _raCore_iniTables() {
     ['__tyFG', '__tyFLD', '_omTE', 'granularity -- use _tknNUM variants', '__enZB', '_cxN_AT , _WA , _zCC', '__(ds)'],
     ['_fiNI', '__tyFI', '', 'number int', '__enZB', '_cxN_NA , _WA , _sCC', '_(ds)'],
     ['_fiNU', '__tyFI', '', 'number unsigned', '__enZB', '_cxN_NA , _WA , _sCC', '_(ds)'],
-    ['_fiNF', '__tyFI', '', 'number float', '__enZB', '_cxN_NA , _WA , _sCC', '_(ds)'],
     ['_fiNF', '__tyFI', '', 'number float', '__enZB', '_cxN_NA , _WA , _sCC', '_(ds)'],
     ['_fiDD', '__tyFI', '', 'date day -- YYYY-mm-dd', '__enZB', '_cxN_NA , _WD , _sCC', '_(ds)'],
     ['_fiDF', '__tyFI', '', 'date full -- YYYY-mm-dd hh:mm:ss', '__enZB', '_cxN_NA , _WA , _sCC', '_(ds)'],
@@ -379,8 +382,8 @@ function _raCore_iniTables() {
     ['IXM_', '_gkI', '_icsX + _icsoM : __tyIND : __tyOFI', '', '__enZB', '_cxN_AA , _cxF_NA , _CCC', '(ds)_'],
 
   ];
-  $src['__arPA']['_raOBJ__arDS'] = [
-    ['cn__arDS', 'cxN__arDS', 'cxF__EXPR', 'expl__vbKB', '__tyFLD', 'rule__EXPR', 'te__EXPR', '__tyOFI', 'ty__EXPR'],
+  $src['_raOBJ__arDS'] = [
+    [RA_cn__arDS, 'cxN__arDS', 'cxF__EXPR', 'expl__vbKB', 'val__tyFLD', 'rule__EXPR', 'te__EXPR', 'cn__tyOFI', 'ty__EXPR'],
     ['_i0_mAV', '_RA', '@mA + @gV', ' -- houses + cars + ... : 0', '__evZB', ' , _cxF_NA , _sCC', '_(fci)_(ds)', '', ''],
     ['_i1_gV', '_RA', '@gV', ' -- ideas : 1', '__evZB', '_cxF_AS , _cxF_NA , _sCC', '_(fci)_(ds)', '', ''],
     ['_i2_cGV', '_RA', '@cG + @gV', ' -- medtech : 1', '__evZB', '_cxF_AS , _cxF_NA , _sCC', '_(fci)_(ds)', '', ''],
@@ -411,105 +414,120 @@ function _raCore_iniTables() {
     ['_aW_WDOG', '_RA', '_hieA', 'watch-dog : W', '__evZB', '_FS , _AT , _CCC', '_(fca)_(ds)', '', ''],
     ['_aX_EXPR', '_RA', '_hieA', 'expresions : X', '__evZB', '_ZZ , _AQ , _sCC', '_(fca)_(ds)', '', ''],
     ['_aY_YDEB', '_RA', '_hieA', 'yet-debuger: Y', '__evZB', '_FS , _AT , _CCC', '_(fca)_(ds)', '', ''],
-    ['_aZ_ZENG', '_RA', '_hieA', 'z-english -- referential english - ebanble all fixes for all words: Z', '__evZB', '_FS , _AT , _CCC', '_(fca)_(ds)', '', ''];
-    ['_raCORE__arP', '_m0_RA', '_a0_CORE : _hieO', ' -- main aggregate unic number register : 000a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arP', 'COMMENT onA_MOD _mod__arP'],
-    ['_raCORE__arDS', '_m0_RA', '_a0_CORE : _hieO', ' -- main aggregate designation register : 000b', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arDS', 'COMMENT onB_MOD _mod__arDS'],
-    ['_raCORE__acPP_ini', '_m0_RA', '_a0_CORE : _hieO', 'initialisation -- php code component : 001a', '__evQB', '_cxN_NA , _cxF_NA , _sCs', '_(ds)__(dst)_(dso:_AT)', '__acPP', ''],
-    ['_raDOC__arDS', '_m0_RA', '_a1_DOC : _hieO', ' -- : 010a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arDS', 'COMMENT onA_MOD _mod__arDS'],
-    ['_raDOC__acPG_list', '_m0_RA', '_a1_DOC : _hieO', 'list -- like simplest format : 011a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)_(dso:_AA)', '__acPG', 'COMMENT onB_MOD _mod__arDS'],
-    ['_raDOC__acPG_post', '_m0_RA', '_a1_DOC : _hieO', 'post -- like format with @PER and @RES references : 012a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)_(dso:_AA)', '__acPG', 'COMMENT onB_MOD _mod__arDS'],
-    ['_raTY__arDS', '_m0_RA', '_a2_TY : _hieO', ' : 020a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arDS', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
-    ['_raOBJ__arDS', '_m0_RA', '_a3_OBJ : _hieO', ' : 030a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arDS', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
-    ['_raOBJ__arOD_seg', '_m0_RA', '_a3_OBJ : _hieO', 'segments : 031a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)_(dso:_AT)', '__arPD', 'COMMENT onB_MOD _chk_seg'],
+    ['_aZ_ZENG', '_RA', '_hieA', 'z-english -- referential english - ebanble all fixes for all words: Z', '__evZB', '_FS , _AT , _CCC', '_(fca)_(ds)', '', ''],
+    ['_raCORE__arP', '_m0_RA', '_a0_CORE : _hieO', ' -- main aggregate unic number register : 000a', '__evQB', '_cxN_NA , _cxF_NA , _sCC',
+      '_(ds)__(dst)', '__arP', 'COMMENT onA_MOD _mod__arP'],
+    ['_raCORE__arDS', '_m0_RA', '_a0_CORE : _hieO', ' -- main aggregate designation register : 000b', '__evQB', '_cxN_NA , _cxF_NA , _sCC',
+      '_(ds)__(dst)', '__arDS', 'COMMENT onB_MOD _mod__arDS'],
+    ['_raCORE__acPP_ini', '_m0_RA', '_a0_CORE : _hieO', 'initialisation -- php code component : 001a', '__evQB', '_cxN_NA , _cxF_NA , _sCs',
+      '_(ds)__(dst)_(dso:_AT)', '__acPP', ''],
+    ['_raDOC__arP', '_m0_RA', '_a1_DOC : _hieO', ' -- : 010a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arP', 'COMMENT onA_MOD _mod__arDS'],
+    ['_raDOC__acPG_list', '_m0_RA', '_a1_DOC : _hieO', 'list -- like simplest format : 011a', '__evQB', '_cxN_NA , _cxF_NA , _sCC',
+      '_(ds)__(dst)_(dso:_AA)', '__acPG', 'COMMENT onB_MOD _mod__arDS'],
+    ['_raDOC__acPG_post', '_m0_RA', '_a1_DOC : _hieO', 'post -- like format with @PER and @RES references : 012a', '__evQB', '_cxN_NA , _cxF_NA , _sCC',
+      '_(ds)__(dst)_(dso:_AA)', '__acPG', 'COMMENT onB_MOD _mod__arDS'],
+    ['_raTY__arP', '_m0_RA', '_a2_TY : _hieO', ' : 020a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arP', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
+    ['_raOBJ__arP', '_m0_RA', '_a3_OBJ : _hieO', ' : 030a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arP', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
+    ['_raOBJ__arPD_seg', '_m0_RA', '_a3_OBJ : _hieO', 'segments : 031a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)_(dso:_AT)', '__arPD', 'COMMENT onB_MOD _chk_seg'],
     ['_raOBJ__acPG_hie', '_m0_RA', '_a3_OBJ : _hieO', '_hieV -- grid : 032a', '__evQB', '_cxN_NA , _cxF_NA , _sCs', '_(ds)__(dst)_(dso:_XA)', '__acPG', ''],
-    ['_raLOC__arDS', '_m0_RA', '_a4_LOC : _hieO', ' : 040a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arDS', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
-    ['_raPER__arDS', '_m0_RA', '_a5_PER : _hieO', ' : 050a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arDS', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
+    ['_raLOC__arP', '_m0_RA', '_a4_LOC : _hieO', ' : 040a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arP', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
+    ['_raPER__arP', '_m0_RA', '_a5_PER : _hieO', ' : 050a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arP', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
     ['_raPER__acPG_loc', '_m0_RA', '_a5_PER : _hieO', '_a4_LOC -- @PER to @LOC grid : 051a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)_(dso:_NA)', '__acPG', ''],
-    ['_raCON__arDS', '_m0_RA', '_a6_CON : _hieO', ' : 060a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arDS', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
+    ['_raCON__arP', '_m0_RA', '_a6_CON : _hieO', ' : 060a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arP', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
     ['_raCON__acPG', '_m0_RA', '_a6_CON : _hieO', '@PER or @LOC to @CON grid : 061a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__acPG', ''],
-    ['_raRES__arDS', '_m0_RA', '_aR_RES : _hieO', ' : 0R0a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arDS', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
-    ['_raVER__arDS', '_m0_RA', '_aV_VER : _hieO', ' : 0V0a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arDS', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
+    ['_raRES__arP', '_m0_RA', '_aR_RES : _hieO', ' : 0R0a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arP', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
+    ['_raVER__arP', '_m0_RA', '_aV_VER : _hieO', ' : 0V0a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arP', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
     ['_raWDOG__arT', '_m0_RA', '_aW_WDOG : _hieO', ' : 0Z0a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arT', 'COMMENT onB_MOD _mod__arDS , _mod__EEXPR'],
-    ['_raEXPR__arDS', '_m0_RA', '_aX_EXPR : _hieO', ' : 0X0a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arDS', ''],
+    ['_raEXPR__arP', '_m0_RA', '_aX_EXPR : _hieO', ' : 0X0a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arP', ''],
     ['_raEXPR__acPG', '_m0_RA', '_aX_EXPR : _hieO', 'grid of references: 0X1a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__acPG', ''],
-    ['_raYDEB__arDS', '_m0_RA', '_aY_YDEB : _hieO', ' : 0Y0a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arDS', ''],
-    ['__TY', '_raTY__arDS', '__tyFLD : __tyOFI : _hieV', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '__(ds)', '', '', ''],
-    ['__OBJ', '_raOBJ__arDS', '__tyFLD : __tyOFI : _hieV', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '__(ds)', '', '', ''],
-    ['__EXPR', '_raEXPR__arDS', '__tyFLD : __tyOFI : _hieV', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '__(ds)', '', '', ''],
-    ['_arP', '_raCORE__arP', '_hieV', 'primary register functor', '__erPQ', '_ZZ , _ZZ , _zzz', '_(dst)', '__arP', 'NOT_NULL'],
-    ['cre__dsDB', '_raCORE__arP', '_hieV', 'create', '__erPQ', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__dsDB', 'NOT_NULL DEFAULT CURRENT_TIMESTAMP'],
-    ['upd__dsDB', '_raCORE__arP', '_hieV', 'update', '__erPQ', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__dsDB', 'NOT_NULL DEFAULT CURRENT_TIMESTAMP'],
+    ['_raYDEB__arP', '_m0_RA', '_aY_YDEB : _hieO', ' : 0Y0a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arP', ''],
+    ['__TY', '_raTY__arDS', '__tyOFI : _hieV', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '__(ds)', '__arP', 'NOT_NULL'],
+    ['__OBJ', '_raOBJ__arDS', '__tyOFI : _hieV', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '__(ds)', '__arP', 'NOT_NULL'],
+    ['__EXPR', '_raEXPR__arDS', '__tyOFI : _hieV', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '__(ds)', '__arP', 'NOT_NULL'],
+    ['_arP', '_raCORE__arP', '_hieV', 'primary register functor', '__enZB', '_ZZ , _ZZ , _zzz', '_(dst)', '__arP', 'NOT_NULL'],
+    ['cre__dsDB', '_raCORE__arP', '_hieV', 'create', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__dsDB', 'NOT_NULL DEFAULT CURRENT_TIMESTAMP'],
+    ['upd__dsDB', '_raCORE__arP', '_hieV', 'update', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__dsDB', 'NOT_NULL DEFAULT CURRENT_TIMESTAMP'],
     ['PK_arP', '_raCORE__arP', '_arP', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'PK_', ''],
-    ['cn__arP', '_raCORE__arDS', '_cN : _hieV', 'reference to primary register', '__enZB', '_cxF_AS , _ZZ , _ssz', '__(dst)', '__arP', ''],
-    ['_arDS', '_raCORE__arDS', '_hieV', 'primary register functor', '__enZB', '_ZZ , _ZZ , _zzz', '_(dst)', '__arDS', 'NOT_NULL'],
-    ['PK_arP', '_raCORE__arDS', '__arP', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'PK_', ''],
+    ['cn__arP', '_raCORE__arDS', '_cN : _hieV', 'reference to primary register', '__enZB', '_cxF_AS , _ZZ , _ssz', '__(dst)', '__arP', 'NOT_NULL'],
+    ['_arDS', '_raCORE__arDS', '_hieV', 'primary register functor', '__enZB', '_ZZ , _ZZ , _zzz', '_(dst)', '__vbPQ', 'NOT_NULL'],
+    ['PK_cn__arP', '_raCORE__arDS', 'cn__arP', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'PK_', ''],
     ['UK_arDS', '_raCORE__arDS', '_arDS', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'UK_', ''],
-    ['FK_raCORE__arDS_arP', '_raCORE__arDS', '__arP', '', '__enZB', '_cxN_AA , _cxF_AA , _zzz', '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (_arP) ON_DELETE CASCADE ON_UPDATE CASCADE'],
-    ['cn__arDS', '_raTY__arDS', '_cN : _hieV', 'reference to primary register', '__enZB', '_cxF_AA , _ZZ , _szz', '(ds)__(dst)', '__arDS', ''],
-    ['cxN__arDS', '_raTY__arDS', '_cX : _hieV', 'near -- reference to primary register', '__enZB', '_cxF_AA , _WA , _sCs', '(ds)__(dst)', '__arDS'],
-    ['cxF__EXPR', '_raTY__arDS', '_cX : _hieV', 'far -- reference to expression of references', '__enZB', '_cxF_AS , _WA , _sCC', '(ds)__(dst)', '__EXPR'],
-    ['expl__vbKB', '_raTY__arDS', '_hieV', 'explanation', '__enZB', '_AQ , _ZZ , _sCC', '(ds)__(dst)', '__vbKB'],
-    ['__tyFLD', '_raTY__arDS', '_hieV', '', '__enZB', '_ZZ , _ZZ , _sCC', '__(dst)', '__tyFLD'],
-    ['rule__EXPR', '_raTY__arDS', '_hieV', 'rule -- reference to expression of references for (ds) part', '__enZB', '_WA , _ZZ , _sCC', '(ds)__(dst)', '__EXPR'],
-    ['te__EXPR', '_raTY__arDS', '_hieV', 'template -- reference to expression of references for all parts', '__enZB', '_WA , _ZZ , _sCC', '(ds)__(dst)', '__EXPR'],
-    ['PK_cn', '_raTY__arDS', 'cn__arDS', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'PK_'],
-    ['UK_cn', '_raTY__arDS', 'cn__arDS', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'UK_'],
-    ['FK_cxN', '_raTY__arDS', 'cxN__arDS', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'FK_'],
-    ['RK_cxF', '_raTY__arDS', 'cxF__arDS', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'RK_'],
-    ['FK_tyFLD', '_raTY__arDS', '__tyFLD', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'FK_'],
-    ['RK_rule', '_raTY__arDS', 'rule__EXPR', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'RK_'],
-    ['RK_te', '_raTY__arDS', 'te__EXPR', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'RK_'],
-    ['__tyOFI', '__arDS', '_hieV', '', '__enZB', '_ZZ , _ZZ , _sCC', '__(dst)', '__tyOFI'],
-    ['FK_tyOFI', '_raTY__arDS', '__tyOFI', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'FK_'],
-    ['par__OBJ', '_raOBJ__acPG_hie', '_hieV', 'parent', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__OBJ'],
-    ['chi__OBJ', '_raOBJ__acPG_hie', '_hieV', 'child', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__OBJ'],
-    ['check__vbPQ', '_raOBJ__acPG_hie', '_hieV', 'check', '__enZB', '_AA , _ZZ , _sCC', '(ds)__(dst)', '__vbPQ'],
-    ['default__vbPQ', '_raOBJ__acPG_hie', '_hieV', 'default', '__enZB', '_AA , _ZZ , _sCC', '(ds)__(dst)', '__vbPQ'],
-    ['PKM_raOBJ__acPG_hie_par', '_raOBJ__acPG_hie', 'par__OBJ', '', '__enZB', '_cxN_AA , _cxF_AA , _zzz', '(dst)_(ds)', 'PKM_'],
-    ['FK_par', '_raOBJ__acPG_hie', 'par__OBJ', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'FK_'],
-    ['FK_chi', '_raOBJ__acPG_hie', 'chi__OBJ', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'FK_'],
+    ['FK_raCORE__arDS_cn__arP', '_raCORE__arDS', 'cn__arP', '', '__enZB', '_cxN_AA , _cxF_AA , _zzz',
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (_arP) ON_DELETE CASCADE ON_UPDATE CASCADE'],      
+    ['cxN__arP', '_raTY__arP', '_cX : _hieV', 'near -- reference to primary register', '__enZB', '_cxF_AA , _WA , _sCs', '(ds)__(dst)', '__arDS', 'NOT_NULL'],
+    ['cxF__EXPR', '_raTY__arP', '_cX : _hieV', 'far -- reference to expression of references', '__enZB', '_cxF_AS , _WA , _sCC', '(ds)__(dst)',
+      '__EXPR', 'NULL DEFAULT NULL'],
+    ['expl__vbKB', '_raTY__arP', '_hieV', 'explanation', '__enZB', '_AQ , _ZZ , _sCC', '(ds)__(dst)', '__vbKB', "NOT_NULL DEFAULT ''"],
+    ['val__tyFLD', '_raTY__arP', '_hieV', 'value', '__enZB', '_AT , _ZZ , _sCC', '__(dst)', '__tyFLD', 'NULL DEFAULT NULL'],
+    ['rule__EXPR', '_raTY__arP', '_hieV', 'rule -- reference to expression of references for (ds) part', '__enZB', '_WA , _ZZ , _sCC', '(ds)__(dst)',
+      '__EXPR', 'NOT_NULL'],
+    ['te__EXPR', '_raTY__arP', '_hieV', 'template -- reference to expression of references for all parts', '__enZB', '_WA , _ZZ , _sCC', '(ds)__(dst)',
+      '__EXPR', 'NOT_NULL'],
+    ['val__vbPQ', '_raTY__arP', '_hieV', 'value', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__vbPQ', "NOT_NULL DEFAULT ''"],
+    ['FK_raTY__arP_cn__arP', '_raTY__arP', 'cn__arP', '', '__enZB', '_cxN_AA , _cxF_AA , _zzz',
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (_arP) ON_DELETE CASCADE ON_UPDATE CASCADE'],
+    ['FK_raTY__arP_cxN__arP', '_raTY__arP', 'cxN__arP', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (_arP) ON_DELETE CASCADE ON_UPDATE CASCADE'],
+    ['RK_raTY__arP_cxF__EXPR', '_raTY__arP', 'cxF__EXPR', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
+      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON_DELETE SET_NULL ON_UPDATE CASCADE'],
+    ['FK_raTY__arP_val__tyFLD', '_raTY__arP', 'val__tyFLD', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (cn__arP) ON_DELETE SET_NULL ON_UPDATE CASCADE'],
+    ['RK_raTY__arP_rule__EXPR', '_raTY__arP', 'rule__EXPR', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
+      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON_DELETE SET_NULL ON_UPDATE CASCADE'],
+    ['RK_raTY__arP_te__EXPR', '_raTY__arP', 'te__EXPR', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
+      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON_DELETE SET_NULL ON_UPDATE CASCADE'],
+    ['cn__tyOFI', '_raOBJ__arP', '_cN : _hieV', '', '__enZB', '_cxF_AA , _ZZ , _sCC', '__(dst)', '__tyOFI', 'NULL DEFAULT NULL'],
+    ['FK_raOBJ__arP_cn__tyOFI', '_raOBJ__arP', 'cn__tyOFI', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (cn__arP) ON_DELETE SET_NULL ON_UPDATE CASCADE'],
+    ['par__OBJ', '_raOBJ__acPG_hie', '_hieV', 'parent', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__OBJ', 'NOT_NULL'],
+    ['chi__OBJ', '_raOBJ__acPG_hie', '_hieV', 'child', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__OBJ', 'NOT_NULL'],
+    ['row__evZB', '_raOBJ__acPG_hie', '_hieV', 'row', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__evZB', 'NOT_NULL'],
+    ['PKM_raOBJ__acPG_hie_par__OBJ', '_raOBJ__acPG_hie', 'par__OBJ', '', '__enZB', '_cxN_AA , _cxF_AA , _zzz', '(dst)_(ds)', 'PKM_', ''],
+    ['FK_raOBJ__acPG_hie_par__OBJ', '_raOBJ__acPG_hie', 'par__OBJ', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raOBJ__arP (cn__arP) ON_DELETE CASCADE ON_UPDATE CASCADE'],
+    ['FK_raOBJ__acPG_hie_chi__OBJ', '_raOBJ__acPG_hie', 'chi__OBJ', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raOBJ__arP (cn__arP) ON_DELETE CASCADE ON_UPDATE CASCADE'],
 
   ];
-  $src['__arPA']['_raOBJ__acPG_hie'] = [
+  $src['_raOBJ__acPG_hie'] = [
     ['par__OBJ', 'chi__OBJ'],
     ['_raCORE__arP', '_arP'],
-    ['_raCORE__arP', 'cre__duDB'],
-    ['_raCORE__arP', 'upd__duDB'],
+    ['_raCORE__arP', 'cre__dsDB'],
+    ['_raCORE__arP', 'upd__dsDB'],
     ['_raCORE__arP', 'PK_arP'],
-    ['_raCORE__arDS', '__arP'],
+    ['_raCORE__arDS', 'cn__arP'],
     ['_raCORE__arDS', '_arDS'],
-    ['_raCORE__arDS', 'PK_arDS'],
-    ['_raCORE__arDS', 'UK_arP'],
-    ['_raTY__arDS', '__arP'],
-    ['_raTY__arDS', 'cn__arDS'],
-    ['_raTY__arDS', 'cxN__arDS'],
-    ['_raTY__arDS', 'cxF__EXPR'],
-    ['_raTY__arDS', 'expl__vbKB', '_e__asFN:__tyFLD', '', ''],
-    ['_raTY__arDS', '__tyFLD'],
-    ['_raTY__arDS', 'rule__EXPR'],
-    ['_raTY__arDS', 'te__EXPR'],
-    ['_raTY__arDS', 'PK_arP'],
-    ['_raTY__arDS', 'UK_cn'],
-    ['_raTY__arDS', 'FK_cxN'],
-    ['_raTY__arDS', 'RK_cxF'],
-    ['_raTY__arDS', 'FK_tyFLD'],
-    ['_raTY__arDS', 'RK_rule'],
-    ['_raTY__arDS', 'RK_te'],
-    ['_raOBJ__arDS', '_raTY__arDS'],
-    ['_raOBJ__arDS', '__tyOFI'],
-    ['_raOBJ__arDS', 'FK_tyOFI'],
+    ['_raCORE__arDS', 'PK_cn__arP'],
+    ['_raCORE__arDS', 'UK_arDS'],
+    ['_raTY__arP', 'cn__arP'],
+    ['_raTY__arP', 'cxN__arP'],
+    ['_raTY__arP', 'cxF__EXPR'],
+    ['_raTY__arP', 'expl__vbKB'],
+    ['_raTY__arP', 'rule__EXPR'],
+    ['_raTY__arP', 'te__EXPR'],
+    ['_raTY__arP', 'val__tyFLD'],
+    ['_raTY__arP', 'val__vbPQ'],
+    ['_raTY__arP', 'PK_cn__arP'],
+    ['_raTY__arP', 'FK_raTY__arP_cn__arP'],
+    ['_raTY__arP', 'FK_raTY__arP_cxN__arP'],
+    ['_raTY__arP', 'RK_raTY__arP_cxF__EXPR'],
+    ['_raTY__arP', 'FK_raTY__arP_val__tyFLD'],
+    ['_raTY__arP', 'RK_raTY__arP_rule__EXPR'],
+    ['_raTY__arP', 'RK_raTY__arP_te__EXPR'],
+    ['_raOBJ__arP', '_raTY__arP'],
+    ['_raOBJ__arP', 'cn__tyOFI'],
+    ['_raOBJ__arP', 'FK_raOBJ__arP_cn__tyOFI'],
     ['_raOBJ__acPG_hie', 'par__OBJ'],
     ['_raOBJ__acPG_hie', 'chi__OBJ'],
-    ['_raOBJ__acPG_hie', 'check__vbPQ'],
-    ['_raOBJ__acPG_hie', 'default__vbPQ'],
-    ['_raOBJ__acPG_hie', 'PM_raOBJ__acPG_hie_par'],
-    ['_raOBJ__acPG_hie', 'FK_par'],
-    ['_raOBJ__acPG_hie', 'FK_chi'],
-    ['PKM_raOBJ__acPG_hie_par', 'chi__OBJ'],
+    ['_raOBJ__acPG_hie', 'row__evZB'],
+    ['_raOBJ__acPG_hie', 'PKM_raOBJ__acPG_hie_par__OBJ'],
+    ['_raOBJ__acPG_hie', 'FK_raOBJ__acPG_hie_par__OBJ'],
+    ['_raOBJ__acPG_hie', 'FK_raOBJ__acPG_hie_chi__OBJ'],
+    ['PKM_raOBJ__acPG_hie_par__OBJ', 'chi__OBJ'],
 
   ];
-  $src['__arPA']['_raDOC__arDS'] = [
-      ['cn__arDS', 'expl__vbKS', '__tyDOC'],
+  $src['_raDOC__arP'] = [
+      [RA_cn__arDS, 'expl__vbKS', '__tyDOC'],
       ['_d0', 'Content : this document', '__dList'],
       ['_d1', 'Destination', '__dList'],
       ['_d2', 'Naming', '__dList'],
@@ -522,11 +540,13 @@ function _raCore_iniTables() {
       ['_d9', 'Notes', '__dPost'],
       ['_dA', 'ReDeBuger', '__dPost'],
   ];
-  $src['__arPA']['_raDOC__acPG__dList'] = [
+  //*
+  $src['_raDOC__acPG__dList'] = [
       ['__DOC', 'expl__vcKB',
         ['__DOC', 'expl__vcKB',
           ['expl__vcKB',
             ['expl__vcKB']]]],
+      ['_d10', 'Destination : is : Relate Assemblies(RA)', []],
       ['_d10', 'Destination : is : Relate Assemblies(RA)', []],
       ['_d11', ' : do : Formal System Definition)', []],
       ['_d12', ' : by : Flexible Structuring of Ontologies', []],
@@ -543,7 +563,7 @@ function _raCore_iniTables() {
             'o : objects',
             '...',
           ]],
-          ['(FC) : <Facet Code> : consist of 4 parts : (fcm)(fca)(fcc)(fco) : ', [,
+          ['(FC) : <Facet Code> : consist of 4 parts : (fcm)(fca)(fcc)(fco) : ', [
             '(fcm) : <FCC of Modules -- index value> : [0-9A-Z] count(10 + 26) = 36',
             '(fca) : <FCC of Aggregate -- index value> [0-9A-Z]',
             '(fcc) : <FCC of Component -- index value> [0-9A-Z]',
@@ -623,5 +643,85 @@ function _raCore_iniTables() {
       ]],
   ];
 
-  
+$pp = '_p002c';
+  $RA[RA_cn__arDS] = $err = [];
+  foreach ($src as $src_tab => $src_arr) {
+    foreach ($src_arr as $src_arr_i => $src_arr_val) {
+      if ($src_arr_i) {
+        if (isset($RA[RA_cn__arDS][$src_arr_val[0]])) {
+          $err[$src_arr_val[0]] = $src_arr_val;
+        } else {
+          $RA[RA_cn__arDS][$src_arr_val[0]] = $src_arr_val;
+        }
+      } elseif ($src_arr_val[0] != RA_cn__arDS) {
+        break 2;
+      }
+    }
+  }
+  foreach ($RA[RA_cn__arDS] as $cn__arDS => $ra_arr) {
+    // echo " $cn__arDS";
+    if ($RA[RA_cn__arDS][$ra_arr[RA_raOBJ__arP_val__tyFLD]][RA_raOBJ__arP_cxN__arP] == '_fiEV') {
+      $ra_arr[] = explode($_sepVALUE, $ra_arr[RA_raOBJ__arP_expl__vbKB])[1] ?? 0;
+    } else {
+      $ra_arr[] = 0;
+    }
+    $RA[RA_cn__arDS][$cn__arDS] = $ra_arr;
+  }
+
+$pp = '_p002d';
+  $log = $RA[RA_sql] = [];
+  $table_name = $prev_table = '';
+  for ($src_i = 1; $src_i < count($src['_raOBJ__acPG_hie']) - 1; $src_i++) {
+    //print_r($src_i);
+    $prev_table = $table_name;
+    $table_name = $src['_raOBJ__acPG_hie'][$src_i][RA_raOBJ__acPG_hie_par__OBJ];
+    $field_name = $src['_raOBJ__acPG_hie'][$src_i][RA_raOBJ__acPG_hie_chi__OBJ];
+    echo "\n$table_name, $field_name";    
+    if (!isset($RA[RA_sql][$table_name])) {
+      if ($prev_table != '') {
+        $RA[RA_sql][$prev_table] = rtrim($sql, ',') . "\n)";
+      }
+      $RA[RA_sql][$table_name] = 0;
+      $sql = "CREATE TABLE $table_name (";
+      $chi_val = $row_val = 0;
+    }
+    if (strpos($RA[RA_cn__arDS][$field_name][RA_raOBJ__arP_cxF__EXPR], '_hieV') !== FALSE) {
+      if ($row_val != $chi_val ) {
+
+$ep = "$pp-e1";
+        $log[] = "  $ep Bad row_val/chi_val($row_val/$chi_val) nuber for table($table_name) and field($field_name): " . (count($err));
+      } else {
+        $__tyFLD = $old__tyFLD = $RA[RA_cn__arDS][$field_name][RA_raOBJ__arP_cn__tyOFI];
+        echo "\n  $__tyFLD";
+        $wile_i = 10;
+        while (strpos($RA[RA_cn__arDS][$__tyFLD][RA_raOBJ__arP_cxF__EXPR], '__tyFLD') === FALSE && $wile_i--) {
+          $__tyFLD = end($RA[RA_cn__arDS][$__tyFLD]);
+          echo "\n    $wile_i: $__tyFLD";
+          if (!$wile_i) {
+
+$ep = "$pp-e2";
+            $log[] = "  $ep Bad __tyFLD($old__tyFLD) for field_name($field_name) - not found real __tyFLD";
+          }
+        }
+        $sql .= "\n  $field_name $__tyFLD";
+      }
+      $row_val++;
+    }
+    $chi_val++;
+  }
+  $RA[RA_sql][$table_name] = rtrim($sql, ',') . "\n)";
+  dd($RA[RA_sql], $log);
+$pp = '_p002y';
+  $sp = "$pp-s1";
+  $msg = "$sp Number of cn__arDS processed: " . (count($RA[RA_cn__arDS]));
+  echo "\n$msg\n";
+  if ($err) {
+
+$ep = "$pp-e3";
+    $msg = "  $ep Errors found: " . (count($err));
+    echo "\n$msg";
+    foreach ($err as $err_i => $err_val) {
+      echo "\n   cn__arDS = $err_i ";
+    }
+  }
 }

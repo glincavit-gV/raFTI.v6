@@ -28,6 +28,7 @@ include_once 'v5_4/nfc_updates.php';
 include_once 'v5_4/nfc_word.php';
 include_once 'v5_4/regions_preserv.php';
 include_once 'v5_4/src_region_sql.php';
+include_once 'v6/_m0_RA/_o00Za_raCORE__acPP_api.php';
 
 class FTIService implements BaseServiceInterface
 {
@@ -46,7 +47,11 @@ class FTIService implements BaseServiceInterface
     }
 
     public function jobAPI($step, $arg_val) {
+      if (substr($step, 0, 2) == 'v6') {
+        _raCORE_api($step, $arg_val);
+      } else {
         nfc_api($step, $arg_val);
+      }
     }
 
     public function match($wine_id): array
