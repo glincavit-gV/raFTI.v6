@@ -311,8 +311,8 @@ $pp = '_p002b';
     ['__vcTB', '_fiVC', '_TB : __tyFLD : __tyOFI', ' : varchar(8)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
     ['__vcQB', '_fiVC', '_QB : __tyFLD : __tyOFI', ' : varchar(16)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
     ['__vcPB', '_fiVC', '_PB : __tyFLD : __tyOFI', ' : varchar(32)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
-    ['__vcPD', '_fiVC', '_PB : __tyFLD : __tyOFI', ' : varchar(64)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
-    ['__vcPQ', '_fiVC', '_PB : __tyFLD : __tyOFI', ' : varchar(128)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
+    ['__vcPD', '_fiVC', '_PD : __tyFLD : __tyOFI', ' : varchar(64)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
+    ['__vcPQ', '_fiVC', '_PD : __tyFLD : __tyOFI', ' : varchar(128)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
     ['__vcOB', '_fiVC', '_OB : __tyFLD : __tyOFI', ' : varchar(256)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
     ['__vcOD', '_fiVC', '_OD : __tyFLD : __tyOFI', ' : varchar(512)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
     ['__vcKB', '_fiVC', '_KB : __tyFLD : __tyOFI', ' : varchar(1024)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
@@ -327,8 +327,8 @@ $pp = '_p002b';
     ['__vbTB', '_fiVB', '_TB : __tyFLD : __tyOFI', ' : varbinary(8)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
     ['__vbQB', '_fiVB', '_QB : __tyFLD : __tyOFI', ' : varbinary(16)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
     ['__vbPB', '_fiVB', '_PB : __tyFLD : __tyOFI', ' : varbinary(32)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
-    ['__vbPD', '_fiVB', '_PB : __tyFLD : __tyOFI', ' : varbinary(64)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
-    ['__vbPQ', '_fiVB', '_PB : __tyFLD : __tyOFI', ' : varbinary(128)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
+    ['__vbPD', '_fiVB', '_PD : __tyFLD : __tyOFI', ' : varbinary(64)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
+    ['__vbPQ', '_fiVB', '_PQ : __tyFLD : __tyOFI', ' : varbinary(128)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
     ['__vbOB', '_fiVB', '_OB : __tyFLD : __tyOFI', ' : varbinary(256)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
     ['__vbOD', '_fiVB', '_OD : __tyFLD : __tyOFI', ' : varbinary(512)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
     ['__vbKB', '_fiVB', '_KB : __tyFLD : __tyOFI', ' : varbinary(1024)', '__evPB', '_cxN_NA , _cxF_NA , _sCC', '__(ds)'],
@@ -441,54 +441,60 @@ $pp = '_p002b';
     ['_raEXPR__arP', '_m0_RA', '_aX_EXPR : _hieO', ' : 0X0a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arP', ''],
     ['_raEXPR__acPG', '_m0_RA', '_aX_EXPR : _hieO', 'grid of references: 0X1a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__acPG', ''],
     ['_raYDEB__arP', '_m0_RA', '_aY_YDEB : _hieO', ' : 0Y0a', '__evQB', '_cxN_NA , _cxF_NA , _sCC', '_(ds)__(dst)', '__arP', ''],
-    ['__TY', '_raTY__arDS', '__tyOFI : _hieV', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '__(ds)', '__arP', 'NOT_NULL'],
-    ['__OBJ', '_raOBJ__arDS', '__tyOFI : _hieV', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '__(ds)', '__arP', 'NOT_NULL'],
-    ['__EXPR', '_raEXPR__arDS', '__tyOFI : _hieV', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '__(ds)', '__arP', 'NOT_NULL'],
-    ['_arP', '_raCORE__arP', '_hieV', 'primary register functor', '__enZB', '_ZZ , _ZZ , _zzz', '_(dst)', '__arP', 'NOT_NULL'],
-    ['cre__dsDB', '_raCORE__arP', '_hieV', 'create', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__dsDB', 'NOT_NULL DEFAULT CURRENT_TIMESTAMP'],
-    ['upd__dsDB', '_raCORE__arP', '_hieV', 'update', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__dsDB', 'NOT_NULL DEFAULT CURRENT_TIMESTAMP'],
+    ['__TY', '_raTY__arDS', '__tyOFI : _hieV', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '__(ds)', '__arP', 'NOT-NULL'],
+    ['__OBJ', '_raOBJ__arDS', '__tyOFI : _hieV', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '__(ds)', '__arP', 'NOT-NULL'],
+    ['__EXPR', '_raEXPR__arDS', '__tyOFI : _hieV', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '__(ds)', '__arP', 'NOT-NULL'],
+    ['_arP', '_raCORE__arP', '_hieV', 'primary register functor', '__enZB', '_ZZ , _ZZ , _zzz', '_(dst)', '__arP', 'NOT-NULL'],
+    ['cre__dsDB', '_raCORE__arP', '_hieV', 'create', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__dsDB', 'NOT-NULL DEFAULT CURRENT_TIMESTAMP'],
+    ['upd__dsDB', '_raCORE__arP', '_hieV', 'update', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__dsDB', 'NOT-NULL DEFAULT CURRENT_TIMESTAMP'],
     ['PK_arP', '_raCORE__arP', '_arP', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'PK_', ''],
-    ['cn__arP', '_raCORE__arDS', '_cN : _hieV', 'reference to primary register', '__enZB', '_cxF_AS , _ZZ , _ssz', '__(dst)', '__arP', 'NOT_NULL'],
-    ['_arDS', '_raCORE__arDS', '_hieV', 'primary register functor', '__enZB', '_ZZ , _ZZ , _zzz', '_(dst)', '__vbPQ', 'NOT_NULL'],
+    ['cn__arP', '_raCORE__arDS', '_cN : _hieV', 'reference to primary register', '__enZB', '_cxF_AS , _ZZ , _ssz', '__(dst)', '__arP', 'NOT-NULL'],
+    ['_arDS', '_raCORE__arDS', '_hieV', 'primary register functor', '__enZB', '_ZZ , _ZZ , _zzz', '_(dst)', '__vbPQ', 'NOT-NULL'],
     ['PK_cn__arP', '_raCORE__arDS', 'cn__arP', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'PK_', ''],
     ['UK_arDS', '_raCORE__arDS', '_arDS', '', '__enZB', '_ZZ , _cxF_AA , _zzz', '(dst)_(ds)', 'UK_', ''],
     ['FK_raCORE__arDS_cn__arP', '_raCORE__arDS', 'cn__arP', '', '__enZB', '_cxN_AA , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (_arP) ON_DELETE CASCADE ON_UPDATE CASCADE'],      
-    ['cxN__arP', '_raTY__arP', '_cX : _hieV', 'near -- reference to primary register', '__enZB', '_cxF_AA , _WA , _sCs', '(ds)__(dst)', '__arDS', 'NOT_NULL'],
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (_arP) ON-DELETE CASCADE ON-UPDATE CASCADE'],      
+    ['cxN__arP', '_raTY__arP', '_cX : _hieV', 'near -- reference to primary register', '__enZB', '_cxF_AA , _WA , _sCs', '(ds)__(dst)', '__arP', 'NOT-NULL'],
     ['cxF__EXPR', '_raTY__arP', '_cX : _hieV', 'far -- reference to expression of references', '__enZB', '_cxF_AS , _WA , _sCC', '(ds)__(dst)',
       '__EXPR', 'NULL DEFAULT NULL'],
-    ['expl__vbKB', '_raTY__arP', '_hieV', 'explanation', '__enZB', '_AQ , _ZZ , _sCC', '(ds)__(dst)', '__vbKB', "NOT_NULL DEFAULT ''"],
-    ['val__tyFLD', '_raTY__arP', '_hieV', 'value', '__enZB', '_AT , _ZZ , _sCC', '__(dst)', '__tyFLD', 'NULL DEFAULT NULL'],
+    ['expl__vbKB', '_raTY__arP', '_hieV', 'explanation', '__enZB', '_AQ , _ZZ , _sCC', '(ds)__(dst)', '__vbKB', "NOT-NULL DEFAULT ''"],
+    ['val__tyFLD', '_raTY__arP', '_hieV', 'value', '__enZB', '_AT , _ZZ , _sCC', '__(dst)', '__arP', 'NOT-NULL'],
     ['rule__EXPR', '_raTY__arP', '_hieV', 'rule -- reference to expression of references for (ds) part', '__enZB', '_WA , _ZZ , _sCC', '(ds)__(dst)',
-      '__EXPR', 'NOT_NULL'],
+      '__EXPR', 'NOT-NULL'],
     ['te__EXPR', '_raTY__arP', '_hieV', 'template -- reference to expression of references for all parts', '__enZB', '_WA , _ZZ , _sCC', '(ds)__(dst)',
-      '__EXPR', 'NOT_NULL'],
-    ['val__vbPQ', '_raTY__arP', '_hieV', 'value', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__vbPQ', "NOT_NULL DEFAULT ''"],
+      '__EXPR', 'NOT-NULL'],
+    ['val__vbPQ', '_raTY__arP', '_hieV', 'value', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__vbPQ', "NOT-NULL DEFAULT ''"],
     ['FK_raTY__arP_cn__arP', '_raTY__arP', 'cn__arP', '', '__enZB', '_cxN_AA , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (_arP) ON_DELETE CASCADE ON_UPDATE CASCADE'],
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (_arP) ON-DELETE CASCADE ON-UPDATE CASCADE'],
     ['FK_raTY__arP_cxN__arP', '_raTY__arP', 'cxN__arP', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (_arP) ON_DELETE CASCADE ON_UPDATE CASCADE'],
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (_arP) ON-DELETE CASCADE ON-UPDATE CASCADE'],
     ['RK_raTY__arP_cxF__EXPR', '_raTY__arP', 'cxF__EXPR', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON_DELETE SET_NULL ON_UPDATE CASCADE'],
+      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON-DELETE SET_NULL ON-UPDATE CASCADE'],
     ['FK_raTY__arP_val__tyFLD', '_raTY__arP', 'val__tyFLD', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (cn__arP) ON_DELETE SET_NULL ON_UPDATE CASCADE'],
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (cn__arP) ON-DELETE SET_NULL ON-UPDATE CASCADE'],
     ['RK_raTY__arP_rule__EXPR', '_raTY__arP', 'rule__EXPR', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON_DELETE SET_NULL ON_UPDATE CASCADE'],
+      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON-DELETE SET_NULL ON-UPDATE CASCADE'],
     ['RK_raTY__arP_te__EXPR', '_raTY__arP', 'te__EXPR', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON_DELETE SET_NULL ON_UPDATE CASCADE'],
-    ['cn__tyOFI', '_raOBJ__arP', '_cN : _hieV', '', '__enZB', '_cxF_AA , _ZZ , _sCC', '__(dst)', '__tyOFI', 'NULL DEFAULT NULL'],
+      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON-DELETE SET_NULL ON-UPDATE CASCADE'],
+    ['cn__tyOFI', '_raOBJ__arP', '_cN : _hieV', '', '__enZB', '_cxF_AA , _ZZ , _sCC', '__(dst)', '__arP', 'NULL DEFAULT NULL'],
+    ['ty__EXPR', '_raOBJ__arP', '_hieV', 'template -- reference to expression of all fields parameters', '__enZB', '_WA , _ZZ , _sCC', '(ds)__(dst)',
+      '__EXPR', 'NOT-NULL'],
     ['FK_raOBJ__arP_cn__tyOFI', '_raOBJ__arP', 'cn__tyOFI', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (cn__arP) ON_DELETE SET_NULL ON_UPDATE CASCADE'],
-    ['par__OBJ', '_raOBJ__acPG_hie', '_hieV', 'parent', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__OBJ', 'NOT_NULL'],
-    ['chi__OBJ', '_raOBJ__acPG_hie', '_hieV', 'child', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__OBJ', 'NOT_NULL'],
-    ['row__evZB', '_raOBJ__acPG_hie', '_hieV', 'row', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__evZB', 'NOT_NULL'],
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (cn__arP) ON-DELETE SET_NULL ON-UPDATE CASCADE'],
+    ['RK_raOBJ__arP_ty__EXPR', '_raOBJ__arP', 'ty__EXPR', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
+      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON-DELETE SET_NULL ON-UPDATE CASCADE'],
+    ['par__OBJ', '_raOBJ__acPG_hie', '_hieV', 'parent', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__OBJ', 'NOT-NULL'],
+    ['chi__OBJ', '_raOBJ__acPG_hie', '_hieV', 'child', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__OBJ', 'NOT-NULL'],
+    ['row__evZB', '_raOBJ__acPG_hie', '_hieV', 'row', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__evZB', 'NOT-NULL'],
     ['PKM_raOBJ__acPG_hie_par__OBJ', '_raOBJ__acPG_hie', 'par__OBJ', '', '__enZB', '_cxN_AA , _cxF_AA , _zzz', '(dst)_(ds)', 'PKM_', ''],
     ['FK_raOBJ__acPG_hie_par__OBJ', '_raOBJ__acPG_hie', 'par__OBJ', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'FK_', 'REFERENCES _raOBJ__arP (cn__arP) ON_DELETE CASCADE ON_UPDATE CASCADE'],
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raOBJ__arP (cn__arP) ON-DELETE CASCADE ON-UPDATE CASCADE'],
     ['FK_raOBJ__acPG_hie_chi__OBJ', '_raOBJ__acPG_hie', 'chi__OBJ', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'FK_', 'REFERENCES _raOBJ__arP (cn__arP) ON_DELETE CASCADE ON_UPDATE CASCADE'],
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raOBJ__arP (cn__arP) ON-DELETE CASCADE ON-UPDATE CASCADE'],
 
   ];
+  $RA_raOBJ__acPG_hie_par__OBJ = 0;
+  $RA_raOBJ__acPG_hie_chi__OBJ = 1;
   $src['_raOBJ__acPG_hie'] = [
     ['par__OBJ', 'chi__OBJ'],
     ['_raCORE__arP', '_arP'],
@@ -499,6 +505,7 @@ $pp = '_p002b';
     ['_raCORE__arDS', '_arDS'],
     ['_raCORE__arDS', 'PK_cn__arP'],
     ['_raCORE__arDS', 'UK_arDS'],
+    ['_raCORE__arDS', 'FK_raCORE__arDS_cn__arP'],
     ['_raTY__arP', 'cn__arP'],
     ['_raTY__arP', 'cxN__arP'],
     ['_raTY__arP', 'cxF__EXPR'],
@@ -516,7 +523,9 @@ $pp = '_p002b';
     ['_raTY__arP', 'RK_raTY__arP_te__EXPR'],
     ['_raOBJ__arP', '_raTY__arP'],
     ['_raOBJ__arP', 'cn__tyOFI'],
+    ['_raOBJ__arP', 'te__EXPR'],
     ['_raOBJ__arP', 'FK_raOBJ__arP_cn__tyOFI'],
+    ['_raOBJ__arP', 'RK_raOBJ__arP_ty__EXPR'],
     ['_raOBJ__acPG_hie', 'par__OBJ'],
     ['_raOBJ__acPG_hie', 'chi__OBJ'],
     ['_raOBJ__acPG_hie', 'row__evZB'],
@@ -644,14 +653,16 @@ $pp = '_p002b';
   ];
 
 $pp = '_p002c';
-  $RA[RA_cn__arDS] = $err = [];
+  $RA[RA_cn__arDS] =  $err = [];
   foreach ($src as $src_tab => $src_arr) {
+    $fields = $src_arr[0];
     foreach ($src_arr as $src_arr_i => $src_arr_val) {
       if ($src_arr_i) {
         if (isset($RA[RA_cn__arDS][$src_arr_val[0]])) {
           $err[$src_arr_val[0]] = $src_arr_val;
         } else {
-          $RA[RA_cn__arDS][$src_arr_val[0]] = $src_arr_val;
+          //$arr = array_combine($fields, $src_arr_val);
+          $RA[RA_cn__arDS][$src_arr_val[0]] = array_combine($fields, $src_arr_val);
         }
       } elseif ($src_arr_val[0] != RA_cn__arDS) {
         break 2;
@@ -660,57 +671,67 @@ $pp = '_p002c';
   }
   foreach ($RA[RA_cn__arDS] as $cn__arDS => $ra_arr) {
     // echo " $cn__arDS";
-    if ($RA[RA_cn__arDS][$ra_arr[RA_raOBJ__arP_val__tyFLD]][RA_raOBJ__arP_cxN__arP] == '_fiEV') {
-      $ra_arr[] = explode($_sepVALUE, $ra_arr[RA_raOBJ__arP_expl__vbKB])[1] ?? 0;
+    if ($RA[RA_cn__arDS][$ra_arr['val__tyFLD']]['cxN__arDS'] == '_fiEV') {
+      $ra_arr['val__vbPQ'] = explode($_sepVALUE, $ra_arr['expl__vbKB'])['1'] ?? 0;
     } else {
-      $ra_arr[] = 0;
+      $ra_arr['val__vbPQ'] = 0;
     }
     $RA[RA_cn__arDS][$cn__arDS] = $ra_arr;
   }
 
 $pp = '_p002d';
-  $log = $RA[RA_sql] = [];
+  $log = $RA[RA_sql] = $fields_desc = [];
   $table_name = $prev_table = '';
   for ($src_i = 1; $src_i < count($src['_raOBJ__acPG_hie']) - 1; $src_i++) {
-    //print_r($src_i);
+    //var_dump($src_i,$src['_raOBJ__acPG_hie'][$src_i]);
     $prev_table = $table_name;
-    $table_name = $src['_raOBJ__acPG_hie'][$src_i][RA_raOBJ__acPG_hie_par__OBJ];
-    $field_name = $src['_raOBJ__acPG_hie'][$src_i][RA_raOBJ__acPG_hie_chi__OBJ];
-    echo "\n$table_name, $field_name";    
+    $table_name = $src['_raOBJ__acPG_hie'][$src_i][$RA_raOBJ__acPG_hie_par__OBJ];
+    $field_name = $src['_raOBJ__acPG_hie'][$src_i][$RA_raOBJ__acPG_hie_chi__OBJ];
+    echo "\n$table_name, $field_name, " . $RA[RA_cn__arDS][$field_name]['cxF__EXPR'];
     if (!isset($RA[RA_sql][$table_name])) {
       if ($prev_table != '') {
         $RA[RA_sql][$prev_table] = rtrim($sql, ',') . "\n)";
       }
       $RA[RA_sql][$table_name] = 0;
+      $fields_desc[$table_name] = '';
       $sql = "CREATE TABLE $table_name (";
       $chi_val = $row_val = 0;
     }
-    if (strpos($RA[RA_cn__arDS][$field_name][RA_raOBJ__arP_cxF__EXPR], '_hieV') !== FALSE) {
-      if ($row_val != $chi_val ) {
+    if (isset($RA[RA_sql][$field_name])) {
+      $sql .= $fields_desc[$field_name];
+    } else {
+      if (strpos($RA[RA_cn__arDS][$field_name]['cxF__EXPR'], '_hieV') !== FALSE) {
+        if ($row_val != $chi_val ) {
 
-$ep = "$pp-e1";
-        $log[] = "  $ep Bad row_val/chi_val($row_val/$chi_val) nuber for table($table_name) and field($field_name): " . (count($err));
-      } else {
-        $__tyFLD = $old__tyFLD = $RA[RA_cn__arDS][$field_name][RA_raOBJ__arP_cn__tyOFI];
-        echo "\n  $__tyFLD";
-        $wile_i = 10;
-        while (strpos($RA[RA_cn__arDS][$__tyFLD][RA_raOBJ__arP_cxF__EXPR], '__tyFLD') === FALSE && $wile_i--) {
-          $__tyFLD = end($RA[RA_cn__arDS][$__tyFLD]);
-          echo "\n    $wile_i: $__tyFLD";
-          if (!$wile_i) {
-
-$ep = "$pp-e2";
-            $log[] = "  $ep Bad __tyFLD($old__tyFLD) for field_name($field_name) - not found real __tyFLD";
+  $ep = "$pp-e1";
+          $log[] = "  $ep Bad row_val/chi_val($row_val/$chi_val) nuber for table($table_name) and field($field_name): " . (count($err));
+        } else {
+          $__tyFLD = $old__tyFLD = $RA[RA_cn__arDS][$field_name]['cn__tyOFI'];
+          $wile_i = 10;
+          if (isset($RA[RA_cn__arDS][$__tyFLD]['cn__tyOFI'])) {
+            $__tyFLD = $RA[RA_cn__arDS][$__tyFLD]['cn__tyOFI'];
           }
+          while (strpos($RA[RA_cn__arDS][$__tyFLD]['cxF__EXPR'], '__tyFLD') === FALSE && $wile_i--) {
+            $__tyFLD = $RA[RA_cn__arDS][$__tyFLD]['val__vbPQ'];
+            if (!$wile_i) {
+
+  $ep = "$pp-e2";
+              $log[] = "  $ep Bad __tyFLD($old__tyFLD) for field_name($field_name) - not found real __tyFLD";
+            }
+          }
+          $real_ty = $RA[RA_cn__arDS][$__tyFLD]['val__vbPQ'] . ' ' . strtr($RA[RA_cn__arDS][$field_name]['ty__EXPR'], ['-' => ' ']);
+          $field_desc = "\n  $field_name $real_ty,";;
+          $fields_desc[$table_name] .= $field_desc;
+          $sql .= $field_desc;
         }
-        $sql .= "\n  $field_name $__tyFLD";
+        $row_val++;
       }
-      $row_val++;
+      $chi_val++;
     }
-    $chi_val++;
   }
   $RA[RA_sql][$table_name] = rtrim($sql, ',') . "\n)";
-  dd($RA[RA_sql], $log);
+  print_r($RA[RA_sql]);
+  print_r($log);
 $pp = '_p002y';
   $sp = "$pp-s1";
   $msg = "$sp Number of cn__arDS processed: " . (count($RA[RA_cn__arDS]));

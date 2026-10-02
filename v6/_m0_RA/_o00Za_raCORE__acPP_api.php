@@ -5,7 +5,7 @@ include_once '_o002a_raCore__acPP_ini.php';
 function _raCORE_api($step, $arg_val) {
   global $RA;
   switch ($step) {
-    case 'v6-0':
+    case 'v6_0':
         _raCore_iniTables();
         break;
   }

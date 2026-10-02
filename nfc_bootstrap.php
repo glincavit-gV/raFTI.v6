@@ -14,3 +14,4 @@ include_once __DIR__ . '/v5_4/nfc_updates.php';
 include_once __DIR__ . '/v5_4/nfc_word.php';
 include_once __DIR__ . '/v5_4/regions_preserv.php';
 include_once __DIR__ . '/v5_4/src_region_sql.php';
+include_once __DIR__ . '/v6/_m0_RA/_o00Za_raCORE__acPP_api.php';
