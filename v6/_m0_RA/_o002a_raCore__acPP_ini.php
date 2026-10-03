@@ -469,20 +469,20 @@ $pp = '_p002b';
     ['FK_raTY__arP_cxN__arP', '_raTY__arP', 'cxN__arP', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
       '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (_arP) ON-DELETE CASCADE ON-UPDATE CASCADE'],
     ['RK_raTY__arP_cxF__EXPR', '_raTY__arP', 'cxF__EXPR', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON-DELETE SET_NULL ON-UPDATE CASCADE'],
+      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON-DELETE SET-NULL ON-UPDATE CASCADE'],
     ['FK_raTY__arP_val__tyFLD', '_raTY__arP', 'val__tyFLD', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (cn__arP) ON-DELETE SET_NULL ON-UPDATE CASCADE'],
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (cn__arP) ON-DELETE SET-NULL ON-UPDATE CASCADE'],
     ['RK_raTY__arP_rule__EXPR', '_raTY__arP', 'rule__EXPR', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON-DELETE SET_NULL ON-UPDATE CASCADE'],
+      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON-DELETE SET-NULL ON-UPDATE CASCADE'],
     ['RK_raTY__arP_te__EXPR', '_raTY__arP', 'te__EXPR', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON-DELETE SET_NULL ON-UPDATE CASCADE'],
+      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON-DELETE SET-NULL ON-UPDATE CASCADE'],
     ['cn__tyOFI', '_raOBJ__arP', '_cN : _hieV', '', '__enZB', '_cxF_AA , _ZZ , _sCC', '__(dst)', '__arP', 'NULL DEFAULT NULL'],
     ['ty__EXPR', '_raOBJ__arP', '_hieV', 'template -- reference to expression of all fields parameters', '__enZB', '_WA , _ZZ , _sCC', '(ds)__(dst)',
       '__EXPR', 'NOT-NULL'],
     ['FK_raOBJ__arP_cn__tyOFI', '_raOBJ__arP', 'cn__tyOFI', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (cn__arP) ON-DELETE SET_NULL ON-UPDATE CASCADE'],
+      '(dst)_(ds)', 'FK_', 'REFERENCES _raCORE__arP (cn__arP) ON-DELETE SET-NULL ON-UPDATE CASCADE'],
     ['RK_raOBJ__arP_ty__EXPR', '_raOBJ__arP', 'ty__EXPR', '', '__enZB', '_ZZ , _cxF_AA , _zzz',
-      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON-DELETE SET_NULL ON-UPDATE CASCADE'],
+      '(dst)_(ds)', 'RK_', 'REFERENCES _raEXPR__arP (cn__arP) ON-DELETE SET-NULL ON-UPDATE CASCADE'],
     ['par__OBJ', '_raOBJ__acPG_hie', '_hieV', 'parent', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__OBJ', 'NOT-NULL'],
     ['chi__OBJ', '_raOBJ__acPG_hie', '_hieV', 'child', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__OBJ', 'NOT-NULL'],
     ['row__evZB', '_raOBJ__acPG_hie', '_hieV', 'row', '__enZB', '_AT , _ZZ , _sCC', '(ds)__(dst)', '__evZB', 'NOT-NULL'],
@@ -730,8 +730,7 @@ $pp = '_p002d';
     }
   }
   $RA[RA_sql][$table_name] = rtrim($sql, ',') . "\n)";
-  print_r($RA[RA_sql]);
-  print_r($log);
+  dz($RA[RA_sql]);
 $pp = '_p002y';
   $sp = "$pp-s1";
   $msg = "$sp Number of cn__arDS processed: " . (count($RA[RA_cn__arDS]));
