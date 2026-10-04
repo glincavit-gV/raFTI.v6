@@ -2,6 +2,9 @@
 global $RA;
 const RA_cn__arDS = 'cn__arDS';
 const RA_sql = 'RA_sql';
+const RA_sq = 'RA_sq';
+const RA_db = 'RA_db';
+const RA_currDB = 'RA_currDB';
 
 $RA['__tySEP']['_sepCN'] = "_";
 $RA['__tySEP']['_sepTY'] = "__";
@@ -15,7 +18,7 @@ $RA['__tySEP']['_sepALT'] = " / ";
 $RA['__tySEP']['_sepREM'] = " -- ";
 
 
-function dz(...$vars) {
+function du(...$vars) {
   echo "\n";
   // Orange/Brown for structural brackets
   $orange = "\e[38;5;208m"; 
@@ -30,6 +33,11 @@ function dz(...$vars) {
       echo "\e[34m^\e[0m " . formatTerminalValue($v, 0) . "\n";
     }
   }
+}
+
+
+function dz(...$vars) {
+  du(...$vars);
   exit(1);
 }
 
