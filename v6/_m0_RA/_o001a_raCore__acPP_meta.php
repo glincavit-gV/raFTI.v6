@@ -4,7 +4,7 @@ const RA_cn__arDS = 'cn__arDS';
 const RA_sql = 'RA_sql';
 const RA_sq = 'RA_sq';
 const RA_db = 'RA_db';
-const RA_currDB = 'RA_currDB';
+const RA_curDB = 'RA_currDB';
 
 $RA['__tySEP']['_sepCN'] = "_";
 $RA['__tySEP']['_sepTY'] = "__";
@@ -15,8 +15,14 @@ $RA['__tySEP']['_sepVALUE'] = " : ";
 $RA['__tySEP']['_sepBACKREF'] = " :: ";
 $RA['__tySEP']['_sepLIST'] = " , ";
 $RA['__tySEP']['_sepALT'] = " / ";
+$RA['__tySEP']['_sepPART'] = "/";
 $RA['__tySEP']['_sepREM'] = " -- ";
 
+
+function dz(...$vars) {
+  du(...$vars);
+  exit(1);
+}
 
 function du(...$vars) {
   echo "\n";
@@ -33,12 +39,6 @@ function du(...$vars) {
       echo "\e[34m^\e[0m " . formatTerminalValue($v, 0) . "\n";
     }
   }
-}
-
-
-function dz(...$vars) {
-  du(...$vars);
-  exit(1);
 }
 
 function formatTerminalArray($array, $indent = 2) {
