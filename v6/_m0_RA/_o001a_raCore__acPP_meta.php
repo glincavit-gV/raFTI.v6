@@ -1,10 +1,16 @@
 <?php
 global $RA;
-const RA_cn__arDS = 'cn__arDS';
-const RA_sql = 'RA_sql';
-const RA_sq = 'RA_sq';
-const RA_db = 'RA_db';
-const RA_curDB = 'RA_currDB';
+const RA_cn__arDS = 0;
+const RA_sql = 1;
+const RA_sq = 2;
+const RA_db = 3;
+const RA_curDB = 4;
+const RA_hieA__arP = 5;
+
+const RA_expl__vbKB_part__main_i = 0;
+const RA_expl__vbKB_part__val_i = 1;
+
+const RA_cxF__EXPR_part__main_i = 0;
 
 $RA['__tySEP']['_sepCN'] = "_";
 $RA['__tySEP']['_sepTY'] = "__";
@@ -12,7 +18,8 @@ $RA['__tySEP']['_sepADD'] = " + ";
 $RA['__tySEP']['_sepMINUS'] = " - ";
 $RA['__tySEP']['_sepMULTIPLY'] = " * ";
 $RA['__tySEP']['_sepVALUE'] = " : ";
-$RA['__tySEP']['_sepBACKREF'] = " :: ";
+$RA['__tySEP']['_sepOPTION'] = ":";
+$RA['__tySEP']['_sepBACK'] = " :: ";
 $RA['__tySEP']['_sepLIST'] = " , ";
 $RA['__tySEP']['_sepALT'] = " / ";
 $RA['__tySEP']['_sepPART'] = "/";
