@@ -6,11 +6,10 @@ const RA_sq = 2;
 const RA_db = 3;
 const RA_curDB = 4;
 const RA_hieA__arP = 5;
+const RA_EXPR__arP = 6;
 
-const RA_expl__vbKB_part__main_i = 0;
-const RA_expl__vbKB_part__val_i = 1;
-
-const RA_cxF__EXPR_part__main_i = 0;
+const RA_seg_start = 0;
+const RA_seg_next = 1;
 
 $RA['__tySEP']['_sepCN'] = "_";
 $RA['__tySEP']['_sepTY'] = "__";
