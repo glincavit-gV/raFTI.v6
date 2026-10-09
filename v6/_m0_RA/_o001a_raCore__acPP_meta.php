@@ -23,6 +23,7 @@ $RA['__tySEP']['_sepLIST'] = " , ";
 $RA['__tySEP']['_sepALT'] = " / ";
 $RA['__tySEP']['_sepPART'] = "/";
 $RA['__tySEP']['_sepREM'] = " -- ";
+$RA['__tySEP']['_sepPER'] = "@";
 
 
 function dz(...$vars) {
