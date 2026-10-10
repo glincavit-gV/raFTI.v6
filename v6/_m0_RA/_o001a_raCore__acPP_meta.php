@@ -5,11 +5,21 @@ const RA_sql = 1;
 const RA_sq = 2;
 const RA_db = 3;
 const RA_curDB = 4;
-const RA_hieA__arP = 5;
-const RA_EXPR__arP = 6;
+const RA_seg__arP = 5;
+const RA_seg__arDS = 6;
+const RA_EXPR__arP = 7;
+const RA_tables = 8;
 
-const RA_seg_start = 0;
-const RA_seg_next = 1;
+const RA_seg__arDS_start = 0;
+const RA_seg__arDS_next = 1;
+const RA_seg__arDS_arP = 2;
+
+const RA_tables_flds_str = 0;
+const RA_tables_hieSHE = 1;
+
+const RA_sql_cnt = 0;
+const RA_sql_str = 1;
+const RA_sql_max = 100;
 
 $RA['__tySEP']['_sepCN'] = "_";
 $RA['__tySEP']['_sepTY'] = "__";
