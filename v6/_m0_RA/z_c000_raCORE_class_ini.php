@@ -28,7 +28,7 @@ function _raCORE_iniTables() {
 /*
   Next var is the array element : $RA['__acAKV']['_o011a:__dPost']['_d2:Naming'] = ['_fccSD__arDP'.. [...], '_d21'.. [...],..., '_d25'.. [...]] :
   It describing all parts of object designation :
-    <_o000a_raCORE_class__asPH_iniTables> : <_><a000a><_><raCore><_class><__><asPH><_iniTables> : 8 parts
+    <_o000a_raCORE_class__asPH_iniTables> : <_><a000a><_><raCORE><_class><__><asPH><_iniTables> : 8 parts
   The '_fccSD__arDP' - describe the hierarchy of fileds used for DOC type like '__dPost'
   The '_d21' 1-st, ..., '_d25' last records of documnt : '<DOC FCC>:_d2'.. ['<DOC name>:Naming', '<DOC type>:__dPost'].
 */
@@ -38,7 +38,7 @@ function _raCORE_iniTables() {
           ['_explan__svKS', ['_explan__svKS']]]
       ]],
       ['_d20', 'Naming : (convention : constraints : order rules)', []],
-      ['_d21', '<Aggregate designation template>(ADT) parts : <_><a000a><_><raCore><_class><__><asPH><_iniTables> : 8 parts : _d211,_d212,..._d218 :', [
+      ['_d21', '<Aggregate designation template>(ADT) parts : <_><a000a><_><raCORE><_class><__><asPH><_iniTables> : 8 parts : _d211,_d212,..._d218 :', [
         ['_d211', '<_>', '<functor designation prefix> : <exact (1)one and 1-st symbol of ADT>', []],
         ['_d212', '<a000a> : <a><0><0><0><a> : <aMACu>', '<Facet Class Code>(FCC) : _df functor : ', [
           ['<a>MACu : a : <aggregate space of FCC> : (__fccS<Spaces> : (__fccSM(module) /__fccSA(aggregate) / __fccSD(document) / __fccSP(point/part) /...)', []],
@@ -48,7 +48,7 @@ function _raCORE_iniTables() {
           ['aMAC<u> : u : <FCC of aggregate component unite index value> [a-z] (<min number> : <a> : <0>) (<max number> : <z> : <25>) count(26)', []]
         ]],
         ['_d213', '<_>', '(1)one and not 1-st <under score> symbol in any of ADT position : <object hierarchy level designation separator or its aspects of using>', []],
-        ['_d214', '<raCore> : <ra><Core>','<module><Aggeregate> : <designation of moduleAggregate pair destination> :', [
+        ['_d214', '<raCORE> : <ra><Core>','<module><Aggeregate> : <designation of moduleAggregate pair destination> :', [
           ['<ra> : <Relate Assemlies> : designation of 1-st and main <module> part : <module> designation must use LOWER CASE letters.', []],
           ['<Core> : designation of <Aggregate> part : 1-st appearance of UPPER CASE is signaling the beginning of <Aggregate> part of designation.', []]
         ]],
