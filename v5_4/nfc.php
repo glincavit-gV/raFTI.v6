@@ -2181,7 +2181,7 @@ function search_regions_src__exDB() {
               }
             }
             $msg = str_pad((", id($row_regi)"), 11);
-            echo "\r entries(" .str_pad(++$fti_entry_cnt, 5) . str_pad((")$msg, for($Country>" . substr($path, 0, 100) . ")"), 140);
+            echo "\r entries(" . str_pad(++$fti_entry_cnt, 5) . str_pad((")$msg, for($Country>" . substr($path, 0, 100) . ")"), 140);
             if ($iter_ii) {
               $sql_i =
                 "INSERT INTO $fti_parsedwine__exDB.nfc_src_regions

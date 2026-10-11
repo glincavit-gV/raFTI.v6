@@ -90,8 +90,8 @@ _d212 | Шаблон : #nsXO: { #nsXO_FCC + _m__arDP + _a__arDP + __acTY + [_opt
     d | __acTY: Обозначение Первичное типа компонента агрегата
     e | _opt__arDP : Designation Primary of aggregate component unite for its options or parameters
     e | _opt__arDP : Обозначение Первичное узла компонента агрегата, его опций или параметров
-    f | Examples of  #nsXO : { _o000a_raCore__asPH_initDOC__nlEN, ... , _o00Za_raCore__asPH_initDOC__nlXX} :
-    f | Примеры #nsXO : { _o000a_raCore__asPH_initDOC__nlEN, ... , _o00Za_raCore__asPH_initDOC__nlXX} :
+    f | Examples of  #nsXO : { _o000a_raCORE__asPH_initDOC__nlEN, ... , _o00Za_raCORE__asPH_initDOC__nlXX} :
+    f | Примеры #nsXO : { _o000a_raCORE__asPH_initDOC__nlEN, ... , _o00Za_raCORE__asPH_initDOC__nlXX} :
   ";
 
 }
