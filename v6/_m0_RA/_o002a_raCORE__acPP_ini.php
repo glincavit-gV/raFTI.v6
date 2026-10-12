@@ -2,10 +2,10 @@
 include_once '_o001a_raCORE__acPP_meta.php';
 include_once '_o002a_raCORE__acPP_ini.php';
 
-function _raCORE_iniTables() { $pp = '_p002a';
+function _raCORE_iniTables() { $pp = 'p002a-0a';
   global $RA;
 
-  extract($RA['__tySEP']);
+  extract($RA[RA__tySEP]);
   $RA_raTY__arDS_cn__arDS = 0;
   $RA_raTY__arDS_cxN__arDS = 1;
   $src['_raTY__arP'] = [
@@ -46,6 +46,7 @@ function _raCORE_iniTables() { $pp = '_p002a';
     ['fccP', 'FCC', '_hieO', 'programm points -- name space : p , _liMAX', '__evPQ', '_cxN_AA , _WS , _sCC', 'ds'],
     ['fccE', 'FCC', '_hieO', 'errors -- name space : e , _liMAX', '__evPQ', '_cxN_AA , _WS , _sCC', 'ds'],
     ['fccS', 'FCC', '_hieO', 'short mesage -- name space : s , _liMAX', '__evPQ', '_cxN_AA , _WS , _sCC', 'ds'],
+    ['fccV', 'FCC', '_hieO', 'version -- name space : v , _liMAX', '__evPQ', '_cxN_AA , _WS , _sCC', 'ds'],
     ['fccF', 'FCC', '_hieO', 'filed -- name space : f , _liMIN', '__evPQ', '_cxN_AA , _WS , _sCC', 'ds'],
     ['_hieATE', '_hieA', '_omTE', '', '__enZB', '_cxN_AA , _cxF_NA , _zCC', '_/ds'],
     ['_ateOFF_MIN', '_hieATE', '_altMIN', 'offset -- of agg index : 0', '__evZB', '_cxN_NA , _AT , _sCC', '_/ds/_/dso:_cxF_NA'],
@@ -241,6 +242,7 @@ function _raCORE_iniTables() { $pp = '_p002a';
     ['_sepTY', '__tySEP', '', "type -- prefix : $_sepTY", '__evQB', '_cxN_NA , _AD , _sCC', '_/ds'],
     ['_sepADD', '__tySEP', '', "add -- or concatinate contexts : $_sepADD", '__evQB', '_cxN_NA , _AA , _sCC', '_/ds'],
     ['_sepMINUS', '__tySEP', '', "minus -- or deconcatinate contexts : $_sepMINUS", '__evQB', '_cxN_NA , _AA , _sCC', '_/ds'],
+    ['_sepFIXE', '__tySEP', '', "fixe : $_sepFIXE", '__evQB', '_cxN_NA , _AA , _sCC', '_/ds'],
     ['_sepMULTIPLY', '__tySEP', '', "multiply -- content separator : $_sepMULTIPLY", '__evQB', '_cxN_NA , _AA , _sCC', '_/ds'],
     ['_sepVALUE', '__tySEP', '', "value -- or high level nod contexts : $_sepVALUE", '__evQB', '_cxN_NA , _AA , _sCC', '_/ds'],
     ['_sepOPTION', '__tySEP', '', "option : $_sepOPTION", '__evQB', '_cxN_NA , _AA , _sCC', '_/ds'],
@@ -250,10 +252,13 @@ function _raCORE_iniTables() { $pp = '_p002a';
     ['_sepPART', '__tySEP', '', "part -- or path content separator : $_sepPART", '__evQB', '_cxN_NA , _AQ , _sCC', '_/ds'],
     ['_sepREM', '__tySEP', '', "remarc -- content separator : $_sepREM", '__evQB', '_cxN_NA , _AT , _sCC', '_/ds'],
     ['_sepPER', '__tySEP', '', "persons sign criterion : $_sepPER", '__evQB', '_cxN_NA , _AT , _sCC', '_/ds'],
+    ['_sepWORD', '__tySEP', '', "word : $_sepWORD", '__evQB', '_cxN_NA , _AT , _sCC', '_/ds'],
+    ['_sepSTRUC', '__tySEP', '', "structure -- components : $_sepSTRUC", '__evQB', '_cxN_NA , _AP , _sCC', '_/ds'],
     ["$_sepCN", '_sepCN', '__tySEP', "content -- or hierarchy level separator", '__enZB', '_cxN_RV , _ZZ , _zzz', 'ds'],
     ["$_sepTY", '_sepTY', '__tySEP', "type -- prefix", '__enZB', '_cxN_RV , _ZZ , _zzz', 'ds'],
     ["$_sepADD", '_sepADD', '__tySEP', "add -- or concatinate contexts", '__enZB', '_cxN_RV , _ZZ , _zzz', 'ds'],
     ["$_sepMINUS", '_sepMINUS', '__tySEP', "minus -- or deconcatinate contexts", '__enZB', '_cxN_RV , _ZZ , _zzz', 'ds'],
+    ["$_sepFIXE", '_sepFIXE', '__tySEP', "fixe", '__enZB', '_cxN_RV , _ZZ , _zzz', 'ds'],
     ["$_sepMULTIPLY", '_sepMULTIPLY', '__tySEP', "multiply -- content separator", '__enZB', '_cxN_RV , _ZZ , _zzz', 'ds'],
     ["$_sepVALUE", '_sepVALUE', '__tySEP', "value -- or high level nod contexts", '__enZB', '_cxN_RV , _ZZ , _zzz', 'ds'],
     ["$_sepOPTION", '_sepOPTION', '__tySEP', "option", '__enZB', '_cxN_RV , _ZZ , _zzz', 'ds'],
@@ -263,6 +268,8 @@ function _raCORE_iniTables() { $pp = '_p002a';
     ["$_sepPART", '_sepPART', '__tySEP', "part -- or path content separator", '__enZB', '_cxN_RV , _ZZ , _zzz', 'ds'],
     ["$_sepREM", '_sepREM', '__tySEP', "remarc -- content separator", '__enZB', '_cxN_RV , _ZZ , _zzz', 'ds'],
     ["$_sepPER", '_sepPER', '__tySEP', "persons sign criterion", '__enZB', '_cxN_RV , _ZZ , _zzz', 'ds'],
+    ["$_sepWORD", '_sepWORD', '__tySEP', "word", '__enZB', '_cxN_RV , _ZZ , _zzz', 'ds'],
+    ["$_sepSTRUC", '_sepSTRUC', '__tySEP', "structure", '__enZB', '_cxN_RV , _ZZ , _zzz', 'ds'],
     ['ds', '_dsTE', '', ' -- main functor for - _cX/cN parts', '__enZB', '_cxN_XA , _ZZ , _sss', 'ds'],
     ['dsx', '_dsTE', '_cX', ' -- _cX part ds', '__enZB', '_cxN_XA , _cxF_NA , _sss', 'ds'],
     ['dsn', '_dsTE', '_cN', ' -- _cX part ds', '__enZB', '_cxN_XA , _cxF_NA , _sss', 'ds'],
@@ -441,7 +448,7 @@ function _raCORE_iniTables() { $pp = '_p002a';
 
   ];
   $src['_raOBJ__arP'] = [
-    [RA_cn__arDS, 'cxN__arDS', 'cxF__EXPR', 'expl__vbKB', 'val__tyFLD', 'rule__EXPR', 'te__EXPR', 'cn__TY', 'ext__vbKB', 'FCC__vcTB'],
+    [RA_cn__arDS, 'cxN__arDS', 'cxF__EXPR', 'expl__vbKB', 'val__tyFLD', 'rule__EXPR', 'te__EXPR', 'cn__TY', 'ext__vbKB', 'FCC__vcQB'],
     ['_i0_mAgV', '_RA', '@mA + @gV', ' -- houses + cars + ...', '__enZB', '_cxF_AA , _ZZ , _sCC', '_/FCC/_/ds', '', '', 'i0'],
     ['_i1_gV', '_RA', '@gV', ' -- ideas', '__enZB', '_cxF_AA , _ZZ , _sCC', '_/FCC/_/ds', '', '', 'i1'],
     ['_i2_cGgV', '_RA', '@cG + @gV', ' -- medtech', '__enZB', '_cxF_AA , _ZZ , _sCC', '_/FCC/_/ds', '', '', 'i2'],
@@ -461,7 +468,7 @@ function _raCORE_iniTables() { $pp = '_p002a';
     ['_m3_HT', '_wRA_i0_mAgV', '_hieM', 'house tech -- --//--', '__enZB', '_ZZ , _WA , _sCC', '_/FCC/_/ds', '', '', 'm3'],
     ['_m4_TS', '_wRA_i3_pIgV', '_hieM', 'trening systems -- new using of Konkurs', '__enZB', '_ZZ , _WA , _sCC', '_/FCC/_/ds', '', '', 'm4'],
     ['_m5_VH', '_wRA_i4_gGgV', '_hieM', 'VSync History', '__enZB', '_ZZ , _WA , _sCC', '_/FCC/_/ds', '', '', 'm5'],
-    ['_mY_LOG', '_wRA_LOG', '_hieM', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '_/FCC/_/ds', '', '', 'mY'],
+    ['_mW_LOG', '_wRA_LOG', '_hieM', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '_/FCC/_/ds', '', '', 'mY'],
     ['_mZ_NLP', '_wRA_NLP', '_hieM', '', '__enZB', '_ZZ , _cxN_NA , _sCC', '_/FCC/_/ds', '', '', 'mZ'],
     ['_a0_CORE', '_RA', '_hieA', 'core -- main aggregate', '__enZB', '_ZZ , _AA , _sCC', '_/FCC/_/ds', '', '', 'a0'],
     ['_a1_DOC', '_RA', '_hieA', 'documents', '__enZB', '_ZZ , _AT , _sCC', '_/FCC/_/ds', '', '', 'a1'],
@@ -510,10 +517,14 @@ function _raCORE_iniTables() { $pp = '_p002a';
     ['_raCON__acPG', '_m0_RA', '_a6_CON', '@PER or @LOC to @CON grid', '__enZB', '_cxF_FL , _cxF_FL , _sCC', '_/ds/__/dst', '__acPG', '', 'o061a'],
     ['_raRES__arP', '_m0_RA', '_aR_RES', '', '__enZB', '_cxF_FL , _cxF_FL , _sCC', '_/ds/__/dst', '__arP',
       'COMMENT onB_MOD _mod__arDS , _mod__EEXPR', 'o0R0a'],
-    ['_raVER__arP', '_m0_RA', '_aV_VER', '', '__enZB', '_cxF_FL , _cxF_FL , _sCC', '_/ds/__/dst', '__arP',
-      'COMMENT onB_MOD _mod__arDS , _mod__EEXPR', 'o0V0a'],
-    ['_logWDOG__arT', '_mY_LOG', '_aW_WDOG', '', '__enZB', '_cxF_FL , _cxF_FL , _sCC', '_/ds/__/dst', '__arT',
-      'COMMENT onB_MOD _mod__arDS , _mod__EEXPR', 'oYW0a'],
+    ['_logVER__arT', '_mW_LOG', '_aV_VER', '', '__enZB', '_cxF_FL , _cxF_FL , _sCC', '_/ds/__/dst', '__arT',
+      'COMMENT onB_MOD _mod__arDS , _mod__EEXPR', 'oWV0a'],
+    ['_logVER__acTG', '_mW_LOG', '_aV_VER', '', '__enZB', '_cxF_FL , _cxF_FL , _sCC', '_/ds/__/dst', '__acTG',
+      'COMMENT onB_MOD _mod__arDS , _mod__EEXPR', 'oWV1a'],
+    ['_logWDOG__arT', '_mW_LOG', '_aW_WDOG', '', '__enZB', '_cxF_FL , _cxF_FL , _sCC', '_/ds/__/dst', '__arT',
+      'COMMENT onB_MOD _mod__arDS , _mod__EEXPR', 'oWW0a'],
+    ['_logWDOG__acTG', '_mW_LOG', '_aW_WDOG', '', '__enZB', '_cxF_FL , _cxF_FL , _sCC', '_/ds/__/dst', '__acTG',
+      'COMMENT onB_MOD _mod__arDS , _mod__EEXPR', 'oWW1a'],
     ['_raEXPR__arP', '_m0_RA', '_aX_EXPR', '', '__enZB', '_cxF_FL , _cxF_FL , _sCC', '_/ds/__/dst', '__arP', '', 'o0X0a'],
     ['_raEXPR__acPG', '_m0_RA', '_aX_EXPR', 'grid of references', '__enZB', '_cxF_FL , _cxF_FL , _sCC', '_/ds/__/dst', '__acPG', '', 'o0X1a'],
     ['_raYBUG__arP', '_m0_RA', '_aY_YBUG', '', '__enZB', '_cxF_FL , _cxF_FL , _sCC', '_/ds/__/dst', '__arP', '', 'o0Y0a'],
@@ -524,7 +535,7 @@ function _raCORE_iniTables() { $pp = '_p002a';
     ['cre__dsDB', '_raCORE__arP', '_hieV', 'create', '__enZB', '_AT , _ZZ , _sCC', 'ds/__/dst', '__dsDB', 'NOT NULL DEFAULT CURRENT_TIMESTAMP', ''],
     ['upd__dsDB', '_raCORE__arP', '_hieV', 'update', '__enZB', '_AT , _ZZ , _sCC', 'ds/__/dst', '__dsDB', 'NOT NULL DEFAULT CURRENT_TIMESTAMP', ''],
     ['PK_arP', '_raCORE__arP', '_arP', '', '__enZB', '_ZZ , _cxF_AA , _zzz', 'dst/_/ds', 'PK_', '', ''],
-    ['cn__arP', '_raCORE__arPD_DS', '_cN:_hieV', 'reference to primary register', '__enZB', '_cxF_AS , _ZZ , _ssz', 'ds/__/dst', '__arP', 'NOT NULL', ''],
+    ['cn__arP', '_raCORE__arPD_DS', '_cN:_hieV', 'reference to primary register', '__enZB', '_cxF_AD , _ZZ , _ssz', 'ds/__/dst', '__arP', 'NOT NULL', ''],
     ['_arDS', '_raCORE__arPD_DS', '__arP:_hieV', ' -- primary register ds functor', '__enZB', '_cxF_XA , _cxN_FL , _zzz', '_/ds', '__vbPQ', 'NOT NULL', ''],
     ['PK_cn', '_raCORE__arPD_DS', 'cn__arP', '', '__enZB', '_ZZ , _cxF_AA , _zzz', 'dst/_/ds', 'PK_', '', ''],
     ['UK_arDS', '_raCORE__arPD_DS', '_arDS', '', '__enZB', '_ZZ , _cxF_AA , _zzz', 'dst/_/ds', 'UK_', '', ''],
@@ -555,12 +566,12 @@ function _raCORE_iniTables() { $pp = '_p002a';
     ['cn__TY', '_raOBJ__arP', '_cN:_hieV', '', '__enZB', '_cxF_AA , _ZZ , _sCC', 'ds/__/dst', '__TY', 'NULL DEFAULT NULL', ''],
     ['ext__vbKB', '_raOBJ__arP', '_hieV', 'extended -- parameters of field', '__enZB', '_AT , _ZZ , _sCC', 'ds/__/dst',
       '__vbKB', "NOT NULL DEFAULT ''", ''],
-    ['FCC__vcTB', '_raOBJ__arP', 'FCC:_hieV', '', '__vbTB', '_cxF_AA , _ZZ , _zzz', 'ds/__/dst',
+    ['FCC__vcQB', '_raOBJ__arP', 'FCC:_hieV', '', '__vbTB', '_cxF_AA , _ZZ , _zzz', 'ds/__/dst',
       '__vcTB', 'CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL', ''],
-    ['UK_FCC', '_raCORE__arPD_DS', 'FCC__vcTB', '', '__enZB', '_ZZ , _cxF_AA , _zzz', 'dst/_/ds', 'UK_', '', ''],
+    ['UK_FCC', '_raCORE__arPD_DS', 'FCC__vcQB', '', '__enZB', '_ZZ , _cxF_AA , _zzz', 'dst/_/ds', 'UK_', '', ''],
     ['FK_raOBJ__arP_TY', '_raOBJ__arP', 'cn__TY', '', '__enZB', '_cxN_AAA , _ZZ , _zzz',
       'dst/_/ds/_/dso:_cxF_TY', 'FK_', '_raTY__arP (cn__arP) ON DELETE SET NULL ON UPDATE CASCADE', ''],
-    ['par__OBJ', '_raOBJ__acPG_hie', '_hieV', 'parent', '__enZB', '_AT , _ZZ , _sCC', 'ds/__/dst', '__OBJ', 'NOT NULL', ''],
+    ['par__OBJ', '_raOBJ__acPG_hie', '_hieV', 'parent', '__enZB', '_AT , _ZZ , _sCC', 'ds/__/dst', '__OBJ', 'NULL', ''],
     ['chi__OBJ', '_raOBJ__acPG_hie', '_hieV', 'child', '__enZB', '_AT , _ZZ , _sCC', 'ds/__/dst', '__OBJ', 'NOT NULL', ''],
     ['row__nuZB', '_raOBJ__acPG_hie', '_hieV', 'row', '__enZB', '_AT , _ZZ , _sCC', 'ds/__/dst', '__evZB', 'NOT NULL', ''],
     ['PKM_raOBJ__acPG_hie_par', '_raOBJ__acPG_hie', 'par__OBJ', '', '__enZB', '_cxN_AAA , _ZZ , _zzz', 'dst/_/ds/_/dso:_cxF_AA', 'PKM_', '', ''],
@@ -587,6 +598,26 @@ function _raCORE_iniTables() { $pp = '_p002a';
       'dst/_/ds/_/dso:_cxF_AA', 'FK_', '_raCORE__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
     ['FK_raPER__arP_TY', '_raPER__arP', 'cn__TY', '', '__enZB', '_cxN_AAA , _ZZ , _zzz',
       'dst/_/ds/_/dso:_cxF_TY', 'FK_', '_raTY__arP (cn__arP) ON DELETE SET NULL ON UPDATE CASCADE', ''],
+    ['_arT', '_logVER__arT', '_hieV', 'tertiary register functor', '__enZB', '_ZZ , _ZZ , _zzz', '_/dst', '__arT', 'NOT NULL', ''],
+    ['major__nuDB', '_logVER__arT', '_hieV', 'major -- version number', '__enZB', '_AA , _ZZ , _ssz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
+    ['minor__nuDB', '_logVER__arT', '_hieV', 'minor -- version number', '__enZB', '_AA , _ZZ , _ssz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
+    ['build__nuDB', '_logVER__arT', '_hieV', 'build -- version number', '__enZB', '_AA , _ZZ , _ssz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
+    ['expl__vcKB', '_logVER__arT', '_hieV', 'explanation', '__enZB', '_AQ , _ZZ , _sCC', 'ds/__/dst', '__vcKB', "NOT NULL DEFAULT ''", ''],
+    ['PK_arT', '_logVER__arT', '_arT', '', '__enZB', '_ZZ , _cxF_AA , _zzz', 'dst/_/ds', 'PK_', '', ''],
+    ['UKM_logVER__arT_par', '_logVER__arT', 'par__OBJ', '', '__enZB', '_cxN_AAA , _ZZ , _zzz', 'dst/_/ds/_/dso:_cxF_AA', 'UKM_', '', ''],
+    ['FK_logVER__arT_par', '_logVER__arT', 'par__OBJ', '', '__enZB', '_cxN_AAA , _ZZ , _zzz',
+      'dst/_/ds/_/dso:_cxF_AA', 'FK_', '_raOBJ__arP (cn__arP) ON DELETE SET NULL ON UPDATE CASCADE', ''],
+    ['cn__arT', '_logVER__acTG', '_cN:_hieV', 'reference to tertiary register', '__enZB', '_cxF_AD , _ZZ , _ssz', 'ds/__/dst', '__arT', 'NOT NULL', ''],
+    ['PKM_logVER__acTG_cn', '_logVER__acTG', 'cn__arT', '', '__enZB', '_cxN_AAA , _ZZ , _zzz', 'dst/_/ds/_/dso:_cxF_AA', 'PKM_', '', ''],
+    ['FK_logVER__acTG_cn', '_logVER__acTG', 'cn__arT', '', '__enZB', '_cxN_AAA , _ZZ , _zzz',
+      'dst/_/ds/_/dso:_cxF_AA', 'FK_', '_logVER__arT (_arT) ON DELETE CASCADE ON UPDATE CASCADE', ''],
+    ['ref__arPD', '_logWDOG__arT', '_hieV', 'reference', '__enZB', '_AT , _ZZ , _sCC', 'ds/__/dst', '__arPD', 'NULL DEFAULT NULL', ''],
+    ['_cnt__nuDB', '_logWDOG__arT', '_hieV', 'count -- version number', '__enZB', '_CA , _ZZ , _ssz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
+    ['FK_logWDOG__arT_ref', '_logWDOG__arT', 'ref__arPD', '', '__enZB', '_cxN_AAA , _ZZ , _zzz',
+      'dst/_/ds/_/dso:_cxF_AA', 'FK_', '_raCORE__arPD_DS (cn__arP) ON DELETE SET NULL ON UPDATE CASCADE', ''],
+    ['PKM_logWDOG__acTG_cn', '_logWDOG__acTG', 'cn__arT', '', '__enZB', '_cxN_AAA , _ZZ , _zzz', 'dst/_/ds/_/dso:_cxF_AA', 'PKM_', '', ''],
+    ['FK_logWDOG__acTG_cn', '_logWDOG__acTG', 'cn__arT', '', '__enZB', '_cxN_AAA , _ZZ , _zzz',
+      'dst/_/ds/_/dso:_cxF_AA', 'FK_', '_logWDOG__arT (_arT) ON DELETE CASCADE ON UPDATE CASCADE', ''],
 
   ];
   $RA_raOBJ__acPG_hie_par__OBJ = 0;
@@ -621,7 +652,7 @@ function _raCORE_iniTables() { $pp = '_p002a';
     ['_raOBJ__arP', '_raTY__arP', ''],
     ['_raOBJ__arP', 'cn__TY', ''],
     ['_raOBJ__arP', 'ext__vbKB', ''],
-    ['_raOBJ__arP', 'FCC__vcTB', ''],
+    ['_raOBJ__arP', 'FCC__vcQB', ''],
     ['_raOBJ__arP', 'UK_FCC', ''],
     ['_raOBJ__arP', 'FK_raOBJ__arP_TY', ''],
     ['_raOBJ__arPD_seg', 'cn__arP', ''],
@@ -649,12 +680,41 @@ function _raCORE_iniTables() { $pp = '_p002a';
     ['_raEXPR__acPG', 'PKM_raEXPR__acPG_par', 'row__nuZB'],
     ['_raEXPR__acPG', 'FK_raEXPR__acPG_par', ''],
     ['_raEXPR__acPG', 'FK_raEXPR__acPG_chi', ''],
+    ['_logVER__arT', '_arT', ''],
+    ['_logVER__arT', 'par__OBJ', ''],
+    ['_logVER__arT', 'major__nuDB', ''],
+    ['_logVER__arT', 'minor__nuDB', ''],
+    ['_logVER__arT', 'build__nuDB', ''],
+    ['_logVER__arT', 'expl__vcKB', ''],
+    ['_logVER__arT', 'cre__dsDB', ''],
+    ['_logVER__arT', 'PK_arT', ''],
+    ['_logVER__arT', 'UKM_logVER__arT_par', 'major__nuDB'],
+    ['_logVER__arT', 'UKM_logVER__arT_par', 'minor__nuDB'],
+    ['_logVER__arT', 'FK_logVER__arT_par', ''],
+    ['_logVER__acTG', 'cn__arT', ''],
+    ['_logVER__acTG', 'build__nuDB', ''],
+    ['_logVER__acTG', 'cre__dsDB', ''],
+    ['_logVER__acTG', 'PKM_logVER__acTG_cn', 'build__nuDB'],
+    ['_logVER__acTG', 'FK_logVER__acTG_cn', ''],
+    ['_logWDOG__arT', '_arT', ''],
+    ['_logWDOG__arT', 'ref__arPD', ''],
+    ['_logWDOG__arT', 'FCC__vcQB', ''],
+    ['_logWDOG__arT', 'expl__vcKB', ''],
+    ['_logWDOG__arT', '_cnt__nuDB', ''],
+    ['_logWDOG__arT', 'cre__dsDB', ''],
+    ['_logWDOG__arT', 'PK_arT', ''],
+    ['_logWDOG__arT', 'FK_logWDOG__arT_ref', ''],
+    ['_logWDOG__acTG', 'cn__arT', ''],
+    ['_logWDOG__acTG', '_cnt__nuDB', ''],
+    ['_logWDOG__acTG', 'expl__vcKB', ''],
+    ['_logWDOG__acTG', 'PKM_logWDOG__acTG_cn', '_cnt__nuDB'],
+    ['_logWDOG__acTG', 'FK_logWDOG__acTG_cn', ''],
 
   ];
   $src['_raOBJ__arPD_seg'] = [
     ['cn__arP'],
     ['_raCORE__arP'], ['_raDOC__arP'], ['_raTY__arP'], ['_raOBJ__arP'], ['_raLOC__arP'], ['_raPER__arP'], ['_raCON__arP'], ['_raRES__arP'],
-    ['_raVER__arP'], ['_raEXPR__arP'], ['_raYBUG__arP'], 
+    ['_raEXPR__arP'], ['_raYBUG__arP'], ['_logVER__arT'], ['_logWDOG__arT'], 
   ];
   $src['_raDOC__arP'] = [
       ['cn__arP', 'expl__vbKS', '__tyDOC'],
@@ -787,7 +847,7 @@ function _raCORE_iniTables() { $pp = '_p002a';
     
   ];
 
-$pp = '_p002b';
+$pp = 'p002a-0b';
   $RA[RA_cn__arDS] =  $errn = $errd = $err = [];
   foreach ($src as $src_tab => $src_arr) {
     $fields = array_merge($src_arr[0], ['src_tab', 'src_arr_i']);
@@ -799,12 +859,12 @@ $pp = '_p002b';
           $src_arr_val = array_merge($src_arr_val, [$src_tab, $src_arr_i - 1]);
           if (isset($RA[RA_cn__arDS][$RA_cn__arDS])) {
 
-            $ep = "002a-e1";
+            $ep = "$pp-e1";
             if (!$errd) $errd[] = "$ep Errors [cn__arDS => cxN__arDS] already defined!";
             $errd[] = "$src_tab [$RA_cn__arDS => $RA_cxN__arDS] - cn__arDS($RA_cn__arDS)";
           } elseif (($src_arr_i != 1 || $src_tab != '_raTY__arP') && !isset($RA[RA_cn__arDS][$RA_cxN__arDS])) {
 
-            $ep = "$002a-e2";
+            $ep = "$pp-e2";
             if (!$errn) $errn[] = "$ep Errors [cn__arDS => cxN__arDS] not found!";
             $errn[] = "$src_tab [$RA_cn__arDS => $RA_cxN__arDS] - cxN__arDS($RA_cxN__arDS)";
           } else {
@@ -823,7 +883,7 @@ $pp = '_p002b';
       $val__vbPQ = substr($ra_arr['expl__vbKB'], strpos($ra_arr['expl__vbKB'], $_sepVALUE) + $_sepVAL_len);
       if (strlen($val__vbPQ) > $_PQ_size) {
 
-        $ep = "002a-e3";
+        $ep = "$pp-e3";
         $err[] = "$ep val__vbPQ($val__vbPQ) expl__vbKB part of cn__arDS($cn__arDS) is greater: $_PQ_size";
       } else {
         $ra_arr['val__vbPQ'] = $val__vbPQ;
@@ -833,14 +893,14 @@ $pp = '_p002b';
         if ($ra_arr['val__tyFLD'] == '__evPQ') {
           if (!isset($RA[RA_cn__arDS][$ra_arr['cxN__arDS']]['col__LI'])) {
 
-            $ep = "002a-e4";
+            $ep = "$pp-e4";
             $err[] = "$ep Not found col__LIST of cn__arDS($cn__arDS) for cxN__arDS: " . $ra_arr['cxN__arDS'];
           } else {
             $col__LI = $RA[RA_cn__arDS][$ra_arr['cxN__arDS']]['col__LI'];        
             $col__VAL = explode($_sepLIST, $val__vbPQ);
             if (($col__LI_cnt = count($col__LI)) != ($col_VAL_cnt = count($col__VAL))) {
 
-              $ep = "002a-e5";
+              $ep = "$pp-e5";
               $err[] = "$ep Count col__LI_cnt($col__LI_cnt) of cn__arDS($cn__arDS) for cxN__arDS("
               . $ra_arr['cxN__arDS'] . ") is not match to count of col_VAL_cnt($col_VAL_cnt)";
             } else {
@@ -854,21 +914,21 @@ $pp = '_p002b';
     }
     if (isset($RA[RA_cn__arDS][$cn__arDS]['cn__TY']) && ($cn__TY = $RA[RA_cn__arDS][$cn__arDS]['cn__TY']) != '' && !isset($RA[RA_cn__arDS][$RA[RA_cn__arDS][$cn__arDS]['cn__TY']])) {
 
-      $ep = "002a-e6";
+      $ep = "$pp-e6";
       $err[] = "$ep Bad cn__TY($cn__TY) not defined! for cn__arDS($cn__arDS) in src_tab: " . $ra_arr['src_tab'];
     }
     $ra_arr['main__vbPQ'] = explode($_sepREM, $ra_arr['expl__vbKB'])[0];
     $RA[RA_cn__arDS][$cn__arDS] = $ra_arr;
   }
 
-$pp = '_p002c';
-  $log = $dst = $RA[RA_sq] = $table_fields = $fields_desc = $fields_constraints = $fields_keys = [];
+$pp = 'p002a-0c';
+  $log = $dst = $RA[RA_sq] = $RA[RA_sql] = $table_fields = $fields_desc = $fields_constraints = $fields_keys = $fields_keys_M = [];
   $RA[RA_curDB] = '';
   $RA[RA_sq][] = "SET FOREIGN_KEY_CHECKS=0";
   if ($errd || $errn) du($errd, $errn);
-  else $log[] = "$pp s1 No errors found in primary object processing.";
-  $log[] = "$pp s2 Number of cn__arDS processed: " . (count($RA[RA_cn__arDS]));
-  $log[] ="$pp s3  Create all tables\n|---|---|---|\n|table_name|field_name|object_type|\n|---|---|---|";
+  else $log[] = "$pp-s1 No errors found in primary object processing.";
+  $log[] = "$pp-s2 Number of cn__arDS processed: " . (count($RA[RA_cn__arDS]));
+  $log[] ="$pp-s3  Create all tables\n|---|---|---|\n|table_name|field_name|object_type|\n|---|---|---|";
   $table_name = $prev_table = '';
   for ($src_i = 1; $src_i < count($src['_raOBJ__acPG_hie']); $src_i++) {
     $prev_table = $table_name;
@@ -877,14 +937,13 @@ $pp = '_p002c';
     $log[] = "|$table_name|$field_name|" . $RA[RA_cn__arDS][$field_name]['cxF__EXPR'] . "|";
     if ($RA[RA_cn__arDS][$RA[RA_cn__arDS][$table_name]['cxN__arDS']]['cxF__EXPR'] != '_hieM') {
 
-      $ep = "002a-e7";
+      $ep = "$pp-e7";
       $err[] = "  $ep Bad not like table object found($table_name) in \$src['_raOBJ__acPG_hie']";
     } else {
       if (!isset($dst[$table_name])) {
         if ($prev_table != '') {
-          $fccO = $RA[RA_cn__arDS][$prev_table]['FCC__vcTB'];
           $sql =  rtrim(
-            "CREATE table _{$fccO}{$prev_table} (" . $fields_desc[$prev_table] . $fields_keys[$prev_table] . $fields_constraints[$prev_table],
+            "CREATE table " . __get_table($prev_table) . " (" . $fields_desc[$prev_table] . $fields_keys[$prev_table] . $fields_constraints[$prev_table],
             ',') . "\n)"
           ;
           __check_DB($prev_table);
@@ -907,7 +966,7 @@ $pp = '_p002c';
         if (strpos($RA[RA_cn__arDS][$field_name]['cxF__EXPR'], '_hieV') !== FALSE) {
           if ($row_val != $chi_val ) {
 
-            $ep = "002a-e8";
+            $ep = "$pp-e8";
             $err[] = "  $ep Bad row_val/chi_val($row_val/$chi_val) nuber for table($table_name) and field($field_name): " . (count($err));
           } else {
             $wile_i = 10;
@@ -918,7 +977,7 @@ $pp = '_p002c';
               $__tyFLD = $RA[RA_cn__arDS][$__tyFLD]['val__vbPQ'];
               if (!$wile_i) {
 
-                $ep = "002a-e9";
+                $ep = "$pp-e9";
                 $err[] = "  $ep Bad __tyFLD($old__tyFLD) for field_name($field_name) - not found real __tyFLD";
               }
             }
@@ -929,7 +988,7 @@ $pp = '_p002c';
           $row_val++;
         } elseif (strpos($RA[RA_cn__arDS][$__tyFLD]['cxF__EXPR'], '__tyIND') === FALSE) {
 
-          $ep = "002a-e10";
+          $ep = "$pp-e10";
           $cxF__EXPR = $RA[RA_cn__arDS][$field_name]['cxF__EXPR'];
           $err[] = "  $ep Bad cxF__EXPR($cxF__EXPR) for field_name($field_name) - not in (_hieV, __tyIND)";
         } else {
@@ -945,17 +1004,22 @@ $pp = '_p002c';
           if (strpos($RA[RA_cn__arDS][$__tyFLD]['cxF__EXPR'], '_icsoM') !== FALSE) {
             $index_field = $src['_raOBJ__acPG_hie'][$src_i][$RA_raOBJ__acPG_hie_multi__FLD];
             if (isset($RA[RA_cn__arDS][$index_field])) {
+              if (isset($fields_keys_M[$table_name][$field_name])) {
+                $real_ty = "";
+                $fields_keys[$table_name] = rtrim($fields_keys[$table_name], '),');
+              }
+              $fields_keys_M[$table_name][$field_name] = $index_field;
               $real_ty .= ", $index_field";
             } else {
 
-              $ep = "002a-e11";
-              $err[] = "  $ep Bad __tyFLD($old__tyFLD) for field_name($field_name) - not found real __tyFLD";
+              $ep = "$pp-e11";
+              $err[] = "  $ep Bad index_field($index_field) for field_name($field_name) - not found real __tyFLD";
             }
           }
           $fields_keys[$table_name] .= "\n  $real_ty),";
           if (strpos($RA[RA_cn__arDS][$__tyFLD]['cxF__EXPR'], '_icKR') !== FALSE) { //  is just REFERENCE KEY group like FK_ or RK_
             $real_field = $RA[RA_cn__arDS][$field_name]['ext__vbKB'];
-            $fccO = $RA[RA_cn__arDS][explode(' ', $real_field)[0]]['FCC__vcTB'];
+            $fccO = $RA[RA_cn__arDS][explode(' ', $real_field)[0]]['FCC__vcQB'];
             $real_ty = "CONSTRAINT $field_name FOREIGN KEY (" . $RA[RA_cn__arDS][$field_name]['cxF__EXPR']
             . ") REFERENCES _{$fccO}{$real_field}";
             $fields_constraints[$table_name] .= "\n  $real_ty,";
@@ -967,45 +1031,49 @@ $pp = '_p002c';
     if (!isset($RA[RA_tables][$table_name])) {
     }
   }
-  $fccO = $RA[RA_cn__arDS][$table_name]['FCC__vcTB'];
-  $sql = rtrim("CREATE table _{$fccO}{$table_name} (" . $fields_desc[$table_name] . $fields_keys[$table_name] . $fields_constraints[$table_name], ',') . "\n)";
+  $sql = rtrim("CREATE table " . __get_table($table_name) . " ("
+  . $fields_desc[$table_name] . $fields_keys[$table_name] . $fields_constraints[$table_name], ',') . "\n)";
   $RA[RA_tables][$table_name][RA_tables_flds_str] = rtrim($table_fields[$table_name], ',');
   $RA[RA_tables][$table_name][RA_tables_hieSHE] = __get_hieSCH($table_name);
   __check_DB($table_name);
   $dst[$table_name] = $sql;
   $RA[RA_sq][] = $sql;
-$pp = '_p002d';
-  $log[] ="$pp s4  Created tables number: " . count($dst);
-  $log[] ="$pp s5  Creating Aggergates segments number: " . count($src['_raOBJ__arPD_seg']);
+$pp = 'p002a-0d';
+  $log[] ="$pp-s4  Created tables number: " . count($dst);
+  $log[] ="$pp-s5  Creating Aggergates segments number: " . count($src['_raOBJ__arPD_seg']);
   du($log);
-  //du($RA[RA_sq]);
+  //dz($RA[RA_sq]);
   if ($err) dz("Errors found", $err);
-  foreach ($RA[RA_sq] as $sql) db_query($sql); // { du($sql); db_query($sql); }
-  $RA[RA_sq] = $err = $log = [];
-$pp = '_p002e';
-  $seg_OBJ_start = __seg_agg_INT($RA[RA_cn__arDS]['_a3_OBJ']['FCC__vcTB']);
+  __exec_SQL();
+  $err = $log = [];
+$pp = 'p002a-0e';
+  $seg_OBJ_start = __seg_agg_INT($RA[RA_cn__arDS]['_a3_OBJ']['FCC__vcQB']);
   foreach ($src['_raOBJ__arPD_seg'] as $seg_i => $seg__arr) {
     if ($seg_i) {
       $seg__arDS = $seg__arr[0];
       if (!isset($RA[RA_cn__arDS][$seg__arDS])) {
 
-        $ep = "002a-e12";
+        $ep = "$pp-e12";
         $err[] = "  $ep Segment object($seg__arDS) not found";
       } else {
         $seg_agg__arDS = $RA[RA_cn__arDS][$seg__arDS]['cxF__EXPR'];
         if (!isset($RA[RA_cn__arDS][$seg_agg__arDS])) {
 
-          $ep = "002a-e13";
+          $ep = "$pp-e13";
           $err[] = "  $ep Segment object agg($seg_agg__arDS) not found";
         }
-        $seg_agg__val = substr($RA[RA_cn__arDS][$seg_agg__arDS]['FCC__vcTB'], 1);
+        $seg_agg__val = substr($RA[RA_cn__arDS][$seg_agg__arDS]['FCC__vcQB'], 1);
         $pattern = $RA[RA_cn__arDS]["_liMAX"]['main__vbPQ'];
         if (!preg_match($pattern, $seg_agg__val)) {
 
-          $ep = "002a-e14";
+          $ep = "$pp-e14";
           $err[] = "  $ep Segment object agg($seg_agg__arDS) agg_value($seg_agg__val) missmatch agg_value_pattern($pattern)";
         }
-        $seg_agg_start = __seg_agg_INT($seg_agg__val);
+        if ($RA[RA_cn__arDS][$seg__arDS]['cn__TY'] == '__arT') {
+          $seg_agg_start = 0;
+        } else {
+          $seg_agg_start = __seg_agg_INT($seg_agg__val);
+        }
         $RA[RA_seg__arDS][$seg__arDS] = [
           RA_seg__arDS_start => $seg_agg_start,
           RA_seg__arDS_next => $seg_agg_start,
@@ -1015,7 +1083,7 @@ $pp = '_p002e';
       }
     }
   }
-  $pp = '_p002f';
+  $pp = 'p002a-0f';
   //du($RA[RA_seg__arDS]);
   foreach ($RA[RA_cn__arDS] as $cn__arDS => $cn_arr) {    
     $seg__arDS = $RA[RA_cn__arDS][$cn__arDS]['src_tab'];
@@ -1026,7 +1094,7 @@ $pp = '_p002e';
       if (!isset($RA[RA_cn__arDS][$cxF__EXPR])) {
         if (($erre = __explore_EXPR($_sepADD, $_sepOPTION, $cxF__EXPR))) {
 
-          $ep = "002a-e15";
+          $ep = "$pp-e15";
           $err[] = "  $ep Errors in cxF__EXPR($cxF__EXPR) for cn__arDS($cn__arDS)";
           $err = array_merge($err, $erre);
           $err_fl--;
@@ -1044,7 +1112,7 @@ $pp = '_p002e';
     $rule__EXPR = $cn_arr['rule__EXPR'];
     if ($rule__EXPR == '') {
 
-          $ep = "002a-e16";
+          $ep = "$pp-e16";
           $err[] = "  $ep Errors empty rule__EXPR($rule__EXPR) for cn__arDS($cn__arDS)";
           $err_fl--;
           $err_fl_all = 0;
@@ -1052,7 +1120,7 @@ $pp = '_p002e';
       if (!isset($RA[RA_cn__arDS][$rule__EXPR])) {
         if (($erre = __explore_EXPR($_sepLIST, $_sepOPTION, $rule__EXPR))) {
 
-          $ep = "002a-e17";
+          $ep = "$pp-e17";
           $err[] = "  $ep Errors in rule__EXPR($rule__EXPR) for cn__arDS($cn__arDS)";
           $err = array_merge($err, $erre);
           $err_fl--;
@@ -1067,7 +1135,7 @@ $pp = '_p002e';
     $te__EXPR = $cn_arr['te__EXPR'];
     if ($te__EXPR == '') {
 
-      $ep = "002a-e18";
+      $ep = "$pp-e18";
       $err[] = "  $ep Errors empty te__EXPR($te__EXPR) for cn__arDS($cn__arDS)";
       $err_fl--;
       $err_fl_all = 0;
@@ -1075,7 +1143,7 @@ $pp = '_p002e';
       if (!isset($RA[RA_cn__arDS][$te__EXPR])) {
         if (($erre = __explore_EXPR($_sepPART, $_sepOPTION, $te__EXPR))) {
 
-          $ep = "002a-e19";
+          $ep = "$pp-e19";
           $err[] = "  $ep Errors in te__EXPR($te__EXPR)";
           $err = array_merge($err, $erre);
           $err_fl--;
@@ -1102,33 +1170,25 @@ $pp = '_p002e';
         }
       }
       if (isset($cn_arr['ext__vbKB'])) {
-        $cn__str .= ",'" . $cn_arr['ext__vbKB'] . "', " . ($cn_arr['FCC__vcTB'] == '' ? 'NULL' : ("'" . $cn_arr['FCC__vcTB'] . "'"));
+        $cn__str .= ",'" . $cn_arr['ext__vbKB'] . "', " . ($cn_arr['FCC__vcQB'] == '' ? 'NULL' : ("'" . $cn_arr['FCC__vcQB'] . "'"));
       }
       //dz($seg__arDS, $cn__arDS, $cn__str, $cn_arr);
-      $cn__arP = __format_SQL($seg__arDS, $cn__str);
-      __format_SQL('_raCORE__arPD_DS', "$cn__arP, '$cn__arDS'", 1);
-      __format_SQL('_raCORE__arP', "$cn__arP", 1);
+      $cn__arP = __format_SQL($cn__str, $seg__arDS);
+      __format_SQL("$cn__arP, '$cn__arDS'", '_raCORE__arPD_DS', 1);
+      __format_SQL("$cn__arP", '_raCORE__arP', 1);
     }
   }
-  foreach ($RA[RA_sql] as $seg__arDS => $seg_arr) {
-    $RA[RA_sq][] = rtrim($seg_arr[RA_sql_str], ',');
-  }
-  $pp = '_p002g';
+  $pp = 'p002a-0g';
   //du($RA[RA_tables]);
   //du($RA[RA_sq]);
   if ($err) {
     dz("ERRORS!!!", $err);
   } else {
-    //dz($RA[RA_sq][30]);
-    echo "\nInserting data ...\n";
-    foreach ($RA[RA_sq] as $sql_i => $sql) {
-      echo "\r$sql_i - " . str_pad(explode(' values ', $sql)[0], 140);
-      db_query($sql);
-    }
+    __exec_SQL(1);
   }
 }
 
-function _raCORE_dropDB($sprefix = '_wRA') { $pp = '_p003a';
+function _raCORE_dropDB($sprefix = '_wRA') { $pp = 'p002a-1a';
   global $RA;
   $rows = db_query("SELECT SCHEMA_NAME from information_schema.SCHEMATA where SCHEMA_NAME like '$sprefix%'")->fetchAll(\PDO::FETCH_COLUMN);
   foreach ($rows as $sname) {
@@ -1136,7 +1196,7 @@ function _raCORE_dropDB($sprefix = '_wRA') { $pp = '_p003a';
   }
 }
 
-function __check_DB($table_name) { $pp = '_p004a';
+function __check_DB($table_name) { $pp = 'p002a-2a';
   global $RA;
   $mname = $RA[RA_cn__arDS][$table_name]['cxN__arDS'];
   if (!isset($RA[RA_cn__arDS][$mname])) {
@@ -1160,32 +1220,7 @@ function __check_DB($table_name) { $pp = '_p004a';
   }
 }
 
-function __format_SQL($seg__arPV, $flds_str, $cn__arP = 0) { $pp = '_p005a';
-  global $RA;
-  if (is_numeric($seg__arPV)) {
-    $seg__arDS = $RA[RA_seg__arP][$seg__arPV];
-  } else {
-    $seg__arDS = $seg__arPV;
-  }
-  if (!($is_set = isset($RA[RA_sql][$seg__arDS])) || $RA[RA_sql][$seg__arDS][RA_sql_cnt] > RA_sql_max) {
-    $fccO = $RA[RA_cn__arDS][$seg__arDS]['FCC__vcTB'];
-    $_hieSCH = $RA[RA_tables][$seg__arDS][RA_tables_hieSHE];
-    if ($is_set) {
-      $RA[RA_sq][] = rtrim($RA[RA_sql][$seg__arDS][RA_sql_str], ',');
-    }
-    $RA[RA_sql][$seg__arDS][RA_sql_cnt] = 0;
-    $RA[RA_sql][$seg__arDS][RA_sql_str] = "INSERT into $_hieSCH._{$fccO}{$seg__arDS} (" . $RA[RA_tables][$seg__arDS][RA_tables_flds_str] . ") values ";
-  }
-  if (!$cn__arP) {
-    $cn__arP = $RA[RA_seg__arDS][$seg__arDS][RA_seg__arDS_next]++;
-    $flds_str = "$cn__arP,$flds_str";
-  }
-  $RA[RA_sql][$seg__arDS][RA_sql_str] .= "\n  ($flds_str),";
-  $RA[RA_sql][$seg__arDS][RA_sql_cnt]++;
-  return $cn__arP;
-}
-
-function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = '_p006a';
+function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = 'p002a-3a';
   global $RA; 
   $err = [];
   if (!isset($RA[RA_cn__arDS][$exprVAL])) {
@@ -1195,14 +1230,14 @@ function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = '_p006a';
     $sepLO__arP = $_raOBJ__arP_start + $RA[RA_cn__arDS][$sepLO]['src_arr_i'];
     if (($_cnt__HI = count($exprHI)) == 1 && strpos($exprVAL, $sepLO) === false) {
 
-      $ep = "006a-e1";
+      $ep = "$pp-e1";
       $err[] = "  $ep exprVAL($exprVAL) consist the single arDS but it not defined!";
     } else {     
       if ($_cnt__HI > 1) {
-        $hi__arP = __format_SQL('_raEXPR__arP', "$_cnt__HI, $sepHI__arP");
+        $hi__arP = __format_SQL("$_cnt__HI, $sepHI__arP", '_raEXPR__arP');
         $RA[RA_cn__arDS][$exprVAL]['cn__arP'] = $hi__arP;
-        __format_SQL('_raCORE__arPD_DS', "$hi__arP, '$exprVAL'", 1);
-        __format_SQL('_raCORE__arP', "$hi__arP", 1);
+        __format_SQL("$hi__arP, '$exprVAL'", '_raCORE__arPD_DS', 1);
+        __format_SQL("$hi__arP", '_raCORE__arP', 1);
       }
       foreach ($exprHI as $hi_i => $hiEL) {
         $exprLO = explode($sepLO, $hiEL);
@@ -1211,28 +1246,28 @@ function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = '_p006a';
             $RA[RA_cn__arDS][$exprVAL]['exprARR'][$hiEL] = [$RA[RA_cn__arDS][$hiEL]['cn__arP'] ?? __get_cn__arP($hiEL)];
           } else {
 
-            $ep = "006a-e2";
+            $ep = "$pp-e2";
             $err[] = "  $ep exprVAL($exprVAL) consist the not defined simple value hiEL($hiEL)!";
           }
         } else {
           if (isset($RA[RA_cn__arDS][$hiEL]['exprARR'])) {
             $RA[RA_cn__arDS][$exprVAL]['exprARR'][$hiEL] = $RA[RA_cn__arDS][$hiEL]['exprARR'][$hiEL];
           } else {
-            $hiEL__arP = __format_SQL('_raEXPR__arP', "$_cnt__LO, $sepLO__arP");
+            $hiEL__arP = __format_SQL("$_cnt__LO, $sepLO__arP", '_raEXPR__arP');
             $RA[RA_cn__arDS][$hiEL]['cn__arP'] = $hiEL__arP;
-            __format_SQL('_raCORE__arPD_DS', "$hiEL__arP, '$hiEL'", 1);
-            __format_SQL('_raCORE__arP', "$hiEL__arP", 1);
+            __format_SQL("$hiEL__arP, '$hiEL'", '_raCORE__arPD_DS', 1);
+            __format_SQL("$hiEL__arP", '_raCORE__arP', 1);
             $loARR = [];
             $sql__acPG = '';
             foreach ($exprLO as $lo_i => $loEL) {
               if (!isset($RA[RA_cn__arDS][$loEL])) {
 
-                $ep = "006a-e3";
+                $ep = "$pp-e3";
                 $err[] = "  $ep exprVAL($exprVAL) consist the not defined simple value loEL($loEL) in the  hiEL($hiEL)!";
               } else {
                 $lo__arP = $RA[RA_cn__arDS][$loEL]['src_arr_i'] + $RA[RA_seg__arDS][$RA[RA_cn__arDS][$loEL]['src_tab']][RA_seg__arDS_start];
                 $loARR[] = $lo__arP;
-                __format_SQL('_raEXPR__acPG', "$hiEL__arP, $lo_i, $lo__arP", 1);
+                __format_SQL("$hiEL__arP, $lo_i, $lo__arP", '_raEXPR__acPG', 1);
               }
             }
             if (!$err) {
@@ -1240,35 +1275,11 @@ function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = '_p006a';
             }
           }
         }
-        if (!$err && $_cnt__HI > 1) __format_SQL('_raEXPR__acPG', "$hi__arP, $hi_i, " . $RA[RA_cn__arDS][$exprVAL]['exprARR'][$hiEL][0], 1);
+        if (!$err && $_cnt__HI > 1) __format_SQL("$hi__arP, $hi_i, " . $RA[RA_cn__arDS][$exprVAL]['exprARR'][$hiEL][0], '_raEXPR__acPG', 1);
       }
     }
   }
   //if (($hiEL ?? '') == '_numB:_altNUM') du($RA[RA_cn__arDS][$exprVAL], $exprVAL, $RA[RA_cn__arDS][$hiEL]);
   return $err;
 
-}
-
-function __seg_agg_INT($seg_agg__val) { $pp = '_p007a';
-  global $RA;
-  $SEG_MIN = (int) $RA[RA_cn__arDS]['_ateSEG_MIN']['val__vbPQ'];
-  return (is_numeric($seg_agg__val) ? (int) $seg_agg__val : (10 + ord($seg_agg__val) - ord('A'))) << $SEG_MIN;
-}
-
-function __get_hieSCH($table_name) { $pp = '_p008a';
-  global $RA;
-  return $RA[RA_cn__arDS][$RA[RA_cn__arDS][$table_name]['cxN__arDS']]['cxN__arDS'];
-}
-
-function __get_cn__arP($cn__arDS) { $pp = '_p009a';
-  global $RA;
-  try {
-    $seg__arDS = $RA[RA_cn__arDS][$cn__arDS]['src_tab'];    
-    return $RA[RA_seg__arDS][$seg__arDS][RA_seg__arDS_start] + $RA[RA_cn__arDS][$cn__arDS]['src_arr_i'];
-  } catch (Exception $e) {
-
-    $ep = "009a-e1";
-    $msg = "$ep Error PHP: cn__arDS($cn__arDS)\nMSG:\n" . $e->getMessage() . "\nTrace:\n" . $e->getTraceAsString();
-    throw new Exception($msg);
-  }
 }

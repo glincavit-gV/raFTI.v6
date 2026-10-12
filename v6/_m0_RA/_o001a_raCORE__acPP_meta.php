@@ -9,6 +9,7 @@ const RA_seg__arP = 5;
 const RA_seg__arDS = 6;
 const RA_EXPR__arP = 7;
 const RA_tables = 8;
+const RA__tySEP = 9;
 
 const RA_seg__arDS_start = 0;
 const RA_seg__arDS_next = 1;
@@ -21,27 +22,30 @@ const RA_sql_cnt = 0;
 const RA_sql_str = 1;
 const RA_sql_max = 100;
 
-$RA['__tySEP']['_sepCN'] = "_";
-$RA['__tySEP']['_sepTY'] = "__";
-$RA['__tySEP']['_sepADD'] = " + ";
-$RA['__tySEP']['_sepMINUS'] = " - ";
-$RA['__tySEP']['_sepMULTIPLY'] = " * ";
-$RA['__tySEP']['_sepVALUE'] = " : ";
-$RA['__tySEP']['_sepOPTION'] = ":";
-$RA['__tySEP']['_sepBACK'] = " :: ";
-$RA['__tySEP']['_sepLIST'] = " , ";
-$RA['__tySEP']['_sepALT'] = " / ";
-$RA['__tySEP']['_sepPART'] = "/";
-$RA['__tySEP']['_sepREM'] = " -- ";
-$RA['__tySEP']['_sepPER'] = "@";
+$RA[RA__tySEP]['_sepCN'] = "_";
+$RA[RA__tySEP]['_sepTY'] = "__";
+$RA[RA__tySEP]['_sepADD'] = " + ";
+$RA[RA__tySEP]['_sepMINUS'] = " - ";
+$RA[RA__tySEP]['_sepFIXE'] = "-";
+$RA[RA__tySEP]['_sepMULTIPLY'] = " * ";
+$RA[RA__tySEP]['_sepVALUE'] = " : ";
+$RA[RA__tySEP]['_sepOPTION'] = ":";
+$RA[RA__tySEP]['_sepBACK'] = " :: ";
+$RA[RA__tySEP]['_sepLIST'] = " , ";
+$RA[RA__tySEP]['_sepALT'] = " / ";
+$RA[RA__tySEP]['_sepPART'] = "/";
+$RA[RA__tySEP]['_sepREM'] = " -- ";
+$RA[RA__tySEP]['_sepPER'] = "@";
+$RA[RA__tySEP]['_sepWORD'] = " ";
+$RA[RA__tySEP]['_sepSTRUC'] = ".";
 
 
-function dz(...$vars) {
+function dz(...$vars) { $pp = "p001a-0a";
   du(...$vars);
   exit(1);
 }
 
-function du(...$vars) {
+function du(...$vars) { $pp = "p001a-1a";
   echo "\n";
   // Orange/Brown for structural brackets
   $orange = "\e[38;5;208m"; 
@@ -58,7 +62,7 @@ function du(...$vars) {
   }
 }
 
-function formatTerminalArray($array, $indent = 2) {
+function formatTerminalArray($array, $indent = 2) { $pp = "p001a-2a";
   $spaces = str_repeat(" ", $indent);
   $orange = "\e[38;5;208m";
   $reset  = "\e[0m";
@@ -77,7 +81,7 @@ function formatTerminalArray($array, $indent = 2) {
   }
 }
 
-function formatTerminalValue($val, $indent = 0) {
+function formatTerminalValue($val, $indent = 0) { $pp = "p001a-3a";
   $orange = "\e[38;5;208m";
   $reset  = "\e[0m";
   $bold   = "\e[1m"; // ANSI Bold Modifier
@@ -96,4 +100,117 @@ function formatTerminalValue($val, $indent = 0) {
   if (is_null($val))    return "\e[1;90mnull{$reset}";                     
 
   return $val;
+}
+
+function dul(array $log, $ref = 'NULL') { $pp = "p001a-4a";
+  global $RA;
+  foreach ($log as $log_i => $log_s) {
+    if ($log_i) {
+      $FCC = explode($RA[RA__tySEP]['_sepWORD'], $log_s)[0];
+      $msg = explode($FCC, $log_s)[1];
+      if ($ref != 'NULL') $ref = __get_cn__arP($RA[RA_cn__arDS][$ref]);
+      $cn__arT = __format_SQL("NULL, '$FCC', '$msg', " . count($log));
+    } else {
+      __format_SQL("$cn__arT, $log_i, '$log_s'", '_logWDOG__acPG', 1);
+    }
+  }
+  __exec_SQL();
+}
+
+function duz(array $log, $ref = 'NULL') { $pp = "p001a-5a";
+  dul($log, $ref);
+  exit(1);
+}
+
+function __format_SQL($flds_str, $seg__arPV = '_logWDOG__arT', $cn__arP = 0) { $pp = 'p001a-6a';
+  global $RA;
+  if (is_numeric($seg__arPV)) {
+    $seg__arDS = $RA[RA_seg__arP][$seg__arPV];
+  } else {
+    $seg__arDS = $seg__arPV;
+  }
+  if (!($is_set = isset($RA[RA_sql][$seg__arDS])) || $RA[RA_sql][$seg__arDS][RA_sql_cnt] > RA_sql_max) {
+    $fccO = $RA[RA_cn__arDS][$seg__arDS]['FCC__vcQB'];
+    $_hieSCH = $RA[RA_tables][$seg__arDS][RA_tables_hieSHE];
+    if ($is_set) {
+      $RA[RA_sq][] = rtrim($RA[RA_sql][$seg__arDS][RA_sql_str], ',');
+    }
+    $RA[RA_sql][$seg__arDS][RA_sql_cnt] = 0;
+    $RA[RA_sql][$seg__arDS][RA_sql_str] = "INSERT into $_hieSCH._{$fccO}{$seg__arDS} (" . $RA[RA_tables][$seg__arDS][RA_tables_flds_str] . ") values ";
+  }
+  if (!$cn__arP) {
+    $cn__arP = $RA[RA_seg__arDS][$seg__arDS][RA_seg__arDS_next]++;
+    $flds_str = "$cn__arP,$flds_str";
+  }
+  $RA[RA_sql][$seg__arDS][RA_sql_str] .= "\n  ($flds_str),";
+  $RA[RA_sql][$seg__arDS][RA_sql_cnt]++;
+  return $cn__arP;
+}
+
+function __seg_agg_INT($seg_agg__val) { $pp = 'p001a-7a';
+  global $RA;
+  $SEG_MIN = (int) $RA[RA_cn__arDS]['_ateSEG_MIN']['val__vbPQ'];
+  return (is_numeric($seg_agg__val) ? (int) $seg_agg__val : (10 + ord($seg_agg__val) - ord('A'))) << $SEG_MIN;
+}
+
+function __get_hieSCH($table_name) { $pp = 'p001a-8a';
+  global $RA;
+  return $RA[RA_cn__arDS][$RA[RA_cn__arDS][$table_name]['cxN__arDS']]['cxN__arDS'];
+}
+
+function __get_cn__arP($cn__arDS) { $pp = 'p001a-9a';
+  global $RA;
+  try {
+    $seg__arDS = $RA[RA_cn__arDS][$cn__arDS]['src_tab'];    
+    return $RA[RA_seg__arDS][$seg__arDS][RA_seg__arDS_start] + $RA[RA_cn__arDS][$cn__arDS]['src_arr_i'];
+  } catch (Exception $e) {
+
+    $ep = "$pp-e1";
+    $msg = "$ep Error PHP: cn__arDS($cn__arDS)\nMSG:\n" . $e->getMessage();
+    $err = [$msg];
+    $err[] = "\nTrace:\n" . $e->getTraceAsString();
+    $msg .= $err[1];
+    dul($err);
+    throw new Exception($msg);
+  }
+}
+
+function __exec_SQL($echo_it = 0) { $pp = 'p001a-10a';
+  global $RA;
+  foreach ($RA[RA_sql] as $seg__arDS => $seg_arr) {
+    $RA[RA_sq][] = rtrim($seg_arr[RA_sql_str], ',');
+  }
+  //dz($RA[RA_sq][30]);
+  if ($echo_it) "\nInserting data ...\n";
+  foreach ($RA[RA_sq] as $sql_i => $sql) {
+    if ($echo_it) echo "\r$sql_i - " . str_pad(explode(' values ', $sql)[0], 140);
+    db_query($sql);
+  }
+  $RA[RA_sq] = $RA[RA_sql] = [];
+}
+
+function __get_table($name) { $pp = "p001a-11a";
+  global $RA;
+  $_hieSCH = $RA[RA_cn__arDS][$RA[RA_cn__arDS][$name]['cxN__arDS']]['cxN__arDS'];
+  $FCC = $RA[RA_cn__arDS][$name]['FCC__vcQB'];
+  return "{$_hieSCH}._{$FCC}{$name}";
+}
+
+function duv($ver, $obj = '_OM') { $pp = "p001a-12a";
+  global $RA;
+  $obj__arP = __get_cn__arP($RA[RA_cn__arDS][$obj]);
+  $vers = explode($RA[RA__tySEP]['_sepSTRUC'], $ver);
+  $tname = __get_table('_logVER__arT');
+  $where_s = "par__OBJ = $obj__arP and major__nuDB = " . $vers[0] . " and minor__nuDB = " . $vers[1];
+  $rows = db_query("SELECT _arT, build__nuDB from $tname where $where_s")->fetchAll(\PDO::FETCH_ASSOC);  
+  if (!$rows) {
+    $build__nuDB = (int) $rows[0]['build__nuDB'];
+    $cn__arT = $rows[0]['_arT'];
+    $build__nuDB++;
+    __format_SQL("$cn__arT, $build__nuDB", '_logVER__acTG', 1);
+    $RA[RA_sq][] = "UPDATE $tname set build__nuDB = $build__nuDB where $where_s";
+  } else {
+    __format_SQL("$obj__arP, " . $vers[0] . ", " . $vers[1] . ", 0, '" . ($vers[2] ?? '') . "'", '_logVER__arT');
+  }
+  __exec_SQL();
 }
