@@ -102,27 +102,7 @@ function formatTerminalValue($val, $indent = 0) { $pp = "p001a-3a";
   return $val;
 }
 
-function dul(array $log, $ref = 'NULL') { $pp = "p001a-4a";
-  global $RA;
-  foreach ($log as $log_i => $log_s) {
-    if ($log_i) {
-      $FCC = explode($RA[RA__tySEP]['_sepWORD'], $log_s)[0];
-      $msg = explode($FCC, $log_s)[1];
-      if ($ref != 'NULL') $ref = __get_cn__arP($RA[RA_cn__arDS][$ref]);
-      $cn__arT = __format_SQL("NULL, '$FCC', '$msg', " . count($log));
-    } else {
-      __format_SQL("$cn__arT, $log_i, '$log_s'", '_logWDOG__acPG', 1);
-    }
-  }
-  __exec_SQL();
-}
-
-function duz(array $log, $ref = 'NULL') { $pp = "p001a-5a";
-  dul($log, $ref);
-  exit(1);
-}
-
-function __format_SQL($flds_str, $seg__arPV = '_logWDOG__arT', $cn__arP = 0) { $pp = 'p001a-6a';
+function __format_SQL($flds_str, $seg__arPV = '_logWDOG__arT', $cn__arP = 0) { $pp = 'p001a-4a';
   global $RA;
   if (is_numeric($seg__arPV)) {
     $seg__arDS = $RA[RA_seg__arP][$seg__arPV];
@@ -147,18 +127,18 @@ function __format_SQL($flds_str, $seg__arPV = '_logWDOG__arT', $cn__arP = 0) { $
   return $cn__arP;
 }
 
-function __seg_agg_INT($seg_agg__val) { $pp = 'p001a-7a';
+function __seg_agg_INT($seg_agg__val) { $pp = 'p001a-5a';
   global $RA;
   $SEG_MIN = (int) $RA[RA_cn__arDS]['_ateSEG_MIN']['val__vbPQ'];
   return (is_numeric($seg_agg__val) ? (int) $seg_agg__val : (10 + ord($seg_agg__val) - ord('A'))) << $SEG_MIN;
 }
 
-function __get_hieSCH($table_name) { $pp = 'p001a-8a';
+function __get_hieSCH($table_name) { $pp = 'p001a-6a';
   global $RA;
   return $RA[RA_cn__arDS][$RA[RA_cn__arDS][$table_name]['cxN__arDS']]['cxN__arDS'];
 }
 
-function __get_cn__arP($cn__arDS) { $pp = 'p001a-9a';
+function __get_cn__arP($cn__arDS) { $pp = 'p001a-7a';
   global $RA;
   try {
     $seg__arDS = $RA[RA_cn__arDS][$cn__arDS]['src_tab'];    
@@ -175,7 +155,7 @@ function __get_cn__arP($cn__arDS) { $pp = 'p001a-9a';
   }
 }
 
-function __exec_SQL($echo_it = 0) { $pp = 'p001a-10a';
+function __exec_SQL($echo_it = 0) { $pp = 'p001a-8a';
   global $RA;
   foreach ($RA[RA_sql] as $seg__arDS => $seg_arr) {
     $RA[RA_sq][] = rtrim($seg_arr[RA_sql_str], ',');
@@ -189,16 +169,16 @@ function __exec_SQL($echo_it = 0) { $pp = 'p001a-10a';
   $RA[RA_sq] = $RA[RA_sql] = [];
 }
 
-function __get_table($name) { $pp = "p001a-11a";
+function __get_table($name) { $pp = "p001a-9a";
   global $RA;
   $_hieSCH = $RA[RA_cn__arDS][$RA[RA_cn__arDS][$name]['cxN__arDS']]['cxN__arDS'];
   $FCC = $RA[RA_cn__arDS][$name]['FCC__vcQB'];
   return "{$_hieSCH}._{$FCC}{$name}";
 }
 
-function duv($ver, $obj = '_OM') { $pp = "p001a-12a";
+function duv($ver, $obj = '_OM') { $pp = "p001a-10a";
   global $RA;
-  $obj__arP = __get_cn__arP($RA[RA_cn__arDS][$obj]);
+  $obj__arP = __get_cn__arP($obj);
   $vers = explode($RA[RA__tySEP]['_sepSTRUC'], $ver);
   $tname = __get_table('_logVER__arT');
   $where_s = "par__OBJ = $obj__arP and major__nuDB = " . $vers[0] . " and minor__nuDB = " . $vers[1];
@@ -213,4 +193,24 @@ function duv($ver, $obj = '_OM') { $pp = "p001a-12a";
     __format_SQL("$obj__arP, " . $vers[0] . ", " . $vers[1] . ", 0, '" . ($vers[2] ?? '') . "'", '_logVER__arT');
   }
   __exec_SQL();
+}
+
+function dul(array $log, $ref = 'NULL') { $pp = "p001a-11a";
+  global $RA;
+  foreach ($log as $log_i => $log_s) {
+    if (preg_match("/p\w\w\w\w-/", $log_s)) {
+      $FCC = explode($RA[RA__tySEP]['_sepWORD'], $log_s)[0];
+      $msg = explode($FCC, $log_s)[1];
+      if ($ref != 'NULL') $ref = __get_cn__arP($RA[RA_cn__arDS][$ref]);
+      $cn__arT = __format_SQL("NULL, '$FCC', '$msg', " . count($log));
+    } else {
+      __format_SQL("$cn__arT, $log_i, '$log_s'", '_logWDOG__acPG', 1);
+    }
+  }
+  __exec_SQL();
+}
+
+function duz(array $log, $ref = 'NULL') { $pp = "p001a-12a";
+  dul($log, $ref);
+  exit(1);
 }

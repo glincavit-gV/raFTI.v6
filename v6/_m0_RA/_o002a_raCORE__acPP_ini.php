@@ -928,7 +928,7 @@ $pp = 'p002a-0c';
   if ($errd || $errn) du($errd, $errn);
   else $log[] = "$pp-s1 No errors found in primary object processing.";
   $log[] = "$pp-s2 Number of cn__arDS processed: " . (count($RA[RA_cn__arDS]));
-  $log[] ="$pp-s3  Create all tables\n|---|---|---|\n|table_name|field_name|object_type|\n|---|---|---|";
+  $log[] ="$pp-s3 Create all tables\n|---|---|---|\n|table_name|field_name|object_type|\n|---|---|---|";
   $table_name = $prev_table = '';
   for ($src_i = 1; $src_i < count($src['_raOBJ__acPG_hie']); $src_i++) {
     $prev_table = $table_name;
@@ -1182,10 +1182,11 @@ $pp = 'p002a-0e';
   //du($RA[RA_tables]);
   //du($RA[RA_sq]);
   if ($err) {
-    dz("ERRORS!!!", $err);
+    duz("ERRORS!!!", $err);
   } else {
     __exec_SQL(1);
   }
+  duv("0.0.Creating DB objects");
 }
 
 function _raCORE_dropDB($sprefix = '_wRA') { $pp = 'p002a-1a';
