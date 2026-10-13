@@ -10,6 +10,8 @@ const RA_seg__arDS = 6;
 const RA_EXPR__arP = 7;
 const RA_tables = 8;
 const RA__tySEP = 9;
+const RA_var = 10;
+const RA_log = 11;
 
 const RA_seg__arDS_start = 0;
 const RA_seg__arDS_next = 1;
@@ -39,6 +41,17 @@ $RA[RA__tySEP]['_sepPER'] = "@";
 $RA[RA__tySEP]['_sepWORD'] = " ";
 $RA[RA__tySEP]['_sepSTRUC'] = ".";
 
+// Get the client's IP address
+//dz($_SERVER);
+//$client_ip = $_SERVER['REMOTE_ADDR'];
+// Look up the hostname associated with that IP address
+//$client_machine_name = gethostbyaddr($client_ip);
+$client_machine_name = $_SERVER['DB_HOST'];
+
+$RA[RA_var]['login'] = '@gV';
+$RA[RA_var]['host'] = $client_machine_name;
+$RA[RA_var]['ref'] = "'" . $RA[RA_var]['login'] . $RA[RA__tySEP]['_sepALT'] . $RA[RA_var]['host'] . "'";
+$RA[RA_log] = [];
 
 function dz(...$vars) { $pp = "p001a-0a";
   du(...$vars);
@@ -110,16 +123,19 @@ function __format_SQL($flds_str, $seg__arPV = '_logWDOG__arT', $cn__arP = 0) { $
     $seg__arDS = $seg__arPV;
   }
   if (!($is_set = isset($RA[RA_sql][$seg__arDS])) || $RA[RA_sql][$seg__arDS][RA_sql_cnt] > RA_sql_max) {
-    $fccO = $RA[RA_cn__arDS][$seg__arDS]['FCC__vcQB'];
-    $_hieSCH = $RA[RA_tables][$seg__arDS][RA_tables_hieSHE];
+    $seg_tab = __get_table($seg__arDS);
     if ($is_set) {
       $RA[RA_sq][] = rtrim($RA[RA_sql][$seg__arDS][RA_sql_str], ',');
     }
     $RA[RA_sql][$seg__arDS][RA_sql_cnt] = 0;
-    $RA[RA_sql][$seg__arDS][RA_sql_str] = "INSERT into $_hieSCH._{$fccO}{$seg__arDS} (" . $RA[RA_tables][$seg__arDS][RA_tables_flds_str] . ") values ";
+    $RA[RA_sql][$seg__arDS][RA_sql_str] = "INSERT into $seg_tab (" . $RA[RA_tables][$seg__arDS][RA_tables_flds_str] . ") values ";
   }
   if (!$cn__arP) {
-    $cn__arP = $RA[RA_seg__arDS][$seg__arDS][RA_seg__arDS_next]++;
+    if ($RA[RA_cn__arDS][$seg__arDS]['cn__TY'] == '__arT') {
+      $cn__arP = $RA[RA_seg__arDS][$seg__arDS][RA_seg__arDS_next]--;
+    } else {
+      $cn__arP = $RA[RA_seg__arDS][$seg__arDS][RA_seg__arDS_next]++;
+    }
     $flds_str = "$cn__arP,$flds_str";
   }
   $RA[RA_sql][$seg__arDS][RA_sql_str] .= "\n  ($flds_str),";
@@ -162,52 +178,82 @@ function __exec_SQL($echo_it = 0) { $pp = 'p001a-8a';
   }
   //dz($RA[RA_sq][30]);
   if ($echo_it) "\nInserting data ...\n";
-  foreach ($RA[RA_sq] as $sql_i => $sql) {
-    if ($echo_it) echo "\r$sql_i - " . str_pad(explode(' values ', $sql)[0], 140);
-    db_query($sql);
+  try {
+    foreach ($RA[RA_sq] as $sql_i => $sql) {
+      if ($echo_it) echo "\r$sql_i - " . str_pad(explode(' values ', $sql)[0], 140);
+      db_query($sql);
+    }
+  } catch (Exception $e) {
+
+    $ep = "$pp-e1";
+    $msg = "$ep Error SQL:\n" . $e->getMessage();
+    $err = [$msg];
+    $err[] = "\nTrace:\n" . $e->getTraceAsString();
+    $msg .= $err[1];
+    $err[] = "\nSQL:\n$sql\n";
+    du($err);
+    throw new Exception($msg);
   }
   $RA[RA_sq] = $RA[RA_sql] = [];
 }
 
 function __get_table($name) { $pp = "p001a-9a";
   global $RA;
-  $_hieSCH = $RA[RA_cn__arDS][$RA[RA_cn__arDS][$name]['cxN__arDS']]['cxN__arDS'];
-  $FCC = $RA[RA_cn__arDS][$name]['FCC__vcQB'];
-  return "{$_hieSCH}._{$FCC}{$name}";
+  if (isset($RA[RA_cn__arDS][$name])) {
+    $_hieSCH = $RA[RA_cn__arDS][$RA[RA_cn__arDS][$name]['cxN__arDS']]['cxN__arDS'];
+    $FCC = $RA[RA_cn__arDS][$name]['FCC__vcQB'];
+    return "{$_hieSCH}._{$FCC}{$name}";
+  }
+  return false;
 }
 
-function duv($ver, $obj = '_OM') { $pp = "p001a-10a";
+function duv($ver, $ref) { $pp = "p001a-10a";
   global $RA;
-  $obj__arP = __get_cn__arP($obj);
   $vers = explode($RA[RA__tySEP]['_sepSTRUC'], $ver);
-  $tname = __get_table('_logVER__arT');
-  $where_s = "par__OBJ = $obj__arP and major__nuDB = " . $vers[0] . " and minor__nuDB = " . $vers[1];
-  $rows = db_query("SELECT _arT, build__nuDB from $tname where $where_s")->fetchAll(\PDO::FETCH_ASSOC);  
-  if (!$rows) {
-    $build__nuDB = (int) $rows[0]['build__nuDB'];
-    $cn__arT = $rows[0]['_arT'];
-    $build__nuDB++;
-    __format_SQL("$cn__arT, $build__nuDB", '_logVER__acTG', 1);
-    $RA[RA_sq][] = "UPDATE $tname set build__nuDB = $build__nuDB where $where_s";
-  } else {
-    __format_SQL("$obj__arP, " . $vers[0] . ", " . $vers[1] . ", 0, '" . ($vers[2] ?? '') . "'", '_logVER__arT');
+  extract($vers, EXTR_PREFIX_ALL, 'vers');
+  if (($tname = __get_table('_logVER__arT'))) {
+    $where_s = "ref__vbPQ = '$ref' and major__nuDB = $vers_0 and minor__nuDB = $vers_1";
+    $rows = db_query("SELECT _arT as cn__arT, build__nuDB from $tname where $where_s")->fetchAll(\PDO::FETCH_ASSOC);
+    if ($rows) {
+      extract($rows[0]);
+      $build__nuDB++;
+      __format_SQL("$cn__arT, $build__nuDB", '_logVER__acTG', 1);
+      $RA[RA_sq][] = "UPDATE $tname set build__nuDB = $build__nuDB where $where_s";
+    } else {
+      __format_SQL("'$ref', $vers_0, $vers_1, 0, '$vers_2'", '_logVER__arT');
+    }
+    __exec_SQL();
+    dul(["$pp-s1 Set verssion: $ver\n"], 1);
+    return true;
   }
-  __exec_SQL();
+  return false;
 }
 
-function dul(array $log, $ref = 'NULL') { $pp = "p001a-11a";
+function dul(array $log, $echo_it = 0) { $pp = "p001a-11a";
   global $RA;
-  foreach ($log as $log_i => $log_s) {
-    if (preg_match("/p\w\w\w\w-/", $log_s)) {
-      $FCC = explode($RA[RA__tySEP]['_sepWORD'], $log_s)[0];
-      $msg = explode($FCC, $log_s)[1];
-      if ($ref != 'NULL') $ref = __get_cn__arP($RA[RA_cn__arDS][$ref]);
-      $cn__arT = __format_SQL("NULL, '$FCC', '$msg', " . count($log));
-    } else {
-      __format_SQL("$cn__arT, $log_i, '$log_s'", '_logWDOG__acPG', 1);
+  if (!$log) $log = $RA[RA_log];
+  if (__get_table('_logWDOG__acTG')) {
+    foreach ($log as $log_i => $log_s) {
+      if ($echo_it) echo "\n$log_i - $log_s";
+      if (($is_fcc = preg_match("/p\w\w\w\w-/", $log_s)) || !$log_i) {
+        if ($is_fcc) {
+          $FCC = explode($RA[RA__tySEP]['_sepWORD'], $log_s)[0];
+          $msg = explode($FCC, $log_s)[1];
+        } else {
+          $FCC = '';
+          $msg = $log_s;
+        }
+        //dz($RA[RA_var], $is_fcc, $FCC, $msg, $log);
+        $cn__arT = __format_SQL($RA[RA_var]['ref']  . ", '$FCC', '$msg', " . count($log));
+      } else {
+        __format_SQL("$cn__arT, $log_i, '$log_s'", '_logWDOG__acTG', 1);
+      }
     }
+    __exec_SQL();
+  } else {
+    du($RA[RA_log]);
   }
-  __exec_SQL();
+  $RA[RA_log] = [];
 }
 
 function duz(array $log, $ref = 'NULL') { $pp = "p001a-12a";
