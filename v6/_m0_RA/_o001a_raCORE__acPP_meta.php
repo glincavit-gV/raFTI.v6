@@ -13,6 +13,13 @@ const RA__tySEP = 9;
 const RA_var = 10;
 const RA_log = 11;
 
+const DS_ret = 12;
+const DS_cn__arDS = 13;
+const DS_main_arr = 14;
+const DS_main_numW_i = 15;
+const DS_main_numA_i = 16;
+
+
 const RA_seg__arDS_start = 0;
 const RA_seg__arDS_next = 1;
 const RA_seg__arDS_arP = 2;
@@ -41,13 +48,9 @@ $RA[RA__tySEP]['_sepPER'] = "@";
 $RA[RA__tySEP]['_sepWORD'] = " ";
 $RA[RA__tySEP]['_sepSTRUC'] = ".";
 
-// Get the client's IP address
 //dz($_SERVER);
-//$client_ip = $_SERVER['REMOTE_ADDR'];
-// Look up the hostname associated with that IP address
-//$client_machine_name = gethostbyaddr($client_ip);
-$client_machine_name = $_SERVER['DB_HOST'];
-
+if (isset($_SERVER['DB_HOST'] )) $client_machine_name = $_SERVER['DB_HOST'];
+else $client_machine_name = $_SERVER['COMPUTERNAME'];
 $RA[RA_var]['login'] = '@gV';
 $RA[RA_var]['host'] = $client_machine_name;
 $RA[RA_var]['ref'] = "'" . $RA[RA_var]['login'] . $RA[RA__tySEP]['_sepALT'] . $RA[RA_var]['host'] . "'";
@@ -180,7 +183,7 @@ function __exec_SQL($echo_it = 0) { $pp = 'p001a-8a';
   if ($echo_it) "\nInserting data ...\n";
   try {
     foreach ($RA[RA_sq] as $sql_i => $sql) {
-      if ($echo_it) echo "\r$sql_i - " . str_pad(explode(' values ', $sql)[0], 140);
+      if ($echo_it) echo "\r$sql_i - " . str_pad(explode(' values ', $sql)[0], 160);
       db_query($sql);
     }
   } catch (Exception $e) {

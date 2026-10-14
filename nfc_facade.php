@@ -3,7 +3,7 @@
 /**
  * raFTI host compatibility facade.
  *
- * Standalone implementation of the db_query() contract
+ * Standalone implementation of the db_query() and dd() contracts
  * used by raFTI outside the Laravel environment.
  */
 
@@ -28,5 +28,11 @@ if (!function_exists('db_query')) {
         }
 
         return $stmt;
+    }
+}
+
+if (!function_exists('dd')) {
+    function dd(...$vars) {
+        dz($vars);
     }
 }
