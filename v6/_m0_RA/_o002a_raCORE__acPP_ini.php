@@ -10,6 +10,7 @@ function _raCORE_iniTables() { $pp = 'p002a-0a';
   $src['_raTY__arP'] = [
  //  NOT NULL ==== NOT NULL === NULL ======= NOT NULL ==== NOT NULL ==== NOT NULL ==== NOT NULL
     [RA_cn__arDS, 'cxN__arDS', 'cxF__EXPR', 'expl__vbKB', 'val__tyFLD', 'rule__EXPR', 'te__EXPR'],
+
 //                                                   === rule__EXPR ===, te__EXPR
 //                                                   'dsx , dsn , dsABR'
     ['_OM', '_OM', '', 'Object Model -- ', '__enZB', '_ZZ , _WA , _CCC', '_/ds'], // the only one and 1-st cn__arDS can be used in its cxN
@@ -17,13 +18,16 @@ function _raCORE_iniTables() { $pp = 'p002a-0a';
                                                           //_WA - use all words 1-st symbol in main part of expl__vbKB (befor ( -- )) - abreviation like rule
                                                                 //_CCC - convert all result part of ds to (upper case)
                                                                         //_/ds - put separator (_) in front of ds result, (/) - the template parts separator
+
     ['_RA', '_OM', '', 'Relate Assemblis -- global context', '__enZB', '_ZZ , _WA , _CCC', '_/ds'],
     ['_raALT', '_RA', '', 'alternatives -- meta type', '__enZB', '_cxN_AA , _AT , _sCC', '_/ds'],
                                                                 //_cxN_NA - use from (cxN - field) its (_NA - all dsn part)
                                                                           //_AT - use from (_A - any vocals/consonants) its 1-st 3 symbols
                                                                                 //_sCC - convert dsx part to (lower case) all other parts to (upper case)
+
  //   _arDS(te__EXPR, rule__EXPR, expl__vbKB, cxN__arDS, cxF__EXPR, cn__TY) - the function to generate cn__arDS on template in te__EXPR by its parameters
     ['_raDS', '_RA', '', 'designation -- all type of desegnation by rules abrised in template', '__enZB', '_cxN_AA , _WA , _sCC', '_/ds'],
+
     ['_raTE', '_RA', '', 'template -- sub context for temlate description vs content', '__enZB', '_cxN_AA , _AD , _sCC', '_/ds'],
     ['_raTY', '_RA', '', 'types', '__enZB', '_cxN_AA , _AD , _sCC', '_/ds'],
     ['_raLI', '_RA', '', 'list', '__enZB', '_cxN_AA , _AD , _sCC', '_/ds'],
@@ -38,25 +42,39 @@ function _raCORE_iniTables() { $pp = 'p002a-0a';
     ['_altCX_CN', '_raALT', '', 'Context/Content', '__enZB', '_cxN_NA , _LE , _sCC', '_/ds/_/dso:_LE'],
                                                                           //_LE - use (_LE - ligature by functor edge) from 1-st expl__vbKB word
                                                                           // dso:_LE - put here (dso - ds optional part) by rule(_LE) from 2-nd word
+
     ['_cX', '_altCX_CN', '', 'context -- ', '__enZB', '_AS , _LL , _sCC', '_/ds'],
     ['_cN', '_altCX_CN', '', 'content -- ', '__enZB', '_AS , _LL , _sCC', '_/ds'],
     ['_altMM', '_raALT', '', 'min/max -- ', '__enZB', '_cxN_NA , _WA , _sCC', '_/ds'],
     ['_altMIN', '_altMM', '', 'min -- ', '__enZB', '_cxN_XA , _AA , _sCC', '_/ds'],
     ['_altMAX', '_altMM', '', 'max -- ', '__enZB', '_cxN_XA , _AA , _sCC', '_/ds'],
     ['_altLI', '_raALT', '_raLI', ' -- named list of consecutive values', '__enZB', '_cxN_NA , _cxF_NA , _sCC', '_/ds'],
-    // 26 (english letters number) as alternatives number
+
+    //_liMIN - 26 (english letters number) as alternatives number
     ['_liMIN', '_altLI', '_altMIN', '/^[a-z]$/ -- regexp like range of values : 26', '__evZB', '_AS , _AL , _sCC', '_/ds'],
-    // 36 = 10 + 26 (digit letters number) + (english letters number) as alternatives number
+
+    //_liMAX 36 = 10 + 26 (digit letters number) + (english letters number) as alternatives number
     ['_liMAX', '_altLI', '_altMAX', '/^[0-9A-Z]$/ -- --//-- : 36', '__evZB', '_AS , _AL , _sCC', '_/ds'],
+
     ['_hieATE', '_hieA', '_raTE', 'the main aggergate like __arP templae(structure) descriptor bits number: 32', '__evZB', '_cxN_AA , _cxF_NA , _zCC', '_/ds'],
+
     //_ateOFF - agg. element order number
-    ['_ateOFF', '_hieATE', '', 'offset -- of agg index bits start : 0', '__evZB', '_cxN_NA , _AT , _sCC', '_/ds/_/dso:_cxF_NA'],    
+    ['_ateOFF', '_hieATE', '', 'offset -- of agg index bits start : 0', '__evZB', '_cxN_NA , _AT , _sCC', '_/ds/_/dso:_cxF_NA'],
+
     //_ateALT - agg. alternatives like (dsa - synonyms for main ds) or (dsf - ds with fcc code)
     ['_ateALT', '_hieATE', '', 'alternatives -- of agg index bit start : 24', '__evZB', '_cxN_NA , _AT , _sCC', '_/ds/_/dso:_cxF_NA'],
+
     //_ateSEG - the agg. fcc code
     ['_ateSEG', '_hieATE', '', 'segment -- of agg index bit start  : 26', '__evZB', '_cxN_NA , _AT , _sCC', '_/ds/_/dso:_cxF_NA'],
+
     ['_altNUM', '_raALT', '', 'numbers - human readable numbers ds', '__enZB', '_cxN_NA , _AT , _sCC', '_/ds'],
     ['_funcNUM', '_raALT', '', 'functor _altNUM -- of - insted of exact number is used', '__enZB', '_AQ:_ZZ , _NA , _sCC', '_/ds'],
+    ['_altPattern', '_raALT', '', 'pattern -- for use with _funcNUM and/or _altTKN', '__enZB', '_cxN_AA , _AA , _sCs', '_/ds'],
+    ['_pattErase', '_altPattern', '', 'firts -- for use with _altTKN', '__enZB', '_cxN_NQ , _AA , _sCs', '_/ds'],
+    ['_pattCapture', '_altPattern', '', 'second -- for use with _funcNUM', '__enZB', '_cxN_NQ , _AA , _sCs', '_/ds'],
+    ['_func_EraseCapture', '_funcNUM', '_pattErase + _pattCapture', 'second -- for use with _funcNUM', '__enZB', '_cxN_XA , cxF_NA , _sCs', '_/dsx/_/dsn'],
+    ['_func_Capture', '_funcNUM', '_pattCapture', 'second -- for use with _funcNUM', '__enZB', '_cxN_XA , cxF_NA , _sCs', '_/dsx/_dsn'],
+    ['_func_Erase', '_funcNUM', '_pattErase', 'second -- for use with _funcNUM', '__enZB', '_cxN_XA , cxF_NA , _sCs', '_/dsx/_dsn'],
     ['_numS', '_altNUM', '_altNUM', 'singlet : 1', '__evDB', '_cxN_NA , _WA , _sCC', '_/ds'],
     ['_numB', '_altNUM', '_altNUM', 'byte -- size as in _numS : 1', '__evDB', '_cxN_NA , _WA , _sCC', '_/ds'],
     ['_numD', '_altNUM', '_altNUM', 'duplet : 2', '__evDB', '_cxN_NA , _WA , _sCC', '_/ds'],
@@ -72,13 +90,12 @@ function _raCORE_iniTables() { $pp = 'p002a-0a';
     ['_numOQ', '_altNUM', '_numO + _numQ:_altNUM', ' : 12', '__evDB', '_cxN_NA , _cxF_NA , _sCC', '_/ds'],
     ['_numOP', '_altNUM', '_numO + _numP:_altNUM', ' : 13', '__evDB', '_cxN_NA , _cxF_NA , _sCC', '_/ds'],
     ['_numH', '_altNUM', '_altNUM', 'hextet : 16', '__evDB', '_cxN_NA , _WA , _sCC', '_/ds'],
-    // 1000 - the enogth value to skeep the rest of the token
-    ['_numZ', '_altNUM', '_funcNUM', 'zero -- special number to skeep rest of token : 1000', '__evDB', '_cxN_NA , _WA , _sCC', '_/ds'],
-    ['_numL', '_altNUM', '_funcNUM', 'last -- use last token - size as in _numS : 1', '__evDB', '_cxN_NA , _WA , _sCC', '_/ds'],
-    ['_numE', '_altNUM', '_funcNUM', 'edge -- use 1-st and last tokens - size as in _numD : 2', '__evDB', '_cxN_NA , _WA , _sCC', '_/ds'],
-    ['_numA', '_altNUM', '_funcNUM', 'all -- with exception of types and options part of fields : 1000', '__evDB', '_cxN_NA , _WA , _sCC', '_/ds'],
-    ['_numAA', '_altNUM', '_funcNUM', 'all -- use total cn__arDS including separators options and type : 1000', '__evDB', '_cxF_AA , _WA , _sCC', '_/ds'],
-    ['_numTY', '_altNUM', '_funcNUM', 'type -- all __TY part of token - all just after (__) - type prefix : 1000', '__evDB', '_cxN_NA , _AD , _sCC', '_/ds'],
+    ['_numZ', '_altNUM', '_func_Erase:_funcNUM', 'zero -- special number to skeep rest of token : /.*/ :: _pattErase', '__esPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
+    ['_numL', '_altNUM', '_func_EraseCapture:_funcNUM', 'last -- use last token - size as in _numS : /([a-z]\b/i :: _pattCapture', '__esPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
+    ['_numE', '_altNUM', '_func_EraseCapture:_funcNUM', 'edge -- use 1-st and last tokens - size as in _numD : /\b[a-z]|[a-z]\b/i :: _pattCapture', '__esPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
+    ['_numA', '_altNUM', '_func_EraseCapture:_funcNUM', 'all -- with exception of types and options part of fields : /.*/ :: _pattCapture', '__esPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
+    ['_numAA', '_altNUM', '_func_Capture:_funcNUM', 'all -- use total cn__arDS including separators options and type : /.*/ :: _pattCapture', '__esPQ', '_cxF_AA , _WA , _sCC', '_/ds'],
+    ['_numTY', '_altNUM', '_func_Erase:_funcNUM', 'type -- all __TY part of token - all just after (__) - type prefix : /.*(?=__)/ :: _pattErase', '__esPQ', '_cxN_NA , _AD , _sCC', '_/ds'],
     ['_altTKN', '_raALT', '', 'token -- source type of expl__vbKB or exact field to use for ds', '__enZB', '_cxN_NA , _CT , _sCC', '_/ds'],
     ['_tknZ', '_altTKN', '_numZ:_altNUM', ' -- skip current part of ds (dsx or dsn) or number - 2 ^ _numZ = 1 when is used as __tyFLD : 1', '__evDB', '_cxN_NA , _cxF_NA , _sCC', '_/ds'],
     ['_tknS', '_altTKN', '_numS:_altNUM', ' -- number - 2 ^ _numS : 2', '__evDB', '_cxN_NA , _cxF_NA , _sCC', '_/ds'],
@@ -91,19 +108,24 @@ function _raCORE_iniTables() { $pp = 'p002a-0a';
     ['_tknK', '_altTKN', '_altNUM', 'kilo -- number - 2 ^ 10 : 1024', '__evDB', '_cxN_NA , _WA , _sCC', '_/ds'],
     ['_tknM', '_altTKN', '_altNUM', 'mega -- number - 2 ^ 20 : 1048576', '__evDB', '_cxN_NA , _WA , _sCC', '_/ds'],
     ['_tknG', '_altTKN', '_altNUM', 'giga -- number - 2 ^ 30 : 1073741824', '__evDB', '_cxN_NA , _WA , _sCC', '_/ds'],
-    ['_tknA', '_altTKN', '', 'any -- use vocals or consonants symbols : /[[:punct:]]/', '__evPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
-    ['_tknC', '_altTKN', '', 'consonant -- use consonants symbols : /[aeiouy]|[[:punct:]]/i', '__evPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
-    ['_tknV', '_altTKN', '', 'vocal -- use vocals symbols : /((?![aeiou])[a-z]|[[:punct:]])/i', '__evPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
-    ['_tknL', '_altTKN', '', 'ligature -- sequence of consonants symbols : /((?![aeiou])[a-z])((?![aeiou])[a-z])+|[aeiou]|[[:punct:]]/i', '__evPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
-    ['_tknW', '_altTKN', '', 'word -- use 1-st symbols from word : /(?!\b[a-z])[a-z]|[[:punct:]]/i', '__evPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
-    ['_tknF', '_altTKN', '', 'fixe -- words represented in mor-phe-me to use as legature : /(?!\b[a-z])[a-z]|[[:punct:]]/i', '__evPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
-    ['_tknN', '_altTKN', '_cN', '_cN -- use symbols from part _cN : /[[:punct:]]|(?<=[A-Z])[a-zA-Z]+|[A-Z]+/', '__evPQ', '_cxN_NA , _cxF_NA , _sCC', '_/ds'],
-    ['_tknX', '_altTKN', '_cX', '_cX -- use symbols from part _cX : /[a-z]+(?=[A-Z]|[[:punct:]])|[[:punct:]]/', '__evPQ', '_cxN_NA , _cxF_NA , _sCC', '_/ds'],
-    ['_tknR', '_altTKN', '', 'reference -- use symbols from reference value : /[[:punct:]]/', '__evPQ', '_cxN_NA , _cxF_NA , _sCC', '_/ds'],
-    ['_cxN', '_altTKN', 'cxN__arDS', ' -- use this field content : /[[:punct:]]/', '__evPQ', '_cxF_AA , _ZZ , _zzz', '_/ds'],
-    ['_cxF', '_altTKN', 'cxF__EXPR', ' -- use this field content : /[[:punct:]]/', '__evPQ', '_cxF_AA , _ZZ , _zzz', '_/ds'],
-    ['__TY', '_altTKN', 'cn__TY', ' -- use object type field : /[[:punct:]]/', '__evPQ', '_cxF_TY , _ZZ , _zzz', '__/ds'],
+                                                                      // (?<=__).* - erase all after type prefix(__)
+                                                                                 // [[:punct:]] - erase all separators 
+    ['_tknA', '_altTKN', '', 'any -- use vocals or consonants symbols : /(?<=__).*|[[:punct:]]/ :: _pattErase', '__esPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
+    ['_tknC', '_altTKN', '', 'consonant -- use consonants symbols : /(?<=__).*|[aeiouy]|[[:punct:]]/i :: _pattErase', '__esPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
+    ['_tknV', '_altTKN', '', 'vocal -- use vocals symbols : /(?<=__).*|((?![aeiou])[a-z]|[[:punct:]])/i :: _pattErase', '__esPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
+    ['_tknL', '_altTKN', '', 'ligature -- sequence of consonants symbols : /(?<=__).*|((?![aeiou])[a-z])((?![aeiou])[a-z])+|[aeiou]|[[:punct:]]/i :: _pattErase', '__e__esPQvPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
+    ['_tknW', '_altTKN', '', 'word -- use 1-st symbols from word : /(?<=__).*|(?!\b[a-z])[a-z]|[[:punct:]]/i :: _pattErase', '__esPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
+    ['_tknF', '_altTKN', '', 'fixe -- words represented in mor-phe-me to use as legature : /(?<=__).*|(?!\b[a-z])[a-z]|[[:punct:]]/i :: _pattErase', '__esPQ', '_cxN_NA , _WA , _sCC', '_/ds'],
+    ['_tknN', '_altTKN', '_cN', '_cN -- use symbols from part _cN : /(?<=__).*|[[:punct:]]|(?<=[A-Z])[a-zA-Z]+|[A-Z]+/ :: _pattErase', '__esPQ', '_cxN_NA , _cxF_NA , _sCC', '_/ds'],
+    ['_tknX', '_altTKN', '_cX', '_cX -- use symbols from part _cX : /(?<=__).*|[a-z]+(?=[A-Z]|[[:punct:]])|[[:punct:]]/ :: _pattErase', '__esPQ', '_cxN_NA , _cxF_NA , _sCC', '_/ds'],
+    ['_tknR', '_altTKN', '', 'reference -- use symbols from reference value : /(?<=__).*|[[:punct:]]/ :: _pattErase', '__esPQ', '_cxN_NA , _cxF_NA , _sCC', '_/ds'],
+    ['_cxN', '_altTKN', 'cxN__arDS', ' -- use this field content : /(?<=__).*|[[:punct:]]/ :: _pattErase', '__esPQ', '_cxF_AA , _ZZ , _zzz', '_/ds'],
+    ['_cxF', '_altTKN', 'cxF__EXPR', ' -- use this field content : /(?<=__).*|[[:punct:]]/ :: _pattErase', '__esPQ', '_cxF_AA , _ZZ , _zzz', '_/ds'],
+    ['__TY', '_altTKN', 'cn__TY', ' -- use object type field : /(?<=__).*|[[:punct:]]/ :: _pattErase', '__esPQ', '_cxF_TY , _ZZ , _zzz', '__/ds'],
+
     ['_tknNUM', '_raTE', '_altTKN + _altNUM', ' -- template to combine from cxF', '__enZB', '_cxF_NA , _cxF_NA , _sCC', '_/ds'],
+
+    // 1000 - enogth value to skeep the rest of the token
     ['_ZZ', '_tknNUM', '_tknZ + _numZ:_altNUM', ' -- skip current token : 1000', '__evDB', '_cxF_NA , _cxF_NA , _CCC', '_/ds'],
     ['_AA', '_tknNUM', '_tknA + _numA', ' -- use any all (vocals or consonants) symbols or coresponding field subpart : 1000', '__evDB', '_cxF_NA , _cxF_NA , _CCC', '_/ds'],
     ['_TY', '_tknNUM', '_tknA + _numTY', ' -- use any all (vocals or consonants) symbols from __TY part : 1000', '__evDB', '_cxF_NA , _cxF_NA , _CCC', '_/ds'],

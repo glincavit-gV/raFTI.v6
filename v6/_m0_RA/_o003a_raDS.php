@@ -4,8 +4,7 @@ include_once '_o002a_raCORE__acPP_ini.php';
 
 function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
   global $RA;
-  $RA[RA_DS] = [];
-  $DS_ret = [];
+  $RA[RA_DS] = $DS_ret = [];
   $RA[RA_DS][DS_cn__arDS] = $cn__arDS;
   extract($RA[RA__tySEP]);
   extract($RA[RA_cn__arDS][$RA[RA_DS][DS_cn__arDS]], EXTR_PREFIX_ALL, 'DS');
@@ -15,7 +14,7 @@ function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
   if (!isset($RA[RA_cn__arDS][$_dsABR])) {
 
     $ep = "$pp-e1";
-    $RA[RA_log][] = "$ep reule__EXPR($DS_reule__EXPR) has registered rule _dsABR($_dsABR)";
+    $RA[RA_log][] = "$ep reule__EXPR($DS_reule__EXPR) not found as registered rule _dsABR($_dsABR)";
   } else {
     foreach ($te_arr as $te_el) {
       $dso_arr = explode($_sepOPTION, $te_el);
@@ -40,7 +39,7 @@ function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
           if (count($dso_arr) == 1) {
 
             $ep = "$pp-e4";
-            $RA[RA_log][] = "$ep te__EXPR($DS_te__EXPR) has (dso) component($te_el), it don't have the options separated with ($_sepOPTION)";
+            $RA[RA_log][] = "$ep te__EXPR($DS_te__EXPR) has (dso) component($te_el) and it don't have the options separated with ($_sepOPTION)";
           } else {
             $DS_ret[] = [DS_ret_dso => __dsTE_calc($dso_arr, 1)];
           }
@@ -72,7 +71,7 @@ function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
         $DS_dsABR_ret .= ($_dsABR_arr[RA_dsABR_rest] == '_abrC'
             ? strtoupper($DS_ret_arr[1])
             : ($_dsABR_arr[RA_dsABR_rest] == '_abrS'
-              ? strtoupper($DS_ret_arr[1])
+              ? strtolower($DS_ret_arr[1])
               : $DS_ret_arr[1]
             )
         );
@@ -84,7 +83,7 @@ function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
         $DS_dsABR_ret .= ($_dsABR_arr[RA_dsABR_dsx] == '_abrC'
             ? strtoupper($DS_ret_arr[1])
             : ($_dsABR_arr[RA_dsABR_dsx] == '_abrS'
-              ? strtoupper($DS_ret_arr[1])
+              ? strtolower($DS_ret_arr[1])
               : $DS_ret_arr[1]
             )
         );
@@ -93,7 +92,7 @@ function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
         $DS_dsABR_ret .= ($_dsABR_arr[RA_dsABR_dsn] == '_abrC'
             ? strtoupper($DS_ret_arr[1])
             : ($_dsABR_arr[RA_dsABR_dsn] == '_abrS'
-              ? strtoupper($DS_ret_arr[1])
+              ? strtolower($DS_ret_arr[1])
               : $DS_ret_arr[1]
             )
         );
