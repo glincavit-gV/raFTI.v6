@@ -30,7 +30,7 @@ function _raCORE_iniTables() {
   It describing all parts of object designation :
     <_o000a_raCORE_class__asPH_iniTables> : <_><a000a><_><raCORE><_class><__><asPH><_iniTables> : 8 parts
   The '_fccSD__arDP' - describe the hierarchy of fileds used for DOC type like '__dPost'
-  The '_d21' 1-st, ..., '_d25' last records of documnt : '<DOC FCC>:_d2'.. ['<DOC name>:Naming', '<DOC type>:__dPost'].
+  The '_d21' 1-st, ..., '_d25' last records of documnt : '<DOC fcc>:_d2'.. ['<DOC name>:Naming', '<DOC type>:__dPost'].
 */
   $RA['__acAKV']['_o012a:__dPost']['_d2:Naming'] = [
       ['_fccSD__arDP', '_explan__svKS', [
@@ -40,12 +40,12 @@ function _raCORE_iniTables() {
       ['_d20', 'Naming : (convention : constraints : order rules)', []],
       ['_d21', '<Aggregate designation template>(ADT) parts : <_><a000a><_><raCORE><_class><__><asPH><_iniTables> : 8 parts : _d211,_d212,..._d218 :', [
         ['_d211', '<_>', '<functor designation prefix> : <exact (1)one and 1-st symbol of ADT>', []],
-        ['_d212', '<a000a> : <a><0><0><0><a> : <aMACu>', '<Facet Class Code>(FCC) : _df functor : ', [
-          ['<a>MACu : a : <aggregate space of FCC> : (__fccS<Spaces> : (__fccSM(module) /__fccSA(aggregate) / __fccSD(document) / __fccSP(point/part) /...)', []],
-          ['a<M>ACu : M : <FCC of modules index value> [0-9A-Z] count(10 + 26 = 36) (analogue of HEX but with <max number> : <Z> : <35>)', []],
-          ['aM<A>Cu : A : <FCC of aggregate index value> [0-9A-Z] (<max number> : <Z> : <35>)', []],
-          ['aMA<C>u : C : <FCC of aggregate component index value> [0-9A-Z] (<max number> : <Z> : <35>)', []],
-          ['aMAC<u> : u : <FCC of aggregate component unite index value> [a-z] (<min number> : <a> : <0>) (<max number> : <z> : <25>) count(26)', []]
+        ['_d212', '<a000a> : <a><0><0><0><a> : <aMACu>', '<Facet Class Code>(fcc) : _df functor : ', [
+          ['<a>MACu : a : <aggregate space of fcc> : (__fccS<Spaces> : (__fccSM(module) /__fccSA(aggregate) / __fccSD(document) / __fccSP(point/part) /...)', []],
+          ['a<M>ACu : M : <fcc of modules index value> [0-9A-Z] count(10 + 26 = 36) (analogue of HEX but with <max number> : <Z> : <35>)', []],
+          ['aM<A>Cu : A : <fcc of aggregate index value> [0-9A-Z] (<max number> : <Z> : <35>)', []],
+          ['aMA<C>u : C : <fcc of aggregate component index value> [0-9A-Z] (<max number> : <Z> : <35>)', []],
+          ['aMAC<u> : u : <fcc of aggregate component unite index value> [a-z] (<min number> : <a> : <0>) (<max number> : <z> : <25>) count(26)', []]
         ]],
         ['_d213', '<_>', '(1)one and not 1-st <under score> symbol in any of ADT position : <object hierarchy level designation separator or its aspects of using>', []],
         ['_d214', '<raCORE> : <ra><Core>','<module><Aggeregate> : <designation of moduleAggregate pair destination> :', [
@@ -69,14 +69,14 @@ function _raCORE_iniTables() {
         ['_d218', '<_iniTables> : <ini><Tables>', 'The <unite> part of object designation for destination : <init><Tbales>', '', []]
       ]],
       ['_d22', 'Segments of ADT : (_s1)(_s2)(_s3)[_s4] : (_s1:<_d211><_d212>)(_s2:<_d213><_d214>[_d215])(_s3:<_d216><_d217>)[_s4:_d218] :', [
-        ['_d221', '_s1', 'FCC code.', []],
+        ['_d221', '_s1', 'fcc code.', []],
         ['_d222', '_s2', '<module><Aggregate>[_component] designation : [_component] designation may be omitted.', []],
         ['_d223', '_s3', 'Type designation of current <module><Agregate>[_component].', []],
         ['_d224', '_s4', 'The object designation <unite> part : may be omitted.', []]
       ]],
-      ['_d23', '(FCC AGG order : rules) : (_fccSA:_r:)', [
-        ['_d231', '_fccSA:_r1:Spec', 'Each FCC of each object is in coordonance with it position in _d7:Specification', []],
-        ['_d232', '_fccSA:_r2:CRC', 'Each FCC of each subobject is in coordonance with <Causal Relationships Criterion>(CRC) :', [
+      ['_d23', '(fcc AGG order : rules) : (_fccSA:_r:)', [
+        ['_d231', '_fccSA:_r1:Spec', 'Each fcc of each object is in coordonance with it position in _d7:Specification', []],
+        ['_d232', '_fccSA:_r2:CRC', 'Each fcc of each subobject is in coordonance with <Causal Relationships Criterion>(CRC) :', [
           ['So _r1 can violate _r2 but for each such case the constraint name designation began with perfix <R>(Reverse)', []],
           ['and is used to separate modification in thouse constraints conturs.', []]
         ]],
@@ -476,8 +476,8 @@ function _raCORE_iniTables() {
     ['_omDIV', '_OM', 'Dividers : any comon attributes',
       '__divNX<_NX:conteNt/conteXt , __divNV<_NV:Natural/Virtual , ...',
       '__enBS', ['_cxNCN', '_cnLT<_LT:Ligature Triple', '__sCC', '_le(_)']],
-    ['_omFCC', '_OM', 'Facet Class Code : ',
-      '_omFCC { __fccSF<_SF:Space Functor>+_fccON<_ON:Order Number>',
+    ['_omfcc', '_OM', 'Facet Class Code : ',
+      '_omfcc { __fccSF<_SF:Space Functor>+_fccON<_ON:Order Number>',
       '__enBS', ['_cxNCN', '_cnWA', '__sCC', '_le(_)']],
     ['_omNC', '_OM', 'Name Convention : different name space and its templates',
       '_omNCF<_F:Form Designations , _omNCT<_T:Templates , _omNCR<_R:Rule , ...',
@@ -599,10 +599,10 @@ function _raCORE_iniTables() {
     ['_stClose', '_omDIV', 'Close : of process',
       '',
       '__enBS', ['_cxNCN', '_cnAA<_AA:Any All', '__sCs', '_le(_)']],
-    ['__fccSF', '_omFCC', 'Space Functor',
+    ['__fccSF', '_omfcc', 'Space Functor',
       '_m<Module , _a<AGG , _d<Document , ...',
       '__enBS', ['_cxNCN', '_cnWA', '__sCC', '_le(_)']],
-    ['_fccON', '_omFCC', 'Order Number',
+    ['_fccON', '_omfcc', 'Order Number',
       '_onM<regexp([0-9A-Z]):_cnt(10+26) , _onMA<_onM+regexp([0-9A-Z]) , _onMAC<_onMA+regexp([0-9A-Z] , ...',
       '__enBS', ['_cxNCN', '_cnWA', '__sCC', '_le(_)']],
     ['_i', '__fccSF', 'Initiatives',

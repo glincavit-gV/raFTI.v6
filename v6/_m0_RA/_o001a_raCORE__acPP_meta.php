@@ -12,13 +12,29 @@ const RA_tables = 8;
 const RA__tySEP = 9;
 const RA_var = 10;
 const RA_log = 11;
+const RA_DS = 12;
 
-const DS_ret = 12;
-const DS_cn__arDS = 13;
-const DS_main_arr = 14;
-const DS_main_numW_i = 15;
-const DS_main_numA_i = 16;
+const DS_arr = 0;
+const DS_arr_cnt = 1;
+const DS_arr_i = 2;
+const DS_tkn_cnt = 3;
+const DS_tkn_i = 4;
+const DS_cn__arDS = 5;
 
+const DS_ret_dst = 0;
+const DS_ret_dso = 1;
+const DS_ret_sep = 2;
+const DS_ret_dsx = 3;
+const DS_ret_dsn = 4;
+
+const RA_rule__EXPR_cnt = 3;
+const RA_rule__EXPR_dsx = 0;
+const RA_rule__EXPR_dsn = 1;
+const RA_rule__EXPR_dsABR = 2;
+
+const RA_dsABR_dsx = 0;
+const RA_dsABR_dsn = 1;
+const RA_dsABR_rest = 2;
 
 const RA_seg__arDS_start = 0;
 const RA_seg__arDS_next = 1;
@@ -148,8 +164,8 @@ function __format_SQL($flds_str, $seg__arPV = '_logWDOG__arT', $cn__arP = 0) { $
 
 function __seg_agg_INT($seg_agg__val) { $pp = 'p001a-5a';
   global $RA;
-  $SEG_MIN = (int) $RA[RA_cn__arDS]['_ateSEG_MIN']['val__vbPQ'];
-  return (is_numeric($seg_agg__val) ? (int) $seg_agg__val : (10 + ord($seg_agg__val) - ord('A'))) << $SEG_MIN;
+  $_ateSEG = (int) $RA[RA_cn__arDS]['_ateSEG']['val__vbPQ'];
+  return (is_numeric($seg_agg__val) ? (int) $seg_agg__val : (10 + ord($seg_agg__val) - ord('A'))) << $_ateSEG;
 }
 
 function __get_hieSCH($table_name) { $pp = 'p001a-6a';
@@ -204,8 +220,8 @@ function __get_table($name) { $pp = "p001a-9a";
   global $RA;
   if (isset($RA[RA_cn__arDS][$name])) {
     $_hieSCH = $RA[RA_cn__arDS][$RA[RA_cn__arDS][$name]['cxN__arDS']]['cxN__arDS'];
-    $FCC = $RA[RA_cn__arDS][$name]['FCC__vcQB'];
-    return "{$_hieSCH}._{$FCC}{$name}";
+    $fcc = $RA[RA_cn__arDS][$name]['fcc__vcQB'];
+    return "{$_hieSCH}._{$fcc}{$name}";
   }
   return false;
 }
@@ -240,14 +256,14 @@ function dul(array $log, $echo_it = 0) { $pp = "p001a-11a";
       if ($echo_it) echo "\n$log_i - $log_s";
       if (($is_fcc = preg_match("/p\w\w\w\w-/", $log_s)) || !$log_i) {
         if ($is_fcc) {
-          $FCC = explode($RA[RA__tySEP]['_sepWORD'], $log_s)[0];
-          $msg = explode($FCC, $log_s)[1];
+          $fcc = explode($RA[RA__tySEP]['_sepWORD'], $log_s)[0];
+          $msg = explode($fcc, $log_s)[1];
         } else {
-          $FCC = '';
+          $fcc = '';
           $msg = $log_s;
         }
-        //dz($RA[RA_var], $is_fcc, $FCC, $msg, $log);
-        $cn__arT = __format_SQL($RA[RA_var]['ref']  . ", '$FCC', '$msg', " . count($log));
+        //dz($RA[RA_var], $is_fcc, $fcc, $msg, $log);
+        $cn__arT = __format_SQL($RA[RA_var]['ref']  . ", '$fcc', '$msg', " . count($log));
       } else {
         __format_SQL("$cn__arT, $log_i, '$log_s'", '_logWDOG__acTG', 1);
       }
