@@ -3,7 +3,8 @@ include_once '_o001a_raCORE__acPP_meta.php';
 
 function _raCORE_iniTables() { $pp = 'p002a-0a';
   global $RA;
-  $_OM_ver = "0.5._raDS class - wind up";
+  $_OM_ref = "_arDS";
+  $_OM_ver = "0.6.$_OM_ref class - wind up";
   extract($RA[RA__tySEP]);
   $RA_raTY__arDS_cn__arDS = 0;
   $RA_raTY__arDS_cxN__arDS = 1;
@@ -75,11 +76,11 @@ function _raCORE_iniTables() { $pp = 'p002a-0a';
     ['_pattCapture', '_altPattern', '', 'second -- for use with _funcNUM', '__enZB', '_cxN_NQ , _AA , _sHH', '_/ds'],
 
                                                                                                   // : (\1)' - value for preg_replace is (\1) - for cupture
-    ['__func_EraseCapture', '_funcNUM', '_pattErase + _pattCapture', 'second -- for use with _funcNUM : \1', '__evPQ', '_cxN_XA , cxF_NA , _sHH', '__/dsx/_/dsn'],
-    ['__func_Capture', '_funcNUM', '_pattCapture', 'second -- for use with _funcNUM : \1', '__evPQ', '_cxN_XA , cxF_NA , _sHH', '__/dsx/_/dsn'],
+    ['__func_EraseCapture', '_funcNUM', '_pattErase + _pattCapture', 'second -- for use with _funcNUM : \1', '__evPQ', '_cxN_XA , _cxF_NA , _sHH', '__/dsx/_/dsn'],
+    ['__func_Capture', '_funcNUM', '_pattCapture', 'second -- for use with _funcNUM : \1', '__evPQ', '_cxN_XA , _cxF_NA , _sHH', '__/dsx/_/dsn'],
 
                                                                             // : ()' - value for preg_replace is (empty) - for erase cupture
-    ['__func_Erase', '_funcNUM', '_pattErase', 'second -- for use with _funcNUM : ', '__evPQ', '_cxN_XA , cxF_NA , _sHH', '__/dsx/_/dsn'],
+    ['__func_Erase', '_funcNUM', '_pattErase', 'second -- for use with _funcNUM : ', '__evPQ', '_cxN_XA , _cxF_NA , _sHH', '__/dsx/_/dsn'],
 
     ['_numS', '_altNUM', '_altNUM', 'singlet : 1', '__evDB', '_cxN_NA , _WA , _sUU', '_/ds'],
     ['_numB', '_altNUM', '_altNUM', 'byte -- size as in _numS : 1', '__evDB', '_cxN_NA , _WA , _sUU', '_/ds'],
@@ -139,7 +140,7 @@ function _raCORE_iniTables() { $pp = 'p002a-0a';
       , '__esPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
     ['_tknN', '_altTKN', '_cN:__func_Erase:_funcNUM'
       , '_cN -- use symbols from part _cN : /(?<=__).*|[[:punct:]]|(?<=[A-Z])[a-zA-Z]+|[A-Z]+/ :: _pattErase', '__esPQ', '_cxN_NA , _cxF_NA , _sUU', '_/ds'],
-    ['_tknX', '_altTKN', '_cX"__func_Erase:_funcNUM'
+    ['_tknX', '_altTKN', '_cX:__func_Erase:_funcNUM'
       , '_cX -- use symbols from part _cX : /(?<=__).*|[a-z]+(?=[A-Z]|[[:punct:]])|[[:punct:]]/ :: _pattErase', '__esPQ', '_cxN_NA , _cxF_NA , _sUU', '_/ds'],
     ['_tknR', '_altTKN', '__func_Erase:_funcNUM'
       , 'reference -- use symbols from reference value : /(?<=__).*|[[:punct:]]/ :: _pattErase', '__esPQ', '_cxN_NA , _cxF_NA , _sUU', '_/ds'],
@@ -157,8 +158,8 @@ function _raCORE_iniTables() { $pp = 'p002a-0a';
     ['_AA', '_tknNUM', '_tknA + _numA:_funcNUM', ' -- use any all (vocals or consonants) symbols or coresponding field subpart : 1000'
       , '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
     ['_ATY', '_tknNUM', '_tknA + _numTY:_funcNUM', ' -- use any all (vocals or consonants) symbols from __TY part : 1000'
-      , '__evDB', '_cxF_NA , _cxF_NS , _UUU', '_/ds'],
-    ['_TA', '_tknNUM', '_tknA + _numAA:_funcNUM', 'triple A -- use any all (vocals or consonants) symbols or coresponding field - total ds : 1000'
+      , '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
+    ['_AAA', '_tknNUM', '_tknA + _numAA:_funcNUM', 'triple A -- use any all (vocals or consonants) symbols or coresponding field - total ds : 1000'
       , '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
     ['_CA', '_tknNUM', '_tknC + _numA:_funcNUM', ' -- use all consonant symbols : 1000', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
     ['_LA', '_tknNUM', '_tknL + _numA:_funcNUM', ' -- use all ligature(sequence of consonants) 1-st symbol : 1000', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
@@ -197,11 +198,15 @@ function _raCORE_iniTables() { $pp = 'p002a-0a';
     ['_FL', '_tknNUM', '_tknF + _numL:_funcNUM', ' -- use last fixe all symbols : 1000', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
     ['_FE', '_tknNUM', '_tknF + _numE:_funcNUM', ' -- use edge fixes 1-st symbol : 1000', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
     ['_NS', '_tknNUM', '_tknN + _numS', ' -- use all _cN symbols part from singlet sub parts : 1', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
-    ['_ND', '_tknNUM', '_tknN + _numD', ' -- use all _cN symbols part from  duplet sub parts : 2', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
+    ['_ND', '_tknNUM', '_tknN + _numS', ' -- use all _cN symbols part from duplet sub parts : 2', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
+    ['_NT', '_tknNUM', '_tknN + _numT', ' -- use all _cN symbols part from triplet sub parts : 3', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
+    ['_NQ', '_tknNUM', '_tknN + _numQ', ' -- use all _cN symbols part from quad sub parts : 4', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
     ['_NL', '_tknNUM', '_tknN + _numL:_funcNUM', ' -- use last symbol from _cN part : 1000', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
     ['_NA', '_tknNUM', '_tknN + _numA:_funcNUM', ' -- use all _cN symbols part from all sub parts : 1000', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
     ['_XS', '_tknNUM', '_tknX + _numS', ' -- use all _cX symbols part from singlet sub parts : 1', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
     ['_XD', '_tknNUM', '_tknX + _numD', ' -- use all _cX symbols part from duplet sub parts : 2', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
+    ['_XT', '_tknNUM', '_tknX + _numT', ' -- use all _cN symbols part from triplet sub parts : 3', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
+    ['_XQ', '_tknNUM', '_tknX + _numQ', ' -- use all _cN symbols part from quad sub parts : 4', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
     ['_XL', '_tknNUM', '_tknX + _numL:_funcNUM', ' -- use last symbol from _cX part : 1000', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
     ['_XA', '_tknNUM', '_tknX + _numA:_funcNUM', ' -- use all _cX symbols part from all sub parts : 1000', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
     ['_RS', '_tknNUM', '_tknR + _numS', ' -- use singlet symbol from reference value : 1', '__evDB', '_cxF_NA , _cxF_NA , _UUU', '_/ds'],
@@ -242,7 +247,15 @@ function _raCORE_iniTables() { $pp = 'p002a-0a';
     ['_cxN_AD', '_tknNUM', '_cxN + _AD', ' -- use duplet sym. from cxN field symbols except type part : 2', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
     ['_cxN_AT', '_tknNUM', '_cxN + _AT', ' -- use triplet sym. from cxN field symbols except type part : 3', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
     ['_cxN_NA', '_tknNUM', '_cxN + _NA', ' -- use all _cN symbols part from all sub parts of cxN field : 1000', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],
+    ['_cxN_NS', '_tknNUM', '_cxN + _NS', ' -- use singlet sym. from cxN field symbols except type part : 1', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
+    ['_cxN_ND', '_tknNUM', '_cxN + _ND', ' -- use duplet sym. from cxN field symbols except type part : 2', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
+    ['_cxN_NT', '_tknNUM', '_cxN + _NT', ' -- use triplet sym. from cxN field symbols except type part : 3', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
+    ['_cxN_NQ', '_tknNUM', '_cxN + _NQ', ' -- use quad sym. from cxN field symbols except type part : 3', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
     ['_cxN_XA', '_tknNUM', '_cxN + _XA', ' -- use all _cX symbols part from all sub parts of cxN field : 1000', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],
+    ['_cxN_XS', '_tknNUM', '_cxN + _XS', ' -- use singlet sym. from cxN field symbols except type part : 1', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
+    ['_cxN_XD', '_tknNUM', '_cxN + _XD', ' -- use duplet sym. from cxN field symbols except type part : 2', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
+    ['_cxN_XT', '_tknNUM', '_cxN + _XT', ' -- use triplet sym. from cxN field symbols except type part : 3', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
+    ['_cxN_XQ', '_tknNUM', '_cxN + _XQ', ' -- use quad sym. from cxN field symbols except type part : 3', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
     ['_cxN_RS', '_tknNUM', '_cxN + _RS', ' -- use singlet symbol from cxN reference value : 1', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],
     ['_cxN_RD', '_tknNUM', '_cxN + _RD', ' -- use duplet symbols from cxN reference value : 2', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],
     ['_cxN_RT', '_tknNUM', '_cxN + _RT', ' -- use triplet symbols from cxN reference value : 3', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],
@@ -256,7 +269,15 @@ function _raCORE_iniTables() { $pp = 'p002a-0a';
     ['_cxF_AD', '_tknNUM', '_cxF + _AD', ' -- use all from cxF field symbols duplet sub parts except type part : 2', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],
     ['_cxF_AT', '_tknNUM', '_cxF + _AT', ' -- use all from cxF field symbols triplet sub parts except type part : 3', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],
     ['_cxF_NA', '_tknNUM', '_cxF + _NA', ' -- use all _cN symbols part from all sub parts of cxF field : 1000', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],
+    ['_cxF_NS', '_tknNUM', '_cxF + _NS', ' -- use singlet sym. from cxN field symbols except type part : 1', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
+    ['_cxF_ND', '_tknNUM', '_cxF + _ND', ' -- use duplet sym. from cxN field symbols except type part : 2', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
+    ['_cxF_NT', '_tknNUM', '_cxF + _NT', ' -- use triplet sym. from cxN field symbols except type part : 3', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
+    ['_cxF_NQ', '_tknNUM', '_cxF + _NQ', ' -- use quad sym. from cxN field symbols except type part : 3', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
     ['_cxF_XA', '_tknNUM', '_cxF + _XA', ' -- use all _cX symbols part from all sub parts of cxF field : 1000', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],
+    ['_cxF_XS', '_tknNUM', '_cxF + _XS', ' -- use singlet sym. from cxN field symbols except type part : 1', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
+    ['_cxF_XD', '_tknNUM', '_cxF + _XD', ' -- use duplet sym. from cxN field symbols except type part : 2', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
+    ['_cxF_XT', '_tknNUM', '_cxF + _XT', ' -- use triplet sym. from cxN field symbols except type part : 3', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
+    ['_cxF_XQ', '_tknNUM', '_cxF + _XQ', ' -- use quad sym. from cxN field symbols except type part : 3', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],        
     ['_cxF_RS', '_tknNUM', '_cxF + _RS', ' -- use singlet symbol from cxF reference value : 1', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],
     ['_cxF_RD', '_tknNUM', '_cxF + _RD', ' -- use duplet symbols from cxF reference value : 2', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],
     ['_cxF_RT', '_tknNUM', '_cxF + _RT', ' -- use triplet symbols from cxF reference value : 3', '__evDB', '_cxF_AT , _ZZ , _zzz', '_/ds/_/dso:_cxF_AA'],
@@ -289,7 +310,7 @@ function _raCORE_iniTables() { $pp = 'p002a-0a';
     ['_sUs', '_dsABR', '_abrS + _abrU + _abrS', '', '__enZB', '_cxF_NA , _ZZ , _sUs', '_/ds'],
     ['_sUz', '_dsABR', '_abrS + _abrU + _abrZ', '', '__enZB', '_cxF_NA , _ZZ , _sUs', '_/ds'],
     ['_sHs', '_dsABR', '_abrS + _abrH + _abrS', '', '__enZB', '_cxF_NA , _ZZ , _sUs', '_/ds'],
-    ['_sHz', '_dsABR', '_abrS + _abrH + _abrz', '', '__enZB', '_cxF_NA , _ZZ , _sUs', '_/ds'],
+    ['_sHz', '_dsABR', '_abrS + _abrH + _abrZ', '', '__enZB', '_cxF_NA , _ZZ , _sUs', '_/ds'],
     ['_sHU', '_dsABR', '_abrS + _abrH + _abrU', '', '__enZB', '_cxF_NA , _ZZ , _sUU', '_/ds'],
     ['_sUH', '_dsABR', '_abrS + _abrU + _abrH', '', '__enZB', '_cxF_NA , _ZZ , _sUU', '_/ds'],
     ['_sHH', '_dsABR', '_abrS + _abrH + _abrH', '', '__enZB', '_cxF_NA , _ZZ , _sUU', '_/ds'],
@@ -405,11 +426,11 @@ function _raCORE_iniTables() { $pp = 'p002a-0a';
     ['__asTAU', '__tyAS', '__tyCOMP:__tyOBJ', 'trgger after update', '__enZB', '_cxN_NA , _WA , _sUU', '__/ds'],
     ['__asTAD', '__tyAS', '__tyCOMP:__tyOBJ', 'trgger after delete', '__enZB', '_cxN_NA , _WA , _sUU', '__/ds'],
     ['__tyFI', '__tyFLD', '_raTE', 'interpritator', '__enZB', '_cxN_AT , _WA , _zUU', '__/ds'],
-    ['__tyFIN', '__tyFLD', '__tyFI', 'numbers -- like - int/float/...', '__enZB', '_cxF_AQ , _WA , _zUU', '__/ds'],
-    ['__tyFID', '__tyFLD', '__tyFI', 'data -- like - date/time/...', '__enZB', '_cxF_AQ , _WA , _zUU', '__/ds'],
-    ['__tyFIS', '__tyFLD', '__tyFI', 'string -- like - char/varchar/text...', '__enZB', '_cxF_AQ , _WA , _zUU', '__/ds'],
-    ['__tyFIB', '__tyFLD', '__tyFI', 'binary -- like - binary/varbinary/blob/...', '__enZB', '_cxF_AQ , _WA , _zUU', '__/ds'],
-    ['__tyFIE', '__tyFLD', '__tyFI', 'enamed -- like - enum/ebit/...', '__enZB', '_cxF_AQ , _WA , _zUU', '__/ds'],
+    ['__tyFIN', '__tyFLD', '__tyFI', 'numbers -- like - int/float/...', '__enZB', '_cxF_AA , _WA , _zUU', '__/ds'],
+    ['__tyFID', '__tyFLD', '__tyFI', 'data -- like - date/time/...', '__enZB', '_cxF_AA , _WA , _zUU', '__/ds'],
+    ['__tyFIS', '__tyFLD', '__tyFI', 'string -- like - char/varchar/text...', '__enZB', '_cxF_AA , _WA , _zUU', '__/ds'],
+    ['__tyFIB', '__tyFLD', '__tyFI', 'binary -- like - binary/varbinary/blob/...', '__enZB', '_cxF_AA , _WA , _zUU', '__/ds'],
+    ['__tyFIE', '__tyFLD', '__tyFI', 'enamed -- like - enum/ebit/...', '__enZB', '_cxF_AA , _WA , _zUU', '__/ds'],
     ['_fiNI', '__tyFI', '__tyFIN', 'number int', '__enZB', '_cxN_NA , _WA , _sUU', '_/ds'],
     ['_fiNU', '__tyFI', '__tyFIN', 'number unsigned', '__enZB', '_cxN_NA , _WA , _sUU', '_/ds'],
     ['_fiNF', '__tyFI', '__tyFIN', 'number float', '__enZB', '_cxN_NA , _WA , _sUU', '_/ds'],
@@ -626,6 +647,7 @@ function _raCORE_iniTables() { $pp = 'p002a-0a';
     ['FK_raCORE__arPD_DS_cn', '_raCORE__arPD_DS', 'cn__arP', '', '__enZB', '_cxN_AAA , _ZZ , _zzz',
       'dst/_/ds/_/dso:_cxF_AA', 'FK_', '_raCORE__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
     ['cxN__arP', '_raTY__arP', '_cX:_hieV', 'near -- reference to primary register', '__enZB', '_cxF_AA , _WA , _sUz', 'dsx/dsn/__/dst', '__arP', 'NOT NULL', ''],
+    ['cxN__arDS', '_raTY__arP', 'cxN__arP:_hieV', ' -- ds to primary register', '__enZB', '_cxF_AA , _ZZ , _sUz', 'ds/__/dst', '__arDS', 'NOT NULL', ''],
     ['cxF__EXPR', '_raTY__arP', '_cX:_hieV', 'far -- reference to expression of references', '__enZB', '_cxF_AA , _WA , _sUz', 'dsx/dsn/__/dst',
       '__EXPR', 'NULL DEFAULT NULL', ''],
     ['expl__bvKB', '_raTY__arP', '_hieV', 'explanation', '__enZB', '_AQ , _ZZ , _sUU', 'ds/__/dst', '__bvKB', "NOT NULL DEFAULT ''", ''],
@@ -1013,7 +1035,7 @@ $pp = 'p002a-0c';
   $log[] = "$pp-s2 Number of cn__arDS processed: " . (count($RA[RA_cn__arDS]));
   $log[] ="$pp-s3 Create all tables\n|---|---|---|\n|table_name|field_name|object_type|\n|---|---|---|";
   $table_name = $prev_table = '';
-  $seg_OBJ_start = __seg_agg_INT($RA[RA_cn__arDS]['_a3_OBJ']['fcc__svQB']);
+  $seg_OBJ_start = __seg_agg_INT(substr($RA[RA_cn__arDS]['_a3_OBJ']['fcc__svQB'], 1));
   for ($src_i = 1; $src_i < count($src['_raOBJ__acPG_hie']); $src_i++) {
     $prev_table = $table_name;
     $table_name = $src['_raOBJ__acPG_hie'][$src_i][$RA_raOBJ__acPG_hie_par__OBJ];
@@ -1202,10 +1224,10 @@ $pp = 'p002a-0e';
       }
     }
     $err_fl = 1;
-    $rule__EXPR = $cn_arr['rule__EXPR'];
+      $rule__EXPR = $cn_arr['rule__EXPR'];
     if ($rule__EXPR == '') {
 
-          $ep = "$pp-e16";
+            $ep = "$pp-e16";
           $err[] = "$ep Errors empty rule__EXPR($rule__EXPR) for cn__arDS($cn__arDS)";
           $err_fl--;
           $err_fl_all = 0;
@@ -1284,7 +1306,7 @@ $pp = 'p002a-0e';
     $RA[RA_sq][] = "UPDATE $OBJ_seg_tab set next__nuDB = " . $seg_arr[RA_seg__arDS_next] . " where cn__arP = " . $seg_arr[RA_seg__arDS_arP];
   }
   __exec_SQL(1);
-  duv($_OM_ver, '_raDS');
+  duv($_OM_ver, $_OM_ref);
 }
 
 function _raCORE_dropDB($sprefix = '_wRA') { $pp = 'p002a-1a';

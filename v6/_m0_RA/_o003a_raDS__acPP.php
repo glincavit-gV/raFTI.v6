@@ -4,12 +4,15 @@ include_once '_o002a_raCORE__acPP_ini.php';
 
 function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
   global $RA;
+  $_DS_ref = "_arDS";
+  $_DS_ver = "0.7.$_DS_ref class - wind up";
+  duv($_DS_ver, $_DS_ref);
   $RA[RA_DS] = $DS_ret = [];
   $RA[RA_DS][DS_cn__arDS] = $cn__arDS;
   extract($RA[RA__tySEP]);
   extract($RA[RA_cn__arDS][$RA[RA_DS][DS_cn__arDS]], EXTR_PREFIX_ALL, 'DS');
   $te_arr = explode($_sepALT, $DS_te__EXPR);
-  $rule__EXPR_arr = explode($_sepLIST, $DS_reule__EXPR);
+  $rule__EXPR_arr = explode($_sepLIST, $DS_rule__EXPR);
   $_dsABR = $rule__EXPR_arr[RA_rule__EXPR_dsABR];
   if (!isset($RA[RA_cn__arDS][$_dsABR])) {
 

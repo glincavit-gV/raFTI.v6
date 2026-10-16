@@ -164,11 +164,10 @@ function __format_SQL($flds_str, $seg__arPV = '_logWDOG__arT', $cn__arP = 0) { $
   return $cn__arP;
 }
 
-function __seg_agg_INT($seg_agg__fcc) { $pp = 'p001a-5a';
+function __seg_agg_INT($seg_agg__val) { $pp = 'p001a-5a';
   global $RA;
   try {
     $_ateSEG = (int) $RA[RA_cn__arDS]['_ateSEG']['val__bvPQ'];
-    $seg_agg__val = substr($seg_agg__fcc, 1, 1);
     return (is_numeric($seg_agg__val) ? (int) $seg_agg__val : (10 + ord($seg_agg__val) - ord('A'))) << $_ateSEG;
   } catch (Exception $e) {
 
