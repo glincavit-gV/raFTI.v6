@@ -17,9 +17,11 @@ const RA_DS = 12;
 const DS_arr = 0;
 const DS_arr_cnt = 1;
 const DS_arr_i = 2;
-const DS_tkn_cnt = 3;
-const DS_tkn_i = 4;
-const DS_cn__arDS = 5;
+const DS_arr_patt = 3;
+const DS_tkn_cnt = 4;
+const DS_tkn_i = 5;
+const DS_tkn_add = 6;
+const DS_cn__arDS = 7;
 
 const DS_ret_dst = 0;
 const DS_ret_dso = 1;
@@ -162,10 +164,22 @@ function __format_SQL($flds_str, $seg__arPV = '_logWDOG__arT', $cn__arP = 0) { $
   return $cn__arP;
 }
 
-function __seg_agg_INT($seg_agg__val) { $pp = 'p001a-5a';
+function __seg_agg_INT($seg_agg__fcc) { $pp = 'p001a-5a';
   global $RA;
-  $_ateSEG = (int) $RA[RA_cn__arDS]['_ateSEG']['val__vbPQ'];
-  return (is_numeric($seg_agg__val) ? (int) $seg_agg__val : (10 + ord($seg_agg__val) - ord('A'))) << $_ateSEG;
+  try {
+    $_ateSEG = (int) $RA[RA_cn__arDS]['_ateSEG']['val__bvPQ'];
+    $seg_agg__val = substr($seg_agg__fcc, 1, 1);
+    return (is_numeric($seg_agg__val) ? (int) $seg_agg__val : (10 + ord($seg_agg__val) - ord('A'))) << $_ateSEG;
+  } catch (Exception $e) {
+
+    $ep = "$pp-e1";
+    $msg = "$ep Error PHP: seg_agg__val($seg_agg__val)\nMSG:\n" . $e->getMessage();
+    $err = [$msg];
+    $err[] = "\nTrace:\n" . $e->getTraceAsString();
+    $msg .= $err[1];
+    du($err);
+    throw new Exception($msg);
+  }
 }
 
 function __get_hieSCH($table_name) { $pp = 'p001a-6a';
@@ -185,7 +199,7 @@ function __get_cn__arP($cn__arDS) { $pp = 'p001a-7a';
     $err = [$msg];
     $err[] = "\nTrace:\n" . $e->getTraceAsString();
     $msg .= $err[1];
-    dul($err);
+    du($err);
     throw new Exception($msg);
   }
 }
@@ -220,7 +234,7 @@ function __get_table($name) { $pp = "p001a-9a";
   global $RA;
   if (isset($RA[RA_cn__arDS][$name])) {
     $_hieSCH = $RA[RA_cn__arDS][$RA[RA_cn__arDS][$name]['cxN__arDS']]['cxN__arDS'];
-    $fcc = $RA[RA_cn__arDS][$name]['fcc__vcQB'];
+    $fcc = $RA[RA_cn__arDS][$name]['fcc__svQB'];
     return "{$_hieSCH}._{$fcc}{$name}";
   }
   return false;
@@ -231,7 +245,7 @@ function duv($ver, $ref) { $pp = "p001a-10a";
   $vers = explode($RA[RA__tySEP]['_sepSTRUC'], $ver);
   extract($vers, EXTR_PREFIX_ALL, 'vers');
   if (($tname = __get_table('_logVER__arT'))) {
-    $where_s = "ref__vbPQ = '$ref' and major__nuDB = $vers_0 and minor__nuDB = $vers_1";
+    $where_s = "ref__bvPQ = '$ref' and major__nuDB = $vers_0 and minor__nuDB = $vers_1";
     $rows = db_query("SELECT _arT as cn__arT, build__nuDB from $tname where $where_s")->fetchAll(\PDO::FETCH_ASSOC);
     if ($rows) {
       extract($rows[0]);
