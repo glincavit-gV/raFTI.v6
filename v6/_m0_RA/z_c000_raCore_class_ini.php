@@ -1,7 +1,7 @@
 <?php
 
-function _o000a_raCORE__asPH_iniTables() {_raCORE_iniTables();}
-function _raCORE_iniTables() {
+function _o000a_raCore__asPH_iniTables() {_raCore_iniTables();}
+function _raCore_iniTables() {
   global $RA;
   $RA['__acAKV']['_']
   $RA['__acAKV']['_o010a:__arPL'][''] = [
@@ -28,7 +28,7 @@ function _raCORE_iniTables() {
 /*
   Next var is the array element : $RA['__acAKV']['_o011a:__dPost']['_d2:Naming'] = ['_fccSD__arDP'.. [...], '_d21'.. [...],..., '_d25'.. [...]] :
   It describing all parts of object designation :
-    <_o000a_raCORE_class__asPH_iniTables> : <_><a000a><_><raCORE><_class><__><asPH><_iniTables> : 8 parts
+    <_o000a_raCore_class__asPH_iniTables> : <_><a000a><_><raCore><_class><__><asPH><_iniTables> : 8 parts
   The '_fccSD__arDP' - describe the hierarchy of fileds used for DOC type like '__dPost'
   The '_d21' 1-st, ..., '_d25' last records of documnt : '<DOC fcc>:_d2'.. ['<DOC name>:Naming', '<DOC type>:__dPost'].
 */
@@ -38,7 +38,7 @@ function _raCORE_iniTables() {
           ['_explan__svKS', ['_explan__svKS']]]
       ]],
       ['_d20', 'Naming : (convention : constraints : order rules)', []],
-      ['_d21', '<Aggregate designation template>(ADT) parts : <_><a000a><_><raCORE><_class><__><asPH><_iniTables> : 8 parts : _d211,_d212,..._d218 :', [
+      ['_d21', '<Aggregate designation template>(ADT) parts : <_><a000a><_><raCore><_class><__><asPH><_iniTables> : 8 parts : _d211,_d212,..._d218 :', [
         ['_d211', '<_>', '<functor designation prefix> : <exact (1)one and 1-st symbol of ADT>', []],
         ['_d212', '<a000a> : <a><0><0><0><a> : <aMACu>', '<Facet Class Code>(fcc) : _df functor : ', [
           ['<a>MACu : a : <aggregate space of fcc> : (__fccS<Spaces> : (__fccSM(module) /__fccSA(aggregate) / __fccSD(document) / __fccSP(point/part) /...)', []],
@@ -48,7 +48,7 @@ function _raCORE_iniTables() {
           ['aMAC<u> : u : <fcc of aggregate component unite index value> [a-z] (<min number> : <a> : <0>) (<max number> : <z> : <25>) count(26)', []]
         ]],
         ['_d213', '<_>', '(1)one and not 1-st <under score> symbol in any of ADT position : <object hierarchy level designation separator or its aspects of using>', []],
-        ['_d214', '<raCORE> : <ra><Core>','<module><Aggeregate> : <designation of moduleAggregate pair destination> :', [
+        ['_d214', '<raCore> : <ra><Core>','<module><Aggeregate> : <designation of moduleAggregate pair destination> :', [
           ['<ra> : <Relate Assemlies> : designation of 1-st and main <module> part : <module> designation must use LOWER CASE letters.', []],
           ['<Core> : designation of <Aggregate> part : 1-st appearance of UPPER CASE is signaling the beginning of <Aggregate> part of designation.', []]
         ]],
@@ -322,7 +322,7 @@ function _raCORE_iniTables() {
         ['_mC_md', '_i0_VA', '_m', '_hieM:MD', '2025-10', '_ppPHP , _omDL:My:SQL', '_stStart'],
         ['_mD_ir', '_i0_VA', '_m', '_hieM:IR', '2025-10', '_ppPHP , _omDL:My:SQL', '_stStart'],
         ['_mZ_nlc', '_OM', '_m', '_hieM:nlc', '2025-08', '_ppPHP , _omDL:My:SQL', '_stProgr'],
-        ['_a00_raCORE', '_m0_ra', '_a', '_hieMA:Core', '2025-10', '_ppPHP , _omDL:My:SQL', '_stProgr'],
+        ['_a00_raCore', '_m0_ra', '_a', '_hieMA:Core', '2025-10', '_ppPHP , _omDL:My:SQL', '_stProgr'],
         ['_a01_raDOC', '_m0_ra', '_a', '_hieMA:DOC', '2025-10', '_ppPHP , _omDL:My:SQL', '_stProgr'],
         ['_a02_raTY', '_m0_ra', '_a', '_hieMA:TY', '2025-10', '_ppPHP , _omDL:My:SQL', '_stProgr'],
         ['_a03_raOBJ', '_m0_ra', '_a', '_hieMA:OBJ', '2025-10', '_ppPHP , _omDL:My:SQL', '_stProgr'],
@@ -707,7 +707,7 @@ function _raCORE_iniTables() {
     ['_dpA', '_dp', 'AGG : __ncrABR(__CCC | __CCs | __Css) : 1-st Capital letter is the signal of AGG designation began : may have sub hierarchy nodes befor (__)<sign of type designation>',
       '(_dpA:__CsC [ + _dpA:__CsC ]):_le(_)',
       '__enBS', ['_cxNAA', '_cnWA', '__sCC', '_le(_)']],
-    ['_dpMA', '_dp', 'Module + AGG : concatination droping _le(_) from _dpA part : _dpM(_ra) + _dpA(_Core) = _dpMA(_raCORE)',
+    ['_dpMA', '_dp', 'Module + AGG : concatination droping _le(_) from _dpA part : _dpM(_ra) + _dpA(_Core) = _dpMA(_raCore)',
       '(_dpM : _dpA):_le(_)_be()',
       '__enBS', ['_cxNAA', '_cnCN<get _CN part of each _dp', '__sCC', '_le(_)']],
     ['_dpC', '_dp', 'Component : may have some sub hierarchy nodes : all befor __tyA',
@@ -1116,10 +1116,10 @@ function _raCORE_iniTables() {
 
   $RA['__acAKV']['_o030a:__arDP']['__raOBJ:Object'] = [
     ['_arDP', '__fccSF', 'cxN__arP', 'dst__tyAC', 'dst__TY', '__divST'],
-    ['_c000_raCORE_class_ini.php', '_c', '_a00_raCORE', '_hieMAC:class_ini', '', ''],
-    ['_c001_raCORE_class_use.php', '_c', '_a00_raCORE', '_hieMAC:class_use', '', ''],
-    ['_c002_raCORE_Macro.php', '_c', '_a00_raCORE', '_hieMAC:Macro', '', ''],
-    ['_o004a_raCORE__arP', '_o', '_a00_raCORE', '', '__arP', ''],
+    ['_c000_raCore_class_ini.php', '_c', '_a00_raCore', '_hieMAC:class_ini', '', ''],
+    ['_c001_raCore_class_use.php', '_c', '_a00_raCore', '_hieMAC:class_use', '', ''],
+    ['_c002_raCore_Macro.php', '_c', '_a00_raCore', '_hieMAC:Macro', '', ''],
+    ['_o004a_raCore__arP', '_o', '_a00_raCore', '', '__arP', ''],
     ['_o010a_raDOC__arPL', '_o', '_a01_raDOC', '', '__arPL', ''],
     ['_o011a_raDOC__arP__dList', '_o', '_a01_raDOC', '', '__arP__dList', ''],
   ];
@@ -1180,31 +1180,31 @@ function _o000c_createOBJs() {
   _o000b_dropOBJs();
 
   db_query(
-    "CREATE TABLE _o003a_raCORE__arP (
+    "CREATE TABLE _o003a_raCore__arP (
       _arP bigint unsigned not null COMMENT 'functor for validate Global (Primary):(P) (InDeX):(IDX) value ',
       CONSTRAINT PRIMARY KEY (_arP)
     ) COMMENT='Global store of all (Primary):(P) (InDeXes):(IDX) of all aggregates of all data modules'
   ");
   db_query(
-    "CREATE TABLE _o004a_raCORE__arDP (
+    "CREATE TABLE _o004a_raCore__arDP (
       _arDP varbinary(128) not null COMMENT '(ar)(DP):(Aggregate Register)(Designation Primary)',
       __arP bigint unsigned not null COMMENT '(DeSiGnation) or (Facet Class Code)',
       created__kuBQ int(11) NOT NULL DEFAULT unix_timestamp(),
       updated__kuBQ int(11) NOT NULL DEFAULT unix_timestamp(),
       CONSTRAINT PRIMARY KEY (_arDP),
       UNIQUE KEY FP_o004a__arP(__arP),
-      CONSTRAINT FP_o004a__arP FOREIGN KEY (__arP) REFERENCES _003a_raCORE__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT FP_o004a__arP FOREIGN KEY (__arP) REFERENCES _003a_raCore__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
     ) COMMENT='Global store of all (DSG Primary):(DP) of all aggregates of all data modules'
   ");
   db_query(
-    "CREATE TABLE _o005a_raCORE_AGG__arPS (
+    "CREATE TABLE _o005a_raCore_AGG__arPS (
       _arPS int unsigned not null COMMENT '(_ar)(PS):(AGG Register)(Primary Segment)',
       __arDP varbinary(128) not null,
       offset_mask__nuBQ int unsigned NOT NULL DEFAULT 0,
       offset_cnt__nuBQ int unsigned NOT NULL DEFAULT 0,
       CONSTRAINT PRIMARY KEY (_arPS),
       UNIQUE KEY FK_o005a__arDP (__arDP),
-      CONSTRAINT FK_o005a__arDP FOREIGN KEY (__arDP) REFERENCES _004a_raCORE__arDP (_arDP) ON DELETE CASCADE ON UPDATE CASCADE
+      CONSTRAINT FK_o005a__arDP FOREIGN KEY (__arDP) REFERENCES _004a_raCore__arDP (_arDP) ON DELETE CASCADE ON UPDATE CASCADE
     )
   ");
   db_query(
@@ -1217,8 +1217,8 @@ function _o000c_createOBJs() {
       UNIQUE KEY FK_o010a__arP(__arP),
       UNIQUE KEY FK_o010a_fccSD__arDP(_fccSD__arDP),
       KEY RK_o010a_cxN__tyDOC(__tyDOC),
-      CONSTRAINT FK_o010a__arP FOREIGN KEY (__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
-      CONSTRAINT FK_o010a_fccSD__arDP FOREIGN KEY (_fccSD__arDP) REFERENCES _o004a_raCORE__arDP (_arDP) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT FK_o010a__arP FOREIGN KEY (__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT FK_o010a_fccSD__arDP FOREIGN KEY (_fccSD__arDP) REFERENCES _o004a_raCore__arDP (_arDP) ON DELETE CASCADE ON UPDATE CASCADE,
       CONSTRAINT RK_o010a__tyDOC FOREIGN KEY (__tyDOC) REFERENCES _o020a_raTY__arP (__arP) ON DELETE CASCADE ON UPDATE CASCADE
     )
   ");
@@ -1234,9 +1234,9 @@ function _o000c_createOBJs() {
       UNIQUE KEY FK_o011a_fccSD__arDP(_fccSD__arDP),
       KEY RK_o011a__cxF__arP(_cxF__arP),
       KEY RK_o011a_link__RES(link__RES),
-      CONSTRAINT FK_o011a__arP FOREIGN KEY (__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
-      CONSTRAINT FK_o011a_fccSD__arDP FOREIGN KEY (_fccSD__arDP) REFERENCES _o004a_raCORE__arDP (_arDP) ON DELETE CASCADE ON UPDATE CASCADE,
-      CONSTRAINT RK_o011a__cxF__arP FOREIGN KEY (_cxF__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT FK_o011a__arP FOREIGN KEY (__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT FK_o011a_fccSD__arDP FOREIGN KEY (_fccSD__arDP) REFERENCES _o004a_raCore__arDP (_arDP) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT RK_o011a__cxF__arP FOREIGN KEY (_cxF__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
       CONSTRAINT RK_o011a_link__RES FOREIGN KEY (link__RES) REFERENCES _o0R0a_raRES__arP (__arP) ON DELETE SET NULL ON UPDATE CASCADE
     )
   ");
@@ -1246,7 +1246,7 @@ function _o000c_createOBJs() {
       explan__svKS varchar(1024) not null,
       CONSTRAINT PRIMARY KEY (_fccSD__arDP),
       UNIQUE KEY FK_o012a_fccSD__arDP(_fccSD__arDP),
-      CONSTRAINT FK_o012a_fccSD__arDP FOREIGN KEY (_fccSD__arDP) REFERENCES _o004a_raCORE__arDP (_arDP) ON DELETE CASCADE ON UPDATE CASCADE
+      CONSTRAINT FK_o012a_fccSD__arDP FOREIGN KEY (_fccSD__arDP) REFERENCES _o004a_raCore__arDP (_arDP) ON DELETE CASCADE ON UPDATE CASCADE
     )
   ");
   db_query(
@@ -1264,9 +1264,9 @@ function _o000c_createOBJs() {
       KEY FK_o013a__cxF__arP(_cxF__arP),
       KEY RK_o013a__stPROC(__stPROC),
       KEY RK_o013a_link__RES(link__RES),
-      CONSTRAINT FK_o013a__arP FOREIGN KEY (__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
-      CONSTRAINT FK_o013a__arDP FOREIGN KEY (__arDP) REFERENCES _o004a_raCORE__arDP (_arDP) ON DELETE CASCADE ON UPDATE CASCADE,
-      CONSTRAINT FK_o013a__cxF__arP FOREIGN KEY (_cxF__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE SET NULL ON UPDATE CASCADE,
+      CONSTRAINT FK_o013a__arP FOREIGN KEY (__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT FK_o013a__arDP FOREIGN KEY (__arDP) REFERENCES _o004a_raCore__arDP (_arDP) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT FK_o013a__cxF__arP FOREIGN KEY (_cxF__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE SET NULL ON UPDATE CASCADE,
       CONSTRAINT RK_o013a__stPROC FOREIGN KEY (__stPROC) REFERENCES _o0R0a_raTY__arP (__arP) ON DELETE SET NULL ON UPDATE CASCADE,
       CONSTRAINT RK_o013a_link__RES FOREIGN KEY (link__RES) REFERENCES _o0R0a_raRES__arP (__arP) ON DELETE SET NULL ON UPDATE CASCADE
     )
@@ -1288,12 +1288,12 @@ function _o000c_createOBJs() {
       KEY FK_o020a__cxN__arP (_cxN__arP),
       KEY FK_o020a__cxF__arP (_cxF__arP),
       KEY FK_o020a_rule__arP (rule__arP),
-      CONSTRAINT FK_o020a__arP FOREIGN KEY (__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE SET NULL ON UPDATE CASCADE,
-      CONSTRAINT FK_o020a__arDP FOREIGN KEY (__arDP) REFERENCES _o004a_raCORE__arDP (_arDP) ON DELETE CASCADE ON UPDATE CASCADE,
-      CONSTRAINT FK_o020a__TY__arP FOREIGN KEY (__TY__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
-      CONSTRAINT FK_o020a__cxN__arP FOREIGN KEY (_cxN__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
-      CONSTRAINT FK_o020a__cxF__arP FOREIGN KEY (_cxF__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE SET NULL ON UPDATE CASCADE,
-      CONSTRAINT FK_o020a_rule__arP FOREIGN KEY (rule__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE SET NULL ON UPDATE CASCADE
+      CONSTRAINT FK_o020a__arP FOREIGN KEY (__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE SET NULL ON UPDATE CASCADE,
+      CONSTRAINT FK_o020a__arDP FOREIGN KEY (__arDP) REFERENCES _o004a_raCore__arDP (_arDP) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT FK_o020a__TY__arP FOREIGN KEY (__TY__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT FK_o020a__cxN__arP FOREIGN KEY (_cxN__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT FK_o020a__cxF__arP FOREIGN KEY (_cxF__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE SET NULL ON UPDATE CASCADE,
+      CONSTRAINT FK_o020a_rule__arP FOREIGN KEY (rule__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE SET NULL ON UPDATE CASCADE
     )
   ");
   db_query(
@@ -1310,11 +1310,11 @@ function _o000c_createOBJs() {
       KEY FK_o020a__tyOBJ (__tyOBJ),
       KEY FK_o020a__cxF__arP (_cxF__arP),
       KEY FK_o020a_rule__arP (rule__arP),
-      CONSTRAINT FK_o020a__arP FOREIGN KEY (__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE SET NULL ON UPDATE CASCADE,
-      CONSTRAINT FK_o020a__arDP FOREIGN KEY (__arDP) REFERENCES _o004a_raCORE__arDP (_arDP) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT FK_o020a__arP FOREIGN KEY (__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE SET NULL ON UPDATE CASCADE,
+      CONSTRAINT FK_o020a__arDP FOREIGN KEY (__arDP) REFERENCES _o004a_raCore__arDP (_arDP) ON DELETE CASCADE ON UPDATE CASCADE,
       CONSTRAINT FK_o020a__tyOBJ FOREIGN KEY (__tyOBJ) REFERENCES _o020a_raTY__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
-      CONSTRAINT FK_o020a__cxF__arP FOREIGN KEY (_cxF__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE SET NULL ON UPDATE CASCADE,
-      CONSTRAINT FK_o020a_rule__arP FOREIGN KEY (rule__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE SET NULL ON UPDATE CASCADE
+      CONSTRAINT FK_o020a__cxF__arP FOREIGN KEY (_cxF__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE SET NULL ON UPDATE CASCADE,
+      CONSTRAINT FK_o020a_rule__arP FOREIGN KEY (rule__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE SET NULL ON UPDATE CASCADE
     )
   ");
   db_query(
@@ -1327,8 +1327,8 @@ function _o000c_createOBJs() {
       KEY FK_o031a_par__arP (par__arP),
       KEY FK_o031a_child__arP (child__arP),
       KEY FK_o031a_child__tyAPI (child__tyAPI),
-      CONSTRAINT FK_o031a_par__arP FOREIGN KEY (par__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
-      CONSTRAINT FK_o031a_child__arP FOREIGN KEY (child__arP) REFERENCES _o003a_raCORE__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT FK_o031a_par__arP FOREIGN KEY (par__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT FK_o031a_child__arP FOREIGN KEY (child__arP) REFERENCES _o003a_raCore__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE,
       CONSTRAINT FK_o031a_child__tyAPI FOREIGN KEY (child__tyAPI) REFERENCES _o020a_raTY__arP (_arP) ON DELETE RESTRICT ON UPDATE CASCADE
     )
   ");

@@ -1,0 +1,16 @@
+REPLACE INTO `_wRA_LOG`.`_oWV0a_logVER__arT` (`_arT`,ref__svPQ,major__nuDB,minor__nuDB,build__nuDB,expl__svKB,cre__dsDB) VALUES
+	 (4294967278,'@gV / webdev3.work.deeplace.md / _arDS',0,11,10,'._arDS t2._raALT','2026-10-17 14:49:27.000'),
+	 (4294967279,'@gV / webdev3.work.deeplace.md / _arDS',0,10,1,'_arDS t2','2026-10-17 14:29:13.000'),
+	 (4294967280,'@gV / webdev3.work.deeplace.md / _arDS',0,9,28,'_arDS class - wind up','2026-10-17 12:39:28.000'),
+	 (4294967281,'@gV / webdev3.work.deeplace.md / _RA',0,1,0,'_RA class - wind up','2026-10-17 12:39:17.000'),
+	 (4294967282,'_arDS',0,6,0,'_arDS class - wind up','2026-10-17 12:30:50.000'),
+	 (4294967283,'@gV / webdev3.work.deeplace.md / _arDS',0,8,2,'_arDS class - wind up','2026-10-17 11:27:16.000'),
+	 (4294967286,'@gV / webdev3.work.deeplace.md / _OM',0,8,0,'_OM class - wind up','2026-10-17 11:22:51.000'),
+	 (4294967287,'_OM',0,6,1,'_OM class - wind up','2026-10-17 11:01:29.000'),
+	 (4294967288,'_arDS',0,7,4,'_arDS class - wind up','2026-10-17 10:58:51.000'),
+	 (4294967290,'_OM',0,4,0,'Creating DS class - init','2026-10-13 18:01:24.000'),
+	 (4294967291,'_OM',0,3,6,'Creating DB objects - populatte obj(hie/seg)','2026-10-13 15:40:36.000'),
+	 (4294967292,'_OM',0,2,3,'Creating DB objects - with log going backward','2026-10-13 13:38:40.000'),
+	 (4294967293,'_OM',0,1,2,'Creating DB objects - with separat log','2026-10-13 12:04:30.000'),
+	 (4294967294,'_OM',0,0,1,'Creating DB objects','2026-10-13 12:00:23.000'),
+	 (4294967295,'134217728',0,0,0,'Creating DB objects','2026-10-13 11:54:51.000');
