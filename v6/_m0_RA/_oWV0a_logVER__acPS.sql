@@ -1,4 +1,9 @@
-REPLACE INTO `_wRA_LOG`.`_oWV0a_logVER__arT` (`_arT`,ref__svPQ,major__nuDB,minor__nuDB,build__nuDB,expl__svKB,cre__dsDB) VALUES
+REPLACE INTO _wRA_LOG._oWV0a_logVER__arT (_arT,ref__svPQ,major__nuDB,minor__nuDB,build__nuDB,expl__svKB,cre__dsDB) VALUES
+	 (4294967270,'@gV / ASUS-960 / _arDS',0,15,21,'_arDS test All - new recursive - only for_numA','2026-10-18 01:01:21.000'),
+	 (4294967271,'@gV / ASUS-960 / _arDS',0,14,36,'_arDS test All','2026-10-17 20:43:20.000'),
+	 (4294967272,'@gV / ASUS-960 / _arDS',0,13,17,'._arDS test All','2026-10-17 19:52:07.000'),
+	 (4294967274,'@gV / ASUS-960 / _arDS',0,12,17,'._arDS test All','2026-10-17 19:48:26.000'),
+	 (4294967276,'@gV / ASUS-960 / _arDS',0,11,2,'._arDS t2._raALT','2026-10-17 18:42:01.000'),
 	 (4294967278,'@gV / webdev3.work.deeplace.md / _arDS',0,11,10,'._arDS t2._raALT','2026-10-17 14:49:27.000'),
 	 (4294967279,'@gV / webdev3.work.deeplace.md / _arDS',0,10,1,'_arDS t2','2026-10-17 14:29:13.000'),
 	 (4294967280,'@gV / webdev3.work.deeplace.md / _arDS',0,9,28,'_arDS class - wind up','2026-10-17 12:39:28.000'),

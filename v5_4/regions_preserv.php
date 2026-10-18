@@ -145,7 +145,7 @@ function regions_preserv_create() {
   $fti_sqr['r1'] = $fti_sqr['r2'] = $fti_sqr['r3'] = $fti_sqr['r4'] = $fti_sqr['r6'] = $fti_sqr['r7'] = $fti_sqr['r8'] = $fti_sqr['r9'] = $fti_sqr['rA'] = '';  
   $fti_sqr['r0'] = [];
   $t = time();
-  dol("   Rgions creation start at: $t");
+  dop("   Rgions creation start at: $t");
   if (!db_query(
     "SELECT count(*)
       from information_schema.COLUMNS

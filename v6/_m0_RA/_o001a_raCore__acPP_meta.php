@@ -14,6 +14,11 @@ const RA__tySEP = 10;
 const RA_var = 11;
 const RA_log = 12;
 const RA_DS = 13;
+const RA_ver_stop = 14;
+
+$RA[RA_sql_stop] = 0;
+$RA[RA_ver_stop] = 0;
+
 
 const DS_arr = 0;
 const DS_arr_cnt = 1;
@@ -23,8 +28,9 @@ const DS_tkn_cnt = 4;
 const DS_tkn_i = 5;
 const DS_tkn_add = 6;
 const DS_cn__arDS = 7;
-const DS_altTKN = 8;
+const DS_ruleFLD = 8;
 const DS_is_func = 9;
+const DS_altNUM = 10;
 
 const DS_ret_dst = 0;
 const DS_ret_dso = 1;
@@ -51,7 +57,6 @@ const RA_tables_hieSHE = 1;
 const RA_sql_cnt = 0;
 const RA_sql_str = 1;
 const RA_sql_max = 100;
-$RA[RA_sql_stop] = 0;
 
 $RA[RA__tySEP]['_sepCN'] = "_";
 $RA[RA__tySEP]['_sepTY'] = "__";
@@ -245,12 +250,12 @@ function __get_table($name) { $pp = "p001a-9a";
   return false;
 }
 
-function duv($ver, $ref) { $pp = "p001a-10a";
+function duv($ver, $ref, $pp = 0) { $pp = ($pp ? $pp : "p001a-10a");
   global $RA;
   $_sepSTRUC = $RA[RA__tySEP]['_sepSTRUC'];
   $vers = explode($_sepSTRUC, $ver, 3);
   extract($vers, EXTR_PREFIX_ALL, 'vers');
-  $vers_2 = rtrim(explode("$vers_0{$_sepSTRUC}$vers_1", $ver)[1], $_sepSTRUC);
+  $vers_2 = ltrim(explode("$vers_0{$_sepSTRUC}$vers_1", $ver)[1], $_sepSTRUC);
   if (($tname = __get_table('_logVER__arT'))) {
     $ref = $RA[RA_var]['ref'] . " / $ref";
     $where_s = "ref__svPQ = '$ref' and major__nuDB = $vers_0 and minor__nuDB = $vers_1";
@@ -266,7 +271,7 @@ function duv($ver, $ref) { $pp = "p001a-10a";
       __format_SQL("'$ref', $vers_0, $vers_1, 0, '$vers_2'", '_logVER__arT');
     }
     __exec_SQL();
-    dul(["$pp-s1 Set verssion: $ver\n"], 1);
+    dul(["$pp Set verssion: $ver\n"], 1);
     return true;
   }
   return false;

@@ -355,11 +355,6 @@ function dop($msg) {
   echo "\n$msg\n";
 }
 
-function dol($msg) {
-  global $fti_log;
-  $fti_log[] = [$msg];
-}
-
 function doa($msg, array $arr) {
   global $fti_log;
   $fti_log[] = [$msg];
@@ -1168,7 +1163,7 @@ function reg_word($form, $word__eMT) {
     $errs = $e->getMessage();
     db_query("rollback");
     $msg = "\nErrFTI(reg_word__P_1)form__dsP($form),arP(" . ($arP ?? 'NULL') . "\n$errs";
-    dol($msg);
+    dop($msg);
     throw new Exception($msg . $e->getTraceAsString());
   }
 }
