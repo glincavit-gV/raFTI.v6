@@ -73,8 +73,9 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
 
     ['_altNUM', '_raALT', '', 'numbers - human readable numbers ds', '__enZB', '_cxN_NA , _AT , _sUU', '_/ds'],
     ['_altFUNC', '_raALT', '', 'functor _altNUM -- of - insted of exact number is used', '__enZB', '_cxN_NA , _AQ , _sUU', '_/ds'],
-    ['__func_Erase', '_altFUNC', '', 'Erase -- some number of symbols and return rest', '__enZB', '_cxN_NA , _AA , _sHH', '__/dsx/_/dsn'],
-    ['__func_Reference', '_altFUNC', '', 'reference -- return the val__BVPQ of token', '__enZB', '_cxN_NA , _AA , _sHH', '__/dsx/_/dsn'],
+    ['__eraseInn', '_altFUNC', '', 'Erase inner -- some number of symbols and return rest', '__enZB', '_AP , _AT , _sHH', '__/dsx/dsn'],
+    ['__eraseInnOut', '_altFUNC', '', 'Erase innerr/outer -- some number of symbols and return rest', '__enZB', '_AP , _AT , _sHH', '__/dsx/dsn/dso:_AT'],
+    ['__extractRef', '_altFUNC', '', 'Extract reference -- return the val__BVPQ of token', '__enZB', '_AO , _AT , _sHH', '__/dsx/dsn'],
 
     ['_numS', '_altNUM', '_altNUM', 'singlet : 1', '__evDB', '_cxN_NA , _WA , _sUU', '_/ds'],
     ['_numB', '_altNUM', '_altNUM', 'byte -- size as in _numS : 1', '__evDB', '_cxN_NA , _WA , _sUU', '_/ds'],
@@ -91,9 +92,9 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_numOQ', '_altNUM', '_numO + _numQ:_altNUM', ' : 12', '__evDB', '_cxN_NA , _cxF_NA , _sUU', '_/ds'],
     ['_numOP', '_altNUM', '_numO + _numP:_altNUM', ' : 13', '__evDB', '_cxN_NA , _cxF_NA , _sUU', '_/ds'],
     ['_numH', '_altNUM', '_altNUM', 'hextet : 16', '__evDB', '_cxN_NA , _WA , _sUU', '_/ds'],
-    ['_numL', '_altNUM', '__func_Erase:_altFUNC', 'last -- use last token - size as in _numS : /.(?!\b)/', '__evPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
-    ['_numE', '_altNUM', '__func_Erase:_altFUNC', 'edge -- use 1-st and last tokens - size as in _numD : /.\K.*(?=.\b)/', '__evPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
-    ['_numA', '_altNUM', '__func_Erase:_altFUNC', 'all -- with exception of types and options part of fields : /###/', '__evPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
+    ['_numL', '_altNUM', '__eraseInn:_altFUNC', 'last -- use last token - size as in _numS : /.(?!\b)/', '__evPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
+    ['_numE', '_altNUM', '__eraseInn:_altFUNC', 'edge -- use 1-st and last tokens - size as in _numD : /.\K.*(?=.\b)/', '__evPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
+    ['_numA', '_altNUM', '__eraseInn:_altFUNC', 'all -- with exception of types and options part of fields : /###/', '__evPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
     ['_altTKN', '_raALT', '', 'token -- source type of expl__bvKB or exact field to use for ds', '__enZB', '_cxN_NA , _CT , _sUU', '_/ds'],
     ['_tknS', '_altTKN', '_numS:_altNUM', ' -- number - 2 ^ _numS : 2', '__evDB', '_cxN_NA , _cxF_NA , _sUU', '_/ds'],
     ['_tknD', '_altTKN', '_numD:_altNUM', ' -- number - 2 ^ _numD : 4', '__evDB', '_cxN_NA , _cxF_NA , _sUU', '_/ds'],
@@ -106,40 +107,40 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_tknM', '_altTKN', '_altNUM', 'mega -- number - 2 ^ 20 : 1048576', '__evDB', '_cxN_NA , _WA , _sUU', '_/ds'],
     ['_tknG', '_altTKN', '_altNUM', 'giga -- number - 2 ^ 30 : 1073741824', '__evDB', '_cxN_NA , _WA , _sUU', '_/ds'],
                                                                       // (?<=__).* - erase all after type prefix(__)
-    ['_tknZ', '_altTKN', '_altFUNC:_altNUM:__func_Erase'
+    ['_tknZ', '_altTKN', '_altFUNC:_altNUM:__eraseInnOut'
       , 'zero -- skip current part of ds (dsx or dsn) or number - 2 ^ _numZ = 1 when is used as __tyFLD : /###/', '__evPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
-    ['_tknA', '_altTKN', '_altFUNC:__func_Erase'
+    ['_tknA', '_altTKN', '_altFUNC:__eraseInnOut'
       , 'any -- use vocals or consonants symbols : /(?<=__).*|[[:punct:]]/', '__evPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
-    ['_tknC', '_altTKN', '_altFUNC:__func_Erase'
+    ['_tknC', '_altTKN', '_altFUNC:__eraseInnOut'
       , "consonant -- use consonants symbols : /(?<=__).*|[$son]|[[:punct:]]/i", '__evPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
-    ['_tknV', '_altTKN', '_altFUNC:__func_Erase'
+    ['_tknV', '_altTKN', '_altFUNC:__eraseInnOut'
       , "vocal -- use vocals symbols : /(?<=__).*|[$cons]|[[:punct:]])/i", '__evPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
-    ['_tknL', '_altTKN', '_altFUNC:__func_Erase'
+    ['_tknL', '_altTKN', '_altFUNC:__eraseInnOut'
       , "ligature -- sequence of consonants symbols : /(?<=__).*|(?<=[$cons])[$cons]|[$son]|[[:punct:]]/i", '__evPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
-    ['_tknW', '_altTKN', '_altFUNC:__func_Erase'
+    ['_tknW', '_altTKN', '_altFUNC:__eraseInnOut'
       , 'word -- use 1-st symbols from word : /(?<=__).*|(?!\b[a-z])[a-z]|[[:punct:]]/i', '__evPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
-    ['_tknF', '_altTKN', '_altFUNC:__func_Erase'
+    ['_tknF', '_altTKN', '_altFUNC:__eraseInnOut'
       , 'fixe -- words represented in mor-phe-me to use as legature : /(?<=__).*|(?!\b[a-z])[a-z]|[[:punct:]]/i', '__evPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
-    ['_tknN', '_altTKN', '_cN:_altFUNC:__func_Erase'
+    ['_tknN', '_altTKN', '_cN:_altFUNC:__eraseInnOut'
       , '_cN -- use symbols from part _cN : /(?<=__).*|[[:punct:]]|[a-z0-9]+/', '__evPQ', '_cxN_NA , _cxF_NA , _sUU', '_/ds'],
-    ['_tknX', '_altTKN', '_cX:_altFUNC:__func_Erase'
+    ['_tknX', '_altTKN', '_cX:_altFUNC:__eraseInnOut'
       , '_cX -- use symbols from part _cX : /(?<=__).*|[[:punct:]]|[A-Z]+/', '__evPQ', '_cxN_NA , _cxF_NA , _sUU', '_/ds'],
-    ['_tknR', '_altTKN', '_altFUNC:__func_Reference'
+    ['_tknR', '_altTKN', '_altFUNC:__extractRef'
       , 'reference -- use all symbols from val__evPQ field of content of referencrd field : /###/', '__evPQ', '_cxN_NA , _WA , _sUU', '_/ds'],
-    ['_cxN', '_altTKN', 'cxN__arDS:_altFUNC:__func_Erase'
+    ['_cxN', '_altTKN', 'cxN__arDS:_altFUNC:__eraseInnOut'
       , ' -- use this field content : /(?<=__).*|[[:punct:]]/', '__evPQ', '_cxF_AA , _ZA , _zzz', '_/ds'],
-    ['_cxF', '_altTKN', 'cxF__EXPR:_altFUNC:__func_Erase'
+    ['_cxF', '_altTKN', 'cxF__EXPR:_altFUNC:__eraseInnOut'
       , ' -- use this field content : /(?<=__).*|[[:punct:]]/', '__evPQ', '_cxF_AA , _ZA , _zzz', '_/ds'],
-    ['_cxNT', '_altTKN', 'cxN__arDS:_cxN:_altFUNC:__func_Erase'
+    ['_cxNT', '_altTKN', 'cxN__arDS:_cxN:_altFUNC:__eraseInnOut'
       , 'type part of this field content : /.*(?=__)|[[:punct:]]/', '__evPQ', '_cxF_AA , _AS , _zUz', '_/ds'],
-    ['_cxFT', '_altTKN', 'cxF__EXPR:_cxF:_altFUNC:__func_Erase'
+    ['_cxFT', '_altTKN', 'cxF__EXPR:_cxF:_altFUNC:__eraseInnOut'
       , 'type part of this field content : /.*(?=__)|[[:punct:]]/', '__evPQ', '_cxF_AA , _AS , _zUz', '_/ds'],
-    ['_cxNA', '_altTKN', 'cxN__arDS:_altFUNC:__func_Erase'
+    ['_cxNA', '_altTKN', 'cxN__arDS:_altFUNC:__eraseInnOut'
       , 'all parts of this field content : /###/', '__evPQ', '_cxF_AA , _AS , _zUz', '_/ds'],
-    ['_cxFA', '_altTKN', 'cxF__EXPR:_altFUNC:__func_Erase'
+    ['_cxFA', '_altTKN', 'cxF__EXPR:_altFUNC:__eraseInnOut'
       , 'all parts of this field content : /###/', '__evPQ', '_cxF_AA , _AS , _zUz', '_/ds'],
-    ['_tknNUM', '_raTE', '_altTKN + _altNUM', ' -- template to combine from cxF', '__enZB', '_cxF_NT , _cxF_NT , _sUU', '_/ds'],
 
+    ['_tknNUM', '_raTE', '_altTKN + _altNUM', ' -- template to combine from cxF', '__enZB', '_cxF_NT , _cxF_NT , _sUU', '_/ds'],
     // 1000 - enogth value to skeep the rest of the token
     ['_ZA', '_tknNUM', '_tknZ + _numA:_altNUM:_altFUNC', ' -- skip current token : 1000', '__evDB', '_ZA , _cxF_NA , _UUU', '_/ds'],
     ['_ZL', '_tknNUM', '_tknZ + _numL:_altNUM:_altFUNC', ' -- skip rest of current token : 1000', '__evDB', '_ZA , _cxF_NA , _UUU', '_/ds'],
@@ -165,6 +166,9 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_AT', '_tknNUM', '_tknA + _numT', ' -- use any triplet (vocals or consonants) symbols : 3', '__evDB', '_ZA , _cxF_NA , _UUU', '_/ds'],
     ['_AQ', '_tknNUM', '_tknA + _numQ', ' -- use any qudlet (vocals or consonants) symbols : 4', '__evDB', '_ZA , _cxF_NA , _UUU', '_/ds'],
     ['_AP', '_tknNUM', '_tknA + _numP', ' -- use any pintet (vocals or consonants) symbols : 5', '__evDB', '_ZA , _cxF_NA , _UUU', '_/ds'],
+    ['_APS', '_tknNUM', '_tknA + _numPS', ' -- use any pintet (vocals or consonants) symbols : 6', '__evDB', '_ZA , _cxF_NA , _UUU', '_/ds'],
+    ['_APD', '_tknNUM', '_tknA + _numPD', ' -- use any pintet (vocals or consonants) symbols : 7', '__evDB', '_ZA , _cxF_NA , _UUU', '_/ds'],
+    ['_AO', '_tknNUM', '_tknA + _numO', ' -- use any pintet (vocals or consonants) symbols : 0', '__evDB', '_ZA , _cxF_NA , _UUU', '_/ds'],
     ['_VS', '_tknNUM', '_tknV + _numS', ' -- use vocals singlet symbol : 1', '__evDB', '_ZA , _cxF_NA , _UUU', '_/ds'],
     ['_VD', '_tknNUM', '_tknV + _numD', ' -- use vocals duplet symbols : 2', '__evDB', '_ZA , _cxF_NA , _UUU', '_/ds'],
     ['_VT', '_tknNUM', '_tknV + _numT', ' -- use vocals triplet symbols : 3', '__evDB', '_ZA , _cxF_NA , _UUU', '_/ds'],
@@ -293,38 +297,49 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_ssC', '_dsABR', '_abrS + _abrS + _abrC', '', '__enZB', '_cxF_NS , _cxF_NS , _ssU', '_/ds/dso:_cxF_NS'],
     ['_zzC', '_dsABR', '_abrZ + _abrZ + _abrC', '', '__enZB', '_cxF_NS , _cxF_NS , _ssU', '_/ds/dso:_cxF_NS'],
     ['__tySEP', '_raTY', '', 'separator', '__enZB', '_cxNT_NA , _AT , _sUU', '__/ds'],
+    ['_teQUOT', '_raTE', '__tySEP', 'quoted', '__enZB', '_cxN_NA , _AQ , _sUU', '_/ds'],
     ['_sepCN', '__tySEP', '', "content -- or hierarchy level separator : $_sepCN", '__evQB', '_cxNT_NA , _CD , _sUU', '_/ds'],
     ['_sepTY', '__tySEP', '', "type -- prefix : $_sepTY", '__evQB', '_cxNT_NA , _AD , _sUU', '_/ds'],
     ['_sepADD', '__tySEP', '', "add -- or concatinate contexts : $_sepADD", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['_sepADD_Q', '__tySEP', '_teQUOT', "add -- or concatinate contexts : $_sepADD_Q", '__evQB', '_cxNT_NA , _AT , _sUU', '_/ds/_/dso:_cxF_NS'],
     ['_sepMINUS', '__tySEP', '', "minus -- or deconcatinate contexts : $_sepMINUS", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
     ['_sepFIXE', '__tySEP', '', "fixe : $_sepFIXE", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
-    ['_sepMULTIPLY', '__tySEP', '', "multiply -- content separator : $_sepMULTIPLY", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['_sepMULT', '__tySEP', '', "multiply -- content separator : $_sepMULTIPLY", '__evQB', '_cxNT_NA , _AQ , _sUU', '_/ds'],
+    ['_sepMULT_Q', '__tySEP', '_teQUOT', "multiply -- content separator : $_sepMULTIPLY_Q", '__evQB', '_cxNT_NA , _AQ , _sUU', '_/ds/_/dso:_cxF_NS'],
     ['_sepVALUE', '__tySEP', '', "value -- or high level nod contexts : $_sepVALUE", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
     ['_sepOPTION', '__tySEP', '', "option : $_sepOPTION", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
     ['_sepBACK', '__tySEP', '', "back  -- references : $_sepBACK", '__evQB', '_cxNT_NA , _AQ , _sUU', '_/ds'],
     ['_sepLIST', '__tySEP', '', "list -- content separator : $_sepLIST", '__evQB', '_cxNT_NA , _AQ , _sUU', '_/ds'],
     ['_sepALT', '__tySEP', '', "alternatives -- content separator : $_sepALT", '__evQB', '_cxNT_NA , _AT , _sUU', '_/ds'],
+    ['_sepALT_Q', '__tySEP', '_teQUOT', "alternatives -- content separator : $_sepALT_Q", '__evQB', '_cxNT_NA , _AT , _sUU', '_/ds/_/dso:_cxF_NS'],
     ['_sepPART', '__tySEP', '', "part -- or path content separator : $_sepPART", '__evQB', '_cxNT_NA , _AQ , _sUU', '_/ds'],
+    ['_sepPART_Q', '__tySEP', '_teQUOT', "part  -- or path content separator : $_sepPART_Q", '__evQB', '_cxNT_NA , _AQ , _sUU', '_/ds/_/dso:_cxF_NS'],
     ['_sepREM', '__tySEP', '', "remarc -- content separator : $_sepREM", '__evQB', '_cxNT_NA , _AT , _sUU', '_/ds'],
     ['_sepPER', '__tySEP', '', "persons sign criterion : $_sepPER", '__evQB', '_cxNT_NA , _AT , _sUU', '_/ds'],
-    ['_sepWORD', '__tySEP', '', "word : $_sepWORD", '__evQB', '_cxNT_NA , _AT , _sUU', '_/ds'],
+    ['_sepWORD', '__tySEP', '', "word : $_sepWORD", '__evQB', '_cxNT_NA , _AQ , _sUU', '_/ds'],
     ['_sepSTRUC', '__tySEP', '', "structure -- components : $_sepSTRUC", '__evQB', '_cxNT_NA , _AP , _sUU', '_/ds'],
+    ['_sepSTRUC_Q', '__tySEP', '_teQUOT', "structure -- components : $_sepSTRUC_Q", '__evQB', '_cxNT_NA , _AP , _sUU', '_/ds/_/dso:_cxF_NS'],
     ["$_sepCN", '_sepCN', '__tySEP', "content -- or hierarchy level separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepTY", '_sepTY', '__tySEP', "type -- prefix", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepADD", '_sepADD', '__tySEP', "add -- or concatinate contexts", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    ["$_sepADD_Q", '_sepADD_Q', '__tySEP', "add -- or concatinate contexts", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepMINUS", '_sepMINUS', '__tySEP', "minus -- or deconcatinate contexts", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepFIXE", '_sepFIXE', '__tySEP', "fixe", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepMULTIPLY", '_sepMULTIPLY', '__tySEP', "multiply -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    ["$_sepMULTIPLY_Q", '_sepMULTIPLY_Q', '__tySEP', "multiply -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepVALUE", '_sepVALUE', '__tySEP', "value -- or high level nod contexts", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepOPTION", '_sepOPTION', '__tySEP', "option", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepBACK", '_sepBACK', '__tySEP', "back -- references", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepLIST", '_sepLIST', '__tySEP', "list -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepALT", '_sepALT', '__tySEP', "alternatives -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    ["$_sepALT_Q", '_sepALT_Q', '__tySEP', "alternatives -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepPART", '_sepPART', '__tySEP', "part -- or path content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    ["$_sepPART_Q", '_sepPART_Q', '__tySEP', "part -- or path content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepREM", '_sepREM', '__tySEP', "remarc -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepPER", '_sepPER', '__tySEP', "persons sign criterion", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepWORD", '_sepWORD', '__tySEP', "word", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ["$_sepSTRUC", '_sepSTRUC', '__tySEP', "structure", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    ["$_sepSTRUC_Q", '_sepSTRUC_Q', '__tySEP', "structure", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ['_dsTE', '_raDS', '_raTE', ' -- rule for saparations of _raDS', '__enZB', '_cxN_NA , _cxF_NA , _sUU', '_/ds'],
     ['ds', '_dsTE', '', ' -- main functor for - _cX/cN parts', '__enZB', '_cxN_XA , _ZA , _sss', 'ds'],
     ['dsx', '_dsTE', '_cX', ' -- _cX part ds', '__enZB', '_cxN_XA , _cxF_NA , _sss', 'ds'],
