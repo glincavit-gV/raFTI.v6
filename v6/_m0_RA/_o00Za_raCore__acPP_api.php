@@ -15,7 +15,7 @@ function _raCore_api($step, $arg_val) { $pp = "p00Za-0a";
         $RA[RA_sql_stop] = 1;
         _raCore_iniTables();
         $RA[RA_sql_stop] = 0;
-        $_arDS_test = '_i0_mAgV'; //'_liMIN'; //_altMIN
+        $_arDS_test = '@gV';// '_raRES__arP'; //'_liMIN'; //_altMIN
         $_arDS_num = "t5";
         $_arDS_name = "$_arDS_num.Simple test for _arDS_test($_arDS_test)";
         du($RA[RA_cn__arDS][$_arDS_test]);
@@ -25,6 +25,9 @@ function _raCore_api($step, $arg_val) { $pp = "p00Za-0a";
         break;
     case 'v6_2':
         _raDS_test_all();
+        break;
+    case 'v6_3':
+        _raDS_test_integral();
         break;
   }
 }

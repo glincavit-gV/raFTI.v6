@@ -5,7 +5,7 @@ include_once '_o002a_raCore__acPP_ini.php';
 function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
   global $RA;
   $_DS_ref = "_arDS";
-  $_DS_ver = "0.18.$_DS_ref test All - edit rule _IT - _mW_LOG";
+  $_DS_ver = "1.0.$_DS_ref test integral";
   if (!($RA[RA_ver_stop]++)) duv($_DS_ver, $_DS_ref, $pp);
   //echo "\n$cn__arDS\n";
   $RA[RA_DS] = $DS_ret = [];
@@ -41,7 +41,7 @@ function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
               $DS_ret[] = [DS_ret_dst => strtr($DS_cn__TY, ['_' => ''])];
             }
             break;
-          case 'dso':        
+          case 'dso':
             if (count($dso_arr) == 1) {
 
               $ep = "$pp-e5";
@@ -60,6 +60,7 @@ function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
             break;
           case $_sepCN:
           case $_sepTY:
+          case $_sepPER:
             $DS_ret[] = [DS_ret_sep => $te_el];
         }
 //du("dbg-1 ret =", $DS_ret);
@@ -75,11 +76,11 @@ function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
       case DS_ret_dso:
         $DS_dsABR_ret .= __dsTE_abris($_dsABR_arr[RA_dsABR_rest], current($DS_ret_arr));
         break;
+      case DS_ret_fcc:
       case DS_ret_sep:
         $DS_dsABR_ret .= current($DS_ret_arr);
         break;
       case DS_ret_dsx:
-      case DS_ret_fcc:
         $DS_dsABR_ret .= __dsTE_abris($_dsABR_arr[RA_dsABR_dsx], current($DS_ret_arr));
         break;
       case DS_ret_dsn:
@@ -145,12 +146,14 @@ function __rule_calc($rule_el) { $pp = "p003a-3a";
     if ($rule_cnt == 2) { // source $RA[RA_DS][DS_cn__arDS]]['main__bvPQ']
       $_altTKN = $tknNUM_arr[0];
       $_altNUM = $tknNUM_arr[1];
+      $_altNUM_for_cnt = $rule_el;
       $ruleFLD = 'main__bvPQ';
       $innPATT = "/###/";
-      $ruleFLD_sep = "\s*$_sepPART_Q\s*|\s+";
+      $ruleFLD_sep = "\s*[$_sepPART_Q-]\s*|\s+";
     } else {
       $ruleFLD = explode($_sepOPTION, $RA[RA_cn__arDS][$tknNUM_arr[0]]['cxF__EXPR'])[0];
       $innPATT = $RA[RA_cn__arDS][$tknNUM_arr[0]]['val__bvPQ'];
+      $_altNUM_for_cnt = $tknNUM_arr[1];
       $tknNUM_arr = explode($_sepADD, explode($_sepOPTION, $RA[RA_cn__arDS][$tknNUM_arr[1]]['cxF__EXPR'])[0]);
       $_altTKN = $tknNUM_arr[0];
       $_altNUM = $tknNUM_arr[1];
@@ -172,7 +175,6 @@ function __rule_calc($rule_el) { $pp = "p003a-3a";
         $RA[RA_log][] = "$ep cn__arDS($cn__arDS) rule_el($rule_el) has bad _altTKN($_altTKN) - not _altFUNC like token in cxF__EXPR($cxF__EXPR) field";
       } else {
         if (!isset($RA[RA_DS][DS_arr][$ruleFLD])) {
-          $RA[RA_DS][DS_arr_cnt][$ruleFLD] = $RA[RA_DS][DS_arr_i][$ruleFLD] = 0;
           $RA[RA_DS][DS_arr][$ruleFLD] = preg_split("/$ruleFLD_sep/", explode($_sepOPTION, $RA[RA_cn__arDS][$RA[RA_DS][DS_cn__arDS]][$ruleFLD])[0]);
           $RA[RA_DS][DS_arr_cnt][$ruleFLD] = count($RA[RA_DS][DS_arr][$ruleFLD]);
           $RA[RA_DS][DS_arr_i][$ruleFLD] = 0;
@@ -201,12 +203,11 @@ function __rule_calc($rule_el) { $pp = "p003a-3a";
     . $RA[RA_DS][DS_arr_cnt][$ruleFLD] . " <= " . $RA[RA_DS][DS_arr_i][$ruleFLD];
   }
   if (__check_err()) return ' ERROR ';
+  $_altNUM_add = (int) $RA[RA_cn__arDS][$_altNUM_for_cnt]['val__bvPQ'];
   if (strpos($RA[RA_cn__arDS][$_altNUM]['cxF__EXPR'], '_altFUNC') !== false) {
     $_func_NUM = explode($_sepOPTION, $RA[RA_cn__arDS][$_altNUM]['cxF__EXPR'])[0];
     $calc_ret = $_func_NUM($RA[RA_cn__arDS][$_altNUM]['val__bvPQ'], '', $RA[RA_DS][DS_arr][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]]);
-    $_altNUM_add = 1000;
   } else {
-    $_altNUM_add = (int) $RA[RA_cn__arDS][$_altNUM]['val__bvPQ'];
     /*
     if ($_altNUM_add > 0) {
       $calc_ret = substr($RA[RA_DS][DS_arr][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]]
@@ -282,6 +283,7 @@ function _raDS_test_all() { $pp = "p003a-9a";
   $cnt = $errs = 0;
   foreach ($RA[RA_cn__arDS] as $cn__arDS => $cn_arr) if (isset($cn_arr['te__EXPR'])) if (_raDS_test_one($cn__arDS, ++$cnt)) $errs++;
   dul(["\nTotal test FAILED($errs) from($cnt)"], 1);
+  return $errs;
 }
 
 function _raDS_test_one($cn__arDS, $cnt = 0) { $pp = "p003a-10a";
@@ -290,4 +292,15 @@ function _raDS_test_one($cn__arDS, $cnt = 0) { $pp = "p003a-10a";
   if ($ret_failed) dul([$msg. "\n"], 1);
   else echo $msg;
   return $ret_failed;
+}
+
+function _raDS_test_integral() { $pp = "p003a-11a";
+  global $RA;  
+  $RA[RA_sql_stop] = 1;
+  _raCore_iniTables();
+  $RA[RA_sql_stop] = 0;
+  dul(["$pp-s1 Test Integral ...\n"], 1);
+  if (_raDS_test_all()) dz(["Test ALL - FAILED!"], 1);
+  echo "\n";
+  $cnt = $errs = 0;
 }
