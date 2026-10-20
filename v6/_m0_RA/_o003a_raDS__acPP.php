@@ -5,7 +5,7 @@ include_once '_o002a_raCore__acPP_ini.php';
 function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
   global $RA;
   $_DS_ref = "_arDS";
-  $_DS_ver = "0.16.$_DS_ref test All - new cxNT";
+  $_DS_ver = "0.18.$_DS_ref test All - edit rule _IT - _mW_LOG";
   if (!($RA[RA_ver_stop]++)) duv($_DS_ver, $_DS_ref, $pp);
   //echo "\n$cn__arDS\n";
   $RA[RA_DS] = $DS_ret = [];
@@ -29,6 +29,9 @@ function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
         $RA[RA_log][] = "$ep cn__arDS($cn__arDS) reule__EXPR($DS_reule__EXPR) has count of rules($cnt) != expecting($RA_rule__EXPR_cnt)";
       } else {
         switch ($dso_arr[0]) {
+          case 'fcc':
+            $DS_ret[] = [DS_ret_fcc => $DS_fcc__svQB];
+            break;
           case 'dst':
             if ($DS_cn__TY == '') {
 
@@ -76,6 +79,7 @@ function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
         $DS_dsABR_ret .= current($DS_ret_arr);
         break;
       case DS_ret_dsx:
+      case DS_ret_fcc:
         $DS_dsABR_ret .= __dsTE_abris($_dsABR_arr[RA_dsABR_dsx], current($DS_ret_arr));
         break;
       case DS_ret_dsn:
@@ -97,7 +101,7 @@ function __dsTE_calc(array $ds_arr, $ds_i) { $pp = "p004a-1a";
     } while (1 == 1
               && isset($RA[RA_DS][DS_arr_cnt][$RA[RA_DS][DS_ruleFLD]])
               && $RA[RA_DS][DS_arr_cnt][$RA[RA_DS][DS_ruleFLD]] > $RA[RA_DS][DS_arr_i][$RA[RA_DS][DS_ruleFLD]]
-              && end($RA[RA_DS][DS_altTKN][$RA[RA_DS][DS_ruleFLD]]) == '_numA'
+              && end($RA[RA_DS][DS_altTKN][$RA[RA_DS][DS_ruleFLD]]) == '_numR'
     );
   }
   return $__dsTE_ret;
@@ -162,19 +166,12 @@ function __rule_calc($rule_el) { $pp = "p003a-3a";
     }
     if (!isset($RA[RA_DS][DS_altTKN][$ruleFLD][$_altTKN])) {
       $cxF__EXPR = $RA[RA_cn__arDS][$_altTKN]['cxF__EXPR'];
-      $RA[RA_DS][DS_altTKN][$ruleFLD][$_altTKN] = $_altNUM;
       if (strpos($cxF__EXPR, '_altFUNC') === false) {
       
         $ep = "$pp-e3";
         $RA[RA_log][] = "$ep cn__arDS($cn__arDS) rule_el($rule_el) has bad _altTKN($_altTKN) - not _altFUNC like token in cxF__EXPR($cxF__EXPR) field";
       } else {
-        if (1 == 1
-              && !isset($RA[RA_DS][DS_arr][$ruleFLD])
-              || (1 == 1
-                  && strpos($RA[RA_cn__arDS][$_altTKN]['cxF__EXPR'], '_altFUNC') !== false
-                  && $_altTKN != key($RA[RA_DS][DS_altTKN][$ruleFLD])
-              )
-        ) {
+        if (!isset($RA[RA_DS][DS_arr][$ruleFLD])) {
           $RA[RA_DS][DS_arr_cnt][$ruleFLD] = $RA[RA_DS][DS_arr_i][$ruleFLD] = 0;
           $RA[RA_DS][DS_arr][$ruleFLD] = preg_split("/$ruleFLD_sep/", explode($_sepOPTION, $RA[RA_cn__arDS][$RA[RA_DS][DS_cn__arDS]][$ruleFLD])[0]);
           $RA[RA_DS][DS_arr_cnt][$ruleFLD] = count($RA[RA_DS][DS_arr][$ruleFLD]);
@@ -189,6 +186,11 @@ function __rule_calc($rule_el) { $pp = "p003a-3a";
           $RA[RA_DS][DS_tkn_cnt][$ruleFLD][$tkn_i] = strlen($RA[RA_DS][DS_arr][$ruleFLD][$tkn_i]);
           $RA[RA_DS][DS_tkn_i][$ruleFLD][$tkn_i] = 0;
         }
+        if ($_altTKN == '_tknW' && $_altNUM != '_numR') {
+          $RA[RA_DS][DS_arr_cnt][$ruleFLD] = (int) $RA[RA_cn__arDS][$_altNUM]['val__bvPQ'];
+          $_altNUM = '_numR';
+        }
+        $RA[RA_DS][DS_altTKN][$ruleFLD][$_altTKN] = $_altNUM;
       }
     }
   }
@@ -201,16 +203,30 @@ function __rule_calc($rule_el) { $pp = "p003a-3a";
   if (__check_err()) return ' ERROR ';
   if (strpos($RA[RA_cn__arDS][$_altNUM]['cxF__EXPR'], '_altFUNC') !== false) {
     $_func_NUM = explode($_sepOPTION, $RA[RA_cn__arDS][$_altNUM]['cxF__EXPR'])[0];
-    $calc_ret = $_func_NUM($RA[RA_cn__arDS][$_altNUM]['val__bvPQ'], $RA[RA_DS][DS_arr][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]]);
+    $calc_ret = $_func_NUM($RA[RA_cn__arDS][$_altNUM]['val__bvPQ'], '', $RA[RA_DS][DS_arr][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]]);
     $_altNUM_add = 1000;
   } else {
     $_altNUM_add = (int) $RA[RA_cn__arDS][$_altNUM]['val__bvPQ'];
-    $calc_ret = substr($RA[RA_DS][DS_arr][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]]
-      , $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]]
-      , $_altNUM_add
-    );
+    /*
+    if ($_altNUM_add > 0) {
+      $calc_ret = substr($RA[RA_DS][DS_arr][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]]
+        , $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]]
+        , $_altNUM_add
+      );
+    } else {
+      $calc_ret = substr($RA[RA_DS][DS_arr][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]]
+        , $_altNUM_add
+      );
+    }
+    */
+    if ($_altNUM_add > 0) {
+      $calc_ret = substr($RA[RA_DS][DS_arr][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]], 0, $_altNUM_add);
+      $RA[RA_DS][DS_arr][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]] = substr($RA[RA_DS][DS_arr][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]], $_altNUM_add);
+    } else {
+      $calc_ret = substr($RA[RA_DS][DS_arr][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]], $_altNUM_add);
+    }
   }
-//du("dbg-4 calc_ret($calc_ret)", $RA[RA_DS][DS_arr][$ruleFLD], $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]], $_altNUM_add);
+//du("dbg-4 calc_ret($calc_ret)", $RA[RA_DS][DS_arr][$ruleFLD], $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]], $_altNUM_add, $RA[RA_cn__arDS][$_altNUM]['cxF__EXPR']);
   $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]] += $_altNUM_add;
   if ($RA[RA_DS][DS_tkn_cnt][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]] <= $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]]) {
     $RA[RA_DS][DS_arr_i][$ruleFLD]++;
@@ -222,23 +238,27 @@ function __eraseInnOut($innPATT, $outPATT, $tkn_word) { $pp = "p003a-4a";
   return preg_replace($outPATT, '', preg_replace($innPATT, '', $tkn_word));
 }
 
-function __eraseInn($innPATT, $tkn_word) { $pp = "p003a-4a";
+function __eraseInn($innPATT, $outPATT, $tkn_word) { $pp = "p003a-5a";
   return preg_replace($innPATT, '', $tkn_word);
 }
 
-function __extractRef($innPATT, $tkn_word) { $pp = "p003a-5a";
+function __unTuch($innPATT, $outPATT, $tkn_word) { $pp = "p003a-6a";
+  return $tkn_word;
+}
+
+function __extractRef($innPATT, $outPATT, $tkn_word) { $pp = "p003a-7a";
   global $RA;
   if (isset($RA[RA_cn__arDS][$tkn_word]['val__bvPQ'])) {
     return $RA[RA_cn__arDS][$tkn_word]['val__bvPQ'];
   } else {
 
     $ep = "$pp-e1";
-    $RA[RA_log][] = "$ep innPATT($innPATT) has bad reference value - not found token in cn__arDS($tkn_word)";
+    $RA[RA_log][] = "$ep innPATT($innPATT)/outPATT($outPATT) has bad reference value - not found token in cn__arDS($tkn_word)";
     return " ERROR ";
   }
 }
 
-function __check_err() { $pp = "p003a-6a";
+function __check_err() { $pp = "p003a-8a";
   global $RA;
   if ($RA[RA_log]) {
     $msg = end($RA[RA_log]);
@@ -249,7 +269,7 @@ function __check_err() { $pp = "p003a-6a";
   return false;
 }
 
-function _raDS_test_all() { $pp = "p003a-7a";
+function _raDS_test_all() { $pp = "p003a-9a";
   global $RA;  
   $RA[RA_sql_stop] = 1;
   _raCore_iniTables();
@@ -264,10 +284,10 @@ function _raDS_test_all() { $pp = "p003a-7a";
   dul(["\nTotal test FAILED($errs) from($cnt)"], 1);
 }
 
-function _raDS_test_one($cn__arDS, $cnt = 0) { $pp = "p003a-8a";
+function _raDS_test_one($cn__arDS, $cnt = 0) { $pp = "p003a-10a";
   $ret__arDS = _raDS_calc($cn__arDS);
   $msg = str_pad("\r " . ($cnt ? "$cnt - " : "") . "cn__arDS($cn__arDS) - " . (($ret_failed = ($ret__arDS != $cn__arDS)) ? "FAILED ret__arDS($ret__arDS)" : "Passed ... "), 160);
-  if ($ret_failed) dul([$msg]);
+  if ($ret_failed) dul([$msg. "\n"], 1);
   else echo $msg;
   return $ret_failed;
 }

@@ -1,4 +1,6 @@
 REPLACE INTO _wRA_LOG._oWV0a_logVER__arT (_arT,ref__svPQ,major__nuDB,minor__nuDB,build__nuDB,expl__svKB,cre__dsDB) VALUES
+	 (4294967266,'@gV / webdev3.work.deeplace.md / _arDS',0,18,1,'_arDS test All - edit rule _IT - _mW_LOG','2026-10-20 18:04:48.000'),
+	 (4294967267,'@gV / webdev3.work.deeplace.md / _arDS',0,17,40,'_arDS test All - new _numR','2026-10-20 12:15:48.000'),
 	 (4294967268,'@gV / ASUS-960 / _arDS',0,16,11,'_arDS test All - new cxNT','2026-10-19 21:12:27.000'),
 	 (4294967269,'@gV / webdev3.work.deeplace.md / _arDS',0,15,48,'_arDS test All - new recursive - only for_numA','2026-10-19 10:36:50.000'),
 	 (4294967270,'@gV / ASUS-960 / _arDS',0,15,21,'_arDS test All - new recursive - only for_numA','2026-10-18 01:01:21.000'),
