@@ -4,7 +4,7 @@ include_once '_o001a_raCore__acPP_meta.php';
 function _raCore_iniTables() { $pp = 'p002a-0a';
   global $RA;
   $_OM_ref = "_RA";
-  $_OM_ver = "0.1.$_OM_ref class - wind up";
+  $_OM_ver = "1.0.$_OM_ref class - squeak up";
   extract($RA[RA__tySEP]);
   $RA_raTY__arDS_cn__arDS = 0;
   $RA_raTY__arDS_cxN__arDS = 1;
@@ -177,49 +177,49 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_CL', '_tknNUM', '_tknC + _numL:_altFUNC', ' -- use last (1-st and last) consonant symbols : 1000', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_VL', '_tknNUM', '_tknV + _numL:_altFUNC', ' -- use last vocal symbols : 1000', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_LL', '_tknNUM', '_tknL + _numL:_altFUNC', ' -- use last ligature symbols : 1000', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_AS', '_tknNUM', '_tknA + _numS', ' -- use any singlet (vocals or consonants) symbols : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_AD', '_tknNUM', '_tknA + _numD', ' -- use any duplet (vocals or consonants) symbols : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_AT', '_tknNUM', '_tknA + _numT', ' -- use any triplet (vocals or consonants) symbols : 3', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_AQ', '_tknNUM', '_tknA + _numQ', ' -- use any qudlet (vocals or consonants) symbols : 4', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_AP', '_tknNUM', '_tknA + _numP', ' -- use any pintet (vocals or consonants) symbols : 5', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_APS', '_tknNUM', '_tknA + _numPS', ' -- use any pintet (vocals or consonants) symbols : 6', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_APD', '_tknNUM', '_tknA + _numPD', ' -- use any pintet (vocals or consonants) symbols : 7', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_AO', '_tknNUM', '_tknA + _numO', ' -- use any pintet (vocals or consonants) symbols : 0', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_AS', '_tknNUM', '_tknA + _numS:_altNUM', ' -- use any singlet (vocals or consonants) symbols : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_AD', '_tknNUM', '_tknA + _numD:_altNUM', ' -- use any duplet (vocals or consonants) symbols : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_AT', '_tknNUM', '_tknA + _numT:_altNUM', ' -- use any triplet (vocals or consonants) symbols : 3', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_AQ', '_tknNUM', '_tknA + _numQ:_altNUM', ' -- use any qudlet (vocals or consonants) symbols : 4', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_AP', '_tknNUM', '_tknA + _numP:_altNUM', ' -- use any pintet (vocals or consonants) symbols : 5', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_APS', '_tknNUM', '_tknA + _numPS:_altNUM', ' -- use any pintet (vocals or consonants) symbols : 6', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_APD', '_tknNUM', '_tknA + _numPD:_altNUM', ' -- use any pintet (vocals or consonants) symbols : 7', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_AO', '_tknNUM', '_tknA + _numO:_altNUM', ' -- use any pintet (vocals or consonants) symbols : 0', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_IS', '_tknNUM', '_tknI + _numS:_altNUM', ' -- singlet any invers (from back to front) : -1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_ID', '_tknNUM', '_tknI + _numD:_altNUM', ' -- duplet --//-- : -2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_IT', '_tknNUM', '_tknI + _numT:_altNUM', ' -- triplet --//-- : -3', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_IQ', '_tknNUM', '_tknI + _numQ:_altNUM', ' -- quadlet --//-- : -4', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_IP', '_tknNUM', '_tknI + _numP:_altNUM', ' -- pentet --//-- : -5', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_VS', '_tknNUM', '_tknV + _numS', ' -- use vocals singlet symbol : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_VD', '_tknNUM', '_tknV + _numD', ' -- use vocals duplet symbols : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_VT', '_tknNUM', '_tknV + _numT', ' -- use vocals triplet symbols : 3', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_CS', '_tknNUM', '_tknC + _numS', ' -- use consonant singlet symbol : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_CD', '_tknNUM', '_tknC + _numD', ' -- use consonant duplet symbols : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_CT', '_tknNUM', '_tknC + _numT', ' -- use consonant triplet symbols : 3', '__enZB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_LS', '_tknNUM', '_tknL + _numS', ' -- use singlet ligature 1-st symbol : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_LD', '_tknNUM', '_tknL + _numD', ' -- use duplet ligature 1-st symbol : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_LT', '_tknNUM', '_tknL + _numT', ' -- use triplet ligature 1-st symbol : 3', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_WS', '_tknNUM', '_tknW + _numS', ' -- use word singlet 1-st symbol : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_WD', '_tknNUM', '_tknW + _numD', ' -- use words duplet 1-st symbols : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_WT', '_tknNUM', '_tknW + _numT', ' -- use words triplet 1-st symbols : 3', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_VS', '_tknNUM', '_tknV + _numS:_altNUM', ' -- use vocals singlet symbol : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_VD', '_tknNUM', '_tknV + _numD:_altNUM', ' -- use vocals duplet symbols : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_VT', '_tknNUM', '_tknV + _numT:_altNUM', ' -- use vocals triplet symbols : 3', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_CS', '_tknNUM', '_tknC + _numS:_altNUM', ' -- use consonant singlet symbol : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_CD', '_tknNUM', '_tknC + _numD:_altNUM', ' -- use consonant duplet symbols : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_CT', '_tknNUM', '_tknC + _numT:_altNUM', ' -- use consonant triplet symbols : 3', '__enZB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_LS', '_tknNUM', '_tknL + _numS:_altNUM', ' -- use singlet ligature 1-st symbol : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_LD', '_tknNUM', '_tknL + _numD:_altNUM', ' -- use duplet ligature 1-st symbol : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_LT', '_tknNUM', '_tknL + _numT:_altNUM', ' -- use triplet ligature 1-st symbol : 3', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_WS', '_tknNUM', '_tknW + _numS:_altNUM', ' -- use word singlet 1-st symbol : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_WD', '_tknNUM', '_tknW + _numD:_altNUM', ' -- use words duplet 1-st symbols : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_WT', '_tknNUM', '_tknW + _numT:_altNUM', ' -- use words triplet 1-st symbols : 3', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_WR', '_tknNUM', '_tknW + _numR:_altFUNC', ' -- use all words 1-st symbols - as abreviation : 1000', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_FS', '_tknNUM', '_tknF + _numS', ' -- use singlet fixe 1-st symbol : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_FD', '_tknNUM', '_tknF + _numD', ' -- use duplet fixes 1-st symbol : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_FT', '_tknNUM', '_tknF + _numT', ' -- use triplet fixes 1-st symbol : 1000', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_FS', '_tknNUM', '_tknF + _numS:_altNUM', ' -- use singlet fixe 1-st symbol : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_FD', '_tknNUM', '_tknF + _numD:_altNUM', ' -- use duplet fixes 1-st symbol : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_FT', '_tknNUM', '_tknF + _numT:_altNUM', ' -- use triplet fixes 1-st symbol : 1000', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_FA', '_tknNUM', '_tknF + _numA:_altFUNC', ' -- use 1-st fixe all symbols : 1000', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_FR', '_tknNUM', '_tknF + _numR:_altFUNC', ' -- use 1-st fixe all symbols : 1000', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_FL', '_tknNUM', '_tknF + _numL:_altFUNC', ' -- use last fixe all symbols : 1000', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_FE', '_tknNUM', '_tknF + _numE:_altFUNC', ' -- use edge fixes 1-st symbol : 1000', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_NS', '_tknNUM', '_tknN + _numS', ' -- use all _cN symbols part from singlet sub parts : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_ND', '_tknNUM', '_tknN + _numD', ' -- use all _cN symbols part from duplet sub parts : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_NT', '_tknNUM', '_tknN + _numT', ' -- use all _cN symbols part from triplet sub parts : 3', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_NQ', '_tknNUM', '_tknN + _numQ', ' -- use all _cN symbols part from quad sub parts : 4', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_NS', '_tknNUM', '_tknN + _numS:_altNUM', ' -- use all _cN symbols part from singlet sub parts : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_ND', '_tknNUM', '_tknN + _numD:_altNUM', ' -- use all _cN symbols part from duplet sub parts : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_NT', '_tknNUM', '_tknN + _numT:_altNUM', ' -- use all _cN symbols part from triplet sub parts : 3', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_NQ', '_tknNUM', '_tknN + _numQ:_altNUM', ' -- use all _cN symbols part from quad sub parts : 4', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_NA', '_tknNUM', '_tknN + _numA:_altFUNC', ' -- use all _cN symbols part from all sub parts : 1000', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_NR', '_tknNUM', '_tknN + _numR:_altFUNC', ' -- use all _cN symbols part from all sub parts : 1000', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_XS', '_tknNUM', '_tknX + _numS', ' -- use all _cX symbols part from singlet sub parts : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_XD', '_tknNUM', '_tknX + _numD', ' -- use all _cX symbols part from duplet sub parts : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_XT', '_tknNUM', '_tknX + _numT', ' -- use all _cX symbols part from triplet sub parts : 3', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
-    ['_XQ', '_tknNUM', '_tknX + _numQ', ' -- use all _cX symbols part from quad sub parts : 4', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_XS', '_tknNUM', '_tknX + _numS:_altNUM', ' -- use all _cX symbols part from singlet sub parts : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_XD', '_tknNUM', '_tknX + _numD:_altNUM', ' -- use all _cX symbols part from duplet sub parts : 2', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_XT', '_tknNUM', '_tknX + _numT:_altNUM', ' -- use all _cX symbols part from triplet sub parts : 3', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
+    ['_XQ', '_tknNUM', '_tknX + _numQ:_altNUM', ' -- use all _cX symbols part from quad sub parts : 4', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_XA', '_tknNUM', '_tknX + _numA:_altFUNC', ' -- use all _cX symbols part from all sub parts : 1000', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_XR', '_tknNUM', '_tknX + _numR:_altFUNC', ' -- use all _cX symbols part from all sub parts : 1000', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
     ['_ZB', '_tknNUM', '_tknZ + _numB:_altNUM', ' -- number - 2 ^ _numZ * _numB : 1', '__evDB', '_ZA , _cxF_NR , _UUU', '_/ds'],
@@ -1259,7 +1259,7 @@ $pp = 'p002a-0e';
   foreach ($_raOBJ_hie as $row) __format_SQL($row, '_raOBJ__acPG_hie', 1);
   foreach ($_raOBJ_seg as $row) __format_SQL($row, '_raOBJ__arPD_seg', 1);
   //du($RA[RA_seg__arDS]);
-  foreach ($RA[RA_cn__arDS] as $cn__arDS => $cn_arr) {    
+  foreach ($RA[RA_cn__arDS] as $cn__arDS => $cn_arr) {
     $seg__arDS = $RA[RA_cn__arDS][$cn__arDS]['src_tab'];
     $cxF__EXPR = $cn_arr['cxF__EXPR'];
     $err_fl_all = $err_fl = 1;
@@ -1283,10 +1283,10 @@ $pp = 'p002a-0e';
       }
     }
     $err_fl = 1;
-      $rule__EXPR = $cn_arr['rule__EXPR'];
+    $rule__EXPR = $cn_arr['rule__EXPR'];
     if ($rule__EXPR == '') {
 
-            $ep = "$pp-e16";
+          $ep = "$pp-e16";
           $err[] = "$ep Errors empty rule__EXPR($rule__EXPR) for cn__arDS($cn__arDS)";
           $err_fl--;
           $err_fl_all = 0;
@@ -1348,6 +1348,7 @@ $pp = 'p002a-0e';
       }
       //dz($seg__arDS, $cn__arDS, $cn__str, $cn_arr);
       $cn__arP = __format_SQL($cn__str, $seg__arDS);
+      $RA[RA_cn__arDS][$cn__arDS]['cn__arP'] = $cn__arP;
       __format_SQL("$cn__arP, '$cn__arDS'", '_raCore__arPD_DS', 1);
       __format_SQL("$cn__arP", '_raCore__arP', 1);
     }
@@ -1468,4 +1469,54 @@ function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = 'p002a-3a';
   //if (($hiEL ?? '') == '_numB:_altNUM') du($RA[RA_cn__arDS][$exprVAL], $exprVAL, $RA[RA_cn__arDS][$hiEL]);
   return $err;
 
+}
+
+function _raCore_createSQL() { $pp = 'p002a-4a';
+  __crateViews();
+}
+
+function __crateViews() {
+  $sql = 
+"SELECT
+	a11.cn__arP, a11._arDS,
+	a12.cn__arP as cxN__arP, a12._arDS as cxN__arDS,
+	a13.cn__arP as cxF__arP, a13._arDS as cxF__arDS,
+	a1.expl__bvKB,
+	a14.cn__arP as rule__arP, a14._arDS as rule__arDS,
+	a15.cn__arP as te__arP, a15._arDS as te__arDS,
+	a16.cn__arP as tyFLD__arP, a16._arDS as tyFLD__arDS, a1.val__bvPQ
+FROM _wRA._o020a_raTY__arP as a1
+  left join _wRA._o000b_raCore__arPD_DS as a11 on a11.cn__arP = a1.cn__arP
+  left join _wRA._o000b_raCore__arPD_DS as a12 on a12.cn__arP = a1.cxN__arP
+  left join _wRA._o000b_raCore__arPD_DS as a13 on a13.cn__arP = a1.cxF__EXPR
+  left join _wRA._o000b_raCore__arPD_DS as a14 on a14.cn__arP = a1.rule__EXPR
+  left join _wRA._o000b_raCore__arPD_DS as a15 on a15.cn__arP = a1.te__EXPR
+  left join _wRA._o000b_raCore__arPD_DS as a16 on a16.cn__arP = a1.val__tyFLD
+  ";
+  db_query("CREATE OR REPLACE VIEW _wRA._raTY__acSV as
+$sql
+  ");
+  $sql = 
+"SELECT
+	a11.cn__arP, a11._arDS,
+	a12.cn__arP as cxN__arP, a12._arDS as cxN__arDS,
+	a13.cn__arP as cxF__arP, a13._arDS as cxF__arDS,
+	a1.expl__bvKB,
+	a14.cn__arP as rule__arP, a14._arDS as rule__arDS,
+	a15.cn__arP as te__arP, a15._arDS as te__arDS,
+	a16.cn__arP as tyFLD__arP, a16._arDS as tyFLD__arDS, a1.val__bvPQ,
+	a17.cn__arP as TY__arP, a17._arDS as TY__arDS,
+  a1.ext__bvKB, fcc__svQB
+FROM _wRA._o030a_raOBJ__arP as a1
+  left join _wRA._o000b_raCore__arPD_DS as a11 on a11.cn__arP = a1.cn__arP
+  left join _wRA._o000b_raCore__arPD_DS as a12 on a12.cn__arP = a1.cxN__arP
+  left join _wRA._o000b_raCore__arPD_DS as a13 on a13.cn__arP = a1.cxF__EXPR
+  left join _wRA._o000b_raCore__arPD_DS as a14 on a14.cn__arP = a1.rule__EXPR
+  left join _wRA._o000b_raCore__arPD_DS as a15 on a15.cn__arP = a1.te__EXPR
+  left join _wRA._o000b_raCore__arPD_DS as a16 on a16.cn__arP = a1.val__tyFLD
+  left join _wRA._o000b_raCore__arPD_DS as a17 on a17.cn__arP = a1.cn__TY
+  ";
+  db_query("CREATE OR REPLACE VIEW _wRA._raOBJ__acSV as
+$sql
+  ");
 }

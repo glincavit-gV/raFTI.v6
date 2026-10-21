@@ -29,5 +29,8 @@ function _raCore_api($step, $arg_val) { $pp = "p00Za-0a";
     case 'v6_3':
         _raDS_test_integral();
         break;
+    case 'v6_4':
+        _raCore_createSQL();
+        break;
   }
 }

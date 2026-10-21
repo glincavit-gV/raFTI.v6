@@ -227,6 +227,7 @@ function __exec_SQL($echo_it = 0) { $pp = 'p001a-8a';
     try {
       foreach ($RA[RA_sq] as $sql_i => $sql) {
         if ($echo_it) echo "\r$sql_i - " . str_pad(explode(' values ', $sql)[0], 160);
+        $sql = strtr($sql, ["\\" => "\\\\"]);
         db_query($sql);
       }
     } catch (Exception $e) {

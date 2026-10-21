@@ -299,8 +299,9 @@ function _raDS_test_integral() { $pp = "p003a-11a";
   $RA[RA_sql_stop] = 1;
   _raCore_iniTables();
   $RA[RA_sql_stop] = 0;
-  dul(["$pp-s1 Test Integral ...\n"], 1);
-  if (_raDS_test_all()) dz(["Test ALL - FAILED!"], 1);
+  dul(["$pp-s1 Test Integral running ...\n"], 1);
+  if (_raDS_test_all()) dz(["1. Test ALL - FAILED!"], 1);
+  dul (["1. Test ALL -  Pased ..."], 1); 
   echo "\n";
   $cnt = $errs = 0;
 }
