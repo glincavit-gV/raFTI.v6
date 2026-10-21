@@ -1060,11 +1060,11 @@ $pp = 'p002a-0b';
           if (($cnt = count($val__bvPQ_el_arr)) != 2) {
 
             $ep = "$pp-e4";
-            $err[] = "$ep Bad val__tyFLD($val__tyFLD) leike _fiES type for field_name($field_name) with val__bvPQ($val__bvPQ) but it has count pairs($cnt) != 2";
+            $err[] = "$ep Bad val__tyFLD($val__tyFLD) leike _fiES type for cn__arDS($cn__arDS) with val__bvPQ($val__bvPQ) but it has count pairs($cnt) != 2";
           } elseif (!isset($RA[RA_cn__arDS][$val__bvPQ_el_arr[1]])) {
 
             $ep = "$pp-e5";
-            $err[] = "$ep Bad val__tyFLD($val__tyFLD) leike _fiES type for field_name($field_name) with val__bvPQ($val__bvPQ) not registered: " . $val__bvPQ_el_arr[1];
+            $err[] = "$ep Bad val__tyFLD($val__tyFLD) leike _fiES type for cn__arDS($cn__arDS) with val__bvPQ($val__bvPQ) not registered: " . $val__bvPQ_el_arr[1];
           } else {
             $ra_arr['val__bvPQ'] = $val__bvPQ_el_arr[1]; // set name of variable
             $ra_arr[$val__bvPQ_el_arr[1]] = $val__bvPQ_el_arr[0]; // set it value
@@ -1212,7 +1212,7 @@ $pp = 'p002a-0d';
   $log[] ="$pp-s4  Created tables number: " . count($dst);
   $log[] ="$pp-s5  Creating Aggergates segments number: " . count($src['_raOBJ__arPD_seg']);
   //dz($RA[RA_sq]);
-  if ($err) dz(array_merge(["Errors found"], $err), 1);
+  if ($err || $errd || $errn) dz(array_merge(["Errors found"], $err), 1);
   __exec_SQL();
   $_raOBJ_seg = $err = [];
 $pp = 'p002a-0e';
