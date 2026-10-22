@@ -32,5 +32,8 @@ function _raCore_api($step, $arg_val) { $pp = "p00Za-0a";
     case 'v6_4':
         _raCore_createSQL();
         break;
+    case 'v6_5':
+        de("133 \$step, \$RA[RA_cn__arDS]");
+        break;
   }
 }

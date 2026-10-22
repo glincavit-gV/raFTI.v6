@@ -57,34 +57,60 @@ const RA_sql_cnt = 0;
 const RA_sql_str = 1;
 const RA_sql_max = 100;
 
-$RA[RA__tySEP]['_sepCN'] = "_";
-$RA[RA__tySEP]['_sepTY'] = "__";
-$RA[RA__tySEP]['_sepADD'] = " + ";
-$RA[RA__tySEP]['_sepADD_Q'] = " \\+ ";
-$RA[RA__tySEP]['_sepMINUS'] = " - ";
-$RA[RA__tySEP]['_sepFIXE'] = "-";
-$RA[RA__tySEP]['_sepMULT'] = " * ";
-$RA[RA__tySEP]['_sepMULT_Q'] = " \\* ";
-$RA[RA__tySEP]['_sepVALUE'] = " : ";
-$RA[RA__tySEP]['_sepOPTION'] = ":";
-$RA[RA__tySEP]['_sepBACK'] = " :: ";
-$RA[RA__tySEP]['_sepLIST'] = " , ";
-$RA[RA__tySEP]['_sepALT'] = " / ";
-$RA[RA__tySEP]['_sepALT_Q'] = " \\/ ";
-$RA[RA__tySEP]['_sepPART'] = "/";
-$RA[RA__tySEP]['_sepPART_Q'] = "\\/";
-$RA[RA__tySEP]['_sepREM'] = " -- ";
-$RA[RA__tySEP]['_sepPER'] = "@";
-$RA[RA__tySEP]['_sepWORD'] = " ";
-$RA[RA__tySEP]['_sepSTRUC'] = ".";
-$RA[RA__tySEP]['_sepSTRUC_Q'] = "\\.";
+
+const RA_sepCN = "_";
+const RA_sepTY = "__";
+const RA_sepADD = " + ";
+const RA_sepADD_Q = " \\+ ";
+const RA_sepMINUS = " - ";
+const RA_sepFIXE = "-";
+const RA_sepMULT = " * ";
+const RA_sepMULT_Q = " \\* ";
+const RA_sepVALUE = " : ";
+const RA_sepOPTION = ":";
+const RA_sepBACK = " :: ";
+const RA_sepLIST = " , ";
+const RA_sepALT = " / ";
+const RA_sepALT_Q = " \\/ ";
+const RA_sepPART = "/";
+const RA_sepPART_Q = "\\/";
+const RA_sepREM = " -- ";
+const RA_sepPER = "@";
+const RA_sepWORD = "(\\$?\\w+)( *(?![_[\\]])[[:punct:]] *| +|\\b)";
+const RA_sepSTRUC = ".";
+const RA_sepSTRUC_Q = "\\.";
+const RA_sepPHP = "\$";
+
+$RA[RA__tySEP]['RA_sepCN'] = RA_sepCN;
+$RA[RA__tySEP]['RA_sepTY'] = RA_sepTY;
+$RA[RA__tySEP]['RA_sepADD'] = RA_sepADD;
+$RA[RA__tySEP]['RA_sepADD_Q'] = RA_sepADD_Q;
+$RA[RA__tySEP]['RA_sepMINUS'] = RA_sepMINUS;
+$RA[RA__tySEP]['RA_sepFIXE'] = RA_sepFIXE;
+$RA[RA__tySEP]['RA_sepMULT'] = RA_sepMULT;
+$RA[RA__tySEP]['RA_sepMULT_Q'] = RA_sepMULT_Q;
+$RA[RA__tySEP]['RA_sepVALUE'] = RA_sepVALUE;
+$RA[RA__tySEP]['RA_sepOPTION'] = RA_sepOPTION;
+$RA[RA__tySEP]['RA_sepBACK'] = RA_sepBACK;
+$RA[RA__tySEP]['RA_sepLIST'] = RA_sepLIST;
+$RA[RA__tySEP]['RA_sepALT'] = RA_sepALT;
+$RA[RA__tySEP]['RA_sepALT_Q'] = RA_sepALT_Q;
+$RA[RA__tySEP]['RA_sepPART'] = RA_sepPART;
+$RA[RA__tySEP]['RA_sepPART_Q'] = RA_sepPART_Q;
+$RA[RA__tySEP]['RA_sepREM'] = RA_sepREM;
+$RA[RA__tySEP]['RA_sepPER'] = RA_sepPER;
+$RA[RA__tySEP]['RA_sepWORD'] = RA_sepWORD;
+$RA[RA__tySEP]['RA_sepSTRUC'] = RA_sepSTRUC;
+$RA[RA__tySEP]['RA_sepSTRUC_Q'] = RA_sepSTRUC_Q;
+$RA[RA__tySEP]['RA_sepPHP'] = RA_sepPHP;
+
 
 //dz($_SERVER);
 if (isset($_SERVER['DB_HOST'] )) $client_machine_name = $_SERVER['DB_HOST'];
 else $client_machine_name = $_SERVER['COMPUTERNAME'];
 $RA[RA_var]['login'] = '@gV';
 $RA[RA_var]['host'] = $client_machine_name;
-$RA[RA_var]['ref'] = $RA[RA_var]['login'] . $RA[RA__tySEP]['_sepALT'] . $RA[RA_var]['host'];
+$RA[RA_var]['ref'] = $RA[RA_var]['login'] . RA_sepALT . $RA[RA_var]['host'];
 $RA[RA_log] = [];
 
 function dz(...$vars) { $pp = "p001a-0a";
@@ -257,10 +283,9 @@ function __get_table($name) { $pp = "p001a-9a";
 
 function duv($ver, $ref, $pp = 0) { $pp = ($pp ? $pp : "p001a-10a");
   global $RA;
-  $_sepSTRUC = $RA[RA__tySEP]['_sepSTRUC'];
-  $vers = explode($_sepSTRUC, $ver, 3);
+  $vers = explode(RA_sepSTRUC, $ver, 3);
   extract($vers, EXTR_PREFIX_ALL, 'vers');
-  $vers_2 = ltrim(explode("$vers_0{$_sepSTRUC}$vers_1", $ver)[1], $_sepSTRUC);
+  $vers_2 = ltrim(explode("$vers_0{".RA_sepSTRUC."}$vers_1", $ver)[1], RA_sepSTRUC);
   if (($tname = __get_table('_logVER__arT'))) {
     $ref = $RA[RA_var]['ref'] . " / $ref";
     $where_s = "ref__svPQ = '$ref' and major__nuDB = $vers_0 and minor__nuDB = $vers_1";
@@ -290,7 +315,7 @@ function dul(array $log, $echo_it = 0) { $pp = "p001a-11a";
       if ($echo_it) echo "\n$log_i - $log_s";
       if (($is_fcc = preg_match("/p\w\w\w\w-/", $log_s)) || !$log_i) {
         if ($is_fcc) {
-          $fcc = explode($RA[RA__tySEP]['_sepWORD'], $log_s)[0];
+          $fcc = explode(' ', $log_s)[0];
           $msg = explode($fcc, $log_s)[1];
         } else {
           $fcc = '';
@@ -312,4 +337,33 @@ function dul(array $log, $echo_it = 0) { $pp = "p001a-11a";
 function duz(array $log, $ref = 'NULL') { $pp = "p001a-12a";
   dul($log, $ref);
   exit(1);
+}
+
+function de($str) { $pp = "p001a-13a";
+  global $RA;
+  $RA[RA_sql_stop] = 1;
+  _raCore_iniTables();
+  $RA[RA_sql_stop] = 0;
+  if(preg_match_all("/".RA_sepWORD."/", $str, $arr) === false || ($cnt = count($arr)) != 3) {
+
+    $ep = "$pp-e1";
+    $msg = "$ep Bad string for output in de($str)" . ($cnt != 3 ? " - matches count != 3" : "");
+    throw new Exception ($msg);
+  }
+  $ret = '';
+  foreach ($arr[1] as $arr_i => $val) {
+    echo "\n$val";
+    if (substr($val, 0, 1) == RA_sepPHP) {
+      $ret .= "\\$val(";
+      if (is_array($val)) {
+        $ret .= implode(',',$val) . ")";
+      } else {
+        $ret .= $val . ")";        
+      }
+    } else {
+      $ret .= $val;
+    }
+    $ret .= $arr[2][$arr_i];
+  }
+  dz($RA);
 }

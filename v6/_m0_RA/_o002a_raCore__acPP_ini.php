@@ -5,7 +5,6 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
   global $RA;
   $_OM_ref = "_RA";
   $_OM_ver = "1.0.$_OM_ref class - squeak up";
-  extract($RA[RA__tySEP]);
   $RA_raTY__arDS_cn__arDS = 0;
   $RA_raTY__arDS_cxN__arDS = 1;
   $cons = 'bcdfghjklmnpqrstvwxyz';
@@ -368,48 +367,50 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_ssC', '_dsABR', '_abrS + _abrS + _abrC', '', '__enZB', '_cxF_NA , _cxF_NA , _ssU', '_/ds/dso:_cxF_NA'],
     ['_zzC', '_dsABR', '_abrZ + _abrZ + _abrC', '', '__enZB', '_cxF_NA , _cxF_NA , _ssU', '_/ds/dso:_cxF_NA'],
     ['__tySEP', '_raTY', '', 'separator', '__enZB', '_cxN_NA , _AT , _sUU', '__/ds'],
-    ['_sepCN', '__tySEP', '', "content -- or hierarchy level separator : $_sepCN", '__evQB', '_cxNT_NA , _LE , _sUU', '_/ds'],
-    ['_sepTY', '__tySEP', '', "type -- prefix : $_sepTY", '__evQB', '_cxNT_NA , _AD , _sUU', '_/ds'],
-    ['_sepADD', '__tySEP', '', "add -- or concatinate contexts : $_sepADD", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
-    ['_sepADD_Q', '__tySEP', '', "add quoted -- or concatinate contexts : $_sepADD_Q", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds/_/dso:_AS'],
-    ['_sepMINUS', '__tySEP', '', "minus -- or deconcatinate contexts : $_sepMINUS", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
-    ['_sepFIXE', '__tySEP', '', "fixe : $_sepFIXE", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
-    ['_sepMULT', '__tySEP', '', "multiply -- content separator : $_sepMULT", '__evQB', '_cxNT_NA , _AQ , _sUU', '_/ds'],
-    ['_sepMULT_Q', '__tySEP', '', "multiply quoted -- content separator : $_sepMULT_Q", '__evQB', '_cxNT_NA , _AQ:_ZA , _sUU', '_/ds/_/dso:_AS'],
-    ['_sepVALUE', '__tySEP', '', "value -- or high level nod contexts : $_sepVALUE", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
-    ['_sepOPTION', '__tySEP', '', "option : $_sepOPTION", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
-    ['_sepBACK', '__tySEP', '', "back  -- references : $_sepBACK", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
-    ['_sepLIST', '__tySEP', '', "list -- content separator : $_sepLIST", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
-    ['_sepALT', '__tySEP', '', "alternatives -- content separator : $_sepALT", '__evQB', '_cxNT_NA , _AT , _sUU', '_/ds'],
-    ['_sepALT_Q', '__tySEP', '', "alternatives quoted -- content separator : $_sepALT_Q", '__evQB', '_cxNT_NA , _AT:_ZA , _sUU', '_/ds/_/dso:_AS'],
-    ['_sepPART', '__tySEP', '', "part -- or path content separator : $_sepPART", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
-    ['_sepPART_Q', '__tySEP', '', "part quoted -- or path content separator : $_sepPART_Q", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds/_/dso:_AS'],
-    ['_sepREM', '__tySEP', '', "remarc -- content separator : $_sepREM", '__evQB', '_cxNT_NA , _AT , _sUU', '_/ds'],
-    ['_sepPER', '__tySEP', '', "persons sign criterion : $_sepPER", '__evQB', '_cxNT_NA , _AT , _sUU', '_/ds'],
-    ['_sepWORD', '__tySEP', '', "word : $_sepWORD", '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
-    ['_sepSTRUC', '__tySEP', '', "structure -- components : $_sepSTRUC", '__evQB', '_cxNT_NA , _AP , _sUU', '_/ds'],
-    ['_sepSTRUC_Q', '__tySEP', '', "structure quoted -- components : $_sepSTRUC_Q", '__evQB', '_cxNT_NA , _AP:_ZA , _sUU', '_/ds/_/dso:_AS'],
-    ["$_sepCN", '_sepCN', '__tySEP', "content -- or hierarchy level separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepTY", '_sepTY', '__tySEP', "type -- prefix", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepADD", '_sepADD', '__tySEP', "add -- or concatinate contexts", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepADD_Q", '_sepADD_Q', '__tySEP', "add -- or concatinate contexts", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepMINUS", '_sepMINUS', '__tySEP', "minus -- or deconcatinate contexts", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepFIXE", '_sepFIXE', '__tySEP', "fixe", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepMULT", '_sepMULT', '__tySEP', "multiply -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepMULT_Q", '_sepMULT_Q', '__tySEP', "multiply -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepVALUE", '_sepVALUE', '__tySEP', "value -- or high level nod contexts", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepOPTION", '_sepOPTION', '__tySEP', "option", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepBACK", '_sepBACK', '__tySEP', "back -- references", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepLIST", '_sepLIST', '__tySEP', "list -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepALT", '_sepALT', '__tySEP', "alternatives -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepALT_Q", '_sepALT_Q', '__tySEP', "alternatives -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepPART", '_sepPART', '__tySEP', "part -- or path content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepPART_Q", '_sepPART_Q', '__tySEP', "part -- or path content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepREM", '_sepREM', '__tySEP', "remarc -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepPER", '_sepPER', '__tySEP', "persons sign criterion", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepWORD", '_sepWORD', '__tySEP', "word", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepSTRUC", '_sepSTRUC', '__tySEP', "structure", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
-    ["$_sepSTRUC_Q", '_sepSTRUC_Q', '__tySEP', "structure", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    ['RA_sepCN', '__tySEP', '', "content -- or hierarchy level separator : " . RA_sepCN, '__evQB', '_cxNT_NA , _LE , _sUU', '_/ds'],
+    ['RA_sepTY', '__tySEP', '', "type -- prefix : " . RA_sepTY, '__evQB', '_cxNT_NA , _AD , _sUU', '_/ds'],
+    ['RA_sepADD', '__tySEP', '', "add -- or concatinate contexts : " . RA_sepADD, '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['RA_sepADD_Q', '__tySEP', '', "add quoted -- or concatinate contexts : " . RA_sepADD_Q, '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds/_/dso:_AS'],
+    ['RA_sepMINUS', '__tySEP', '', "minus -- or deconcatinate contexts : " . RA_sepMINUS, '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['RA_sepFIXE', '__tySEP', '', "fixe : " . RA_sepFIXE, '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['RA_sepMULT', '__tySEP', '', "multiply -- content separator : " . RA_sepMULT, '__evQB', '_cxNT_NA , _AQ , _sUU', '_/ds'],
+    ['RA_sepMULT_Q', '__tySEP', '', "multiply quoted -- content separator : " . RA_sepMULT_Q, '__evQB', '_cxNT_NA , _AQ:_ZA , _sUU', '_/ds/_/dso:_AS'],
+    ['RA_sepVALUE', '__tySEP', '', "value -- or high level nod contexts : " . RA_sepVALUE, '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['RA_sepOPTION', '__tySEP', '', "option : " . RA_sepOPTION, '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['RA_sepBACK', '__tySEP', '', "back  -- references : " . RA_sepBACK, '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['RA_sepLIST', '__tySEP', '', "list -- content separator : " . RA_sepLIST, '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['RA_sepALT', '__tySEP', '', "alternatives -- content separator : " . RA_sepALT, '__evQB', '_cxNT_NA , _AT , _sUU', '_/ds'],
+    ['RA_sepALT_Q', '__tySEP', '', "alternatives quoted -- content separator : " . RA_sepALT_Q, '__evQB', '_cxNT_NA , _AT:_ZA , _sUU', '_/ds/_/dso:_AS'],
+    ['RA_sepPART', '__tySEP', '', "part -- or path content separator : " . RA_sepPART, '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['RA_sepPART_Q', '__tySEP', '', "part quoted -- or path content separator : " . RA_sepPART_Q, '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds/_/dso:_AS'],
+    ['RA_sepREM', '__tySEP', '', "remarc -- content separator : " . RA_sepREM, '__evQB', '_cxNT_NA , _AT , _sUU', '_/ds'],
+    ['RA_sepPER', '__tySEP', '', "persons sign criterion : " . RA_sepPER, '__evQB', '_cxNT_NA , _AT , _sUU', '_/ds'],
+    ['RA_sepWORD', '__tySEP', '', "word : " . RA_sepWORD, '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['RA_sepSTRUC', '__tySEP', '', "structure -- components : " . RA_sepSTRUC, '__evQB', '_cxNT_NA , _AP , _sUU', '_/ds'],
+    ['RA_sepSTRUC_Q', '__tySEP', '', "structure quoted -- components : " . RA_sepSTRUC_Q, '__evQB', '_cxNT_NA , _AP:_ZA , _sUU', '_/ds/_/dso:_AS'],
+    ['RA_sepPHP', '__tySEP', '', "PHP variable prefix : " . RA_sepPHP, '__evQB', '_cxNT_NA , _AA , _sUU', '_/ds/_/dso:_AS'],
+    [RA_sepCN, 'RA_sepCN', '__tySEP', "content -- or hierarchy level separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepTY, 'RA_sepTY', '__tySEP', "type -- prefix", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepADD, 'RA_sepADD', '__tySEP', "add -- or concatinate contexts", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepADD_Q, 'RA_sepADD_Q', '__tySEP', "add -- or concatinate contexts", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepMINUS, 'RA_sepMINUS', '__tySEP', "minus -- or deconcatinate contexts", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepFIXE, 'RA_sepFIXE', '__tySEP', "fixe", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepMULT, 'RA_sepMULT', '__tySEP', "multiply -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepMULT_Q, 'RA_sepMULT_Q', '__tySEP', "multiply -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepVALUE, 'RA_sepVALUE', '__tySEP', "value -- or high level nod contexts", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepOPTION, 'RA_sepOPTION', '__tySEP', "option", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepBACK, 'RA_sepBACK', '__tySEP', "back -- references", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepLIST, 'RA_sepLIST', '__tySEP', "list -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepALT, 'RA_sepALT', '__tySEP', "alternatives -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepALT_Q, 'RA_sepALT_Q', '__tySEP', "alternatives -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepPART, 'RA_sepPART', '__tySEP', "part -- or path content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepPART_Q, 'RA_sepPART_Q', '__tySEP', "part -- or path content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepREM, 'RA_sepREM', '__tySEP', "remarc -- content separator", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepPER, 'RA_sepPER', '__tySEP', "persons sign criterion", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepWORD, 'RA_sepWORD', '__tySEP', "word", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepSTRUC, 'RA_sepSTRUC', '__tySEP', "structure", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepSTRUC_Q, 'RA_sepSTRUC_Q', '__tySEP', "structure", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
+    [RA_sepPHP, 'RA_sepPHP', '__tySEP', "", '__enZB', '_cxN_RA , _ZA , _zzz', 'ds'],
     ['_dsTE', '_raDS', '_raTE', ' -- rule for saparations of _raDS', '__enZB', '_cxN_NA , _cxF_NA , _sUU', '_/ds'],
     ['ds', '_dsTE', '', ' -- main functor for - _cX/cN parts', '__enZB', '_cxN_XA , _ZA , _sss', 'ds'],
     ['dsx', '_dsTE', '_cX', ' -- _cX part ds', '__enZB', '_cxN_XA , _cxF_NA , _sss', 'ds'],
@@ -1041,22 +1042,22 @@ $pp = 'p002a-0b';
       }
     }
   }
-  $_PQ_size = explode($_sepVALUE, $RA[RA_cn__arDS]['_PQ']['expl__bvKB'])[1];
-  $_sepVAL_len = strlen($_sepVALUE);
+  $_PQ_size = explode(RA_sepVALUE, $RA[RA_cn__arDS]['_PQ']['expl__bvKB'])[1];
+  $RA_sepVAL_len = strlen(RA_sepVALUE);
   foreach ($RA[RA_cn__arDS] as $cn__arDS => $ra_arr) {
     // echo " $cn__arDS";
     $val__tyFLD = $ra_arr['val__tyFLD'];
     $__tyFLD__cxN = $RA[RA_cn__arDS][$val__tyFLD]['cxN__arDS'];
     if ($RA[RA_cn__arDS][$__tyFLD__cxN]['cxF__EXPR'] == '__tyFIE' && $__tyFLD__cxN != '_fiEN') { // is it type the enamed value ?
-      $val__bvPQ = substr($ra_arr['expl__bvKB'], strpos($ra_arr['expl__bvKB'], $_sepVALUE) + $_sepVAL_len);
+      $val__bvPQ = substr($ra_arr['expl__bvKB'], strpos($ra_arr['expl__bvKB'], RA_sepVALUE) + $RA_sepVAL_len);
       if (strlen($val__bvPQ) > $_PQ_size) {
 
         $ep = "$pp-e3";
         $err[] = "$ep val__bvPQ($val__bvPQ) expl__bvKB part of cn__arDS($cn__arDS) is greater: $_PQ_size";
       } elseif ($__tyFLD__cxN == '_fiES') {
-        $val__bvPQ_arr = explode($_sepLIST, $val__bvPQ);
+        $val__bvPQ_arr = explode(RA_sepLIST, $val__bvPQ);
         foreach ($val__bvPQ_arr as $val__bvPQ_el) {
-          $val__bvPQ_el_arr = explode($_sepBACK, $val__bvPQ_el);
+          $val__bvPQ_el_arr = explode(RA_sepBACK, $val__bvPQ_el);
           if (($cnt = count($val__bvPQ_el_arr)) != 2) {
 
             $ep = "$pp-e4";
@@ -1081,7 +1082,7 @@ $pp = 'p002a-0b';
       $ep = "$pp-e6";
       $err[] = "$ep Bad cn__TY($cn__TY) not defined! for cn__arDS($cn__arDS) in src_tab: " . $ra_arr['src_tab'];
     }
-    $ra_arr['main__bvPQ'] = explode($_sepREM, $ra_arr['expl__bvKB'])[0];
+    $ra_arr['main__bvPQ'] = explode(RA_sepREM, $ra_arr['expl__bvKB'])[0];
     $RA[RA_cn__arDS][$cn__arDS] = $ra_arr;
   }
 
@@ -1150,7 +1151,7 @@ $pp = 'p002a-0c';
             }
             $real_ty = $RA[RA_cn__arDS][$__tyFLD]['val__bvPQ'] . ' ' . $RA[RA_cn__arDS][$field_name]['ext__bvKB'];
             $fields_desc[$table_name] .= "\n  $field_name $real_ty,";
-            $table_fields[$table_name] .= (in_array(substr($field_name, strpos($field_name, $_sepCN)), ['__dsDB']) ? "" : "$field_name,");
+            $table_fields[$table_name] .= (in_array(substr($field_name, strpos($field_name, RA_sepCN)), ['__dsDB']) ? "" : "$field_name,");
           }
           $row_val++;
         } elseif (strpos($RA[RA_cn__arDS][$__tyFLD]['cxF__EXPR'], '__tyIND') === FALSE) {
@@ -1266,7 +1267,7 @@ $pp = 'p002a-0e';
     $cxF__arP = 'NULL';
     if ($cxF__EXPR != '') {
       if (!isset($RA[RA_cn__arDS][$cxF__EXPR])) {
-        if (($erre = __explore_EXPR($_sepADD, $_sepOPTION, $cxF__EXPR))) {
+        if (($erre = __explore_EXPR(RA_sepADD, RA_sepOPTION, $cxF__EXPR))) {
 
           $ep = "$pp-e15";
           $err[] = "$ep Errors in cxF__EXPR($cxF__EXPR) for cn__arDS($cn__arDS)";
@@ -1292,7 +1293,7 @@ $pp = 'p002a-0e';
           $err_fl_all = 0;
     } else {
       if (!isset($RA[RA_cn__arDS][$rule__EXPR])) {
-        if (($erre = __explore_EXPR($_sepLIST, $_sepOPTION, $rule__EXPR))) {
+        if (($erre = __explore_EXPR(RA_sepLIST, RA_sepOPTION, $rule__EXPR))) {
 
           $ep = "$pp-e17";
           $err[] = "$ep Errors in rule__EXPR($rule__EXPR) for cn__arDS($cn__arDS)";
@@ -1315,7 +1316,7 @@ $pp = 'p002a-0e';
       $err_fl_all = 0;
     } else {
       if (!isset($RA[RA_cn__arDS][$te__EXPR])) {
-        if (($erre = __explore_EXPR($_sepPART, $_sepOPTION, $te__EXPR))) {
+        if (($erre = __explore_EXPR(RA_sepPART, RA_sepOPTION, $te__EXPR))) {
 
           $ep = "$pp-e19";
           $err[] = "$ep Errors in te__EXPR($te__EXPR)";
