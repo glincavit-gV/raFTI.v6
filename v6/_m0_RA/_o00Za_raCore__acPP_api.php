@@ -33,7 +33,11 @@ function _raCore_api($step, $arg_val) { $pp = "p00Za-0a";
         _raCore_createSQL();
         break;
     case 'v6_5':
-        de("133 \$step, \$RA[RA_cn__arDS]");
+        $RA[RA_sql_stop] = 1;
+        _raCore_iniTables();
+        $RA[RA_sql_stop] = 0;
+        dd("133 $step", $RA[RA_cn__arDS]['@gV']);
+        du("133 $step", $RA[RA_cn__arDS]['@gV']);
         break;
   }
 }

@@ -7,7 +7,7 @@ function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
   $_DS_ref = "_arDS";
   $_DS_ver = "1.0.$_DS_ref test integral";
   if (!($RA[RA_ver_stop]++)) duv($_DS_ver, $_DS_ref, $pp);
-//echo "\n $pp-s1 $cn__arDS\n";
+//de("0a-1-u1 $cn__arDS");
   $RA[RA_DS] = $DS_ret = [];
   $RA[RA_DS][DS_cn__arDS] = $cn__arDS;
   extract($RA[RA_cn__arDS][$RA[RA_DS][DS_cn__arDS]], EXTR_PREFIX_ALL, 'DS');
@@ -62,8 +62,7 @@ function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
           case RA_sepPER:
             $DS_ret[] = [DS_ret_sep => $te_el];
         }
-$pp = "p003a-0b";
-//eval(de("$pp-s2 $DS_ret));
+//de("0a-1-u2", $DS_ret);
       }
     }
   }
@@ -98,8 +97,7 @@ function __dsTE_calc(array $ds_arr, $ds_i) { $pp = "p004a-1a";
     $ds_el = $ds_arr[$ds_arr_i];
     do {
       $__dsTE_ret .= __rule_calc($ds_el);
-$pp = "p004a-1b";
-//du("$pp-s1 _altTKN.p1=$__dsTE_ret", $RA[RA_DS][DS_ruleFLD]); if(isset($RA[RA_DS][DS_arr_cnt][$RA[RA_DS][DS_ruleFLD]])) du($RA[RA_DS][DS_arr_cnt][$RA[RA_DS][DS_ruleFLD]], $RA[RA_DS][DS_arr_i][$RA[RA_DS][DS_ruleFLD]]);
+//de("1a-0-u1", $RA[RA_DS][DS_ruleFLD]); if(isset($RA[RA_DS][DS_arr_cnt][$RA[RA_DS][DS_ruleFLD]])) du($RA[RA_DS][DS_arr_cnt][$RA[RA_DS][DS_ruleFLD]], $RA[RA_DS][DS_arr_i][$RA[RA_DS][DS_ruleFLD]]);
     } while (1 == 1
               && isset($RA[RA_DS][DS_arr_cnt][$RA[RA_DS][DS_ruleFLD]])
               && $RA[RA_DS][DS_arr_cnt][$RA[RA_DS][DS_ruleFLD]] > $RA[RA_DS][DS_arr_i][$RA[RA_DS][DS_ruleFLD]]
@@ -160,7 +158,7 @@ function __rule_calc($rule_el) { $pp = "p003a-3a";
       $_altNUM = $tknNUM_arr[1];
       $ruleFLD_sep = RA_sepADD_Q;
     }
-//eval(de("\n $pp-s1 - $_altTKN, $_altNUM, $ruleFLD, $ruleFLD_sep, $tknNUM_arr"));
+//de("3a-1-u1", $_altTKN, $_altNUM, $ruleFLD, $ruleFLD_sep, $tknNUM_arr");
     $RA[RA_DS][DS_ruleFLD] = $ruleFLD;
     if ($rule_el == '_ZA') {
       if (isset($RA[RA_DS][DS_arr][$ruleFLD])) {
@@ -183,7 +181,7 @@ function __rule_calc($rule_el) { $pp = "p003a-3a";
         $_func_TKN_arr = explode(RA_sepOPTION, $RA[RA_cn__arDS][$_altTKN]['cxF__EXPR']);
         $outPATT = $RA[RA_cn__arDS][$_altTKN]['val__bvPQ'];
         $_func_TKN = end($_func_TKN_arr);
-//du("$pp-s2 _func_TKN($_func_TKN), _altTKN innPATT($innPATT), outPATT($outPATT), _altNUM val=", $RA[RA_cn__arDS][$_altNUM]['val__bvPQ'],  $RA[RA_DS][DS_arr][$ruleFLD]);
+//de("3a-0-u2", $_func_TKN, $innPATT, $outPATT, $RA[RA_cn__arDS][$_altNUM]['val__bvPQ'],  $RA[RA_DS][DS_arr][$ruleFLD]);
         foreach ($RA[RA_DS][DS_arr][$ruleFLD] as $tkn_i => $tkn_word) {
           $RA[RA_DS][DS_arr][$ruleFLD][$tkn_i] = $_func_TKN($innPATT, $outPATT, $tkn_word);
           $RA[RA_DS][DS_tkn_cnt][$ruleFLD][$tkn_i] = strlen($RA[RA_DS][DS_arr][$ruleFLD][$tkn_i]);
@@ -216,7 +214,7 @@ function __rule_calc($rule_el) { $pp = "p003a-3a";
       $calc_ret = substr($RA[RA_DS][DS_arr][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]], $_altNUM_add);
     }
   }
-//du("$pp-s3 calc_ret($calc_ret)", $RA[RA_DS][DS_arr][$ruleFLD], $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]], $_altNUM_add, $RA[RA_cn__arDS][$_altNUM]['cxF__EXPR']);
+//de("3a-0-u3", $calc_ret, $RA[RA_DS][DS_arr][$ruleFLD], $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]], $_altNUM_add, $RA[RA_cn__arDS][$_altNUM]['cxF__EXPR']);
   $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]] += $_altNUM_add;
   if ($RA[RA_DS][DS_tkn_cnt][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]] <= $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]]) {
     $RA[RA_DS][DS_arr_i][$ruleFLD]++;

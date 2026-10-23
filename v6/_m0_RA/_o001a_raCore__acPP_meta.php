@@ -15,6 +15,7 @@ const RA_var = 11;
 const RA_log = 12;
 const RA_DS = 13;
 const RA_ver_stop = 14;
+const RA_du_sepNLINE = 15;
 
 $RA[RA_sql_stop] = 0;
 $RA[RA_ver_stop] = 0;
@@ -80,6 +81,7 @@ const RA_sepWORD = "(\\$?\\w+)( *(?![_[\\]])[[:punct:]] *| +|\\b)";
 const RA_sepSTRUC = ".";
 const RA_sepSTRUC_Q = "\\.";
 const RA_sepPHP = "\$";
+const RA_sepNLINE = "\n";
 
 $RA[RA__tySEP]['RA_sepCN'] = RA_sepCN;
 $RA[RA__tySEP]['RA_sepTY'] = RA_sepTY;
@@ -103,6 +105,9 @@ $RA[RA__tySEP]['RA_sepWORD'] = RA_sepWORD;
 $RA[RA__tySEP]['RA_sepSTRUC'] = RA_sepSTRUC;
 $RA[RA__tySEP]['RA_sepSTRUC_Q'] = RA_sepSTRUC_Q;
 $RA[RA__tySEP]['RA_sepPHP'] = RA_sepPHP;
+$RA[RA__tySEP]['RA_sepNLINE'] = RA_sepNLINE;
+
+$RA[RA_du_sepNLINE] = RA_sepNLINE;
 
 
 //dz($_SERVER);
@@ -119,23 +124,41 @@ function dz(...$vars) { $pp = "p001a-0a";
 }
 
 function du(...$vars) { $pp = "p001a-1a";
+  global $RA;
+  $do__sepNLINE = $RA[RA_du_sepNLINE];
   echo "\n";
+  $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1)[0];
+  $file = file($trace['file']);
+  $line = $file[$trace['line'] - 1]; // Получаем строку кода, где вызвана функция
+
+  // С помощью регулярного выражения извлекаем то, что было внутри скобок func_name(...)
+  preg_match('/debug_vars\((.*?)\)/', $line, $matches);
+  /*
+  if (isset($matches[1])) {
+    $vnames = [];
+    foreach (explode(RA_sepLIST, $matches[1])) {
+
+    }
+  }
+  */
   // Orange/Brown for structural brackets
   $orange = "\e[38;5;208m"; 
   $reset  = "\e[0m";
   foreach ($vars as $v) {
     if (is_array($v)) {
       $count = count($v);
-      echo "\e[34m^\e[0m \e[36marray:$count\e[0m {$orange}[{$reset}\n";
+      echo "\e[34m^\e[0m \e[36marray:$count\e[0m {$orange}[{$reset}$do__sepNLINE";
       formatTerminalArray($v, 2);
-      echo "{$orange}]{$reset}\n";
+      echo "{$orange}]{$reset}" . $do__sepNLINE;
     } else {
-      echo "\e[34m^\e[0m " . formatTerminalValue($v, 0) . "\n";
+      echo "\e[34m^\e[0m " . formatTerminalValue($v, 0) . $do__sepNLINE;
     }
   }
 }
 
 function formatTerminalArray($array, $indent = 2) { $pp = "p001a-2a";
+  global $RA;
+  $do__sepNLINE = $RA[RA_du_sepNLINE];
   $spaces = str_repeat(" ", $indent);
   $orange = "\e[38;5;208m";
   $reset  = "\e[0m";
@@ -144,12 +167,12 @@ function formatTerminalArray($array, $indent = 2) { $pp = "p001a-2a";
     $formattedKey = is_string($key) ? "{$orange}\"{$reset}{$key}{$orange}\"{$reset}" : "\e[36m$key\e[0m";
     if (is_array($val)) {
       $count = count($val);
-      echo $spaces . $formattedKey . " {$orange}=>{$reset} \e[36marray:$count\e[0m {$orange}[{$reset}\n";
+      echo $spaces . $formattedKey . " {$orange}=>{$reset} \e[36marray:$count\e[0m {$orange}[{$reset}" . $do__sepNLINE;
       formatTerminalArray($val, $indent + 2);
-      echo $spaces . "{$orange}]{$reset}\n";
+      echo $spaces . "{$orange}]{$reset}" . $do__sepNLINE;
     } else {
       // Arrows are colored orange
-      echo $spaces . $formattedKey . " {$orange}=>{$reset} " . formatTerminalValue($val, $indent) . "\n";
+      echo $spaces . $formattedKey . " {$orange}=>{$reset} " . formatTerminalValue($val, $indent) . $do__sepNLINE;
     }
   }
 }
@@ -159,18 +182,18 @@ function formatTerminalValue($val, $indent = 0) { $pp = "p001a-3a";
   $reset  = "\e[0m";
   $bold   = "\e[1m"; // ANSI Bold Modifier
   if (is_string($val)) {
-    if (strpos($val, "\n") !== false) {          
+    if (strpos($val, "\n") !== false) {
       $spaces = str_repeat(" ", $indent + 2);
       $indentedString = str_replace("\n", "\n" . $spaces, $val);
       // Quotes are orange, string text inside is BOLD green (\e[1;32m)
       return "{$orange}\"{$reset}\e[1;32m\n{$spaces}" . $indentedString . "{$reset}{$orange}\n\"{$reset}";
     }
-    return "{$orange}\"{$reset}\e[1;32m{$val}{$reset}{$orange}\"{$reset}";                  
+    return "{$orange}\"{$reset}\e[1;32m{$val}{$reset}{$orange}\"{$reset}";
   }
   // Bold numbers (\e[1;33m), Bold magenta booleans (\e[1;35m), Bold gray nulls (\e[1;90m)
-  if (is_numeric($val)) return "\e[1;36m{$val}{$reset}";                     
+  if (is_numeric($val)) return "\e[1;36m{$val}{$reset}";
   if (is_bool($val))    return "\e[1;35m" . ($val ? 'true' : 'false') . "{$reset}"; 
-  if (is_null($val))    return "\e[1;90mnull{$reset}";                     
+  if (is_null($val))    return "\e[1;90mnull{$reset}";
 
   return $val;
 }
@@ -339,31 +362,9 @@ function duz(array $log, $ref = 'NULL') { $pp = "p001a-12a";
   exit(1);
 }
 
-function de($str) { $pp = "p001a-13a";
+function de(...$vars) { $pp = "p001a-13a";
   global $RA;
-  $RA[RA_sql_stop] = 1;
-  _raCore_iniTables();
-  $RA[RA_sql_stop] = 0;
-  if(preg_match_all("/".RA_sepWORD."/", $str, $arr) === false || ($cnt = count($arr)) != 3) {
-
-    $ep = "$pp-e1";
-    $msg = "$ep Bad string for output in de($str)" . ($cnt != 3 ? " - matches count != 3" : "");
-    throw new Exception ($msg);
-  }
-  $ret = '';
-  foreach ($arr[1] as $arr_i => $val) {
-    echo "\n$val";
-    if (substr($val, 0, 1) == RA_sepPHP) {
-      $ret .= "\\$val(";
-      if (is_array($val)) {
-        $ret .= implode(',',$val) . ")";
-      } else {
-        $ret .= $val . ")";        
-      }
-    } else {
-      $ret .= $val;
-    }
-    $ret .= $arr[2][$arr_i];
-  }
-  dz($RA);
+  if (($sep_de = (int) explode(RA_sepMINUS, $vars[0])[1] ?? 0)) $RA[RA_du_sepNLINE] = '';
+  du($vars);
+  $RA[RA_du_sepNLINE] = RA_sepNLINE;
 }
