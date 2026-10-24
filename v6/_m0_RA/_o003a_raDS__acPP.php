@@ -5,7 +5,7 @@ include_once '_o002a_raCore__acPP_ini.php';
 function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
   global $RA;
   $_DS_ref = "_arDS";
-  $_DS_ver = "1.0.$_DS_ref test integral";
+  $_DS_ver = "1.1.$_DS_ref new __sepWORD";
   if (!($RA[RA_ver_stop]++)) duv($_DS_ver, $_DS_ref, $pp);
 //de("0a-1-u1 $cn__arDS");
   $RA[RA_DS] = $DS_ret = [];
@@ -148,7 +148,7 @@ function __rule_calc($rule_el) { $pp = "p003a-3a";
       $_altNUM_for_cnt = $rule_el;
       $ruleFLD = 'main__bvPQ';
       $innPATT = "/###/";
-      $ruleFLD_sep = "\s*[RA_sepPART_Q-]\s*|\s+";
+      $ruleFLD_sep = RA_sepWORD;
     } else {
       $ruleFLD = explode(RA_sepOPTION, $RA[RA_cn__arDS][$tknNUM_arr[0]]['cxF__EXPR'])[0];
       $innPATT = $RA[RA_cn__arDS][$tknNUM_arr[0]]['val__bvPQ'];

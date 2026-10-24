@@ -71,13 +71,14 @@ const RA_sepVALUE = " : ";
 const RA_sepOPTION = ":";
 const RA_sepBACK = " :: ";
 const RA_sepLIST = " , ";
+const RA_sepLIST_T = ",";
 const RA_sepALT = " / ";
 const RA_sepALT_Q = " \\/ ";
 const RA_sepPART = "/";
 const RA_sepPART_Q = "\\/";
 const RA_sepREM = " -- ";
 const RA_sepPER = "@";
-const RA_sepWORD = "(\\$?\\w+)( *(?![_[\\]])[[:punct:]] *| +|\\b)";
+const RA_sepWORD = "\\W+";
 const RA_sepSTRUC = ".";
 const RA_sepSTRUC_Q = "\\.";
 const RA_sepPHP = "\$";
@@ -132,26 +133,29 @@ function du(...$vars) { $pp = "p001a-1a";
   $line = $file[$trace['line'] - 1]; // Получаем строку кода, где вызвана функция
 
   // С помощью регулярного выражения извлекаем то, что было внутри скобок func_name(...)
-  preg_match('/debug_vars\((.*?)\)/', $line, $matches);
-  /*
+  preg_match('/\((.*?)\)/', $line, $matches);
+  $vnames = [];
   if (isset($matches[1])) {
-    $vnames = [];
-    foreach (explode(RA_sepLIST, $matches[1])) {
-
+    foreach (explode(RA_sepLIST_T, $matches[1]) as $vname) {
+      $vnames[] = $vname;
     }
+  } else {
+    print_r($matches);
+    echo "\nErrors in call du() parameters ($line)\n";
+    exit(1);
   }
-  */
   // Orange/Brown for structural brackets
   $orange = "\e[38;5;208m"; 
   $reset  = "\e[0m";
-  foreach ($vars as $v) {
+  foreach ($vars as $vars_i => $v) {
     if (is_array($v)) {
       $count = count($v);
-      echo "\e[34m^\e[0m \e[36marray:$count\e[0m {$orange}[{$reset}$do__sepNLINE";
+      //echo "\e[34m^\e[0m \e[36marray:$count\e[0m {$orange}[{$reset}$do__sepNLINE";
+      echo "\e[34m^\e[0m \e[36marray:(" . $vnames[$vars_i] . ")\e[0m {$orange}[{$reset}$do__sepNLINE";
       formatTerminalArray($v, 2);
       echo "{$orange}]{$reset}" . $do__sepNLINE;
     } else {
-      echo "\e[34m^\e[0m " . formatTerminalValue($v, 0) . $do__sepNLINE;
+      echo "\e[34m^\e[0m (" . $vnames[$vars_i] . ") " . formatTerminalValue($v, 0) . $do__sepNLINE;
     }
   }
 }
@@ -308,7 +312,7 @@ function duv($ver, $ref, $pp = 0) { $pp = ($pp ? $pp : "p001a-10a");
   global $RA;
   $vers = explode(RA_sepSTRUC, $ver, 3);
   extract($vers, EXTR_PREFIX_ALL, 'vers');
-  $vers_2 = ltrim(explode("$vers_0{".RA_sepSTRUC."}$vers_1", $ver)[1], RA_sepSTRUC);
+  $vers_2 = ltrim(explode("$vers_0".RA_sepSTRUC."$vers_1", $ver)[1], RA_sepSTRUC);
   if (($tname = __get_table('_logVER__arT'))) {
     $ref = $RA[RA_var]['ref'] . " / $ref";
     $where_s = "ref__svPQ = '$ref' and major__nuDB = $vers_0 and minor__nuDB = $vers_1";

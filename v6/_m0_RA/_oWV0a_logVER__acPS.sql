@@ -1,5 +1,6 @@
 REPLACE INTO _wRA_LOG._oWV0a_logVER__arT (_arT,ref__svPQ,major__nuDB,minor__nuDB,build__nuDB,expl__svKB,cre__dsDB) VALUES
-	 (4294967262,'@gV / webdev3.work.deeplace.md / _RA',1,0,1,'_RA class - squeak up','2026-10-21 12:51:25.000'),
+	 (4294967261,'@gV / webdev3.work.deeplace.md / _arDS',1,1,11,'_arDS new __sepWORD','2026-10-24 14:51:13.000'),
+	 (4294967262,'@gV / webdev3.work.deeplace.md / _RA',1,0,2,'_RA class - squeak up','2026-10-21 12:51:25.000'),
 	 (4294967263,'@gV / webdev3.work.deeplace.md / _arDS',1,0,7,'_arDS test integral','2026-10-21 09:42:02.000');
 	 (4294967264,'@gV / ASUS-960 / _arDS',1,0,0,'_arDS test integral','2026-10-20 23:21:04.000'),
 	 (4294967265,'@gV / ASUS-960 / _arDS',0,18,47,'_arDS test All - edit rule _IT - _mW_LOG','2026-10-20 19:24:49.000'),
