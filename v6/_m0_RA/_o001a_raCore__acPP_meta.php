@@ -33,10 +33,11 @@ const DS_altTKN = 8;
 
 const DS_ret_dst = 0;
 const DS_ret_dso = 1;
-const DS_ret_sep = 2;
-const DS_ret_dsx = 3;
-const DS_ret_dsn = 4;
-const DS_ret_fcc = 5;
+const DS_ret_dson = 2;
+const DS_ret_sep = 3;
+const DS_ret_dsx = 4;
+const DS_ret_dsn = 5;
+const DS_ret_fcc = 6;
 
 const RA_rule__EXPR_cnt = 3;
 const RA_rule__EXPR_dsx = 0;
@@ -133,7 +134,7 @@ function du(...$vars) { $pp = "p001a-1a";
   $line = $file[$trace['line'] - 1]; // Получаем строку кода, где вызвана функция
 
   // С помощью регулярного выражения извлекаем то, что было внутри скобок func_name(...)
-  preg_match('/\((.*?)\)/', $line, $matches);
+  preg_match('/(?<=\bdu|dz)\((.*?)\)/', $line, $matches);
   $vnames = [];
   if (isset($matches[1])) {
     foreach (explode(RA_sepLIST_T, $matches[1]) as $vname) {
@@ -150,12 +151,12 @@ function du(...$vars) { $pp = "p001a-1a";
   foreach ($vars as $vars_i => $v) {
     if (is_array($v)) {
       $count = count($v);
-      //echo "\e[34m^\e[0m \e[36marray:$count\e[0m {$orange}[{$reset}$do__sepNLINE";
-      echo "\e[34m^\e[0m \e[36marray:(" . $vnames[$vars_i] . ")\e[0m {$orange}[{$reset}$do__sepNLINE";
+      //echo "\e[34m^\e[0m \e[36marray:$count\e[0m {$orange}[{$reset}$do__sepNLINE"; var_dump($vnames, $matches, $vars_i);
+      echo "\e[34m^\e[0m \e[36marray:(" . ($vnames[$vars_i] ?? $vars[$vars_i]) . ")\e[0m {$orange}[{$reset}$do__sepNLINE";
       formatTerminalArray($v, 2);
       echo "{$orange}]{$reset}" . $do__sepNLINE;
     } else {
-      echo "\e[34m^\e[0m (" . $vnames[$vars_i] . ") " . formatTerminalValue($v, 0) . $do__sepNLINE;
+      echo "\e[34m^\e[0m (" . ($vnames[$vars_i] ?? $vars[$vars_i]) . ") " . formatTerminalValue($v, 0) . $do__sepNLINE;
     }
   }
 }

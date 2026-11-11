@@ -610,7 +610,6 @@ $FTI_ALL =  FTI_ALL;
       KEY nfc_expr__arP_FK_chiTerm__arP (chiTerm__arP),
       KEY nfc_expr__arP_FK_attrTYPE__arS (attrTYPE__arS),
       KEY nfc_expr__arP_FK_attrTITLE__arS (attrTITLE__arS),
-      KEY nfc_expr__arP_FK_arP (arP),
       KEY nfc_expr__arP_XK_expr__eS (expr__eS),
       CONSTRAINT nfc_expr__arP_FK_arP FOREIGN KEY (arP) REFERENCES nfc__arP (arP) ON DELETE CASCADE ON UPDATE CASCADE,
       CONSTRAINT nfc_expr__arP_FK_attrTITLE__arS FOREIGN KEY (attrTITLE__arS) REFERENCES nfc_expr_attr__arS (arS) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -664,7 +663,6 @@ $FTI_ALL =  FTI_ALL;
   db_query("CREATE table if not exists nfc_rs_regi_syn__arPD_link (
       link__id int unsigned primary key not null,
       syn__id int unsigned null,
-      key nfc_rs_regi_syn__arPD_om_XK_link__id(link__id),
       key nfc_rs_regi_syn__arPD_om_FK_syn__id(syn__id),
       CONSTRAINT nfc_rs_regi_syn__arPD_om_FK_syn__id FOREIGN KEY (syn__id)
         REFERENCES nfc_rs_regi_syn__arPD (syn__id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -703,7 +701,6 @@ $FTI_ALL =  FTI_ALL;
   db_query("CREATE table if not exists nfc_rs_vine_syn__arPD_link (
       link__id int unsigned primary key not null,
       syn__id int unsigned null,
-      key nfc_rs_vine_syn__arPD_om_XK_link__id(link__id),
       key nfc_rs_vine_syn__arPD_om_FK_syn__id(syn__id),
       CONSTRAINT nfc_rs_vine_syn__arPD_om_FK_syn__id FOREIGN KEY (syn__id)
         REFERENCES nfc_rs_vine_syn__arPD (syn__id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -738,7 +735,6 @@ $FTI_ALL =  FTI_ALL;
       countries varbinary(1024),
       vine__id int unsigned not null,
       PRIMARY KEY (link__id),
-      KEY nfc_expr_vine__arPD_link_FK_link__id (link__id),
       KEY nfc_expr_vine__arPD_link_FK_vine__id (vine__id)
     )
   ");
@@ -747,7 +743,6 @@ $FTI_ALL =  FTI_ALL;
       om__id int unsigned not null,
       vine__id int unsigned not null,
       PRIMARY KEY (om__id),
-      KEY nfc_expr_vine__arPD_om_FK_om__id (om__id),
       KEY nfc_expr_vine__arPD_om_FK_vine__id (vine__id)
     )
   ");
@@ -757,7 +752,6 @@ $FTI_ALL =  FTI_ALL;
       dups__lvl tinyint not null default 0,
       vine__id int unsigned not null,
       PRIMARY KEY (dups__id),
-      KEY nfc_expr_vine__arPD_dups_FK_dups__id (dups__id),
       KEY nfc_expr_vine__arPD_dups_XK_dups__lvl (dups__lvl),
       KEY nfc_expr_vine__arPD_dups_FK_vine__id (vine__id)
     )
@@ -786,7 +780,6 @@ $FTI_ALL =  FTI_ALL;
       dups__lvl tinyint not null default 0,
       wine__id int(10) unsigned NOT NULL,  
       PRIMARY KEY (dups__id),
-      KEY nfc_expr_wine__arPD_dups_FK_dups__id (dups__id),
       KEY nfc_expr_wine__arPD_dups_XK_dups__lvl (dups__lvl),
       KEY nfc_expr_wine__arPD_dups_FK_wine__id (wine__id)
     )
@@ -1281,8 +1274,7 @@ function nfc_create_indexes() {
   nfc_create_constraints();
 // nfc__acPU
   db_query("ALTER TABLE IF EXISTS nfc__acPU 
-    ADD INDEX if not exists nfc__acPU_FK_child__arP(child__arP),
-    ADD INDEX if not exists nfc__acPU_FK_parrent__arP(parrent__arP)
+    ADD INDEX if not exists nfc__acPU_FK_child__arP(child__arP)
   ");
 // nfc__acPU_wine
   db_query("ALTER TABLE IF EXISTS nfc__acPU_wine 
@@ -1291,26 +1283,12 @@ function nfc_create_indexes() {
   ");
 // nfc_type__arP
   db_query("ALTER TABLE IF EXISTS nfc_type__arP 
-    ADD UNIQUE INDEX if not exists nfc_type__arP_UK_dsP(dsP),
-    ADD INDEX if not exists nfc_type__arP_FK_arP(arP)
+    ADD UNIQUE INDEX if not exists nfc_type__arP_UK_dsP(dsP)
   ");
-// nfc_type_segments__arPD
-  db_query("ALTER TABLE IF EXISTS nfc_type_segments__arPD
-    ADD INDEX if not exists nfc_type_segments__arPD_FK_segment__arP(segment__arP)
-  ");  
 // nfc_word__arP
-  db_query("ALTER TABLE IF EXISTS nfc_word__arP 
-    ADD INDEX if not exists nfc_word__arP_FK_arP(arP),
+  db_query("ALTER TABLE IF EXISTS nfc_word__arP
     ADD INDEX if not exists nfc_word__arP_XK_word__eMT(word__eMT),
     ADD UNIQUE INDEX if not exists nfc_word__arP_UK_dsP(dsP)
-  ");
-// nfc_word__acPG_lang
-  db_query("ALTER TABLE IF EXISTS nfc_word__acPG_lang
-    ADD INDEX if not exists nfc_word__arP_FK_acPG(arP)
-  ");
-// nfc_expr_attr__arSD
-  db_query("ALTER TABLE IF EXISTS nfc_expr_attr__arSD
-    ADD INDEX if not exists nfc_expr_attr__arSD_FK_expr__arP(expr__arP)
   ");
 // nfc_expr_attr__arS
   db_query("ALTER TABLE IF EXISTS nfc_expr_attr__arS
@@ -1320,14 +1298,13 @@ function nfc_create_indexes() {
     ADD UNIQUE INDEX if not exists nfc_expr_attr__arS_UK_WINE__arSD(REGI__arSD,VINE__arSD,WINE__arSD)
   ");
 // nfc_term__arP
-  db_query("ALTER TABLE IF EXISTS nfc_term__arP 
-    ADD INDEX if not exists nfc_term__arP_FK_arP(arP),
+  db_query("ALTER TABLE IF EXISTS nfc_term__arP
     ADD INDEX if not exists nfc_term__arP_XK_expr__eS(expr__eS),
     ADD UNIQUE INDEX if not exists nfc_term__arP_UK_dsP(dsP),
     ADD INDEX if not exists nfc_term__arP_XK_rang(rang)
   ");
 // nfc_term__acPU_word
-  db_query("ALTER TABLE IF EXISTS nfc_term__acPU_word 
+  db_query("ALTER TABLE IF EXISTS nfc_term__acPU_word
     ADD INDEX if not exists nfc_term__acPU_word_FK_term__arP(term__arP),
     ADD INDEX if not exists nfc_term__acPU_word_FK_word__arP(word__arP)
   ");
@@ -1348,10 +1325,6 @@ function nfc_create_indexes() {
     ADD INDEX if not exists nfc_rule__acSG_term_expr_FK_whenTerm__arP(whenTerm__arP),
     ADD INDEX if not exists nfc_rule__acSG_term_expr_FK_keyExpr__arP(keyExpr__arP)
   ");
-// nfc_expr_wine__arPD
-  db_query("ALTER TABLE IF EXISTS nfc_expr_wine__arPD
-    ADD INDEX if not exists nfc_expr_wine__arPD_FK_arP(arP)
-  ");
 // nfc_expr_wine__acPU_blend
   db_query("ALTER TABLE IF EXISTS nfc_expr_wine__acPU_blend
     ADD INDEX if not exists nfc_expr_wine__acPU_blend_FK_wine__arP(wine__arP),
@@ -1362,10 +1335,6 @@ function nfc_create_indexes() {
     ADD INDEX if not exists nfc_expr_wine__acPU_tara_FK_wine__arP(wine__arP),
     ADD INDEX if not exists nfc_expr_wine__acPU_tara_UK_tara__id(tara__id)
   ");
-// nfc_expr_vine__arPD
-  db_query("ALTER TABLE IF EXISTS nfc_expr_vine__arPD 
-    ADD INDEX if not exists nfc_expr_vine__arPD_FK_vine__arP(vine__arP)
-  ");
 // nfc_expr__acPG_term
   db_query("ALTER TABLE IF EXISTS nfc_expr__acPG_term
     ADD INDEX if not exists nfc_expr__acPG_term_FK_expr__arP(expr__arP),
@@ -1374,12 +1343,10 @@ function nfc_create_indexes() {
   ");
 // nfc_expr_regi__arPD_link
   db_query("ALTER TABLE IF EXISTS nfc_expr_regi__arPD_link
-    ADD INDEX if not exists nfc_expr_regi__arPD_link_FK_link__id(link__id),
     ADD INDEX if not exists nfc_expr_regi__arPD_link_FK_regi__id(regi__id)
   ");
 // nfc_expr_grap__arPD_link
   db_query("ALTER TABLE IF EXISTS nfc_expr_grap__arPD_link
-    ADD INDEX if not exists nfc_expr_grap__arPD_link_FK_link__id(link__id),
     ADD INDEX if not exists nfc_expr_grap__arPD_link_FK_grap__id(grap__id)
   ");
 // nfc_expr_grap__acSG_blend
@@ -1452,12 +1419,10 @@ function nfc_drop_indexes() {
   ");
 // nfc_expr_regi__arPD_link
   db_query("ALTER TABLE IF EXISTS nfc_expr_regi__arPD_link
-    DROP INDEX IF EXISTS nfc_expr_regi__arPD_link_FK_link__id,
     DROP INDEX IF EXISTS nfc_expr_regi__arPD_link_FK_regi__id
   ");
 // nfc_expr_grap__arPD_link
   db_query("ALTER TABLE IF EXISTS nfc_expr_grap__arPD_link
-    DROP INDEX IF EXISTS nfc_expr_grap__arPD_link_FK_link__id,
     DROP INDEX IF EXISTS nfc_expr_grap__arPD_link_FK_grap__id
   ");
 // nfc_expr_grap__acSG_blend
@@ -1480,14 +1445,6 @@ function nfc_drop_indexes() {
   db_query("ALTER TABLE IF EXISTS nfc_expr_wine__acPU_tara
     DROP INDEX IF EXISTS nfc_expr_wine__acPU_tara_FK_wine__arP,
     DROP INDEX IF EXISTS nfc_expr_wine__acPG_tara_FK_tara__id
-  ");
-// nfc_expr_vine__arPD
-  db_query("ALTER TABLE IF EXISTS nfc_expr_vine__arPD
-    DROP INDEX IF EXISTS nfc_expr_vine__arPD_FK_vine__arP
-  ");
-// nfc_expr_wine__arPD
-  db_query("ALTER TABLE IF EXISTS nfc_expr_wine__arPD 
-    DROP INDEX IF EXISTS nfc_expr_wine__arPD_FK_arP
   ");
 // nfc_expr__acPU_term
   db_query("ALTER TABLE IF EXISTS nfc_expr__acPU_term 
@@ -1525,7 +1482,6 @@ function nfc_drop_indexes() {
 // nfc_term__arP
   db_query("ALTER TABLE IF EXISTS nfc_term__arP 
     DROP INDEX IF EXISTS nfc_term__arP_UK_dsP,
-    DROP INDEX IF EXISTS nfc_term__arP_FK_arP,
     DROP INDEX IF EXISTS nfc_term__arP_XK_expr__eS,
     DROP INDEX if exists nfc_term__arP_XK_rang
 
@@ -1533,22 +1489,12 @@ function nfc_drop_indexes() {
 // nfc_word__arP
   db_query("ALTER TABLE IF EXISTS nfc_word__arP 
     DROP INDEX IF EXISTS nfc_word__arP_UK_dsP,
-    DROP INDEX IF EXISTS nfc_word__arP_FK_arP,
     DROP INDEX IF EXISTS nfc_word__arP_XK_word__eMT
-  ");
-// nfc_word__acPG_lang
-  db_query("ALTER TABLE IF EXISTS nfc_word__acPG_lang
-    DROP INDEX IF EXISTS nfc_word__acPG_lang_FK_arP
   ");
 // nfc_type__arP
   db_query("ALTER TABLE IF EXISTS nfc_type__arP 
-    DROP INDEX IF EXISTS nfc_type__arP_FK_arP,
     DROP INDEX IF EXISTS nfc_type__arP_UK_dsP
   ");
-// nfc_type_segments__arPD
-  db_query("ALTER TABLE IF EXISTS nfc_type_segments__arPD 
-    DROP INDEX IF EXISTS nfc_type_segments__arPD_FK_segment__arP
-  ");  
 // nfc__acPU_wine
   db_query("ALTER TABLE IF EXISTS nfc__acPU_wine 
     DROP INDEX IF EXISTS nfc__acPU_wine_FK_child__arP,
@@ -1556,8 +1502,7 @@ function nfc_drop_indexes() {
   ");
 // nfc__acPU
   db_query("ALTER TABLE IF EXISTS nfc__acPU 
-    DROP INDEX IF EXISTS nfc__acPU_FK_child__arP,
-    DROP INDEX IF EXISTS nfc__acPU_FK_parrent__arP
+    DROP INDEX IF EXISTS nfc__acPU_FK_child__arP
  ");
   // nfc_word__arS_group
   db_query("ALTER TABLE IF EXISTS nfc_word__arS_group

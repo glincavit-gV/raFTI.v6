@@ -5,7 +5,7 @@ include_once '_o002a_raCore__acPP_ini.php';
 function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
   global $RA;
   $_DS_ref = "_arDS";
-  $_DS_ver = "1.1.$_DS_ref new __sepWORD";
+  $_DS_ver = "1.2.$_DS_ref adjust dso template";
   if (!($RA[RA_ver_stop]++)) duv($_DS_ver, $_DS_ref, $pp);
 //de("0a-1-u1 $cn__arDS");
   $RA[RA_DS] = $DS_ret = [];
@@ -46,16 +46,18 @@ function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
               $ep = "$pp-e5";
               $RA[RA_log][] = "$ep cn__arDS($cn__arDS) te__EXPR($DS_te__EXPR) has (dso) component($te_el) and it don't have the options separated with (RA_sepOPTION)";
             } else {
-              $DS_ret[] = [DS_ret_dso => __dsTE_calc($dso_arr, 1)];
+              for($dso_arr_i = 1; $dso_arr_i < count($dso_arr); $dso_arr_i++) {
+                $DS_ret[] = [($dso_arr_i == 1 ? DS_ret_dso : DS_ret_dson) => __dsTE_calc([$dso_arr[$dso_arr_i]])];
+              }
             }
             break;
           case 'ds':
-            $DS_ret[] = [DS_ret_dsx => __dsTE_calc(explode(RA_sepOPTION, $rule__EXPR_arr[RA_rule__EXPR_dsx]), 0)];
+            $DS_ret[] = [DS_ret_dsx => __dsTE_calc(explode(RA_sepOPTION, $rule__EXPR_arr[RA_rule__EXPR_dsx]))];
           case 'dsn':
-            $DS_ret[] = [DS_ret_dsn => __dsTE_calc(explode(RA_sepOPTION, $rule__EXPR_arr[RA_rule__EXPR_dsn]), 0)];
+            $DS_ret[] = [DS_ret_dsn => __dsTE_calc(explode(RA_sepOPTION, $rule__EXPR_arr[RA_rule__EXPR_dsn]))];
             break;
           case 'dsx':
-            $DS_ret[] = [DS_ret_dsx => __dsTE_calc(explode(RA_sepOPTION, $rule__EXPR_arr[RA_rule__EXPR_dsx]), 0)];
+            $DS_ret[] = [DS_ret_dsx => __dsTE_calc(explode(RA_sepOPTION, $rule__EXPR_arr[RA_rule__EXPR_dsx]))];
             break;
           case RA_sepCN:
           case RA_sepTY:
@@ -70,30 +72,31 @@ function _raDS_calc($cn__arDS) { $pp = "p003a-0a";
   $_dsABR_arr = explode(RA_sepADD, $RA[RA_cn__arDS][$_dsABR]['cxF__EXPR']);
   $DS_dsABR_ret = '';
   foreach ($DS_ret as $DS_ret_arr) {
-    switch (key($DS_ret_arr)) {
+    switch (($DS_ret_key = key($DS_ret_arr))) {
       case DS_ret_dst:
       case DS_ret_dso:
-        $DS_dsABR_ret .= __dsTE_abris($_dsABR_arr[RA_dsABR_rest], current($DS_ret_arr));
+      case DS_ret_dson:
+        $DS_dsABR_ret .= __dsTE_abris($_dsABR_arr[RA_dsABR_rest], current($DS_ret_arr), $DS_ret_key);
         break;
       case DS_ret_fcc:
       case DS_ret_sep:
         $DS_dsABR_ret .= current($DS_ret_arr);
         break;
       case DS_ret_dsx:
-        $DS_dsABR_ret .= __dsTE_abris($_dsABR_arr[RA_dsABR_dsx], current($DS_ret_arr));
+        $DS_dsABR_ret .= __dsTE_abris($_dsABR_arr[RA_dsABR_dsx], current($DS_ret_arr), $DS_ret_key);
         break;
       case DS_ret_dsn:
-        $DS_dsABR_ret .= __dsTE_abris($_dsABR_arr[RA_dsABR_dsn], current($DS_ret_arr));
+        $DS_dsABR_ret .= __dsTE_abris($_dsABR_arr[RA_dsABR_dsn], current($DS_ret_arr), $DS_ret_key);
         break;
     }
   }
   return $DS_dsABR_ret;
 }
 
-function __dsTE_calc(array $ds_arr, $ds_i) { $pp = "p004a-1a";
+function __dsTE_calc(array $ds_arr) { $pp = "p004a-1a";
   global $RA;
   $__dsTE_ret = '';
-  for($ds_arr_i = $ds_i; $ds_arr_i < count($ds_arr); $ds_arr_i++) {
+  for($ds_arr_i = 0; $ds_arr_i < count($ds_arr); $ds_arr_i++) {
     $ds_el = $ds_arr[$ds_arr_i];
     do {
       $__dsTE_ret .= __rule_calc($ds_el);
@@ -107,17 +110,19 @@ function __dsTE_calc(array $ds_arr, $ds_i) { $pp = "p004a-1a";
   return $__dsTE_ret;
 }
 
-function __dsTE_abris($dsABR, $dsRET) { $pp = "p004a-2a";
-  return ($dsABR == '_abrU'
-    ? strtoupper($dsRET)
-    : ($dsABR == '_abrS'
-      ? strtolower($dsRET)
-      : ($dsABR == '_abrH'
-        ? ucfirst(strtolower($dsRET))
-        : $dsRET
-      )
-    )
-  );
+function __dsTE_abris($dsABR, $dsRET, $dsRET_key) { $pp = "p004a-2a";
+  switch ($dsABR) {
+    case '_abrU':
+      return strtoupper($dsRET);
+    case '_abrS':
+      return strtolower($dsRET);
+    case '_abrH':
+      return ucfirst(strtolower($dsRET));
+    case '_abrC':
+      if ($dsRET_key == DS_ret_dson) return ucfirst(strtolower($dsRET));
+    case '_abrZ':
+      return $dsRET;
+  }
 }
 
 function __rule_calc($rule_el) { $pp = "p003a-3a";
@@ -215,9 +220,15 @@ function __rule_calc($rule_el) { $pp = "p003a-3a";
     }
   }
 //de("3a-0-u3", $calc_ret, $RA[RA_DS][DS_arr][$ruleFLD], $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]], $_altNUM_add, $RA[RA_cn__arDS][$_altNUM]['cxF__EXPR']);
-  $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]] += $_altNUM_add;
-  if ($RA[RA_DS][DS_tkn_cnt][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]] <= $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]]) {
-    $RA[RA_DS][DS_arr_i][$ruleFLD]++;
+  if ($_altNUM_add) {
+    $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]] += $_altNUM_add;
+    if ($RA[RA_DS][DS_tkn_cnt][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]] <= $RA[RA_DS][DS_tkn_i][$ruleFLD][$RA[RA_DS][DS_arr_i][$ruleFLD]]) {
+      $RA[RA_DS][DS_arr_i][$ruleFLD]++;
+    }
+  } else {
+    //du($RA[RA_DS][DS_arr][$ruleFLD], $RA[RA_DS][DS_altTKN][$ruleFLD][$_altTKN], $ruleFLD, $_altTKN);
+    $RA[RA_DS][DS_arr][$ruleFLD] = $RA[RA_DS][DS_altTKN][$ruleFLD][$_altTKN] = null;
+    $RA[RA_DS][DS_arr_i][$ruleFLD]--;
   }
   return $calc_ret;
 }
@@ -279,6 +290,11 @@ function _raDS_test_one($cn__arDS, $cnt = 0) { $pp = "p003a-10a";
   if ($ret_failed) dul([$msg. "\n"], 1);
   else echo $msg;
   return $ret_failed;
+}
+
+function _raDS_test_integral_gen($seed = 0) {
+  if ($seed) srand($seed); else srand();
+  
 }
 
 function _raDS_test_integral() { $pp = "p003a-11a";
