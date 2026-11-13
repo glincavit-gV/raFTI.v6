@@ -4,7 +4,7 @@ include_once '_o001a_raCore__acPP_meta.php';
 function _raCore_iniTables() { $pp = 'p002a-0a';
   global $RA;
   $_OM_ref = "_RA";
-  $_OM_ver = "1.1.$_OM_ref new _logVER_arTD_test data strub";
+  $_OM_ver = "1.2.$_OM_ref init _raLOC, _raCON, _raRES";
   $RA_raTY__arDS_cn__arDS = 0;
   $RA_raTY__arDS_cxN__arDS = 1;
   $cons = 'bcdfghjklmnpqrstvwxyz';
@@ -317,6 +317,7 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
 //                       dsx  +  dsn  + (rest) - the abris conversions: (C - upper / s - lower / z - leave as is) - cases of conversion
     ['_zzz', '_dsABR', '_abrZ + _abrZ + _abrZ', '', '__enZB', '_cxF_NA , _cxF_NA , _sss', '_/ds/dso:_cxF_NA'],
     ['_szz', '_dsABR', '_abrS + _abrZ + _abrZ', '', '__enZB', '_cxF_NA , _cxF_NA , _sss', '_/ds/dso:_cxF_NA'],
+    ['_zzs', '_dsABR', '_abrZ + _abrZ + _abrS', '', '__enZB', '_cxF_NA , _cxF_NA , _sss', '_/ds/dso:_cxF_NA'],
     ['_zUU', '_dsABR', '_abrZ + _abrU + _abrU', '', '__enZB', '_cxF_NA , _cxF_NA , _sUU', '_/ds/dso:_cxF_NA'],
     ['_sUU', '_dsABR', '_abrS + _abrU + _abrU', 'common ra cxCN like abris', '__enZB', '_cxF_NA , _cxF_NA , _sUU', '_/ds/dso:_cxF_NA'],
     ['_sss', '_dsABR', '_abrS + _abrS + _abrS', '', '__enZB', '_cxF_NA , _cxF_NA , _sss', '_/ds/dso:_cxF_NA'],
@@ -337,6 +338,7 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_sUC', '_dsABR', '_abrS + _abrU + _abrC', '', '__enZB', '_cxF_NA , _cxF_NA , _sUU', '_/ds/dso:_cxF_NA'],
     ['_ssC', '_dsABR', '_abrS + _abrS + _abrC', '', '__enZB', '_cxF_NA , _cxF_NA , _ssU', '_/ds/dso:_cxF_NA'],
     ['_zzC', '_dsABR', '_abrZ + _abrZ + _abrC', '', '__enZB', '_cxF_NA , _cxF_NA , _ssU', '_/ds/dso:_cxF_NA'],
+    ['_zzU', '_dsABR', '_abrZ + _abrZ + _abrU', '', '__enZB', '_cxF_NA , _cxF_NA , _ssU', '_/ds/dso:_cxF_NA'],
     ['__tySEP', '_raTY', '', 'separator', '__enZB', '_cxN_NA , _AT , _sUU', '__/ds'],
     ['RA_sepCN', '__tySEP', '_RA', "content -- or hierarchy level separator : " . RA_sepCN, '__evQB', '_cxF_AA , _cxNT_NA , _UsU', 'dsx/_/dsn/dso:_LE'],
     ['RA_sepTY', '__tySEP', '_RA', "type -- prefix : " . RA_sepTY, '__evQB', '_cxF_AA , _cxNT_NA , _UsU', 'dsx/_/dsn/dso:_AD'],
@@ -406,12 +408,12 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['fccV', 'fcc', '_hieO', 'version name space : _liMAX', '__evPQ', '_cxN_AA , _WS , _sUU', 'ds'],
     ['fccF', 'fcc', '_hieO', 'field name space : _liMIN', '__evPQ', '_cxN_AA , _WS , _sUU', 'ds'],
 
-    ['__tyA', '_raTY', '_hieA', 'agg. -- types', '__enZB', '_cxN_NA , _cxF_NA , _sUU', '__/ds'],
-    ['__tyGK', '_raTY', '', 'global key -- type ', '__enZB', '_cxN_NA , _WR , _sUU', '__/ds'],
-    ['__tyCOMP', '_raTY', '', 'components -- type ', '__enZB', '_cxN_NA , _AQ , _sUU', '__/ds'],
-    ['__tyFLD', '_raTY', '', 'field -- type ', '__enZB', '_cxN_NA , _CT , _sUU', '__/ds'],
-    ['__tyIND', '_raTY', '', 'index -- type ', '__enZB', '_cxN_NA , _AT , _sUU', '__/ds'],
-    ['__tyOBJ', '_raTY', '', 'object -- __tyCOMP + __tyFLD + __tyIND', '__enZB', '_cxN_NA , _AT , _sUU', '__/ds'],
+    ['__tyA', '_raTY', '_hieA', 'agg. -- type : __arP', '__evQB', '_cxN_NA , _cxF_NA , _sUU', '__/ds'],
+    ['__tyGK', '_raTY', '', 'global key -- type : __arP', '__evQB', '_cxN_NA , _WR , _sUU', '__/ds'],
+    ['__tyCOMP', '_raTY', '', 'components -- type : __arP', '__evQB', '_cxN_NA , _AQ , _sUU', '__/ds'],
+    ['__tyFLD', '_raTY', '', 'field -- type : __arP', '__evQB', '_cxN_NA , _CT , _sUU', '__/ds'],
+    ['__tyIND', '_raTY', '', 'index -- type : __arP', '__evQB', '_cxN_NA , _AT , _sUU', '__/ds'],
+    ['__tyOBJ', '_raTY', '', 'object -- __tyCOMP + __tyFLD + __tyIND : __arP', '__evQB', '_cxN_NA , _AT , _sUU', '__/ds'],
     ['__tyAR', '__tyA', '', 'register -- main component object', '__enZB', '_cxNT_AA , _WR , _zUU', '__/ds'],
     ['__tyAC', '__tyA', '', 'component -- slave component object', '__enZB', '_cxNT_AA , _WR , _zUU', '__/ds'],
     ['__tyAS', '__tyA', '', 'solution -- code component object', '__enZB', '_cxNT_AA , _WR , _zUU', '__/ds'],
@@ -584,10 +586,17 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['UKM_', '_gkU', '_icsK + _icsoM:__tyIND:__tyOBJ', '', '__enZB', '_cxN_NA , _cxF_NR , _UUU', 'ds/_'],
     ['UXM_', '_gkU', '_icsX + _icsoM:__tyIND:__tyOBJ', '', '__enZB', '_cxN_NA , _cxF_NR , _UUU', 'ds/_'],
     ['IXM_', '_gkI', '_icsX + _icsoM:__tyIND:__tyOBJ', '', '__enZB', '_cxN_NA , _cxF_NR , _UUU', 'ds/_'],
-    ['__tyPER', '_raTY', '', 'person -- phisic/juridic/registered name', '__enZB', '_cxN_NA , _AT , _sUU', '__/ds'],
+    ['__tyPER', '_raTY', '', 'person -- phisic/juridic/registered name : __arP', '__evQB', '_cxN_NA , _AT , _sUU', '__/ds'],
     ['_perP', '__tyPER', '', 'phisic', '__enZB', '_cxNT_NA , _WR , _sUU', '_/ds'],
     ['_perJ', '__tyPER', '', 'juruduc', '__enZB', '_cxNT_NA , _WR , _sUU', '_/ds'],
     ['_perR', '__tyPER', '', 'registered -- name', '__enZB', '_cxNT_NA , _WR , _sUU', '_/ds'],
+    ['__tyRES', '_raTY', '', 'resources -- host/disk/path/file/site/chat : __arP', '__evQB', '_cxN_NA , _AT , _sUU', '__/ds'],
+    ['_resHOST', '__tyRES', '', 'host', '__enZB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['_resDISK', '__tyRES', '', 'disk', '__enZB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['_resPATH', '__tyRES', '', 'path -- name', '__enZB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['_resFILE', '__tyRES', '', 'file -- name', '__enZB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['_resSITE', '__tyRES', '', 'site -- name', '__enZB', '_cxNT_NA , _AA , _sUU', '_/ds'],
+    ['_resCHAT', '__tyRES', '', 'chat -- name', '__enZB', '_cxNT_NA , _AA , _sUU', '_/ds'],
 
   ];
   $src['_raOBJ__arP'] = [
@@ -659,9 +668,10 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
       '', 'o051a'],
     ['_raCON__arP', '_m0_RA', '_a6_CON', '', '__enZB', '_cxNO_AA , _cxFO_AA , _sUz', '_/ds/__/dst', '__arP',
       'COMMENT onB_MOD _mod__arDS , _mod__EEXPR', 'o060a'],
-    ['_raCON__acPG', '_m0_RA', '_a6_CON', '@PER or @LOC to @CON grid', '__enZB', '_cxNO_AA , _cxFO_AA , _sUz', '_/ds/__/dst', '__acPG', '', 'o061a'],
     ['_raRES__arP', '_m0_RA', '_aR_RES', '', '__enZB', '_cxNO_AA , _cxFO_AA , _sUz', '_/ds/__/dst', '__arP',
       'COMMENT onB_MOD _mod__arDS , _mod__EEXPR', 'o0R0a'],
+    ['_raRES__acPG_chat', '_m0_RA', '_aR_RES', 'chat like file.md in _o0R2a_raRES__acRP', '__enZB', '_cxNO_AA , _cxFO_AA , _sUz', '_/ds/__/dst/_/dso:_cxFO_AA', '__acPG',
+      'COMMENT onB_MOD _mod__arDS , _mod__EEXPR', 'o0R1a'],
     ['_logVER__arT', '_mW_LOG', '_aV_VER', '', '__enZB', '_cxNO_AA , _cxFO_AA , _sUz', '_/ds/__/dst', '__arT',
       'COMMENT onB_MOD _mod__arDS , _mod__EEXPR', 'oWV0a'],
     ['_logVER__acTG', '_mW_LOG', '_aV_VER', '', '__enZB', '_cxNO_AA , _cxFO_AA , _sUz', '_/ds/__/dst', '__acTG',
@@ -681,6 +691,9 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_raYBUG__arP', '_m0_RA', '_aY_YBUG', '', '__enZB', '_cxNO_AA , _cxFO_AA , _sUz', '_/ds/__/dst', '__arP', '', 'o0Y0a'],
     ['__TY', '_raTY__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZA , _cxN_NA , _zzz', '__/ds', '__arP', 'NULL', ''],
     ['__OBJ', '_raOBJ__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZA , _cxN_NA , _zzz', '__/ds', '__arP', 'NULL', ''],
+    ['__LOC', '_raLOC__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZA , _cxN_NA , _zzz', '__/ds', '__arP', 'NULL', ''],
+    ['__PER', '_raPER__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZA , _cxN_NA , _zzz', '__/ds', '__arP', 'NULL', ''],
+    ['__CON', '_raCON__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZA , _cxN_NA , _zzz', '__/ds', '__arP', 'NULL', ''],
     ['__EXPR', '_raEXPR__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZA , _cxN_NA , _zzz', '__/ds', '__arP', 'NULL', ''],
     // _raCore__arP
     ['_arP', '_raCore__arP', '_hieV', 'primary register functor', '__enZB', '_ZA , _ZA , _zzz', '_/dst', '__arP', 'NOT NULL', ''],
@@ -719,20 +732,20 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['RK_raTY__arP_te', '_raTY__arP', 'te__EXPR', '', '__enZB', '_cxNU_UU , _ZA , _zzz',
       'dst/ds/_/dso:_cxF_AA', 'RK_', '_raCore__arPD_DS (cn__arP) ON UPDATE CASCADE', ''],
     // _raOBJ__arP - clone all fields from _raTY__arP and extend it to next fields
-    ['cn__TY', '_raOBJ__arP', '_cN:_hieV', '', '__enZB', '_cxF_AA , _ZA , _szz', 'ds/__/dst', '__TY', 'NULL DEFAULT NULL', ''],
+    ['cn__tyOBJ', '_raOBJ__arP', '_cN:_hieV', '', '__enZB', '_cxF_AA , _ZA , _szz', 'ds/__/dst', '__tyOBJ', 'NULL DEFAULT NULL', ''],
     ['ext__bvKB', '_raOBJ__arP', '_hieV', 'extended -- parameters of field', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst',
       '__bvKB', "NOT NULL DEFAULT ''", ''],
     ['fcc__svQB', '_raOBJ__arP', 'fcc:_hieV', '', '__enZB', '_cxF_AA , _ZA , _zzz', 'ds/__/dst',
       '__svQB', 'CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL', ''],
     ['UK_fcc', '_raOBJ__arP', 'fcc__svQB', '', '__enZB', '_ZA , _cxF_AA , _zzz', 'dst/_/ds', 'UK_', '', ''],
-    ['FK_raOBJ__arP_TY', '_raOBJ__arP', 'cn__TY', '', '__enZB', '_cxNU_UU , _ZA , _zzz',
-      'dst/ds/_/dso:_cxFT_AA', 'FK_', '_raTY__arP (cn__arP) ON DELETE SET NULL ON UPDATE CASCADE', ''],
+    ['FK_raOBJ__arP_TY', '_raOBJ__arP', 'cn__tyOBJ', '', '__enZB', '_cxNU_UU , _ZA , _zzU',
+      'dst/ds/_/dso:_cxFT_XA', 'FK_', '_raTY__arP (cn__arP) ON DELETE SET NULL ON UPDATE CASCADE', ''],
     // _raOBJ__acPG_hie
     ['par__OBJ', '_raOBJ__acPG_hie', '_hieV', 'parent', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__OBJ', 'NULL', ''],
     ['chi__OBJ', '_raOBJ__acPG_hie', '_hieV', 'child', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__OBJ', 'NULL', ''],
     ['multi__OBJ', '_raOBJ__acPG_hie', '_hieV', 'multi -- fields keys', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst', '__OBJ', 'NULL', ''],
     ['row__nuZB', '_raOBJ__acPG_hie', '_hieV', 'row', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__nuZB', 'NOT NULL', ''],
-    ['UKM_raOBJ__acPG_hie_par', '_raOBJ__acPG_hie', 'par__OBJ', '', '__enZB', '_cxNU_UU , _ZA , _zzz', 'dst/ds/_/dso:_cxF_AA', 'UKM_', '', ''],
+    ['PKM_raOBJ__acPG_hie_par', '_raOBJ__acPG_hie', 'par__OBJ', '', '__enZB', '_cxNU_UU , _ZA , _zzz', 'dst/ds/_/dso:_cxF_AA', 'PKM_', '', ''],
     ['FK_raOBJ__acPG_hie_par', '_raOBJ__acPG_hie', 'par__OBJ', '', '__enZB', '_cxNU_UU , _ZA , _zzz',
       'dst/ds/_/dso:_cxF_AA', 'FK_', '_raOBJ__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
     ['FK_raOBJ__acPG_hie_chi', '_raOBJ__acPG_hie', 'chi__OBJ', '', '__enZB', '_cxNU_UU , _ZA , _zzz',
@@ -759,8 +772,54 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
       'dst/ds/_/dso:_cxF_AA', 'FK_', '_raEXPR__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
     ['FK_raEXPR__acPG_chi', '_raEXPR__acPG', 'chi__arP', '', '__enZB', '_cxNU_UU , _ZA , _zzz',
       'dst/ds/_/dso:_cxF_AA', 'FK_', '_raCore__arPD_DS (cn__arP) ON UPDATE CASCADE', ''],
-    ['FK_raPER__arP_TY', '_raPER__arP', 'cn__TY', '', '__enZB', '_cxNU_UU , _ZA , _zzz',
-      'dst/ds/_/dso:_cxFT_AA', 'FK_', '_raTY__arP (cn__arP) ON DELETE SET NULL ON UPDATE CASCADE', ''],
+    // _raLOC__arP
+    ['cn__tyLOC', '_raLOC__arP', '_cN:_hieV', '', '__enZB', '_cxF_AA , _ZA , _szz', 'ds/__/dst', '__tyPER', 'NULL DEFAULT NULL', ''],
+    ['FK_raLOC__arP_TY', '_raLOC__arP', 'cn__tyLOC', '', '__enZB', '_cxNU_UU , _ZA , _zzU',
+      'dst/ds/_/dso:_cxFT_XA', 'FK_', '_raTY__arP (cn__arP) ON UPDATE CASCADE', ''],
+    // _raPER__arP
+    ['cn__tyPER', '_raPER__arP', '_cN:_hieV', '', '__enZB', '_cxF_AA , _ZA , _szz', 'ds/__/dst', '__tyPER', 'NULL DEFAULT NULL', ''],
+    ['ym__nuSB', '_raPER__arP', '_hieV', 'year mounth', '__enZB', '_WR , _ZA , _szz', 'ds/__/dst', '__nuSB', 'NULL DEFAULT NULL', ''],
+    ['FK_raPER__arP_TY', '_raPER__arP', 'cn__tyPER', '', '__enZB', '_cxNU_UU , _ZA , _zzU',
+      'dst/ds/_/dso:_cxFT_XA', 'FK_', '_raTY__arP (cn__arP) ON UPDATE CASCADE', ''],
+    // _raPER__acPG_LOC
+    ['cn__PER', '_raPER__acPG_LOC', '_hieV', '@PER', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__PER', 'NULL', ''],
+    ['cn__LOC', '_raPER__acPG_LOC', '_hieV', '@LOC', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__LOC', 'NULL', ''],
+    ['cn__tyPiL', '_raPER__acPG_LOC', '_hieV', '', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst', '__tyPiL', 'NULL', ''],
+    ['cn__stPiL', '_raPER__acPG_LOC', '_hieV', 'row', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__stPiL', 'NOT NULL', ''],
+    ['PKM_raPER__acPG_LOC_cn', '_raPER__acPG_LOC', 'cn__PER', '', '__enZB', '_cxNU_UU , _ZA , _zzz', 'dst/ds/_/dso:_cxF_AA', 'PKM_', '', ''],
+    ['FK_raPER__acPG_LOC_PER', '_raPER__acPG_LOC', 'cn__PER', '', '__enZB', '_cxNU_UU , _ZA , _zzz',
+      'dst/ds/_/dso:_cxFT_AA', 'FK_', '_raPER__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
+    ['FK_raPER__acPG_LOC_LOC', '_raPER__acPG_LOC', 'cn__LOC', '', '__enZB', '_cxNU_UU , _ZA , _zzz',
+      'dst/ds/_/dso:_cxFT_AA', 'FK_', '_raLOC__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
+    ['FK_raPER__acPG_LOC_tyPiL', '_raPER__acPG_LOC', 'cn__tyPiL', '', '__enZB', '_cxNU_UU , _ZA , _zzz',
+      'dst/ds/_/dso:_cxFT_AA', 'FK_', '_raTY__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
+    ['FK_raPER__acPG_LOC_stPiL', '_raPER__acPG_LOC', 'cn__stPiL', '', '__enZB', '_cxNU_UU , _ZA , _zzz',
+      'dst/ds/_/dso:_cxFT_AA', 'FK_', '_raTY__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
+    // _raCON__arP
+    ['cn__tyCON', '_raCON__arP', '_cN:_hieV', '', '__enZB', '_cxF_AA , _ZA , _szz', 'ds/__/dst', '__tyPER', 'NULL DEFAULT NULL', ''],
+    ['FK_raCON__arP_TY', '_raCON__arP', 'cn__tyCON', '', '__enZB', '_cxNU_UU , _ZA , _zzU',
+      'dst/ds/_/dso:_cxFT_XA', 'FK_', '_raTY__arP (cn__arP) ON UPDATE CASCADE', ''],
+      // _raRES__arP
+    ['cn__tyRES', '_raRES__arP', '_cN:_hieV', '', '__enZB', '_cxF_AA , _ZA , _szz', 'ds/__/dst', '__tyRES', 'NULL DEFAULT NULL', ''],
+    ['cn__blGB', '_raRES__arP', '_cN:_hieV', ' -- GBytes content store', '__enZB', '_cxF_AA , _ZA , _szz', 'ds/__/dst', '__blGB', 'NULL DEFAULT NULL', ''],
+    ['FK_raRES__arP_TY', '_raRES__arP', 'cn__tyRES', '', '__enZB', '_cxNU_UU , _ZA , _zzU',
+      'dst/ds/_/dso:_cxFT_XA', 'FK_', '_raTY__arP (cn__arP) ON UPDATE CASCADE', ''],
+    // _raRES__acPG_chat
+    ['cn__RES', '_raRES__acPG_chat', '_cN:_hieV', '', '__enZB', '_cxNO_AA , _ZA , _zzz', 'ds/__/dst', '__RES', 'NOT NULL', ''],
+    ['line__nuSB', '_raRES__acPG_chat', '_hieV', 'line -- number in chat file', '__enZB', '_cxF_NA , _ZA , _szz', 'ds/__/dst', '__nuSB', 'NOT NULL', ''],
+    ['reply__PER', '_raRES__acPG_chat', '_hieV', 'reply __PER -- autor', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__PER', 'NOT NULL', ''],
+    ['reply__tyREP', '_raRES__acPG_chat', 'reply__PER:_hieV', 'reply type', '__enZB', 'cxF_AA , _ZA , _szz', 'ds/__/dst', '__tyREP', 'NOT NULL', ''],
+    ['sum__bvKB', '_raRES__acPG_chat', '_hieV', 'summary of replica', '__enZB', '_AT , _ZA , _zzz', 'ds/__/dst', '__bvKB', 'NOT NULL', ''],
+    ['ref__EXPR', '_raRES__acPG_chat', '_hieV', 'reference if any', '__enZB', '_AT , _ZA , _zzz', 'ds/__/dst', '__EXPR', 'NOT NULL', ''],
+    ['PKM_raRES__acPG_chat_cn', '_raRES__acPG_chat', 'cn__RES', '', '__enZB', '_cxNU_UU , _ZA , _zzz', 'dst/ds/_/dso:_cxF_AA', 'PKM_', 'NOT NULL', ''],
+    ['FK_raRES__acPG_chat_RES', '_raRES__acPG_chat', 'cn__RES', '', '__enZB', '_cxNU_UU , _ZA , _zzU',
+      'dst/ds/_/dso:_cxFT__AA', 'FK_', '_raRES__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
+    ['FK_raRES__acPG_chat_EXPR', '_raRES__acPG_chat', 'ref__EXPR', '', '__enZB', '_cxNU_UU , _ZA , _zzz',
+      'dst/ds/_/dso:_cxFT_AA', 'FK_', '_raCore__arP(_arP) ON DELETE SET NULL ON UPDATE CASCADE', ''],
+    ['FK_raRES__acPG_chat_PER', '_raRES__acPG_chat', 'reply__PER', '', '__enZB', '_cxNU_UU , _ZA , _zzz',
+      'dst/ds/_/dso:_cxFT_AA', 'FK_', '_raCore__arP(_arP) ON DELETE SET NULL ON UPDATE CASCADE', ''],
+    ['FK_raRES__acPG_chat_tyREP', '_raRES__acPG_chat', 'reply__tyREP', '', '__enZB', '_cxNU_UU , _ZA , _zzz',
+      'dst/ds/_/dso:_cxFT_AA', 'FK_', '_raCore__arP(_arP) ON UPDATE CASCADE', ''],
     // _logVER__arT
     ['_arT', '_logVER__arT', '_hieV', 'tertiary register functor', '__enZB', '_ZA , _ZA , _zzz', '_/dst', '__arT', 'NOT NULL', ''],
     ['ref__svPQ', '_logVER__arT', '_hieV', 'reference -- version number', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst'
@@ -845,7 +904,7 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_raTY__arP', 'RK_raTY__arP_te', ''],
 
     ['_raOBJ__arP', '_raTY__arP', ''],
-    ['_raOBJ__arP', 'cn__TY', ''],
+    ['_raOBJ__arP', 'cn__tyOBJ', ''],
     ['_raOBJ__arP', 'ext__bvKB', ''],
     ['_raOBJ__arP', 'fcc__svQB', ''],
     ['_raOBJ__arP', 'UK_fcc', ''],
@@ -861,15 +920,54 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_raOBJ__acPG_hie', 'chi__OBJ', ''],
     ['_raOBJ__acPG_hie', 'multi__OBJ', ''],
     ['_raOBJ__acPG_hie', 'row__nuZB', ''],
-    ['_raOBJ__acPG_hie', 'UKM_raOBJ__acPG_hie_par', 'chi__OBJ'],
-    ['_raOBJ__acPG_hie', 'UKM_raOBJ__acPG_hie_par', 'multi__OBJ'],
+    ['_raOBJ__acPG_hie', 'PKM_raOBJ__acPG_hie_par', 'chi__OBJ'],
+    ['_raOBJ__acPG_hie', 'PKM_raOBJ__acPG_hie_par', 'multi__OBJ'],
     ['_raOBJ__acPG_hie', 'FK_raOBJ__acPG_hie_par', ''],
     ['_raOBJ__acPG_hie', 'FK_raOBJ__acPG_hie_chi', ''],
     ['_raOBJ__acPG_hie', 'FK_raOBJ__acPG_hie_multi', ''],
 
+    ['_raLOC__arP', '_raTY__arP', ''],
+    ['_raLOC__arP', 'cn__tyLOC', ''],
+    ['_raLOC__arP', 'FK_raLOC__arP_TY', ''],
+
     ['_raPER__arP', '_raTY__arP', ''],
-    ['_raPER__arP', 'cn__TY', ''],
+    ['_raPER__arP', 'cn__tyPER', ''],
+    ['_raPER__arP', 'ym__nuSB', ''],
     ['_raPER__arP', 'FK_raPER__arP_TY', ''],
+
+    ['_raPER__acPG_LOC', 'cn__PER', ''],
+    ['_raPER__acPG_LOC', 'ym__nuSB', ''],
+    ['_raPER__acPG_LOC', 'cn__LOC', ''],
+    ['_raPER__acPG_LOC', 'cn__tyPiL', ''],
+    ['_raPER__acPG_LOC', 'cn__stPiL', ''],
+    ['_raPER__acPG_LOC', 'PKM_raPER__acPG_LOC_cn', 'ym__nuSB'],
+    ['_raPER__acPG_LOC', 'FK_raPER__acPG_LOC_PER', ''],
+    ['_raPER__acPG_LOC', 'FK_raPER__acPG_LOC_LOC', ''],
+    ['_raPER__acPG_LOC', 'FK_raPER__acPG_LOC_tyPiL', ''],
+    ['_raPER__acPG_LOC', 'FK_raPER__acPG_LOC_stPiL', ''],
+
+    ['_raCON__arP', '_raTY__arP', ''],
+    ['_raCON__arP', 'cn__tyCON', ''],
+    ['_raCON__arP', 'FK_raCON__arP_TY', ''],
+
+    ['_raRES__arP', '_raTY__arP', ''],
+    ['_raRES__arP', 'cn__tyRES', ''],
+    ['_raRES__arP', 'fcc__svQB', ''],
+    ['_raRES__arP', 'cn__blGB', ''],
+    ['_raRES__arP', 'UK_fcc', ''],
+    ['_raRES__arP', 'FK_raRES__arP_TY', ''],
+
+    ['_raRES__acPG_chat', 'cn__RES', ''],
+    ['_raRES__acPG_chat', 'line__nuSB', ''],
+    ['_raRES__acPG_chat', 'reply__PER', ''],
+    ['_raRES__acPG_chat', 'reply__tyREP', ''],
+    ['_raRES__acPG_chat', 'sum__bvKB', ''],
+    ['_raRES__acPG_chat', 'ref__EXPR', ''],
+    ['_raRES__acPG_chat', 'PKM_raRES__acPG_chat_cn', 'line__nuSB'],
+    ['_raRES__acPG_chat', 'FK_raRES__acPG_chat_RES', ''],
+    ['_raRES__acPG_chat', 'FK_raRES__acPG_chat_EXPR', ''],
+    ['_raRES__acPG_chat', 'FK_raRES__acPG_chat_PER', ''],
+    ['_raRES__acPG_chat', 'FK_raRES__acPG_chat_tyREP', ''],
 
     ['_raEXPR__arP', 'cn__arP', ''],
     ['_raEXPR__arP', '_cnt__nuZB', ''],
@@ -1069,22 +1167,116 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
         ['_d245', 'dd', 'Desegnation Documents : unical global', []],
       ]],
   ];
-  $src['_raPER__arP'] = [
+
+  $src['_raLOC__arP'] = [
     [RA_cn__arDS, 'cxN__arDS', 'cxF__EXPR', 'expl__bvKB', 'rule__EXPR', 'te__EXPR', 'cn__TY', 'val__tyFLD'],
-    ['@gV', '_OM', '', 'Glinca Vitalie', '_AS:_ZA , _AS , _sUU', '@/ds', '_perP', '__enZB'],
-    ['@mA', '_OM', '', 'Moscvin Andrei', '_AS:_ZA , _AS , _sUU', '@/ds', '_perP', '__enZB'],
-    ['@pI', '_OM', '', 'Prilepov Igor', '_AS:_ZA , _AS , _sUU', '@/ds', '_perP', '__enZB'],
-    ['@sI', '_OM', '', 'Shapovalov Igor', '_AS:_ZA , _AS , _sUU', '@/ds', '_perP', '__enZB'],
-    ['@ms', '_OM', '', 'Micro-soft', '_AS:_ZA , _AS , _sss', '@/ds', '_perJ', '__enZB'],
-    ['@cP', '@ms', '', 'Co-pilot', '_AS:_ZA , _AS , _sUU', '@/ds', '_perR', '__enZB'],
-    ['@oAI', '_OM', '', 'Open-AI', '_AS:_ZA , _AA , _sUU', '@/ds', '_perJ', '__enZB'],
-    ['@cG', '@oAI', '', 'Chat-GPT', '_AS:_ZA , _AS , _sUU', '@/ds', '_perR', '__enZB'],
-    ['@goo', '_OM', '', 'google', '_AT , _ZA , _sss', '@/ds', '_perJ', '__enZB'],
-    ['@gG', '@goo', '', 'gemeni', '_cxN_AS , _AS , _sUU', '@/ds', '_perR', '__enZB'],
+    ['$NAM', '_OM', '', 'North America', '_AS:_ZA , _AD , _UUU', '$/ds', '_locContin', '__enZB'],
+    ['$SAM', '_OM', '', 'South America', '_AS:_ZA , _AD , _UUU', '$/ds', '_locContin', '__enZB'],
+    ['$ASI', '_OM', '', 'Asia', '_AT , _ZA , _UUU', '$/ds', '_locContin', '__enZB'],
+    ['$AFR', '_OM', '', 'Africa', '_AT , _ZA , _UUU', '$/ds', '_locContin', '__enZB'],
+    ['$OCE', '_OM', '', 'Oceania(Australia)', '_AT , _ZA , _UUU', '$/ds', '_locContin', '__enZB'],
+    ['$EUR', '_OM', '', 'Europe', '_AT , _ZA , _UUU', '$/ds', '_locContin', '__enZB'],
+    ['$US', '$NAM', '', 'Unated States', '_WR , _ZA , _UUU', '$/ds', '_locCountry', '__enZB'],
+    ['$MD', '$EUR', '', 'Moldova', '_CS:_ZS , _AS , _UUU', '$/ds', '_locCountry', '__enZB'],
+    ['$UA', '$EUR', '', 'Ukraine', '_CS:_ZS , _AS , _UUU', '$/ds', '_locCountry', '__enZB'],
+    ['$CRI', '$MD', '$MD', 'Criuleni', '_AT , _ZA , _UUU', '$/ds', '_locCity', '__enZB'],
+    ['$CHI', '$MD', '$MD', 'Chisinau', '_AT , _ZA , _UUU', '$/ds', '_locCapital', '__enZB'],
+    ['$SVL', '$UA', '$UA', 'Sevastopol', '_CD:_CL , _ZA , _UUU', '$/ds', '_locCity', '__enZB'],
+    ['$chiFLOR', '$CHI', '', 'Florilor', '_AQ , _ZA , _sUU', '$/ds', '_locStr', '__enZB'],
+    ['$chiACAD', '$CHI', '', 'Academiei', '_AQ , _ZA , _sUU', '$/ds', '_locStr', '__enZB'],
+    ['$chiTVLAD', '$CHI', '', 'Tudor Vladimirescu', '_AS:_ZA , _AQ , _sUU', '$/ds', '_locStr', '__enZB'],
+    ['$chiFLOR-34/1', '$chiFLOR', '$MD , $CHI', '34/1', '_cxFU_UU , _UU , _zzz', 'dsx/-/dsn', '_locHouse', '__enZB'],
+    ['$chiFLOR-34/1-11', '$chiFLOR-34/1', '$MD , $CHI', '11', '_cxFU_UU , _UU , _zzz', 'dsx/-/dsn', '_locAppart', '__enZB'],
+    ['$criGAGA', '$CRI', '', 'Gagarina', '_AQ , _ZA , _sUU', '$/ds', '_locStr', '__enZB'],
+    ['$criGAGA-15', '$criGAGA', '', '15', '_cxFU_UU , _UU , _sUU', 'dsx/-/dsn', '_locHouse', '__enZB'],
+    ['$criMS', '$CRI', '$MD', 'Midle School', '_cxN_AA , _AT:_ZA:_AS , _sUU', '$/ds', '_locInst', '__enZB'],
+    ['$svlIMI', '$SVL', '$UA', 'Instrument Making institute', '_cxN_AA , _AT:_ZA:_AS , _sUU', '$/ds', '_locInst', '__enZB'],
+    ['$chiSIGF', '$CHI', '', 'Signal factory', '_cxN_AA , _AT:_ZA:_AS , _sUU', '$/ds', '_locInst', '__enZB'],
+    ['$chiQUANT', '$CHI', '', 'Quantum research institute', '_cxN_AA , _AP , _sUU', '$/ds', '_locInst', '__enZB'],
+    ['$chiCAEB', '$CHI', '', 'Computer-Aided Engineering Bureau', '_cxN_AA , _WR , _sUU', '$/ds', '_locInst', '__enZB'],
+    ['$chiVALE', '$CHI', '', 'Valeology Coop', '_cxN_AA , _AQ , _sUU', '$/ds', '_locInst', '__enZB'],
+    ['$chiAFN', '$CHI', '', 'Asotia Fara Nume', '_cxN_AA , _WR , _sUU', '$/ds', '_locInst', '__enZB'],
+    ['$chiP&P', '$CHI', '', 'Papa & Partners', '_cxN_AA , _AS:_ZA , _sUU', '$/ds/&/dso:_AS', '_locInst', '__enZB'],
+    ['$chiTRIA', '$CHI', '', 'Triada', '_cxN_AA , _AQ , _sUU', '$/ds', '_locInst', '__enZB'],
+    ['$chiIMCO', '$CHI', '', 'Ion Mardarovici Company', '_cxN_AA , _AS:_ZA:_AS:_ZA:_AD , _sUU', '$/ds', '_locInst', '__enZB'],
+    ['$chiAS', '$CHI', '', 'Arti Studio', '_cxN_AA , _WR , _sUU', '$/ds', '_locInst', '__enZB'],
+    ['$chiAMTAP', '$CHI', '', 'Academie Musicii Teatru Arte Plasice', '_cxN_AA , _WR , _sUU', '$/ds', '_locInst', '__enZB'],
+    ['$chiNBMG', '$CHI', '', 'NBM Group', '_cxN_AA , _AA:_AS , _sUU', '$/ds', '_locInst', '__enZB'],
+    ['$chiDP', '$CHI', '@dP', 'Deeplace', '_cxN_AA , _cxF_AA , _sUU', '$/ds', '_locInst', '__enZB'],
     
   ];
 
-$pp = 'p002a-0b';
+  $src['_raPER__arP'] = [
+    [RA_cn__arDS, 'cxN__arDS', 'cxF__EXPR', 'expl__bvKB', 'rule__EXPR', 'te__EXPR', 'cn__TY', 'val__tyFLD', 'ym__nuSB'],
+    ['@gV', '_OM', '', 'Glinca Vitalie', '_AS:_ZA , _AS , _sUU', '@/ds', '_perP', '__enZB', 196010],
+    ['@mA', '_OM', '', 'Moscvin Andrei', '_AS:_ZA , _AS , _sUU', '@/ds', '_perP', '__enZB', 0],
+    ['@pI', '_OM', '', 'Prilepov Igor', '_AS:_ZA , _AS , _sUU', '@/ds', '_perP', '__enZB', 0],
+    ['@sI', '_OM', '', 'Shapovalov Igor', '_AS:_ZA , _AS , _sUU', '@/ds', '_perP', '__enZB', 0],
+    ['@ms', '_OM', '', 'Microsoft', '_CS:_ZD , _CS , _sss', '@/ds', '_perJ', '__enZB', 197504],
+    ['@cP', '@ms', '', 'Copilot', '_CS , _CS , _sUU', '@/ds', '_perR', '__enZB', 202108],
+    ['@oA', '_OM', '', 'OpenAI', '_VS:_ZS , _VS , _sUU', '@/ds', '_perJ', '__enZB', 201512],
+    ['@cG', '@oA', '', 'ChatGPT', '_CS:_ZD , _CS , _sUU', '@/ds', '_perR', '__enZB', 202211],
+    ['@gL', '_OM', '', 'google', '_CS , _CL , _sss', '@/ds', '_perJ', '__enZB', 199809],
+    ['@gG', '@gL', '', 'gemeni', '_cxN_XA , _AS , _sUU', '@/ds', '_perR', '__enZB', 202312],
+    ['@dP', '_OM', '', 'deeplace', '_CS , _CS , _sUU', '@/ds', '_perJ', '__enZB', 200011],
+    ['@gH', '_OM', '', 'github', '_CS:_ZS , _CS , _sUU', '@/ds', '_perJ', '__enZB', 200802],
+    
+  ];
+
+  $src['_raPER__acPG_LOC'] = [
+    ['cn__PER', 'ym__nuSB', 'cn__LOC', 'cn__tyPiL', 'cn__stPiL'],
+    ['@gV', 197808, '$criGAGA-15', '__ptSon', '__psReside'],
+    ['@gV', 202110, '$chiTVLAD', '__ptHusb', '__psLeave'],
+    ['@gV', 202310, '$chiACAD', '__ptHusb', '__psLeave'],
+    ['@gV', 202510, '$chiFLOR-34/1-11', '__ptHusb', '__psActive'],
+    ['@gV', 196709, '$criMS', '__ptStud', '__psSUC'],
+    ['@gV', 197809, '$svlIMI', '__ptStud', '__psSUC'],
+    ['@gV', 198309, '$chiSIGF', '__ptJIng', '__psLeave'],
+    ['@gV', 198609, '$chiQUANT', '__ptHIng', '__psLeave'],
+    ['@gV', 198710, '$chiCAEB', '__ptLIng', '__psLeave'],
+    ['@gV', 198801, '$chiVALE', '__ptLIng', '__psLeave'],
+    ['@gV', 199107, '$chiAFN', '__ptLIng', '__psLeave'],
+    ['@gV', 199311, '$chiP&P', '__ptCTO', '__psLeave'],
+    ['@gV', 199904, '$chiTRIA', '__ptHIng', '__psLeave'],
+    ['@gV', 200005, '$chiIMCO', '__ptLIng', '__psLeave'],
+    ['@gV', 200212, '$chiAS', '__ptCTO', '__psLeave'],
+    ['@gV', 201309, '$chiAMTAP', '__ptMTeach', '__psLeave'],
+    ['@gV', 201710, '$chiNBMG', '__ptHIng', '__psLeave'],
+    ['@gV', 202111, '$chiDP', '__ptBIng', '__psActive'],
+    ['@pI', 198210, '$CHI', '__ptLIng', '__psLeave'],
+    ['@pI', 200010, '$US', '', '__psActive'],
+    
+  ];
+
+  $src['_raCON__arP'] = [
+    [RA_cn__arDS, 'cxN__arDS', 'cxF__EXPR', 'expl__bvKB', 'rule__EXPR', 'te__EXPR', 'cn__TY', 'val__tyFLD'],
+    ['069053162', '@gV', '', '+373-069053162', '_AA , _AA , _zzz', 'dsn', '_conPGSM', '__enZB'],
+    ['glincavit@gmail.com', '@gV', '@gmail.com', 'Glinca Vitalie', '_AA:_AT , _cxFU_UU , _szz', 'ds', '_conPMail', '__enZB'],
+    ['vitalie.glinca@deeplace.md', '@gV', '@deeplace.md', 'Vitalie Glinca', '_AA , _AA , _szz', 'dsx/./dsn/dso:_cxFU_UU', '_conWMail', '__enZB'],
+    
+  ];
+  
+  $src['_raRES__arP'] = [
+    [RA_cn__arDS, 'cxN__arDS', 'cxF__EXPR', 'expl__bvKB', 'rule__EXPR', 'te__EXPR', 'cn__TY', 'val__tyFLD', 'fcc__svQB'],
+    ['@gmail.com', '@gL', '__tySite._com', 'mail server', '_cxN_AS , _cxF_AA , _sss', '@/dsx/./dsn', '_resSITE', '__enZB', ''],
+    ['@deeplace.md', '@dP', '__tySite._md', 'mail server', '_cxN_RA , _cxF_AA , _sss', '@/dsx/./dsn', '_resSITE', '__enZB', ''],
+    ['@webdev3', '@dP', '', 'WEB development:3 -- my work platform (WP)', '_AA:_AT:_ZA:_AA , _ZA , _sss', '@/ds', '_resHOST', '__enZB', ''],
+    ['@ASUS-960', '@gV', '', 'Asus:960 -- laptop -- my home platform (HP)', '_AA , _AA , _UUU', '@/dsx/-/dsn', '_resHOST', '__enZB', ''],
+    ['@Core-i3', '@gV', '', 'Core:i3 -- desktop -- my graphic server (GS)', '_AA , _AA , _zzz', '@/dsx/-/dsn', '_resHOST', '__enZB', ''],
+    ['@Fujitsu-i7', '@gV', '', 'Fujitsu:i7 -- laptop -- my graphic work station (GWS)', '_AA , _AA , _zzz', '@/dsx/-/dsn', '_resHOST', '__enZB', ''],
+    ['@glincavit-gV', '@gV', '@glincavit', '', 'cxF_AA , _cxN_AA , _zzz', '@/dsx/-/dsn', '_resREPO', '__enZB', ''],
+    ['@raFTI.v6', '@glincavit-gV', '_RA', 'Full Text Index : v6', '_cxF_AA , _WR , _sUz', '@/ds/./dso:_RV', '_resPROJ', '__evQB', ''],
+    ['@v5_4', '@raFTI.v6', '', 'previous vresion : v5_4', '_RV , _ZA , _sss', '@/ds', '_resPATH', '__evQB', ''],
+    ['@v6', '@raFTI.v6', '', 'current vresion : v6', '_RV , _ZA , _sss', '@/ds', '_resPATH', '__evQB', ''],
+    ['@_m0_RA', '@v6', '_m0_RA', 'main module path', '_cxFU_UU , _ZA , _zzz', '@/ds', '_resPATH', '__enZB', ''],
+    ['@_o0R2a_raRES__acRP', '@_m0_RA', '_raRES__arP', 'path to resource files : __tyAC.__acRP', '_cxF_AA , _ZA , _zzz',
+      '@/fcc/_/ds/_/dso:_RV', '_resPATH', '__evQB', 'o0R2a'],
+    ['@_RA_v0_1_Review.md', '@_o0R2a_raRES__acRP', '_RA', 'v0.1 - review : __tyFile._md', '_cxF_AA , _AR , _zCs', '@/dsx/_/dsn/./dso:_RV', '_resFILE', '__enZB'],
+    ['@_raDS_v0_1_Review.md', '@_o0R2a_raRES__acRP', '_raDS', 'v0.1 - review : __tyFile._md', '_cxF_AA , _AR , _zCs', '@/dsx/_/dsn/./dso:_RV', '_resFILE', '__enZB'],
+    
+  ];
+
+$pp = 'p002a-0b'; $pc = "Collect duplicates (\$errd) and undefineds (\$errn)";
   $RA[RA_cn__arDS] =  $errn = $errd = $err = [];
   foreach ($src as $src_tab => $src_arr) {
     $fields = array_merge($src_arr[0], ['src_tab', 'src_arr_i']);
@@ -1112,6 +1304,7 @@ $pp = 'p002a-0b';
       }
     }
   }
+$pp = 'p002a-0c'; $pc = "Evaluate val__tyFLD and cn__TY";
   $_PQ_size = explode(RA_sepVALUE, $RA[RA_cn__arDS]['_PQ']['expl__bvKB'])[1];
   $RA_sepVAL_len = strlen(RA_sepVALUE);
   foreach ($RA[RA_cn__arDS] as $cn__arDS => $ra_arr) {
@@ -1147,7 +1340,11 @@ $pp = 'p002a-0b';
     } else {
       $ra_arr['val__bvPQ'] = 0;
     }
-    if (isset($RA[RA_cn__arDS][$cn__arDS]['cn__TY']) && ($cn__TY = $RA[RA_cn__arDS][$cn__arDS]['cn__TY']) != '' && !isset($RA[RA_cn__arDS][$RA[RA_cn__arDS][$cn__arDS]['cn__TY']])) {
+    if (1 == 1
+        && isset($RA[RA_cn__arDS][$cn__arDS]['cn__TY'])
+        && ($cn__TY = $RA[RA_cn__arDS][$cn__arDS]['cn__TY']) != ''
+        && !isset($RA[RA_cn__arDS][$RA[RA_cn__arDS][$cn__arDS]['cn__TY']])
+    ) {
 
       $ep = "$pp-e6";
       $err[] = "$ep Bad cn__TY($cn__TY) not defined! for cn__arDS($cn__arDS) in src_tab: " . $ra_arr['src_tab'];
@@ -1156,8 +1353,9 @@ $pp = 'p002a-0b';
     $RA[RA_cn__arDS][$cn__arDS] = $ra_arr;
   }
 
-$pp = 'p002a-0c';
-  $_raOBJ = $log = $dst = $RA[RA_sq] = $RA[RA_sql] = $table_fields = $fields_desc = $fields_constraints = $c_keys = $fields_keys = $fields_keys_M = [];
+$pp = 'p002a-0d';  $pc = "Evaluate _raOBJ__acPG_hie for SQL create objects and insert value to \$_raOBJ__acPG_hie[]";
+  $_raOBJ__acPG_hie = $_raOBJ = $log = $dst = $RA[RA_sq] = $RA[RA_sql] = [];
+  $table_fields = $fields_desc = $fields_constraints = $c_keys = $fields_keys = $fields_keys_M = [];
   $RA[RA_curDB] = '';
   $RA[RA_sq][] = "SET FOREIGN_KEY_CHECKS=0";
   if ($err || $errd || $errn) du($err, $errd, $errn);
@@ -1174,7 +1372,7 @@ $pp = 'p002a-0c';
     $multi__arP = 'NULL';
     if ($RA[RA_cn__arDS][$RA[RA_cn__arDS][$table_name]['cxN__arDS']]['cxF__EXPR'] != '_hieM') {
 
-      $ep = "$pp-e7";
+      $ep = "$pp-e1";
       $err[] = "$ep Bad not like table object found($table_name) in \$src['_raOBJ__acPG_hie']";
     } else {
       if (!isset($dst[$table_name])) {
@@ -1204,19 +1402,19 @@ $pp = 'p002a-0c';
         if (strpos($RA[RA_cn__arDS][$field_name]['cxF__EXPR'], '_hieV') !== FALSE) {
           if ($row_val != $chi_val ) {
 
-            $ep = "$pp-e8";
+            $ep = "$pp-e2";
             $err[] = "$ep Bad row_val/chi_val($row_val/$chi_val) nuber for table($table_name) and field($field_name): " . (count($err));
           } else {
             $wile_i = 10;
             if (isset($RA[RA_cn__arDS][$__tyFLD]['cn__TY'])) {
               $__tyFLD = $RA[RA_cn__arDS][$__tyFLD]['cn__TY'];
-            }
+            };
             while (strpos($RA[RA_cn__arDS][$__tyFLD]['cxF__EXPR'], '__tyFLD') === FALSE && $wile_i--) {
-              $__tyFLD = $RA[RA_cn__arDS][$__tyFLD]['val__bvPQ'];
-              if (!$wile_i) {
+              if (!($__tyFLD = $RA[RA_cn__arDS][$__tyFLD]['val__bvPQ']) || !$wile_i) {
 
-                $ep = "$pp-e9";
-                $err[] = "$ep Bad __tyFLD($old__tyFLD) for field_name($field_name) - not found real __tyFLD";
+                $ep = "$pp-e3";
+                $err[] = "$ep Bad __tyFLD($__tyFLD), old__tyFLD($old__tyFLD) for field_name($field_name) - not found real __tyFLD";
+                break 2;
               }
             }
             $real_ty = $RA[RA_cn__arDS][$__tyFLD]['val__bvPQ'] . ' ' . $RA[RA_cn__arDS][$field_name]['ext__bvKB'];
@@ -1226,7 +1424,7 @@ $pp = 'p002a-0c';
           $row_val++;
         } elseif (strpos($RA[RA_cn__arDS][$__tyFLD]['cxF__EXPR'], '__tyIND') === FALSE) {
 
-          $ep = "$pp-e10";
+          $ep = "$pp-e4";
           $cxF__EXPR = $RA[RA_cn__arDS][$field_name]['cxF__EXPR'];
           $err[] = "$ep Bad cxF__EXPR($cxF__EXPR) for field_name($field_name) - not in (_hieV, __tyIND)";
         } else {
@@ -1257,7 +1455,7 @@ $pp = 'p002a-0c';
               $real_ty .= ", $index_field";
             } else {
 
-              $ep = "$pp-e11";
+              $ep = "$pp-e5";
               $err[] = "$ep Bad index_field($index_field) for field_name($field_name) - not found real __tyFLD";
             }
           }
@@ -1277,7 +1475,7 @@ $pp = 'p002a-0c';
         $par__arP = $seg_OBJ_start + $RA[RA_cn__arDS][$table_name]['src_arr_i'];
         $chi__arP = $seg_OBJ_start + $RA[RA_cn__arDS][$field_name]['src_arr_i'];
 
-        $_raOBJ_hie[] = "$par__arP, $chi__arP, $multi__arP, $chi_val";
+        $_raOBJ__acPG_hie[] = "$par__arP, $chi__arP, $multi__arP, $chi_val";
         $chi_val++;
       }
     }
@@ -1289,33 +1487,33 @@ $pp = 'p002a-0c';
   __check_DB($table_name);
   $dst[$table_name] = $sql;
   $RA[RA_sq][] = $sql;
-$pp = 'p002a-0d';
+$pp = 'p002a-0e';  $pc = "Execute created SQLs in \$RA[RA_sq][]";
   $log[] ="$pp-s4  Created tables number: " . count($dst);
   $log[] ="$pp-s5  Creating Aggergates segments number: " . count($src['_raOBJ__arPD_seg']);
   //dz($RA[RA_sq]);
   if ($err || $errd || $errn) dz(array_merge(["Errors found"], $err));
   __exec_SQL();
-  $_raOBJ_seg = $err = [];
-$pp = 'p002a-0e';
+  $_raOBJ__arPD_seg = $err = [];
+$pp = 'p002a-0f'; $pc = "Format \$_raOBJ__arPD_seg[] with actual segement start and next values";
   foreach ($src['_raOBJ__arPD_seg'] as $seg_i => $seg__arr) {
     if ($seg_i) {
       $seg__arDS = $seg__arr[0];
       if (!isset($RA[RA_cn__arDS][$seg__arDS])) {
 
-        $ep = "$pp-e12";
+        $ep = "$pp-e1";
         $err[] = "$ep Segment object($seg__arDS) not found";
       } else {        
         $seg_agg__arDS = $RA[RA_cn__arDS][$seg__arDS]['cxF__EXPR'];
         if (!isset($RA[RA_cn__arDS][$seg_agg__arDS])) {
 
-          $ep = "$pp-e13";
+          $ep = "$pp-e2";
           $err[] = "$ep Segment object agg($seg_agg__arDS) not found";
         }
         $seg_agg__val = substr($RA[RA_cn__arDS][$seg_agg__arDS]['fcc__svQB'], 1);
         $pattern = $RA[RA_cn__arDS]["_liMAX"]['main__bvPQ'];
         if (!preg_match($pattern, $seg_agg__val)) {
 
-          $ep = "$pp-e14";
+          $ep = "$pp-e3";
           $err[] = "$ep Segment object agg($seg_agg__arDS) agg_value($seg_agg__val) missmatch agg_value_pattern($pattern)";
         }
         if ($RA[RA_cn__arDS][$seg__arDS]['cn__TY'] == '__arT') {
@@ -1331,14 +1529,14 @@ $pp = 'p002a-0e';
           RA_seg__arDS_arP => $seg__arP,
         ];
         $RA[RA_seg__arP][$RA[RA_seg__arDS][$seg__arDS][RA_seg__arDS_arP]] = $seg__arDS;
-        $_raOBJ_seg[] = "$seg__arP, $seg_agg_start, $seg_agg_start";
+        $_raOBJ__arPD_seg[] = "$seg__arP, $seg_agg_start, $seg_agg_start";
       }
     }
   }
-  $pp = 'p002a-0f';
+  $pp = 'p002a-0g'; $pc = "Insert value to _raOBJ__acPG_hie and _raOBJ__arPD_seg. Evaluate __EXPR like values and create innsert SQLs";
   dul($log);
-  foreach ($_raOBJ_hie as $row) __format_SQL($row, '_raOBJ__acPG_hie', 1);
-  foreach ($_raOBJ_seg as $row) __format_SQL($row, '_raOBJ__arPD_seg', 1);
+  foreach ($_raOBJ__acPG_hie as $row) __format_SQL($row, '_raOBJ__acPG_hie', 1);
+  foreach ($_raOBJ__arPD_seg as $row) __format_SQL($row, '_raOBJ__arPD_seg', 1);
   //du($RA[RA_seg__arDS]);
   foreach ($RA[RA_cn__arDS] as $cn__arDS => $cn_arr) {
     $seg__arDS = $RA[RA_cn__arDS][$cn__arDS]['src_tab'];
@@ -1349,7 +1547,7 @@ $pp = 'p002a-0e';
       if (!isset($RA[RA_cn__arDS][$cxF__EXPR])) {
         if (($erre = __explore_EXPR(RA_sepADD, RA_sepOPTION, $cxF__EXPR))) {
 
-          $ep = "$pp-e15";
+          $ep = "$pp-e1";
           $err[] = "$ep Errors in cxF__EXPR($cxF__EXPR) for cn__arDS($cn__arDS)";
           $err = array_merge($err, $erre);
           $err_fl--;
@@ -1367,7 +1565,7 @@ $pp = 'p002a-0e';
     $rule__EXPR = $cn_arr['rule__EXPR'];
     if ($rule__EXPR == '') {
 
-          $ep = "$pp-e16";
+          $ep = "$pp-e2";
           $err[] = "$ep Errors empty rule__EXPR($rule__EXPR) for cn__arDS($cn__arDS)";
           $err_fl--;
           $err_fl_all = 0;
@@ -1375,7 +1573,7 @@ $pp = 'p002a-0e';
       if (!isset($RA[RA_cn__arDS][$rule__EXPR])) {
         if (($erre = __explore_EXPR(RA_sepLIST, RA_sepOPTION, $rule__EXPR))) {
 
-          $ep = "$pp-e17";
+          $ep = "$pp-e3";
           $err[] = "$ep Errors in rule__EXPR($rule__EXPR) for cn__arDS($cn__arDS)";
           $err = array_merge($err, $erre);
           $err_fl--;
@@ -1390,7 +1588,7 @@ $pp = 'p002a-0e';
     $te__EXPR = $cn_arr['te__EXPR'];
     if ($te__EXPR == '') {
 
-      $ep = "$pp-e18";
+      $ep = "$pp-e4";
       $err[] = "$ep Errors empty te__EXPR($te__EXPR) for cn__arDS($cn__arDS)";
       $err_fl--;
       $err_fl_all = 0;
@@ -1398,7 +1596,7 @@ $pp = 'p002a-0e';
       if (!isset($RA[RA_cn__arDS][$te__EXPR])) {
         if (($erre = __explore_EXPR(RA_sepPART, RA_sepOPTION, $te__EXPR))) {
 
-          $ep = "$pp-e19";
+          $ep = "$pp-e5";
           $err[] = "$ep Errors in te__EXPR($te__EXPR)";
           $err = array_merge($err, $erre);
           $err_fl--;
@@ -1434,7 +1632,7 @@ $pp = 'p002a-0e';
       __format_SQL("$cn__arP", '_raCore__arP', 1);
     }
   }
-  $pp = 'p002a-0g';
+  $pp = 'p002a-0h'; $pc = "Exec innsert SQLs and update segment values. Register new varsion and build from \$_OM_ver.";
   //du($RA[RA_tables]);
   //du($RA[RA_sq]);
   if ($err) {
@@ -1595,7 +1793,7 @@ FROM _wRA._o030a_raOBJ__arP as a1
   left join _wRA._o000b_raCore__arPD_DS as a14 on a14.cn__arP = a1.rule__EXPR
   left join _wRA._o000b_raCore__arPD_DS as a15 on a15.cn__arP = a1.te__EXPR
   left join _wRA._o000b_raCore__arPD_DS as a16 on a16.cn__arP = a1.val__tyFLD
-  left join _wRA._o000b_raCore__arPD_DS as a17 on a17.cn__arP = a1.cn__TY
+  left join _wRA._o000b_raCore__arPD_DS as a17 on a17.cn__arP = a1.cn__tyOBJ
   ";
   db_query("CREATE OR REPLACE VIEW _wRA._raOBJ__acSV as
 $sql

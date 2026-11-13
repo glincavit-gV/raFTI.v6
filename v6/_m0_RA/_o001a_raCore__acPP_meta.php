@@ -16,6 +16,7 @@ const RA_log = 12;
 const RA_DS = 13;
 const RA_ver_stop = 14;
 const RA_du_sepNLINE = 15;
+const RA_du_src = 16;
 
 $RA[RA_sql_stop] = 0;
 $RA[RA_ver_stop] = 0;
@@ -110,6 +111,7 @@ $RA[RA__tySEP]['RA_sepPHP'] = RA_sepPHP;
 $RA[RA__tySEP]['RA_sepNLINE'] = RA_sepNLINE;
 
 $RA[RA_du_sepNLINE] = RA_sepNLINE;
+$RA[RA_du_src] = 0;
 
 
 //dz($_SERVER);
@@ -121,6 +123,9 @@ $RA[RA_var]['ref'] = $RA[RA_var]['login'] . RA_sepALT . $RA[RA_var]['host'];
 $RA[RA_log] = [];
 
 function dz(...$vars) { $pp = "p001a-0a";
+  $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1)[0];
+  $file = file($trace['file']);
+  $RA[RA_du_src] = $file[$trace['line'] - 1]; // Получаем строку кода, где вызвана функция
   du(...$vars);
   exit(1);
 }
@@ -129,12 +134,14 @@ function du(...$vars) { $pp = "p001a-1a";
   global $RA;
   $do__sepNLINE = $RA[RA_du_sepNLINE];
   echo "\n";
-  $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1)[0];
-  $file = file($trace['file']);
-  $line = $file[$trace['line'] - 1]; // Получаем строку кода, где вызвана функция
+  if (!$RA[RA_du_src]) {
+    $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1)[0];
+    $file = file($trace['file']);
+    $line = $file[$trace['line'] - 1]; // Получаем строку кода, где вызвана функция
+  } else $line = $RA[RA_du_src];
 
   // С помощью регулярного выражения извлекаем то, что было внутри скобок func_name(...)
-  preg_match('/(?<=\bdu|dz)\((.*?)\)/', $line, $matches);
+  preg_match('/(?<=\bdu|dz|de)\((.*?)\)/', $line, $matches);
   $vnames = [];
   if (isset($matches[1])) {
     foreach (explode(RA_sepLIST_T, $matches[1]) as $vname) {
@@ -151,7 +158,7 @@ function du(...$vars) { $pp = "p001a-1a";
   foreach ($vars as $vars_i => $v) {
     if (is_array($v)) {
       $count = count($v);
-      //echo "\e[34m^\e[0m \e[36marray:$count\e[0m {$orange}[{$reset}$do__sepNLINE"; var_dump($vnames, $matches, $vars_i);
+      //var_dump($vnames, $matches, $vars_i);
       echo "\e[34m^\e[0m \e[36marray:(" . ($vnames[$vars_i] ?? $vars[$vars_i]) . ")\e[0m {$orange}[{$reset}$do__sepNLINE";
       formatTerminalArray($v, 2);
       echo "{$orange}]{$reset}" . $do__sepNLINE;
@@ -369,7 +376,12 @@ function duz(array $log, $ref = 'NULL') { $pp = "p001a-12a";
 
 function de(...$vars) { $pp = "p001a-13a";
   global $RA;
-  if (($sep_de = (int) explode(RA_sepMINUS, $vars[0])[1] ?? 0)) $RA[RA_du_sepNLINE] = '';
-  du($vars);
+  if (($sep_de = (int) explode(RA_sepFIXE, $vars[0])[1] ?? 0)) $RA[RA_du_sepNLINE] = '';
+  $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1)[0];
+  $file = file($trace['file']);
+  $RA[RA_du_src] = $file[$trace['line'] - 1]; // Получаем строку кода, где вызвана функция
+  //echo "\n file=" . $trace['file'] . "\n line=" . $RA[RA_du_src];
+  du(...$vars);
   $RA[RA_du_sepNLINE] = RA_sepNLINE;
+  $RA[RA_du_src] = 0;
 }
