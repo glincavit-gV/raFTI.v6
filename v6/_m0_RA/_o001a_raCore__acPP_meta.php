@@ -64,7 +64,7 @@ const RA_desc__srcName = 4;
 
 const RA_sql_cnt = 0;
 const RA_sql_str = 1;
-const RA_sql_max = 100;
+const RA_sql_max = 1000;
 
 
 const RA_sepCN = "_";

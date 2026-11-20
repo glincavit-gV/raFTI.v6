@@ -618,6 +618,7 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_perBEnd', '__tyPER', '', 'back end ingineer', '__enZB', '_cxNT._NA , _AS:_ZA , _sUH', '_/ds/dso:_AT'],
     ['_perFEnd', '__tyPER', '', 'front end ingineer', '__enZB', '_cxNT._NA , _AS:_ZA , _sUH', '_/ds/dso:_AT'],
     ['_perFStack', '__tyPER', '', 'full stack ingineer', '__enZB', '_cxNT._NA , _AS:_ZA , _sUH', '_/ds/dso:_AP'],
+    ['_perSIng', '__tyPER', '', 'senior ingineer', '__enZB', '_cxNT._NA , _AS:_ZA:_AT , _sUH', '_/ds'],
     ['_perLIng', '__tyPER', '', 'lead ingineer', '__enZB', '_cxNT._NA , _AS:_ZA:_AT , _sUH', '_/ds'],
     ['_perCTO', '__tyPER', '', 'Chief Technology Officer', '__enZB', '_cxNT._NA , _WR , _sUU', '_/ds'],
     ['_perCEO', '__tyPER', '', 'Chief Executive Officer', '__enZB', '_cxNT._NA , _WR , _sUU', '_/ds'],
@@ -836,7 +837,7 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
       'dst/ds/_/dso:_cxFT._XA', 'FK_', '_raTY__arP (cn__arP) ON UPDATE CASCADE', ''],
     // _raPER__arP
     ['cn__tyPIJ', '_raPER__arP', '_cN:_hieV', '', '__enZB', '_cxF._AA , _ZA , _szz', 'ds/__/dst', '__tyPIJ', 'NULL DEFAULT NULL', ''],
-    ['ym__nuSB', '_raPER__arP', '_hieV', 'year mounth', '__enZB', '_WR , _ZA , _szz', 'ds/__/dst', '__nuSB', 'NULL DEFAULT NULL', ''],
+    ['ym__nuSB', '_raPER__arP', '_hieV', 'year mounth', '__enZB', '_WR , _ZA , _szz', 'ds/__/dst', '__nuDB', 'NULL DEFAULT NULL', ''],
     ['FK_raPER__arP_TY', '_raPER__arP', 'cn__tyPIJ', '', '__enZB', '_cxNU._UU , _ZA , _zzU',
       'dst/ds/_/dso:_cxFT._XA', 'FK_', '_raTY__arP (cn__arP) ON UPDATE CASCADE', ''],
     // _raPER__acPG_hie
@@ -1288,17 +1289,17 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['@gV', 196709, '#criMS', '_perMStud', '_stSucc'],
     ['@gV', 197809, '#svlIMI', '_perHStud', '_stSucc'],
     ['@gV', 198309, '#chiSIGF', '_perJIng', '_stLeave'],
-    ['@gV', 198609, '#chiQUANT', '_perHIng', '_stLeave'],
+    ['@gV', 198609, '#chiQUANT', '_perSIng', '_stLeave'],
     ['@gV', 198710, '#chiCAEB', '_perLIng', '_stLeave'],
     ['@gV', 198801, '#chiVALE', '_perLIng', '_stLeave'],
     ['@gV', 199107, '#chiAFN', '_perLIng', '_stLeave'],
     ['@gV', 199311, '#chiP&P', '_perCTO', '_stLeave'],
-    ['@gV', 199904, '#chiTRIA', '_perHIng', '_stLeave'],
+    ['@gV', 199904, '#chiTRIA', '_perSIng', '_stLeave'],
     ['@gV', 200005, '#chiIMCO', '_perLIng', '_stLeave'],
     ['@gV', 200212, '#chiAS', '_perCTO', '_stLeave'],
     ['@gV', 201309, '#chiAMTAP', '_perMTeach', '_stLeave'],
-    ['@gV', 201710, '#chiNBMG', '_perHIng', '_stLeave'],
-    ['@gV', 202111, '#chiDP', '_perBIng', '_stActive'],
+    ['@gV', 201710, '#chiNBMG', '_perSIng', '_stLeave'],
+    ['@gV', 202111, '#chiDP', '_perBEnd', '_stActive'],
     ['@pI', 198210, '#CHI', '_perLIng', '_stLeave'],
     ['@pI', 200010, '#US', '', '_stActive'],
     
@@ -1490,7 +1491,8 @@ $pp = 'p002a-0d';  $pc = "Evaluare _raOBJ__acPG_hie for SQL create objects and i
               $RA[RA_tables][$table_name][RA_tables_flds_desc][$field_name] = [
                 RA_desc__isKR => 0,
                 RA_desc__isSTR => (strpos($RA[RA_cn__DS][$RA[RA_cn__DS][$__tyFLD]['cxN__DS']]['cxF__EXPR'], '__tyFIS') !== FALSE ? 1 : 0),
-                RA_desc__isNULL => (substr($RA[RA_cn__DS][$field_name]['ext__bvKB'], 0, 4) == 'NULL' ? 1 : 0),
+                RA_desc__isNULL => (strpos($RA[RA_cn__DS][$field_name]['ext__bvKB'], 'NOT NULL') !== false ? 0 : 1),
+                //RA_desc__isNULL => (substr($RA[RA_cn__DS][$field_name]['ext__bvKB'], 0, 4) == 'NULL' ? 1 : 0),
                 RA_desc__isEXPR => ($old__tyFLD == '__EXPR' ? 1 : 0),
                 RA_desc__srcName => ($src['_raOBJ__acPG_hie'][$src_i][$RA_raOBJ__acPG_hie_multi__OBJ] == ''
                   ? $field_name
@@ -1657,15 +1659,18 @@ $pp = 'p002a-0h'; $pc = "Insert rows to all tables";
         }
       } else {
         $cn_Name = $RA[RA_tables][$seg__DS][RA_tables_flds_desc][$cn_fld][RA_desc__srcName];
-        if (isset($cn_arr[$cn_Name])) {
+        if (!isset($cn_arr[$cn_Name])) {
+          $cn_str .= 'DEFAULT';
+        } else {
           $cn_VAL = $cn_arr[$cn_Name];
           $err_notDEF = "Bad not defined $cn_Name($cn_VAL) in cn__DS($cn__DS)";
 //de("0h-1-1", $cn_Name, $cn_VAL, $cn_fld_arr);
           if ($cn_fld_arr[RA_desc__isSTR]) {
             if ($cn_arr[$cn_Name] == '' && $cn_fld_arr[RA_desc__isNULL]) {
-              $cn_VAL = 'NULL';
+              $cn_str .= 'NULL';
+            } else {
+              $cn_str .= "'$cn_VAL'";
             }
-            $cn_str .= "'$cn_VAL'";
           } elseif($cn_fld_arr[RA_desc__isEXPR]) {
             if ($cn_VAL == '') {
               if (!$cn_fld_arr[RA_desc__isNULL]) {
@@ -1689,27 +1694,25 @@ $pp = 'p002a-0h'; $pc = "Insert rows to all tables";
             }
             $cn_str .= "$cn_VAL";
           } elseif ($cn_fld_arr[RA_desc__isKR]) {
-            if (!isset($RA[RA_cn__DS][$cn_VAL])) {
+            if ($cn_arr[$cn_Name] == '' && $cn_fld_arr[RA_desc__isNULL]) {
+              $cn_str .= 'NULL';
+            } else {
+              if (!isset($RA[RA_cn__DS][$cn_VAL])) {
 
-              $ep = "$pp-e3";
-              $err[] = "$ep $err_notDEF";
-              $err_fl_all++;
-            } else {              
-              $cn_str .= __get_cn__arP($cn_VAL);
+                $ep = "$pp-e3";
+                $err[] = "$ep $err_notDEF";
+                $err_fl_all++;
+              } else {              
+                $cn_str .= __get_cn__arP($cn_VAL);
+              }
             }
           } else {
             $cn_str .= $cn_VAL;
           }
-        } else {
-          $serch_str = ",$cn_Name";
-          if (strpos($RA[RA_tables][$seg__DS][RA_tables_flds_str], $serch_str) === false) {
-            $serch_str = "$cn_Name";
-          }
-          $RA[RA_tables][$seg__DS][RA_tables_flds_str] = str_replace($serch_str, $RA[RA_tables][$seg__DS][RA_tables_flds_str], '');
         }        
       }
     }
-    if ($err_fl_all) {
+    if (!$err_fl_all) {
       __format_SQL($cn_str, $seg__DS, 1);
     }
 //dz("0h-0-2", $cn__DS, $cn_str, $RA[RA_sql], $err);

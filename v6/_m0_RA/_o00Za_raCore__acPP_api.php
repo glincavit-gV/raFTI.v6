@@ -15,7 +15,7 @@ function _raCore_api($step, $arg_val) { $pp = "p00Za-0a";
         $RA[RA_sql_stop] = 1;
         _raCore_iniTables();
         $RA[RA_sql_stop] = 0;
-        $_raDS_test = '_logVER__acTG_testObj';// '_raRES__arP'; //'_liMIN'; //_altMIN
+        $_raDS_test = '_logVER__acTG_test_raDS_src'; //'_logVER__acTG_testObj';// '_raRES__arP'; //'_liMIN'; //_altMIN
         $_raDS_num = "t5";
         $_raDS_name = "$_raDS_num.Simple test for _raDS_test($_raDS_test)";
         du($RA[RA_cn__DS][$_raDS_test]);
