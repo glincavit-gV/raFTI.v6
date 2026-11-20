@@ -1,6 +1,6 @@
 <?php
 include_once '_o002a_raCore__acPP_ini.php';
-include_once '_o003a_raDS__acPP.php';
+include_once '_o003a_raCore__acPP_raDS.php';
 
 
 function _raCore_api($step, $arg_val) { $pp = "p00Za-0a";
@@ -15,13 +15,13 @@ function _raCore_api($step, $arg_val) { $pp = "p00Za-0a";
         $RA[RA_sql_stop] = 1;
         _raCore_iniTables();
         $RA[RA_sql_stop] = 0;
-        $_arDS_test = '_logVER__acTG_testObj';// '_raRES__arP'; //'_liMIN'; //_altMIN
-        $_arDS_num = "t5";
-        $_arDS_name = "$_arDS_num.Simple test for _arDS_test($_arDS_test)";
-        du($RA[RA_cn__arDS][$_arDS_test]);
-        $_arDS_ret = _raDS_calc($_arDS_test);
-        if ($_arDS_test == $_arDS_ret) dul(["$_arDS_name - passed"], 1);
-        else dul(["$_arDS_name - FAILED, _arDS_ret($_arDS_ret)"], 1);
+        $_raDS_test = '_logVER__acTG_testObj';// '_raRES__arP'; //'_liMIN'; //_altMIN
+        $_raDS_num = "t5";
+        $_raDS_name = "$_raDS_num.Simple test for _raDS_test($_raDS_test)";
+        du($RA[RA_cn__DS][$_raDS_test]);
+        $_raDS_ret = _raDS_trans($_raDS_test);
+        if ($_raDS_test == $_raDS_ret) dul(["$_raDS_name - passed"], 1);
+        else dul(["$_raDS_name - FAILED, _raDS_ret($_raDS_ret)"], 1);
         break;
     case 'v6_2':
         _raDS_test_all();
@@ -36,8 +36,8 @@ function _raCore_api($step, $arg_val) { $pp = "p00Za-0a";
         $RA[RA_sql_stop] = 1;
         _raCore_iniTables();
         $RA[RA_sql_stop] = 0;
-        du("133 $step", $step, $RA[RA_cn__arDS]['@gV']);
-        dd("133 $step", $step, $RA[RA_cn__arDS]['@gV']);
+        du("133 $step", $step, $RA[RA_cn__DS]['@gV']);
+        dd("133 $step", $step, $RA[RA_cn__DS]['@gV']);
         break;
   }
 }

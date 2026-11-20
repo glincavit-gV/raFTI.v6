@@ -1,13 +1,13 @@
 <?php
 global $RA;
-const RA_cn__arDS = 0;
+const RA_cn__DS = 0;
 const RA_sql = 1;
 const RA_sql_stop = 2;
 const RA_sq = 3;
 const RA_db = 4;
 const RA_curDB = 5;
 const RA_seg__arP = 6;
-const RA_seg__arDS = 7;
+const RA_seg__DS = 7;
 const RA_EXPR__arP = 8;
 const RA_tables = 9;
 const RA__tySEP = 10;
@@ -28,7 +28,7 @@ const DS_arr_i = 2;
 const DS_tkn_cnt = 3;
 const DS_tkn_i = 4;
 const DS_tkn_add = 5;
-const DS_cn__arDS = 6;
+const DS_cn__DS = 6;
 const DS_ruleFLD = 7;
 const DS_altTKN = 8;
 
@@ -49,12 +49,18 @@ const RA_dsABR_dsx = 0;
 const RA_dsABR_dsn = 1;
 const RA_dsABR_rest = 2;
 
-const RA_seg__arDS_start = 0;
-const RA_seg__arDS_next = 1;
-const RA_seg__arDS_arP = 2;
+const RA_seg__DS_start = 0;
+const RA_seg__DS_next = 1;
+const RA_seg__DS_arP = 2;
 
-const RA_tables_flds_str = 0;
-const RA_tables_hieSHE = 1;
+const RA_tables_hieSHE = 0;
+const RA_tables_flds_str = 1;
+const RA_tables_flds_desc = 2;
+const RA_desc__isKR = 0;
+const RA_desc__isSTR = 1;
+const RA_desc__isNULL = 2;
+const RA_desc__isEXPR = 3;
+const RA_desc__srcName = 4;
 
 const RA_sql_cnt = 0;
 const RA_sql_str = 1;
@@ -80,6 +86,8 @@ const RA_sepPART = "/";
 const RA_sepPART_Q = "\\/";
 const RA_sepREM = " -- ";
 const RA_sepPER = "@";
+const RA_sepLOC = "#";
+const RA_sepCO = "&";
 const RA_sepWORD = "\\W+";
 const RA_sepSTRUC = ".";
 const RA_sepSTRUC_Q = "\\.";
@@ -104,6 +112,8 @@ $RA[RA__tySEP]['RA_sepPART'] = RA_sepPART;
 $RA[RA__tySEP]['RA_sepPART_Q'] = RA_sepPART_Q;
 $RA[RA__tySEP]['RA_sepREM'] = RA_sepREM;
 $RA[RA__tySEP]['RA_sepPER'] = RA_sepPER;
+$RA[RA__tySEP]['RA_sepLOC'] = RA_sepLOC;
+$RA[RA__tySEP]['RA_sepCO'] = RA_sepCO;
 $RA[RA__tySEP]['RA_sepWORD'] = RA_sepWORD;
 $RA[RA__tySEP]['RA_sepSTRUC'] = RA_sepSTRUC;
 $RA[RA__tySEP]['RA_sepSTRUC_Q'] = RA_sepSTRUC_Q;
@@ -123,6 +133,7 @@ $RA[RA_var]['ref'] = $RA[RA_var]['login'] . RA_sepALT . $RA[RA_var]['host'];
 $RA[RA_log] = [];
 
 function dz(...$vars) { $pp = "p001a-0a";
+  global $RA;
   $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1)[0];
   $file = file($trace['file']);
   $RA[RA_du_src] = $file[$trace['line'] - 1]; // Получаем строку кода, где вызвана функция
@@ -138,7 +149,9 @@ function du(...$vars) { $pp = "p001a-1a";
     $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1)[0];
     $file = file($trace['file']);
     $line = $file[$trace['line'] - 1]; // Получаем строку кода, где вызвана функция
-  } else $line = $RA[RA_du_src];
+  } else {
+    $line = $RA[RA_du_src];
+  }
 
   // С помощью регулярного выражения извлекаем то, что было внутри скобок func_name(...)
   preg_match('/(?<=\bdu|dz|de)\((.*?)\)/', $line, $matches);
@@ -213,35 +226,35 @@ function formatTerminalValue($val, $indent = 0) { $pp = "p001a-3a";
 function __format_SQL($flds_str, $seg__arPV = '_logWDOG__arT', $cn__arP = 0) { $pp = 'p001a-4a';
   global $RA;
   if (is_numeric($seg__arPV)) {
-    $seg__arDS = $RA[RA_seg__arP][$seg__arPV];
+    $seg__DS = $RA[RA_seg__arP][$seg__arPV];
   } else {
-    $seg__arDS = $seg__arPV;
+    $seg__DS = $seg__arPV;
   }
-  if (!($is_set = isset($RA[RA_sql][$seg__arDS])) || $RA[RA_sql][$seg__arDS][RA_sql_cnt] > RA_sql_max) {
-    $seg_tab = __get_table($seg__arDS);
+  if (!($is_set = isset($RA[RA_sql][$seg__DS])) || $RA[RA_sql][$seg__DS][RA_sql_cnt] > RA_sql_max) {
+    $seg_tab = __get_table($seg__DS);
     if ($is_set) {
-      $RA[RA_sq][] = rtrim($RA[RA_sql][$seg__arDS][RA_sql_str], ',');
+      $RA[RA_sq][] = rtrim($RA[RA_sql][$seg__DS][RA_sql_str], ',');
     }
-    $RA[RA_sql][$seg__arDS][RA_sql_cnt] = 0;
-    $RA[RA_sql][$seg__arDS][RA_sql_str] = "INSERT into $seg_tab (" . $RA[RA_tables][$seg__arDS][RA_tables_flds_str] . ") values ";
+    $RA[RA_sql][$seg__DS][RA_sql_cnt] = 0;
+    $RA[RA_sql][$seg__DS][RA_sql_str] = "INSERT into $seg_tab (" . $RA[RA_tables][$seg__DS][RA_tables_flds_str] . ") values ";
   }
   if (!$cn__arP) {
-    if ($RA[RA_cn__arDS][$seg__arDS]['cn__TY'] == '__arT') {
-      $cn__arP = $RA[RA_seg__arDS][$seg__arDS][RA_seg__arDS_next]--;
+    if ($RA[RA_cn__DS][$seg__DS]['cn__TY'] == '__arT') {
+      $cn__arP = $RA[RA_seg__DS][$seg__DS][RA_seg__DS_next]--;
     } else {
-      $cn__arP = $RA[RA_seg__arDS][$seg__arDS][RA_seg__arDS_next]++;
+      $cn__arP = $RA[RA_seg__DS][$seg__DS][RA_seg__DS_next]++;
     }
     $flds_str = "$cn__arP,$flds_str";
   }
-  $RA[RA_sql][$seg__arDS][RA_sql_str] .= "\n  ($flds_str),";
-  $RA[RA_sql][$seg__arDS][RA_sql_cnt]++;
+  $RA[RA_sql][$seg__DS][RA_sql_str] .= "\n  ($flds_str),";
+  $RA[RA_sql][$seg__DS][RA_sql_cnt]++;
   return $cn__arP;
 }
 
 function __seg_agg_INT($seg_agg__val) { $pp = 'p001a-5a';
   global $RA;
   try {
-    $_ateSEG = (int) $RA[RA_cn__arDS]['_ateSEG']['val__bvPQ'];
+    $_ateSEG = (int) $RA[RA_cn__DS]['_ateSEG']['val__bvPQ'];
     return (is_numeric($seg_agg__val) ? (int) $seg_agg__val : (10 + ord($seg_agg__val) - ord('A'))) << $_ateSEG;
   } catch (Exception $e) {
 
@@ -257,18 +270,18 @@ function __seg_agg_INT($seg_agg__val) { $pp = 'p001a-5a';
 
 function __get_hieSCH($table_name) { $pp = 'p001a-6a';
   global $RA;
-  return $RA[RA_cn__arDS][$RA[RA_cn__arDS][$table_name]['cxN__arDS']]['cxN__arDS'];
+  return $RA[RA_cn__DS][$RA[RA_cn__DS][$table_name]['cxN__DS']]['cxN__DS'];
 }
 
-function __get_cn__arP($cn__arDS) { $pp = 'p001a-7a';
+function __get_cn__arP($cn__DS) { $pp = 'p001a-7a';
   global $RA;
   try {
-    $seg__arDS = $RA[RA_cn__arDS][$cn__arDS]['src_tab'];    
-    return $RA[RA_seg__arDS][$seg__arDS][RA_seg__arDS_start] + $RA[RA_cn__arDS][$cn__arDS]['src_arr_i'];
+    $seg__DS = $RA[RA_cn__DS][$cn__DS]['src_tab'];    
+    return $RA[RA_seg__DS][$seg__DS][RA_seg__DS_start] + $RA[RA_cn__DS][$cn__DS]['src_arr_i'];
   } catch (Exception $e) {
 
     $ep = "$pp-e1";
-    $msg = "$ep Error PHP: cn__arDS($cn__arDS)\nMSG:\n" . $e->getMessage();
+    $msg = "$ep Error PHP: cn__DS($cn__DS)\nMSG:\n" . $e->getMessage();
     $err = [$msg];
     $err[] = "\nTrace:\n" . $e->getTraceAsString();
     $msg .= $err[1];
@@ -280,7 +293,7 @@ function __get_cn__arP($cn__arDS) { $pp = 'p001a-7a';
 function __exec_SQL($echo_it = 0) { $pp = 'p001a-8a';
   global $RA;
   if (!$RA[RA_sql_stop]) {
-    foreach ($RA[RA_sql] as $seg__arDS => $seg_arr) {
+    foreach ($RA[RA_sql] as $seg__DS => $seg_arr) {
       $RA[RA_sq][] = rtrim($seg_arr[RA_sql_str], ',');
     }
     //dz($RA[RA_sq][30]);
@@ -308,9 +321,9 @@ function __exec_SQL($echo_it = 0) { $pp = 'p001a-8a';
 
 function __get_table($name) { $pp = "p001a-9a";
   global $RA;
-  if (isset($RA[RA_cn__arDS][$name])) {
-    $_hieSCH = $RA[RA_cn__arDS][$RA[RA_cn__arDS][$name]['cxN__arDS']]['cxN__arDS'];
-    $fcc = $RA[RA_cn__arDS][$name]['fcc__svQB'];
+  if (isset($RA[RA_cn__DS][$name])) {
+    $_hieSCH = $RA[RA_cn__DS][$RA[RA_cn__DS][$name]['cxN__DS']]['cxN__DS'];
+    $fcc = $RA[RA_cn__DS][$name]['fcc__svQB'];
     return "{$_hieSCH}._{$fcc}{$name}";
   }
   return false;
