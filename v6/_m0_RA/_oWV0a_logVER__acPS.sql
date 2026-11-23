@@ -1,6 +1,10 @@
 REPLACE INTO _wRA_LOG._oWV0a_logVER__arT (_arT,ref__svPQ,major__nuDB,minor__nuDB,build__nuDB,expl__svKB,cre__dsDB) VALUES
-	 (4294967261,'@gV / webdev3.work.deeplace.md / _raDS',1,1,11,'_raDS new __sepWORD','2026-10-24 14:51:13.000'),
-	 (4294967262,'@gV / webdev3.work.deeplace.md / _RA',1,0,2,'_RA class - squeak up','2026-10-21 12:51:25.000'),
+	 (4294967257,'@gV / webdev3.work.deeplace.md / _raDS',1,2,1,'_raDS adjust dso template','2026-11-20 17:00:46.000'),
+	 (4294967258,'@gV / webdev3.work.deeplace.md / _RA',1,2,3,'_RA init _raLOC, _raCON, _raRES','2026-11-20 16:55:34.000'),
+	 (4294967259,'@gV / webdev3.work.deeplace.md / _arDS',1,2,13,'_arDS adjust dso template','2026-11-11 14:48:00.000'),
+	 (4294967260,'@gV / webdev3.work.deeplace.md / _RA',1,1,4,'_RA new _logVER_arTD_test data strub','2026-11-11 13:40:37.000'),
+	 (4294967261,'@gV / webdev3.work.deeplace.md / _arDS',1,1,11,'_arDS new __sepWORD','2026-10-24 14:51:13.000'),
+	 (4294967262,'@gV / webdev3.work.deeplace.md / _RA',1,0,2,'_RA class - squeak up','2026-10-21 12:51:25.000');
 	 (4294967263,'@gV / webdev3.work.deeplace.md / _raDS',1,0,7,'_raDS test integral','2026-10-21 09:42:02.000');
 	 (4294967264,'@gV / ASUS-960 / _raDS',1,0,0,'_raDS test integral','2026-10-20 23:21:04.000'),
 	 (4294967265,'@gV / ASUS-960 / _raDS',0,18,47,'_raDS test All - edit rule _IT - _mW_LOG','2026-10-20 19:24:49.000'),

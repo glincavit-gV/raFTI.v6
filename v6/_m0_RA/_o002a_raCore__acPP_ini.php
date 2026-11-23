@@ -867,7 +867,7 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['cn__RES', '_raRES__acPG_chat', '_cN:_hieV', '', '__enZB', '_cxNO._AA , _ZA , _zzz', 'ds/__/dst', '__RES', 'NOT NULL', ''],
     ['line__nuSB', '_raRES__acPG_chat', '_hieV', 'line -- number in chat file', '__enZB', '_cxF._NA , _ZA , _szz', 'ds/__/dst', '__nuSB', 'NOT NULL', ''],
     ['reply__PER', '_raRES__acPG_chat', '_hieV', 'reply __PER -- autor', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst', '__PER', 'NOT NULL', ''],
-    ['reply__tyCHAT', '_raRES__acPG_chat', 'reply__PER:_hieV', 'reply type', '__enZB', 'cxF._AA , _ZA , _szz', 'ds/__/dst', '__tyCHAT', 'NOT NULL', ''],
+    ['reply__tyCHAT', '_raRES__acPG_chat', 'reply__PER:_hieV', 'reply type', '__enZB', '_cxF._AA , _ZA , _szz', 'ds/__/dst', '__tyCHAT', 'NOT NULL', ''],
     ['sum__bvKB', '_raRES__acPG_chat', '_hieV', 'summary of replica', '__enZB', '_AT , _ZA , _zzz', 'ds/__/dst', '__bvKB', 'NOT NULL', ''],
     ['ref__EXPR', '_raRES__acPG_chat', '_hieV', 'reference if any', '__enZB', '_AT , _ZA , _zzz', 'ds/__/dst', '__EXPR', 'NOT NULL', ''],
     ['PKM_raRES__acPG_chat_cn', '_raRES__acPG_chat', 'cn__RES', '', '__enZB', '_cxNU._UU , _ZA , _zzz', 'dst/ds/_/dso:_cxF._AA', 'PKM_', 'NOT NULL', ''],
@@ -1790,6 +1790,8 @@ function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = 'p002a-3a';
       if ($_cnt__HI > 1) {
         $hi__arP = __format_SQL("$_cnt__HI, $sepHI__arP", '_raEXPR__arP');
         $RA[RA_cn__DS][$exprVAL]['cn__arP'] = $hi__arP;
+        $RA[RA_cn__DS][$exprVAL]['src_tab'] = '_raEXPR__arP';
+        $RA[RA_cn__DS][$exprVAL]['src_arr_i'] = $hi__arP - $RA[RA_seg__DS]['_raEXPR__arP'][RA_seg__DS_start];
         __format_SQL("$hi__arP, '$exprVAL'", '_raCore__arPD_DS', 1);
         __format_SQL("$hi__arP", '_raCore__arP', 1);
       }
@@ -1798,7 +1800,9 @@ function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = 'p002a-3a';
         if (($_cnt__LO = count($exprLO)) == 1) {
           if (strpos($hiEL, RA_sepSTRUC) !== FALSE) {
             //dz($exprLO,$lo_i, $loEL);
-              __explore_EXPR(RA_sepSTRUC, RA_sepSTRUC, $hiEL);
+            if(($err = __explore_EXPR(RA_sepSTRUC, RA_sepSTRUC, $hiEL))) { // old value of $err IS EXACT []
+              return $err;
+            }
           }
           if (isset($RA[RA_cn__DS][$hiEL])) {
             $RA[RA_cn__DS][$exprVAL]['exprARR'][$hiEL] = [$RA[RA_cn__DS][$hiEL]['cn__arP'] ?? __get_cn__arP($hiEL)];
@@ -1813,6 +1817,8 @@ function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = 'p002a-3a';
           } else {
             $hiEL__arP = __format_SQL("$_cnt__LO, $sepLO__arP", '_raEXPR__arP');
             $RA[RA_cn__DS][$hiEL]['cn__arP'] = $hiEL__arP;
+            $RA[RA_cn__DS][$exprVAL]['src_tab'] = '_raEXPR__arP';
+            $RA[RA_cn__DS][$exprVAL]['src_arr_i'] = $hiEL__arP - $RA[RA_seg__DS]['_raEXPR__arP'][RA_seg__DS_start];
             __format_SQL("$hiEL__arP, '$hiEL'", '_raCore__arPD_DS', 1);
             __format_SQL("$hiEL__arP", '_raCore__arP', 1);
             $loARR = [];
@@ -1820,17 +1826,18 @@ function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = 'p002a-3a';
             foreach ($exprLO as $lo_i => $loEL) {
               if (strpos($loEL, RA_sepSTRUC) !== FALSE) {
                 //dz($exprLO,$lo_i, $loEL);
-                  __explore_EXPR(RA_sepSTRUC, RA_sepSTRUC, $loEL);
-              } else {
-                if (!isset($RA[RA_cn__DS][$loEL])) {
-
-                  $ep = "$pp-e3";
-                  $err[] = "$ep exprVAL($exprVAL) consist the not defined simple value loEL($loEL) in the  hiEL($hiEL)!";
-                } else {
-                  $lo__arP = __get_cn__arP($loEL);
-                  $loARR[] = $lo__arP;
-                  __format_SQL("$hiEL__arP, $lo_i, $lo__arP", '_raEXPR__acPG', 1);
+                if(($err = __explore_EXPR(RA_sepSTRUC, RA_sepSTRUC, $loEL))) { // old value of $err IS EXACT []
+                  return $err;
                 }
+              }
+              if (!isset($RA[RA_cn__DS][$loEL])) {
+
+                $ep = "$pp-e3";
+                $err[] = "$ep exprVAL($exprVAL) consist the not defined simple value loEL($loEL) in the  hiEL($hiEL)!";
+              } else {
+                $lo__arP = __get_cn__arP($loEL);
+                $loARR[] = $lo__arP;
+                __format_SQL("$hiEL__arP, $lo_i, $lo__arP", '_raEXPR__acPG', 1);
               }
             }
             if (!$err) {

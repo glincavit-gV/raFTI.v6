@@ -276,7 +276,7 @@ function __get_hieSCH($table_name) { $pp = 'p001a-6a';
 function __get_cn__arP($cn__DS) { $pp = 'p001a-7a';
   global $RA;
   try {
-    $seg__DS = $RA[RA_cn__DS][$cn__DS]['src_tab'];    
+    $seg__DS = $RA[RA_cn__DS][$cn__DS]['src_tab'];
     return $RA[RA_seg__DS][$seg__DS][RA_seg__DS_start] + $RA[RA_cn__DS][$cn__DS]['src_arr_i'];
   } catch (Exception $e) {
 
