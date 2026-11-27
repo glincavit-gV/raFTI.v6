@@ -1,7 +1,8 @@
 REPLACE INTO _wRA_LOG._oWV0a_logVER__arT (_arT,ref__svPQ,major__nuDB,minor__nuDB,build__nuDB,expl__svKB,cre__dsDB) VALUES
-	 (4294967257,'@gV / webdev3.work.deeplace.md / _raDS',1,2,1,'_raDS adjust dso template','2026-11-20 17:00:46.000'),
-	 (4294967258,'@gV / webdev3.work.deeplace.md / _RA',1,2,3,'_RA init _raLOC, _raCON, _raRES','2026-11-20 16:55:34.000'),
-	 (4294967259,'@gV / webdev3.work.deeplace.md / _arDS',1,2,13,'_arDS adjust dso template','2026-11-11 14:48:00.000'),
+	 (4294967256,'@gV / webdev3.work.deeplace.md / _raDS',1,3,1,'_raDS new _raDS disign with modiviers as 4-th dimension of rules','2026-11-27 16:26:43.000'),
+	 (4294967257,'@gV / webdev3.work.deeplace.md / _raDS',1,2,176,'_raDS adjust dso template','2026-11-20 17:00:46.000'),
+	 (4294967258,'@gV / webdev3.work.deeplace.md / _RA',1,2,10,'_RA init _raLOC, _raCON, _raRES','2026-11-20 16:55:34.000'),
+	 (4294967259,'@gV / webdev3.work.deeplace.md / _arDS',1,2,13,'_arDS adjust dso template','2026-11-11 14:48:00.000');
 	 (4294967260,'@gV / webdev3.work.deeplace.md / _RA',1,1,4,'_RA new _logVER_arTD_test data strub','2026-11-11 13:40:37.000'),
 	 (4294967261,'@gV / webdev3.work.deeplace.md / _arDS',1,1,11,'_arDS new __sepWORD','2026-10-24 14:51:13.000'),
 	 (4294967262,'@gV / webdev3.work.deeplace.md / _RA',1,0,2,'_RA class - squeak up','2026-10-21 12:51:25.000');

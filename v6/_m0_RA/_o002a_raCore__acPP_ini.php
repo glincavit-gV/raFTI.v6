@@ -15,13 +15,13 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
 
 //                                                   === rule__EXPR ===, te__EXPR
 //                                                   'dsx , dsn , dsABR'
-    ['_OM', '_OM', '', 'Object Model -- ', '__enZB', '_ZA , _WR , _UUU', '_/ds'], // the only one and 1-st cn__DS can be used in its cxN
+    ['_OM', '_OM', '', 'Object Model -- ', '__enZB', '_ZZ , _WR , _UUU', '_/dsn'], // the only one and 1-st cn__DS can be used in its cxN
                                                     //_ZA - nothing for dsx part
                                                           //_WR - use all words 1-st symbol in main part of expl__bvKB (befor ( -- )) - abreviation like rule
                                                                 //_UUU - convert all result part of ds to (upper case)
                                                                         //_/ds - put separator (_) in front of ds result, (/) - the template parts separator
 
-    ['_RA', '_OM', '', 'Relate Assemblis -- global context', '__enZB', '_ZA , _WR , _UUU', '_/ds'],
+    ['_RA', '_OM', '', 'Relate Assemblis -- global context', '__enZB', '_ZZ , _WR , _UUU', '_/dsn'],
     ['_raALT', '_RA', '', 'alternatives -- meta type', '__enZB', '_cxN._AA , _AT , _sUU', '_/ds'],
                                                                 //_cxN._NA - use from (cxN - field) its (_NA - all dsn part)
                                                                           //_AT - use from (_A - any vocals/consonants) its 1-st 3 symbols
@@ -32,7 +32,7 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
 
     ['_raTE', '_RA', '', 'template -- sub context for temlate description vs content', '__enZB', '_cxN._AA , _AD , _sUU', '_/ds'],
     ['_raTY', '_RA', '', 'types', '__enZB', '_cxN._AA , _AD , _sUU', '_/ds'],
-    ['__raST', '_RA', '', 'states : __arP', '__evQB', '_cxN._AA , _AD , _sUU', '_/ds'],
+    ['__raST', '_RA', '', 'states : __arP', '__evQB', '_cxN._AA , _AD , _sUU', '__/ds'],
     ['_raLI', '_RA', '', 'list', '__enZB', '_cxN._AA , _AD , _sUU', '_/ds'],
     ['_raHIE', '_RA', '', 'hierachy', '__enZB', '_cxN._AA , _AT , _sUU', '_/ds'],
     ['_hieSCH', '_raHIE', '_raTE', 'schema', '__enZB', '_cxN._NA , _AT , _sUU', '_/ds'],
@@ -73,11 +73,13 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
 
     ['_altFUNC', '_raALT', '', 'functor for _altNUM/_altTKN -- insted of exact number is used', '__enZB', '_cxN._NA , _AQ , _sUU', '_/ds'],
     ['__eraseInn', '_altFUNC', '', 'Erase inner -- some number of symbols and return rest', '__enZB', '_AA , _AT , _sHH', '__/dsx/dsn'],
-    ['__eraseInnOut', '_altFUNC', '', 'Erase innerr/outer -- some number of symbols and return rest', '__enZB', '_AA , _AT:_ZA , _sHH', '__/dsx/dsn/dso:_AT'],
-    ['__extractRef', '_altFUNC', '', 'Extract reference -- return the val__BVPQ of token', '__enZB', '_AA , _AT , _sHH', '__/dsx/dsn'],
+    ['__eraseInnOut', '_altFUNC', '', 'Erase innerr/outer -- some number of symbols and return rest', '__enZB', '_AA , _AT , _sHH', '__/dsx/dsn/dso:_ZA:_AT'],
+    ['__extractMain', '_altFUNC', 'main__bvPQ', 'Extract reference -- return the main__bvPQ as token', '__enZB', '_AA , _cxF._AA , _sHH', '__/dsx/dsn'],
+    ['__extractVal', '_altFUNC', 'val__bvPQ', 'Extract reference -- return the val__bvPQ as token', '__enZB', '_AA , _cxF._AA , _sHH', '__/dsx/dsn'],
     ['__unTuch', '_altFUNC', '', 'untuch token', '__enZB', '_AD , _AA , _sHH', '__/dsx/dsn'],
 
     ['_altNUM', '_raALT', '', 'numbers - human readable numbers ds', '__enZB', '_cxN._NA , _AT , _sUU', '_/ds'],
+    ['_numZ', '_altNUM', '_altNUM', 'zero : 0', '__evDB', '_cxN._NA , _WR , _sUU', '_/ds'],
     ['_numS', '_altNUM', '_altNUM', 'singlet : 1', '__evDB', '_cxN._NA , _WR , _sUU', '_/ds'],
     ['_numB', '_altNUM', '_altNUM', 'byte -- size as in _numS : 1', '__evDB', '_cxN._NA , _WR , _sUU', '_/ds'],
     ['_numD', '_altNUM', '_altNUM', 'duplet : 2', '__evDB', '_cxN._NA , _WR , _sUU', '_/ds'],
@@ -100,7 +102,6 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
                                                                                                           // exclude nothing
     ['_numA', '_altNUM', '__eraseInn:_altFUNC', 'all -- with exception of types and options part of fields : /###/', '__evPQ', '_cxN._NA , _WR , _sUU', '_/ds'],
     ['_numR', '_altNUM', '__eraseInn:_altFUNC', 'recursive all -- with exception of types and options part of fields : /###/', '__evPQ', '_cxN._NA , _WS , _sUU', '_/ds'],
-    ['_numU', '_altNUM', '__unTuch:_altFUNC', 'untuch all : /###/', '__evPQ', '_cxN._NA , _cxFT._AS , _sUU', '_/ds'],
 
     ['_altTKN', '_raALT', '', 'token -- source type of expl__bvKB or exact field to use for ds', '__enZB', '_cxN._NA , _CT , _sUU', '_/ds'],
     ['_tknS', '_altTKN', '_numS:_altNUM', ' -- number - 2 ^ _numS : 2', '__evDB', '_cxN._NA , _cxF._NA , _sUU', '_/ds'],
@@ -114,34 +115,32 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_tknM', '_altTKN', '_altNUM', 'mega -- number - 2 ^ 20 : 1048576', '__evDB', '_cxN._NA , _WR , _sUU', '_/ds'],
     ['_tknG', '_altTKN', '_altNUM', 'giga -- number - 2 ^ 30 : 1073741824', '__evDB', '_cxN._NA , _WR , _sUU', '_/ds'],
                                                                       // (?<=__).* - erase all after type prefix(__)
-    ['_tknZ', '_altTKN', '_altFUNC:_altNUM:__eraseInnOut' // /###/ - leave all symbols
-      , 'zero -- skip current part of ds (dsx or dsn) or number - 2 ^ _numZ = 1 when is used as __tyFLD : /###/', '__evPQ', '_cxN._NA , _WR , _sUU', '_/ds'],
-    ['_tknA', '_altTKN', '_altFUNC:__eraseInnOut' // exclude all after type prefix - types and options
+    ['_tknZ', '_altTKN', 'main__bvPQ:_altFUNC:_altNUM:__unTuch' // /###/ - leave all symbols
+      , 'zero -- skip current part of ds (dsx or dsn) or number - 2 ^ _numZ = 1 when is used as __tyFLD : /.*/', '__evPQ', '_cxN._NA , _WR , _sUU', '_/ds'],
+    ['_tknA', '_altTKN', 'main__bvPQ:_altFUNC:__eraseInnOut' // exclude all after type prefix - types and options
       , 'any -- use vocals or consonants symbols : /(?<=__).*|[[:punct:]]/', '__evPQ', '_cxN._NA , _WR , _sUU', '_/ds'],
-    ['_tknI', '_altTKN', '_altFUNC:__eraseInnOut'
+    ['_tknI', '_altTKN', 'main__bvPQ:_altFUNC:__eraseInnOut'
       , 'inverse order any -- from back to front : /(?<=__).*|[[:punct:]]/', '__evPQ', '_cxN._NA , _WS , _sUU', '_/ds'],
-    ['_tknC', '_altTKN', '_altFUNC:__eraseInnOut' // exclude all after type prefix and all vocal symbols
+    ['_tknC', '_altTKN', 'main__bvPQ:_altFUNC:__eraseInnOut' // exclude all after type prefix and all vocal symbols
       , "consonant -- use consonants symbols : /(?<=__).*|[$son]|[[:punct:]]/i", '__evPQ', '_cxN._NA , _WR , _sUU', '_/ds'],
-    ['_tknV', '_altTKN', '_altFUNC:__eraseInnOut' // exclude all after type prefix and all consonants
-      , "vocal -- use vocals symbols : /(?<=__).*|[$cons]|[[:punct:]])/i", '__evPQ', '_cxN._NA , _WR , _sUU', '_/ds'],
-    ['_tknL', '_altTKN', '_altFUNC:__eraseInnOut' // exclude all after type prefix and leave only 1-st symbols from ligartures
+    ['_tknV', '_altTKN', 'main__bvPQ:_altFUNC:__eraseInnOut' // exclude all after type prefix and all consonants
+      , "vocal -- use vocals symbols : /(?<=__).*|[$cons]|[[:punct:]]/i", '__evPQ', '_cxN._NA , _WR , _sUU', '_/ds'],
+    ['_tknL', '_altTKN', 'main__bvPQ:_altFUNC:__eraseInnOut' // exclude all after type prefix and leave only 1-st symbols from ligartures
       , "ligature -- sequence of consonants symbols : /(?<=__).*|(?<=[$cons])[$cons]|[$son]|[[:punct:]]/i", '__evPQ', '_cxN._NA , _WR , _sUU', '_/ds'],
-    ['_tknW', '_altTKN', '_altFUNC:__eraseInnOut' // exclude all after type prefix and leave only 1-st symbol of word
+    ['_tknW', '_altTKN', 'main__bvPQ:_altFUNC:__eraseInnOut' // exclude all after type prefix and leave only 1-st symbol of word
       , 'word -- use 1-st symbols from each word of expl__bvKB : /(?<=__).*|(?!\b[a-z])[a-z]|[[:punct:]]/i', '__evPQ', '_cxN._NA , _WR , _sUU', '_/ds'],
-    ['_tknF', '_altTKN', '_altFUNC:__eraseInnOut' // exclude all after type prefix and leave only 1-st symbol of fixie
+    ['_tknF', '_altTKN', 'main__bvPQ:_altFUNC:__eraseInnOut' // exclude all after type prefix and leave only 1-st symbol of fixie
       , 'fixe -- words represented in mor-phe-me to use as legature : /(?<=__).*|(?!\b[a-z])[a-z]|[[:punct:]]/i', '__evPQ', '_cxN._NA , _WR , _sUU', '_/ds'],
-    ['_tknN', '_altTKN', '_cN:_altFUNC:__eraseInnOut' // exclude all after type prefix and leave all after 1-st upper case
-      , '_cN -- use symbols from part _cN : /(?<=__).*|[[:punct:]]|[a-z0-9]+(?=[A-Z].*)/', '__evPQ', '_cxN._NA , _cxF._NA , _sUU', '_/ds'],
-    ['_tknX', '_altTKN', '_cX:_altFUNC:__eraseInnOut' // exclude all after type prefix and leave all before 1-st upper case
-      , '_cX -- use symbols from part _cX : /(?<=__).*|[[:punct:]]|[A-Z]+|(?<=[A-Z]).*/', '__evPQ', '_cxN._NA , _cxF._NA , _sUU', '_/ds'],
-    ['_tknU', '_altTKN', '_altFUNC:__unTuch'
-      , '_numU : /###/', '__evPQ', '_cxN._NA , _exM._NA , _sUU', '_/ds'],
-    ['_tknR', '_altTKN', '_altFUNC:__extractRef'
-      , 'reference -- use all symbols from val__evPQ field of content of referencrd field : /###/', '__evPQ', '_cxN._NA , _WR , _sUU', '_/ds'],
+    ['_tknN', '_altTKN', 'main__bvPQ:_altFUNC:__eraseInnOut' // exclude all after type prefix and leave all after 1-st upper case
+      , '_cN -- use symbols from part _cN : /(?<=__).*|[[:punct:]]|[a-z0-9]+(?=[A-Z].*)/', '__evPQ', '_cxN._NA , _NA , _sUU', '_/ds'],
+    ['_tknX', '_altTKN', 'main__bvPQ:_altFUNC:__eraseInnOut' // exclude all after type prefix and leave all before 1-st upper case
+      , '_cX -- use symbols from part _cX : /(?<=__).*|[[:punct:]]|[A-Z]+|(?<=[A-Z]).*/', '__evPQ', '_cxN._NA , _NA , _sUU', '_/ds'],
+    ['_tknU', '_altTKN', 'main__bvPQ:_altFUNC:__unTuch'
+      , 'untuch - leave all and separators as is : /###/', '__evPQ', '_cxN._NA , _AS , _sUU', '_/ds'],
     ['_exM', '_altTKN', 'main__bvPQ:_altFUNC:__eraseInnOut'
-      , 'expl__bvKB -- use this field content : /###/', '__evPQ', '_exM._AD , _cxF._AS , _sUU', '_/ds'],
+      , 'expl__bvKB -- use this field content : /(?<=__).*|[[:punct:]]/', '__evPQ', '_exM._AD , _cxF._AS , _sUU', '_/ds'],
     ['_exV', '_altTKN', 'val__bvPQ:_altFUNC:__eraseInnOut'
-      , 'expl__bvKB -- use this field content : /###/', '__evPQ', '_exM._AD , _cxF._AS , _sUU', '_/ds'],
+      , 'expl__bvKB -- use this field content : /(?<=__).*|[[:punct:]]/', '__evPQ', '_exM._AD , _cxF._AS , _sUU', '_/ds'],
     ['_exMT', '_altTKN', 'main__bvPQ:_altFUNC:__eraseInnOut'
       , '_exM type part of this field content : /.*(?=__)|[[:punct:]]/', '__evPQ', '_AA , _AS , _zUU', '_/ds'],
     ['_exVT', '_altTKN', 'val__bvPQ:_altFUNC:__eraseInnOut'
@@ -151,17 +150,17 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_exVO', '_altTKN', 'val__bvPQ:_altFUNC:__eraseInnOut'
       , '_exV option part of this field content : /.*(?=[[:punct:]])|[[:punct:]]/', '__evPQ', '_AA , _AS , _zUU', '_/ds'],
     ['_exMU', '_altTKN', 'main__bvPQ:_altFUNC:__unTuch'
-      , '_exM _numU -- untuch all parts of this field content : /###/', '__evPQ', '_AU , _exM._NA , _zUU', '_/ds'],
-    ['_exVU', '_altTKN', 'val__bvPQ:_altFUNC:__unTuch' 
-      , '_exV _numU -- // -- : /###/', '__evPQ', '_AU , _exM._NA , _zUU', '_/ds'],
-    ['_exMM', '_altTKN', 'main__bvPQ:_altFUNC:__extractRef'
-      , '_exM -- reference to main__bvPQ : /###/', '__evPQ', '_exM._AU , _exM._NA , _zUU', '_/ds'],
-    ['_exMV', '_altTKN', 'val__bvPQ:_altFUNC:__extractRef'
-      , '_exM _exV -- reference to val__bvPQ : /###/', '__evPQ', '_exM._AA , _exM._NA , _zUU', '_/ds'],
+      , '_exM _tknU -- untuch all parts of this field content : /###/', '__evPQ', '_AA , _NA , _zUU', '_/ds'],
+    ['_exVU', '_altTKN', 'val__bvPQ:_altFUNC:__unTuch'
+      , '_exV _tknU -- // -- : /###/', '__evPQ', '_AA , _NA , _zUU', '_/ds'],
+    ['_exMM', '_altTKN', 'main__bvPQ:_altFUNC:__extractMain'
+      , '_exM _exM -- reference to main__bvPQ : /###/', '__evPQ', '_AA , _NA , _zUU', '_/ds'],
+    ['_exMV', '_altTKN', 'val__bvPQ:_altFUNC:__extractVal'
+      , '_exM _exV -- reference to val__bvPQ : /###/', '__evPQ', '_AA , _NA , _zUU', '_/ds'],
     ['_cxN', '_altTKN', 'cxN__DS:_altFUNC:__eraseInnOut'
-      , ' -- use this field content : /###/', '__evPQ', '_cxF._AA , _ZA , _zzz', '_/ds'],
+      , ' -- use this field content : /(?<=__).*|[[:punct:]]/', '__evPQ', '_cxF._AA , _ZZ , _zzz', '_/ds'],
     ['_cxF', '_altTKN', 'cxF__EXPR:_altFUNC:__eraseInnOut'
-      , ' -- use this field content : /###/', '__evPQ', '_cxF._AA , _ZA , _zzz', '_/ds'],
+      , ' -- use this field content : /(?<=__).*|[[:punct:]]/', '__evPQ', '_cxF._AA , _ZZ , _zzz', '_/ds'],
     ['_cxNT', '_altTKN', 'cxN__DS:_altFUNC:__eraseInnOut'
       , 'type part of this field content : /.*(?=__)|[[:punct:]]/', '__evPQ', '_cxF._AA , _AS , _zUU', '_/ds'],
     ['_cxFT', '_altTKN', 'cxF__EXPR:_cxF:_altFUNC:__eraseInnOut'
@@ -171,116 +170,123 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_cxFO', '_altTKN', 'cxF__EXPR:_altFUNC:__eraseInnOut'
       , 'option part of this field content : /.*(?=[[:punct:]])|[[:punct:]]/', '__evPQ', '_cxF._AA , _AS , _zUU', '_/ds'],
     ['_cxNU', '_altTKN', 'cxN__DS:_altFUNC:__unTuch'
-      , '_numU -- untuch all parts of this field content : /###/', '__evPQ', '_cxF._AA , _exM._NA , _zUU', '_/ds'],
+      , '_tknU -- untuch all parts of this field content : /###/', '__evPQ', '_cxF._AA , _NA , _zUU', '_/ds'],
     ['_cxFU', '_altTKN', 'cxF__EXPR:_altFUNC:__unTuch'
-      , '_numU -- // -- : /###/', '__evPQ', '_cxF._AA , _exM._NA , _zUU', '_/ds'],
-    ['_cxNM', '_altTKN', 'cxN__DS:_altFUNC:__extractRef'
-      , '_exM -- reference to _exM : /###/', '__evPQ', '_cxF._AA , _exM._NA , _zUU', '_/ds'],
-    ['_cxFM', '_altTKN', 'cxF__EXPR:_altFUNC:__extractRef'
-      , '_exM -- reference to _exM : /###/', '__evPQ', '_cxF._AA , _exM._NA , _zUU', '_/ds'],
-    ['_cxNV', '_altTKN', 'cxN__DS:_altFUNC:__extractRef'
-      , '_exV -- reference to _exV : /###/', '__evPQ', '_cxF._AA , _exM._NA , _zUU', '_/ds'],
-    ['_cxFV', '_altTKN', 'cxF__EXPR:_altFUNC:__extractRef'
-      , '_exV -- reference to _exV : /###/', '__evPQ', '_cxF._AA , _exM._NA , _zUU', '_/ds'],
+      , '_tknU -- // -- : /###/', '__evPQ', '_cxF._AA , _NA , _zUU', '_/ds'],
+    ['_cxNM', '_altTKN', 'cxN__DS:_altFUNC:__extractMain'
+      , '_tknM -- untuch all parts of this field content : /###/', '__evPQ', '_cxF._AA , _NA , _zUU', '_/ds'],
+    ['_cxFM', '_altTKN', 'cxF__EXPR:_altFUNC:__extractMain'
+      , '_tknM -- // -- : /###/', '__evPQ', '_cxF._AA , _NA , _zUU', '_/ds'],
+    ['_cxNV', '_altTKN', 'cxN__DS:_altFUNC:__extractVal'
+      , '_tknV -- untuch all parts of this field content : /###/', '__evPQ', '_cxF._AA , _NA , _zUU', '_/ds'],
+    ['_cxFV', '_altTKN', 'cxF__EXPR:_altFUNC:__extractVal'
+      , '_tknV -- // -- : /###/', '__evPQ', '_cxF._AA , _NA , _zUU', '_/ds'],
 
     ['_tknNUM', '_raTE', '_altTKN + _altNUM', ' -- template to combine from cxF', '__enZB', '_cxF._NA , _cxF._NA , _sUU', '_/ds'],
     // 1000 - enogth value to skeep the rest of the token
-    ['_ZU', '_tknNUM', '_tknZ + _numU:_altNUM', ' -- undestroi(restore) corrent token : 0', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_ZA', '_tknNUM', '_tknZ + _numA:_altNUM:_altFUNC', ' -- skip current token : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_ZL', '_tknNUM', '_tknZ + _numL:_altNUM:_altFUNC', ' -- skip rest of current token : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_ZS', '_tknNUM', '_tknZ + _numS:_altNUM', ' -- skip current token by value symbols : 1', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_ZD', '_tknNUM', '_tknZ + _numD:_altNUM', ' -- skip current token --//-- : 2', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_ZT', '_tknNUM', '_tknZ + _numT:_altNUM', ' -- skip current token --//-- : 3', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_ZQ', '_tknNUM', '_tknZ + _numQ:_altNUM', ' -- skip current token --//-- : 4', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_ZP', '_tknNUM', '_tknZ + _numP:_altNUM', ' -- skip current token --//-- : 5', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_AA', '_tknNUM', '_tknA + _numA:_altFUNC', ' -- use any all symbols or coresponding field subpart : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_AR', '_tknNUM', '_tknA + _numR:_altFUNC', ' -- use any all symbols or coresponding field subpart recuursive : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_AU', '_tknNUM', '_tknA + _numU:_altFUNC', ' -- use any all symbols or coresponding field subpart and reset token : 0', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_UU', '_tknNUM', '_tknU + _numU:_altFUNC', ' -- untuch coresponding fields or words : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_UR', '_tknNUM', '_tknU + _numR:_altFUNC', ' -- untuch coresponding fields or words recuursive : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_CA', '_tknNUM', '_tknC + _numA:_altFUNC', ' -- use all consonant symbols : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_LA', '_tknNUM', '_tknL + _numA:_altFUNC', ' -- use all ligature(sequence of consonants) 1-st symbol : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_CR', '_tknNUM', '_tknC + _numR:_altFUNC', ' -- use all consonant symbols : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_LR', '_tknNUM', '_tknL + _numR:_altFUNC', ' -- use all ligature(sequence of consonants) 1-st symbol : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_AE', '_tknNUM', '_tknA + _numE:_altFUNC', ' -- use any edge (vocals or consonants) symbols : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_CE', '_tknNUM', '_tknC + _numE:_altFUNC', ' -- use edge both (1-st and last) consonant symbols : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_VE', '_tknNUM', '_tknV + _numE:_altFUNC', ' -- use edge both vocal symbols : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_LE', '_tknNUM', '_tknL + _numE:_altFUNC', ' -- use edge both ligature 1-st symbols : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_AL', '_tknNUM', '_tknA + _numL:_altFUNC', ' -- use any last (vocals or consonants) symbols : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_CL', '_tknNUM', '_tknC + _numL:_altFUNC', ' -- use last (1-st and last) consonant symbols : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_VL', '_tknNUM', '_tknV + _numL:_altFUNC', ' -- use last vocal symbols : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_LL', '_tknNUM', '_tknL + _numL:_altFUNC', ' -- use last ligature symbols : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_AS', '_tknNUM', '_tknA + _numS:_altNUM', ' -- use any singlet (vocals or consonants) symbols : 1', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_AD', '_tknNUM', '_tknA + _numD:_altNUM', ' -- use any duplet (vocals or consonants) symbols : 2', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_AT', '_tknNUM', '_tknA + _numT:_altNUM', ' -- use any triplet (vocals or consonants) symbols : 3', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_AQ', '_tknNUM', '_tknA + _numQ:_altNUM', ' -- use any qudlet (vocals or consonants) symbols : 4', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_AP', '_tknNUM', '_tknA + _numP:_altNUM', ' -- use any pintet (vocals or consonants) symbols : 5', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_APS', '_tknNUM', '_tknA + _numPS:_altNUM', ' -- use any pintet (vocals or consonants) symbols : 6', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_APD', '_tknNUM', '_tknA + _numPD:_altNUM', ' -- use any pintet (vocals or consonants) symbols : 7', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_AO', '_tknNUM', '_tknA + _numO:_altNUM', ' -- use any octet (vocals or consonants) symbols : 0', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_IS', '_tknNUM', '_tknI + _numS:_altNUM', ' -- singlet any invers (from back to front) : -1', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_ID', '_tknNUM', '_tknI + _numD:_altNUM', ' -- duplet --//-- : -2', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_IT', '_tknNUM', '_tknI + _numT:_altNUM', ' -- triplet --//-- : -3', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_IQ', '_tknNUM', '_tknI + _numQ:_altNUM', ' -- quadlet --//-- : -4', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_VS', '_tknNUM', '_tknV + _numS:_altNUM', ' -- use vocals singlet symbol : 1', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_VD', '_tknNUM', '_tknV + _numD:_altNUM', ' -- use vocals duplet symbols : 2', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_VT', '_tknNUM', '_tknV + _numT:_altNUM', ' -- use vocals triplet symbols : 3', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_CS', '_tknNUM', '_tknC + _numS:_altNUM', ' -- use consonant singlet symbol : 1', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_CD', '_tknNUM', '_tknC + _numD:_altNUM', ' -- use consonant duplet symbols : 2', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_CT', '_tknNUM', '_tknC + _numT:_altNUM', ' -- use consonant triplet symbols : 3', '__enZB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_LS', '_tknNUM', '_tknL + _numS:_altNUM', ' -- use singlet ligature 1-st symbol : 1', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_LD', '_tknNUM', '_tknL + _numD:_altNUM', ' -- use duplet ligature 1-st symbol : 2', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_LT', '_tknNUM', '_tknL + _numT:_altNUM', ' -- use triplet ligature 1-st symbol : 3', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_WS', '_tknNUM', '_tknW + _numS:_altNUM', ' -- use word singlet 1-st symbol : 1', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_WD', '_tknNUM', '_tknW + _numD:_altNUM', ' -- use words duplet 1-st symbols : 2', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_WT', '_tknNUM', '_tknW + _numT:_altNUM', ' -- use words triplet 1-st symbols : 3', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_WR', '_tknNUM', '_tknW + _numR:_altFUNC', ' -- use all words 1-st symbols - as abreviation : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_FS', '_tknNUM', '_tknF + _numS:_altNUM', ' -- use singlet fixe 1-st symbol : 1', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_FD', '_tknNUM', '_tknF + _numD:_altNUM', ' -- use duplet fixes 1-st symbol : 2', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_FT', '_tknNUM', '_tknF + _numT:_altNUM', ' -- use triplet fixes 1-st symbol : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_FA', '_tknNUM', '_tknF + _numA:_altFUNC', ' -- use 1-st fixe all symbols : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_FR', '_tknNUM', '_tknF + _numR:_altFUNC', ' -- use 1-st fixe all symbols : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_FL', '_tknNUM', '_tknF + _numL:_altFUNC', ' -- use last fixe all symbols : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_FE', '_tknNUM', '_tknF + _numE:_altFUNC', ' -- use edge fixes 1-st symbol : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_NS', '_tknNUM', '_tknN + _numS:_altNUM', ' -- use all _cN symbols part from singlet sub parts : 1', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_ND', '_tknNUM', '_tknN + _numD:_altNUM', ' -- use all _cN symbols part from duplet sub parts : 2', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_NT', '_tknNUM', '_tknN + _numT:_altNUM', ' -- use all _cN symbols part from triplet sub parts : 3', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_NQ', '_tknNUM', '_tknN + _numQ:_altNUM', ' -- use all _cN symbols part from quad sub parts : 4', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_NA', '_tknNUM', '_tknN + _numA:_altFUNC', ' -- use all _cN symbols part from all sub parts : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_NR', '_tknNUM', '_tknN + _numR:_altFUNC', ' -- use all _cN symbols part from all sub parts : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_XS', '_tknNUM', '_tknX + _numS:_altNUM', ' -- use all _cX symbols part from singlet sub parts : 1', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_XD', '_tknNUM', '_tknX + _numD:_altNUM', ' -- use all _cX symbols part from duplet sub parts : 2', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_XT', '_tknNUM', '_tknX + _numT:_altNUM', ' -- use all _cX symbols part from triplet sub parts : 3', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_XQ', '_tknNUM', '_tknX + _numQ:_altNUM', ' -- use all _cX symbols part from quad sub parts : 4', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_XA', '_tknNUM', '_tknX + _numA:_altFUNC', ' -- use all _cX symbols part from all sub parts : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_XR', '_tknNUM', '_tknX + _numR:_altFUNC', ' -- use all _cX symbols part from all sub parts : 1000', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_ZB', '_tknNUM', '_tknZ + _numB:_altNUM', ' -- number - 2 ^ _numZ * _numB : 1', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_SB', '_tknNUM', '_tknS + _numB:_altNUM', ' -- number - 2 ^ _numS * _numB : 2', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_ST', '_tknNUM', '_tknS + _numT:_altNUM', ' -- number - 2 ^ _numS * _numT : 6', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_DB', '_tknNUM', '_tknD + _numB:_altNUM', ' -- number - 2 ^ _numD * _numB : 4', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_TB', '_tknNUM', '_tknT + _numB:_altNUM', ' -- number - 2 ^ _numT * _numB : 8', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_QB', '_tknNUM', '_tknQ + _numB:_altNUM', ' -- number - 2 ^ _numQ * _numB : 16', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_PB', '_tknNUM', '_tknP + _numB:_altNUM', ' -- number - 2 ^ _numP * _numB : 32', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_PD', '_tknNUM', '_tknP + _numD:_altNUM', ' -- number - 2 ^ _numP * _numD : 64', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_PQ', '_tknNUM', '_tknP + _numQ:_altNUM', ' -- number - 2 ^ _numP * _numQ : 128', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_OB', '_tknNUM', '_tknO + _numB:_altNUM', ' -- number - 2 ^ _numO * _numB : 256', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_OD', '_tknNUM', '_tknO + _numD:_altNUM', ' -- number - 2 ^ _numO * _numD : 512', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_KB', '_tknNUM', '_tknK + _numB:_altNUM', ' -- number - 2 ^ 10 * _numB : 1024', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_KD', '_tknNUM', '_tknK + _numD:_altNUM', ' -- number - 2 ^ 10 * _numD : 2048', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_KQ', '_tknNUM', '_tknK + _numQ:_altNUM', ' -- number - 2 ^ 10 * _numQ : 4192', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_KO', '_tknNUM', '_tknK + _numO:_altNUM', ' -- number - 2 ^ 10 * _numO : 8384', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_KH', '_tknNUM', '_tknK + _numH:_altNUM', ' -- number - 2 ^ 10 * _numH : 16768', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_HB', '_tknNUM', '_tknH + _numB:_altNUM', ' -- number - 2 ^ _numH * _numB : 65536', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'], 
-    ['_HD', '_tknNUM', '_tknH + _numD:_altNUM', ' -- number - 2 ^ _numH * _numD : 131072', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'], 
-    ['_HQ', '_tknNUM', '_tknH + _numQ:_altNUM', ' -- number - 2 ^ _numH * _numQ : 262144', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'], 
-    ['_HO', '_tknNUM', '_tknH + _numO:_altNUM', ' -- number - 2 ^ _numH * _numO : 524288', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'], 
-    ['_MB', '_tknNUM', '_tknM + _numB:_altNUM', ' -- number - 2 ^ _numM * _numB : 1048576', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_MD', '_tknNUM', '_tknM + _numD:_altNUM', ' -- number - 2 ^ _numM * _numD : 2097152', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_MQ', '_tknNUM', '_tknM + _numQ:_altNUM', ' -- number - 2 ^ _numM * _numQ : 4194304', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_MO', '_tknNUM', '_tknM + _numO:_altNUM', ' -- number - 2 ^ _numM * _numQ : 8388608', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_GB', '_tknNUM', '_tknG + _numB:_altNUM', ' -- number - 2 ^ _numG * _numB : 1073741824', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_GD', '_tknNUM', '_tknG + _numD:_altNUM', ' -- number - 2 ^ _numG * _numD : 2147483648', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
-    ['_GQ', '_tknNUM', '_tknG + _numQ:_altNUM', ' -- number - 2 ^ _numG * _numQ : 4294967296', '__evDB', '_ZA , _cxF._NR , _UUU', '_/ds'],
+    ['_UA', '_tknNUM', '_tknU + _numA:_altNUM:_altFUNC', ' -- take all token with separators : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_MMA', '_tknNUM', '_exMM + _numA:_altNUM:_altFUNC', ' -- take val part of token reference : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_MVA', '_tknNUM', '_exMV + _numA:_altNUM:_altFUNC', ' -- take main part of token reference : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_ZZ', '_tknNUM', '_tknZ + _numZ:_altNUM:_altFUNC', ' -- skip current token : 0', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_ZA', '_tknNUM', '_tknZ + _numA:_altNUM:_altFUNC', ' -- skip current token : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_ZL', '_tknNUM', '_tknZ + _numL:_altNUM:_altFUNC', ' -- skip rest of current token : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_ZS', '_tknNUM', '_tknZ + _numS:_altNUM', ' -- skip current token by value symbols : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_ZD', '_tknNUM', '_tknZ + _numD:_altNUM', ' -- skip current token --//-- : 2', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_ZT', '_tknNUM', '_tknZ + _numT:_altNUM', ' -- skip current token --//-- : 3', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_ZQ', '_tknNUM', '_tknZ + _numQ:_altNUM', ' -- skip current token --//-- : 4', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_ZP', '_tknNUM', '_tknZ + _numP:_altNUM', ' -- skip current token --//-- : 5', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_AA', '_tknNUM', '_tknA + _numA:_altFUNC', ' -- use any all symbols or coresponding field subpart : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_AR', '_tknNUM', '_tknA + _numR:_altFUNC', ' -- use any all symbols or coresponding field subpart recuursive : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_UR', '_tknNUM', '_tknU + _numR:_altFUNC', ' -- untuch coresponding fields or words recuursive : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_CA', '_tknNUM', '_tknC + _numA:_altFUNC', ' -- use all consonant symbols : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_LA', '_tknNUM', '_tknL + _numA:_altFUNC', ' -- use all ligature(sequence of consonants) 1-st symbol : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_CR', '_tknNUM', '_tknC + _numR:_altFUNC', ' -- use all consonant symbols : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_LR', '_tknNUM', '_tknL + _numR:_altFUNC', ' -- use all ligature(sequence of consonants) 1-st symbol : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_AE', '_tknNUM', '_tknA + _numE:_altFUNC', ' -- use any edge (vocals or consonants) symbols : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_CE', '_tknNUM', '_tknC + _numE:_altFUNC', ' -- use edge both (1-st and last) consonant symbols : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_VE', '_tknNUM', '_tknV + _numE:_altFUNC', ' -- use edge both vocal symbols : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_LE', '_tknNUM', '_tknL + _numE:_altFUNC', ' -- use edge both ligature 1-st symbols : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_AL', '_tknNUM', '_tknA + _numL:_altFUNC', ' -- use any last (vocals or consonants) symbols : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_CL', '_tknNUM', '_tknC + _numL:_altFUNC', ' -- use last (1-st and last) consonant symbols : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_VL', '_tknNUM', '_tknV + _numL:_altFUNC', ' -- use last vocal symbols : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_LL', '_tknNUM', '_tknL + _numL:_altFUNC', ' -- use last ligature symbols : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_AS', '_tknNUM', '_tknA + _numS:_altNUM', ' -- use any singlet (vocals or consonants) symbols : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_MMS', '_tknNUM', '_exMM + _numS:_altNUM', ' -- use any singlet (vocals or consonants) symbols : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_MVS', '_tknNUM', '_exMV + _numS:_altNUM', ' -- use any singlet (vocals or consonants) symbols : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_AD', '_tknNUM', '_tknA + _numD:_altNUM', ' -- use any duplet (vocals or consonants) symbols : 2', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_MMD', '_tknNUM', '_exMM + _numD:_altNUM', ' -- use any duplet (vocals or consonants) symbols : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_MVD', '_tknNUM', '_exMV + _numD:_altNUM', ' -- use any duplet (vocals or consonants) symbols : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_AT', '_tknNUM', '_tknA + _numT:_altNUM', ' -- use any triplet (vocals or consonants) symbols : 3', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_MMT', '_tknNUM', '_exMM + _numT:_altNUM', ' -- use any triplet (vocals or consonants) symbols : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_MVT', '_tknNUM', '_exMV + _numT:_altNUM', ' -- use any triplet (vocals or consonants) symbols : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_AQ', '_tknNUM', '_tknA + _numQ:_altNUM', ' -- use any qudlet (vocals or consonants) symbols : 4', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_AP', '_tknNUM', '_tknA + _numP:_altNUM', ' -- use any pintet (vocals or consonants) symbols : 5', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_APS', '_tknNUM', '_tknA + _numPS:_altNUM', ' -- use any pintet (vocals or consonants) symbols : 6', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_APD', '_tknNUM', '_tknA + _numPD:_altNUM', ' -- use any pintet (vocals or consonants) symbols : 7', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_AO', '_tknNUM', '_tknA + _numO:_altNUM', ' -- use any octet (vocals or consonants) symbols : 0', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_IS', '_tknNUM', '_tknI + _numS:_altNUM', ' -- singlet any invers (from back to front) : -1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_ID', '_tknNUM', '_tknI + _numD:_altNUM', ' -- duplet --//-- : -2', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_IT', '_tknNUM', '_tknI + _numT:_altNUM', ' -- triplet --//-- : -3', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_IQ', '_tknNUM', '_tknI + _numQ:_altNUM', ' -- quadlet --//-- : -4', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_VS', '_tknNUM', '_tknV + _numS:_altNUM', ' -- use vocals singlet symbol : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_VD', '_tknNUM', '_tknV + _numD:_altNUM', ' -- use vocals duplet symbols : 2', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_VT', '_tknNUM', '_tknV + _numT:_altNUM', ' -- use vocals triplet symbols : 3', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_CS', '_tknNUM', '_tknC + _numS:_altNUM', ' -- use consonant singlet symbol : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_CD', '_tknNUM', '_tknC + _numD:_altNUM', ' -- use consonant duplet symbols : 2', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_CT', '_tknNUM', '_tknC + _numT:_altNUM', ' -- use consonant triplet symbols : 3', '__enZB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_LS', '_tknNUM', '_tknL + _numS:_altNUM', ' -- use singlet ligature 1-st symbol : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_LD', '_tknNUM', '_tknL + _numD:_altNUM', ' -- use duplet ligature 1-st symbol : 2', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_LT', '_tknNUM', '_tknL + _numT:_altNUM', ' -- use triplet ligature 1-st symbol : 3', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_WS', '_tknNUM', '_tknW + _numS:_altNUM', ' -- use word singlet 1-st symbol : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_WD', '_tknNUM', '_tknW + _numD:_altNUM', ' -- use words duplet 1-st symbols : 2', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_WT', '_tknNUM', '_tknW + _numT:_altNUM', ' -- use words triplet 1-st symbols : 3', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_WR', '_tknNUM', '_tknW + _numR:_altFUNC', ' -- use all words 1-st symbols - as abreviation : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_FS', '_tknNUM', '_tknF + _numS:_altNUM', ' -- use singlet fixe 1-st symbol : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_FD', '_tknNUM', '_tknF + _numD:_altNUM', ' -- use duplet fixes 1-st symbol : 2', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_FT', '_tknNUM', '_tknF + _numT:_altNUM', ' -- use triplet fixes 1-st symbol : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_FA', '_tknNUM', '_tknF + _numA:_altFUNC', ' -- use 1-st fixe all symbols : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_FR', '_tknNUM', '_tknF + _numR:_altFUNC', ' -- use 1-st fixe all symbols : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_FL', '_tknNUM', '_tknF + _numL:_altFUNC', ' -- use last fixe all symbols : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_FE', '_tknNUM', '_tknF + _numE:_altFUNC', ' -- use edge fixes 1-st symbol : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_NS', '_tknNUM', '_tknN + _numS:_altNUM', ' -- use all _cN symbols part from singlet sub parts : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_ND', '_tknNUM', '_tknN + _numD:_altNUM', ' -- use all _cN symbols part from duplet sub parts : 2', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_NT', '_tknNUM', '_tknN + _numT:_altNUM', ' -- use all _cN symbols part from triplet sub parts : 3', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_NQ', '_tknNUM', '_tknN + _numQ:_altNUM', ' -- use all _cN symbols part from quad sub parts : 4', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_NA', '_tknNUM', '_tknN + _numA:_altFUNC', ' -- use all _cN symbols part from all sub parts : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_NR', '_tknNUM', '_tknN + _numR:_altFUNC', ' -- use all _cN symbols part from all sub parts : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_XS', '_tknNUM', '_tknX + _numS:_altNUM', ' -- use all _cX symbols part from singlet sub parts : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_XD', '_tknNUM', '_tknX + _numD:_altNUM', ' -- use all _cX symbols part from duplet sub parts : 2', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_XT', '_tknNUM', '_tknX + _numT:_altNUM', ' -- use all _cX symbols part from triplet sub parts : 3', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_XQ', '_tknNUM', '_tknX + _numQ:_altNUM', ' -- use all _cX symbols part from quad sub parts : 4', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_XA', '_tknNUM', '_tknX + _numA:_altFUNC', ' -- use all _cX symbols part from all sub parts : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_XR', '_tknNUM', '_tknX + _numR:_altFUNC', ' -- use all _cX symbols part from all sub parts : 1000', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_ZB', '_tknNUM', '_tknZ + _numB:_altNUM', ' -- number - 2 ^ _numZ * _numB : 1', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_SB', '_tknNUM', '_tknS + _numB:_altNUM', ' -- number - 2 ^ _numS * _numB : 2', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_ST', '_tknNUM', '_tknS + _numT:_altNUM', ' -- number - 2 ^ _numS * _numT : 6', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_DB', '_tknNUM', '_tknD + _numB:_altNUM', ' -- number - 2 ^ _numD * _numB : 4', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_TB', '_tknNUM', '_tknT + _numB:_altNUM', ' -- number - 2 ^ _numT * _numB : 8', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_QB', '_tknNUM', '_tknQ + _numB:_altNUM', ' -- number - 2 ^ _numQ * _numB : 16', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_PB', '_tknNUM', '_tknP + _numB:_altNUM', ' -- number - 2 ^ _numP * _numB : 32', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_PD', '_tknNUM', '_tknP + _numD:_altNUM', ' -- number - 2 ^ _numP * _numD : 64', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_PQ', '_tknNUM', '_tknP + _numQ:_altNUM', ' -- number - 2 ^ _numP * _numQ : 128', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_OB', '_tknNUM', '_tknO + _numB:_altNUM', ' -- number - 2 ^ _numO * _numB : 256', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_OD', '_tknNUM', '_tknO + _numD:_altNUM', ' -- number - 2 ^ _numO * _numD : 512', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_KB', '_tknNUM', '_tknK + _numB:_altNUM', ' -- number - 2 ^ 10 * _numB : 1024', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_KD', '_tknNUM', '_tknK + _numD:_altNUM', ' -- number - 2 ^ 10 * _numD : 2048', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_KQ', '_tknNUM', '_tknK + _numQ:_altNUM', ' -- number - 2 ^ 10 * _numQ : 4192', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_KO', '_tknNUM', '_tknK + _numO:_altNUM', ' -- number - 2 ^ 10 * _numO : 8384', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_KH', '_tknNUM', '_tknK + _numH:_altNUM', ' -- number - 2 ^ 10 * _numH : 16768', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_HB', '_tknNUM', '_tknH + _numB:_altNUM', ' -- number - 2 ^ _numH * _numB : 65536', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'], 
+    ['_HD', '_tknNUM', '_tknH + _numD:_altNUM', ' -- number - 2 ^ _numH * _numD : 131072', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'], 
+    ['_HQ', '_tknNUM', '_tknH + _numQ:_altNUM', ' -- number - 2 ^ _numH * _numQ : 262144', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'], 
+    ['_HO', '_tknNUM', '_tknH + _numO:_altNUM', ' -- number - 2 ^ _numH * _numO : 524288', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'], 
+    ['_MB', '_tknNUM', '_tknM + _numB:_altNUM', ' -- number - 2 ^ _numM * _numB : 1048576', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_MD', '_tknNUM', '_tknM + _numD:_altNUM', ' -- number - 2 ^ _numM * _numD : 2097152', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_MQ', '_tknNUM', '_tknM + _numQ:_altNUM', ' -- number - 2 ^ _numM * _numQ : 4194304', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_MO', '_tknNUM', '_tknM + _numO:_altNUM', ' -- number - 2 ^ _numM * _numQ : 8388608', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_GB', '_tknNUM', '_tknG + _numB:_altNUM', ' -- number - 2 ^ _numG * _numB : 1073741824', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_GD', '_tknNUM', '_tknG + _numD:_altNUM', ' -- number - 2 ^ _numG * _numD : 2147483648', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
+    ['_GQ', '_tknNUM', '_tknG + _numQ:_altNUM', ' -- number - 2 ^ _numG * _numQ : 4294967296', '__evDB', '_ZZ , _cxF._NR , _UUU', '_/ds'],
     ['_dsABR', '_raDS', '_raTE', 'abris -- rule for capitalisation abris of _raDS in 3 parts', '__enZB', '_cxN._NA , _AT , _sUU', '_/ds'],
     ['_tyABR', '_dsABR', '_raTY', ' -- type of abris', '__enZB', '_cxF._NA , _cxN._NA , _sUU', '_/ds'],
     ['_abrZ', '_tyABR', '', 'zero -- capitalisation = leave as is', '__enZB', '_cxN._NA , _WR , _sUU', '_/ds'],
@@ -293,6 +299,7 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_zzz', '_dsABR', '_abrZ + _abrZ + _abrZ', '', '__enZB', '_cxF._NA , _cxF._NA , _sss', '_/ds/dso:_cxF._NA'],
     ['_szz', '_dsABR', '_abrS + _abrZ + _abrZ', '', '__enZB', '_cxF._NA , _cxF._NA , _sss', '_/ds/dso:_cxF._NA'],
     ['_zzs', '_dsABR', '_abrZ + _abrZ + _abrS', '', '__enZB', '_cxF._NA , _cxF._NA , _sss', '_/ds/dso:_cxF._NA'],
+    ['_zzH', '_dsABR', '_abrZ + _abrZ + _abrH', '', '__enZB', '_cxF._NA , _cxF._NA , _ssU', '_/ds/dso:_cxF._NA'],
     ['_zUU', '_dsABR', '_abrZ + _abrU + _abrU', '', '__enZB', '_cxF._NA , _cxF._NA , _sUU', '_/ds/dso:_cxF._NA'],
     ['_sUU', '_dsABR', '_abrS + _abrU + _abrU', 'common ra cxCN like abris', '__enZB', '_cxF._NA , _cxF._NA , _sUU', '_/ds/dso:_cxF._NA'],
     ['_sss', '_dsABR', '_abrS + _abrS + _abrS', '', '__enZB', '_cxF._NA , _cxF._NA , _sss', '_/ds/dso:_cxF._NA'],
@@ -335,47 +342,49 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['RA_sepPART_Q', '__tySEP', '_RA', "part quoted -- or path content separator : " . RA_sepPART_Q, '__evQB', '_cxF._AA , _cxNT._NA , _UsU', 'dsx/_/dsn/dso:_AA/_/dso:_AS'],
     ['RA_sepREM', '__tySEP', '_RA', "remarc -- content separator : " . RA_sepREM, '__evQB', '_cxF._AA , _cxNT._NA , _UsU', 'dsx/_/dsn/dso:_AT'],
     ['RA_sepPER', '__tySEP', '_RA', "persons sign criterion : " . RA_sepPER, '__evQB', '_cxF._AA , _cxNT._NA , _UsU', 'dsx/_/dsn/dso:_AT'],
-    ['RA_sepLOC', '__tySEP', '_RA', "persons sign criterion : " . RA_sepLOC, '__evQB', '_cxF._AA , _cxNT._NA , _UsU', 'dsx/_/dsn/dso:_AT'],
-    ['RA_sepCO', '__tySEP', '_RA', "persons sign criterion : " . RA_sepCO, '__evQB', '_cxF._AA , _cxNT._NA , _UsU', 'dsx/_/dsn/dso:_AT'],
+    ['RA_sepLOC', '__tySEP', '_RA', "location sign criterion : " . RA_sepLOC, '__evQB', '_cxF._AA , _cxNT._NA , _UsU', 'dsx/_/dsn/dso:_AT'],
+    ['RA_sepCO', '__tySEP', '_RA', "company sign criterion : " . RA_sepCO, '__evQB', '_cxF._AA , _cxNT._NA , _UsU', 'dsx/_/dsn/dso:_AD'],
     ['RA_sepWORD', '__tySEP', '_RA', "word : " . RA_sepWORD, '__evQB', '_cxF._AA , _cxNT._NA , _UsU', 'dsx/_/dsn/dso:_AA'],
+    ['RA_sepSPACE', '__tySEP', '_RA', "space : " . RA_sepSPACE, '__evQB', '_cxF._AA , _cxNT._NA , _UsU', 'dsx/_/dsn/dso:_AA'],
     ['RA_sepSTRUC', '__tySEP', '_RA', "structure -- components : " . RA_sepSTRUC, '__evQB', '_cxF._AA , _cxNT._NA , _UsU', 'dsx/_/dsn/dso:_AP'],
     ['RA_sepSTRUC_Q', '__tySEP', '_RA', "structure quoted -- components : " . RA_sepSTRUC_Q, '__evQB', '_cxF._AA , _cxNT._NA , _UsU', 'dsx/_/dsn/dso:_AP:_ZA/_/dso:_AS'],
     ['RA_sepPHP', '__tySEP', '_RA', "PHP variable prefix : " . RA_sepPHP, '__evQB', '_cxF._AA , _cxNT._NA , _UsU', 'dsx/_/dsn/dso:_AA'],
     ['RA_sepNLINE', '__tySEP', '_RA', "new line : " . RA_sepNLINE, '__evQB', '_cxF._AA , _cxNT._NA , _UsU', 'dsx/_/dsn/dso:_AS:_ZA:_AA'],
-    [RA_sepCN, 'RA_sepCN', '__tySEP', "content -- or hierarchy level separator", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepTY, 'RA_sepTY', '__tySEP', "type -- prefix", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepADD, 'RA_sepADD', '__tySEP', "add -- or concatinate contexts", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepADD_Q, 'RA_sepADD_Q', '__tySEP', "add -- or concatinate contexts", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepMINUS, 'RA_sepMINUS', '__tySEP', "minus -- or deconcatinate contexts", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepFIXE, 'RA_sepFIXE', '__tySEP', "fixe", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepMULT, 'RA_sepMULT', '__tySEP', "multiply -- content separator", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepMULT_Q, 'RA_sepMULT_Q', '__tySEP', "multiply -- content separator", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepVALUE, 'RA_sepVALUE', '__tySEP', "value -- or high level nod contexts", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepOPTION, 'RA_sepOPTION', '__tySEP', "option", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepBACK, 'RA_sepBACK', '__tySEP', "back -- references", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepLIST, 'RA_sepLIST', '__tySEP', "list -- content separator", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepLIST_T, 'RA_sepLIST_T', '__tySEP', "list trimed -- content separator", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepALT, 'RA_sepALT', '__tySEP', "alternatives -- content separator", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepALT_Q, 'RA_sepALT_Q', '__tySEP', "alternatives -- content separator", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepPART, 'RA_sepPART', '__tySEP', "part -- or path content separator", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepPART_Q, 'RA_sepPART_Q', '__tySEP', "part -- or path content separator", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepREM, 'RA_sepREM', '__tySEP', "remarc -- content separator", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepPER, 'RA_sepPER', '__tySEP', "persons sign criterion", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepLOC, 'RA_sepLOC', '__tySEP', "persons sign criterion", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepCO, 'RA_sepCO', '__tySEP', "persons sign criterion", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepWORD, 'RA_sepWORD', '__tySEP', "word", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepSTRUC, 'RA_sepSTRUC', '__tySEP', "structure", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepSTRUC_Q, 'RA_sepSTRUC_Q', '__tySEP', "structure", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepPHP, 'RA_sepPHP', '__tySEP', "", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
-    [RA_sepNLINE, 'RA_sepNLINE', '__tySEP', "", '__enZB', '_cxNV._UU , _ZA , _zzz', 'ds'],
+    [RA_sepCN, 'RA_sepCN', '__tySEP', "content -- or hierarchy level separator", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepTY, 'RA_sepTY', '__tySEP', "type -- prefix", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepADD, 'RA_sepADD', '__tySEP', "add -- or concatinate contexts", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepADD_Q, 'RA_sepADD_Q', '__tySEP', "add -- or concatinate contexts", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepMINUS, 'RA_sepMINUS', '__tySEP', "minus -- or deconcatinate contexts", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepFIXE, 'RA_sepFIXE', '__tySEP', "fixe", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepMULT, 'RA_sepMULT', '__tySEP', "multiply -- content separator", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepMULT_Q, 'RA_sepMULT_Q', '__tySEP', "multiply -- content separator", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepVALUE, 'RA_sepVALUE', '__tySEP', "value -- or high level nod contexts", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepOPTION, 'RA_sepOPTION', '__tySEP', "option", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepBACK, 'RA_sepBACK', '__tySEP', "back -- references", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepLIST, 'RA_sepLIST', '__tySEP', "list -- content separator", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepLIST_T, 'RA_sepLIST_T', '__tySEP', "list trimed -- content separator", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepALT, 'RA_sepALT', '__tySEP', "alternatives -- content separator", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepALT_Q, 'RA_sepALT_Q', '__tySEP', "alternatives -- content separator", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepPART, 'RA_sepPART', '__tySEP', "part -- or path content separator", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepPART_Q, 'RA_sepPART_Q', '__tySEP', "part -- or path content separator", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepREM, 'RA_sepREM', '__tySEP', "remarc -- content separator", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepPER, 'RA_sepPER', '__tySEP', "persons sign criterion", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepLOC, 'RA_sepLOC', '__tySEP', "location sign criterion", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepCO, 'RA_sepCO', '__tySEP', "company sign criterion", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepWORD, 'RA_sepWORD', '__tySEP', "word", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepSPACE, 'RA_sepSPACE', '__tySEP', "word", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepSTRUC, 'RA_sepSTRUC', '__tySEP', "structure", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepSTRUC_Q, 'RA_sepSTRUC_Q', '__tySEP', "structure", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepPHP, 'RA_sepPHP', '__tySEP', "", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
+    [RA_sepNLINE, 'RA_sepNLINE', '__tySEP', "", '__enZB', '_cxNV._UA , _ZZ , _zzz', 'ds'],
     ['_dsTE', '_raDS', '_raTE', ' -- rule for saparations of _raDS', '__enZB', '_cxN._NA , _cxF._NA , _sUU', '_/ds'],
-    ['ds', '_dsTE', '', ' -- main functor for - _cX/cN parts', '__enZB', '_cxN._XA , _ZA , _sss', 'ds'],
+    ['ds', '_dsTE', '', ' -- main functor for - _cX/cN parts', '__enZB', '_cxN._XA , _ZZ , _sss', 'ds'],
     ['dsx', '_dsTE', '_cX', ' -- _cX part ds', '__enZB', '_cxN._XA , _cxF._NA , _sss', 'ds'],
     ['dsn', '_dsTE', '_cN', ' -- _cX part ds', '__enZB', '_cxN._XA , _cxF._NA , _sss', 'ds'],
     ['dsa', '_dsTE', '', 'alternative -- to main functorwith with its own parameters', '__enZB', '_cxN._XA , _WR , _sss', 'ds'],
     ['dst', '_dsTE', '__tyOBJ', ' -- use object type', '__enZB', '_cxN._XA , _cxFT._AS , _sss', 'ds'],
     ['dso', '_dsTE', '', 'options', '__enZB', '_cxN._XA , _WR , _sss', 'ds'],
-    ['fcc', '_dsTE', '', 'Facet Class Code -- name spaces', '__enZB', '_ZA , _WR , _sss', 'ds'],
+    ['fcc', '_dsTE', '', 'Facet Class Code -- name spaces', '__enZB', '_ZZ , _WR , _sss', 'ds'],
     ['fccI', 'fcc', '_hieI', 'initiatives name space : _liMAX', '__evPQ', '_cxN._AA , _WS , _sUU', 'ds'],
     ['fccM', 'fcc', '_hieM', 'modules name space : _liMAX', '__evPQ', '_cxN._AA , _WS , _sUU', 'ds'],
     ['fccA', 'fcc', '_hieA', 'aggregates name space : _liMAX', '__evPQ', '_cxN._AA , _WS , _sUU', 'ds'],
@@ -417,7 +426,7 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_acU', '__tyAC', '', 'union -- simple union', '__enZB', '_cxNT._NA , _WR , _sUU', '_/ds'],
     ['_acP', '__tyAC', '', 'php -- file', '__enZB', '_cxNT._NA , _WR , _sUU', '_/ds'],
     ['_acS', '__tyAC', '', 'sql -- file', '__enZB', '_cxNT._NA , _WR , _sUU', '_/ds'],
-    ['_acD', '__tyAC', '', 'directory for files', '__enZB', '_cxNT._NA , _WS , _sUU', '_/ds'],
+    ['_acF', '__tyAC', '', 'folder for files', '__enZB', '_cxNT._NA , _WS , _sUU', '_/ds'],
     ['__acPG', '__tyAC', '_gkP + _acG:__tyCOMP:__tyOBJ', '', '__enZB', '_cxNT._NA , _cxF._NR , _sUU', '__/ds'],
     ['__acSG', '__tyAC', '_gkS + _acG:__tyCOMP:__tyOBJ', '', '__enZB', '_cxNT._NA , _cxF._NR , _sUU', '__/ds'],
     ['__acTG', '__tyAC', '_gkT + _acG:__tyCOMP:__tyOBJ', '', '__enZB', '_cxNT._NA , _cxF._NR , _sUU', '__/ds'],
@@ -428,8 +437,8 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['__acSP', '__tyAC', '_gkS + _acP:__tyCOMP:__tyOBJ', '', '__enZB', '_cxNT._NA , _cxF._NR , _sUU', '__/ds'],
     ['__acPS', '__tyAC', '_gkP + _acS:__tyCOMP:__tyOBJ', '', '__enZB', '_cxNT._NA , _cxF._NR , _sUU', '__/ds'],
     ['__acSS', '__tyAC', '_gkS + _acS:__tyCOMP:__tyOBJ', '', '__enZB', '_cxNT._NA , _cxF._NR , _sUU', '__/ds'],
-    ['__acPD', '__tyAC', '_gkP + _acD:__tyCOMP:__tyOBJ', '', '__enZB', '_cxNT._NA , _cxF._NR , _sUU', '__/ds'],
-    ['__acSD', '__tyAC', '_gkS + _acD:__tyCOMP:__tyOBJ', '', '__enZB', '_cxNT._NA , _cxF._NR , _sUU', '__/ds'],
+    ['__acPF', '__tyAC', '_gkP + _acF:__tyCOMP:__tyOBJ', '', '__enZB', '_cxNT._NA , _cxF._NR , _sUU', '__/ds'],
+    ['__acSF', '__tyAC', '_gkS + _acF:__tyCOMP:__tyOBJ', '', '__enZB', '_cxNT._NA , _cxF._NR , _sUU', '__/ds'],
     ['__asVS', '__tyAS', '__tyCOMP:__tyOBJ', 'view select', '__enZB', '_cxNT._NA , _WR , _sUU', '__/ds'],
     ['__asFN', '__tyAS', '__tyCOMP:__tyOBJ', 'function', '__enZB', '_cxNT._NA , _AE , _sUU', '__/ds'],
     ['__asFR', '__tyAS', '__tyCOMP:__tyOBJ', 'functor -- used object name generation', '__enZB', '_cxNT._NA , _AE , _sUU', '__/ds'],
@@ -579,7 +588,7 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_locStr', '__tyLOC', '', 'street', '__enZB', '_cxNT._NA , _AT , _sHz', '_/ds'],
     ['_locHouse', '__tyLOC', '', 'house', '__enZB', '_cxNT._NA , _AP , _sHz', '_/ds'],
     ['_locInst', '__tyLOC', '', 'institution', '__enZB', '_cxNT._NA , _AQ , _sHz', '_/ds'],
-    ['_locApp', '__tyLOC', '', 'appartment', '__enZB', '_cxNT._NA , _AQ , _sHz', '_/ds'],
+    ['_locApp', '__tyLOC', '', 'appartment', '__enZB', '_cxNT._NA , _AT , _sHz', '_/ds'],
     ['__tyPIJ', '_raTY', '', 'person in juridic -- state - phisic/juridic/registered name : __arP', '__evQB', '_cxN._NA , _WR , _sUU', '__/ds'],
     ['_pijPhis', '__tyPIJ', '', 'phisic', '__enZB', '_cxNT._NA , _AQ , _sHz', '_/ds'],
     ['_pijJur', '__tyPIJ', '', 'juruduc', '__enZB', '_cxNT._NA , _AT , _sHz', '_/ds'],
@@ -593,11 +602,11 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_resCHAT', '__tyRES', '', 'chat -- name', '__enZB', '_cxNT._NA , _AA , _sUU', '_/ds'],
     ['_resREPO', '__tyRES', '', 'repositary -- name', '__enZB', '_cxNT._NA , _AQ , _sUU', '_/ds'],
     ['_resPROJ', '__tyRES', '', 'project -- name', '__enZB', '_cxNT._NA , _AQ , _sUU', '_/ds'],
-    ['__tySITE', '_raTY', '_resSITE', 'com/md/org/... siye types name : __arP', '__evQB', '_cxN._NA , _WR , _sUU', '__/ds'],
+    ['__tySITE', '_raTY', '_resSITE', 'com/md/org/... siye types name : __arP', '__evQB', '_cxN._NA , _cxF._NA , _sUU', '__/ds'],
     ['_siteCom', '__tySITE', '', 'comercial', '__enZB', '_cxNT._NA , _AT , _sHz', '_/ds'],
     ['_siteMD', '__tySITE', '#MD', 'tara - #MD', '__enZB', '_cxNT._NA , _cxF._AA , _sUU', '_/ds'],
     ['_siteOrg', '__tySITE', '', 'organisation non gov.', '__enZB', '_cxNT._NA , _AT , _sHz', '_/ds'],
-    ['__tyFILE', '_raTY', '_resFILE', 'md/docx/php/sql/... filee types name : __arP', '__evQB', '_cxN._NA , _WR , _sUU', '__/ds'],
+    ['__tyFILE', '_raTY', '_resFILE', 'md/docx/php/sql/... filee types name : __arP', '__evQB', '_cxN._NA , _cxF._NA , _sUU', '__/ds'],
     ['_fileMD', '__tyFILE', '', 'mark down -- format', '__enZB', '_cxNT._NA , _WR , _sUU', '_/ds'],
     ['_fileDOCX', '__tyFILE', '@ms', 'document x - format', '__enZB', '_cxNT._NA , _AT:_ZA:_AS , _sUU', '_/ds'],
     ['_filePHP', '__tyFILE', '', 'PHP Hypertext Preprocessor -- Personal Home Page.', '__enZB', '_cxNT._NA , _WR , _sUU', '_/ds'],
@@ -607,7 +616,7 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_perDout', '__tyPER', '', 'douther', '__enZB', '_cxNT._NA , _AQ , _sHz', '_/ds'],
     ['_perMama', '__tyPER', '', 'mama', '__enZB', '_cxNT._NA , _AQ , _sHz', '_/ds'],
     ['_perPapa', '__tyPER', '', 'papa', '__enZB', '_cxNT._NA , _AQ , _sHz', '_/ds'],
-    ['_perHusb', '__tyPER', '', 'hasband', '__enZB', '_cxNT._NA , _AQ , _sHz', '_/ds'],
+    ['_perHusb', '__tyPER', '', 'husband', '__enZB', '_cxNT._NA , _AQ , _sHz', '_/ds'],
     ['_perWife', '__tyPER', '', 'wife', '__enZB', '_cxNT._NA , _AQ , _sHz', '_/ds'],
     ['_perMStud', '__tyPER', '', 'midle studenr -- school', '__enZB', '_cxNT._NA , _AS:_ZA , _sUH', '_/ds/dso:_AQ'],
     ['_perHStud', '__tyPER', '', 'higher studenr -- school', '__enZB', '_cxNT._NA , _AS:_ZA , _sUH', '_/ds/dso:_AQ'],
@@ -618,13 +627,13 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_perBEnd', '__tyPER', '', 'back end ingineer', '__enZB', '_cxNT._NA , _AS:_ZA , _sUH', '_/ds/dso:_AT'],
     ['_perFEnd', '__tyPER', '', 'front end ingineer', '__enZB', '_cxNT._NA , _AS:_ZA , _sUH', '_/ds/dso:_AT'],
     ['_perFStack', '__tyPER', '', 'full stack ingineer', '__enZB', '_cxNT._NA , _AS:_ZA , _sUH', '_/ds/dso:_AP'],
-    ['_perSIng', '__tyPER', '', 'senior ingineer', '__enZB', '_cxNT._NA , _AS:_ZA:_AT , _sUH', '_/ds'],
-    ['_perLIng', '__tyPER', '', 'lead ingineer', '__enZB', '_cxNT._NA , _AS:_ZA:_AT , _sUH', '_/ds'],
+    ['_perSIng', '__tyPER', '', 'senior ingineer', '__enZB', '_cxNT._NA , _AS:_ZA , _sUH', '_/ds/dso:_AT'],
+    ['_perLIng', '__tyPER', '', 'lead ingineer', '__enZB', '_cxNT._NA , _AS:_ZA , _sUH', '_/ds/dso:_AT'],
     ['_perCTO', '__tyPER', '', 'Chief Technology Officer', '__enZB', '_cxNT._NA , _WR , _sUU', '_/ds'],
     ['_perCEO', '__tyPER', '', 'Chief Executive Officer', '__enZB', '_cxNT._NA , _WR , _sUU', '_/ds'],
-    ['__tyCHAT', '_raTY', '_resCHAT', 'chat -- types name : __arP', '__evQB', '_cxN._NA , _WR , _sUU', '__/ds'],
-    ['_chatQUE', '__tyCHAT', '', 'question', '__enZB', '_cxNT._NA , _AA , _sHz', '_/ds'],
-    ['_chatREP', '__tyCHAT', '', 'reply', '__enZB', '_cxNT._NA , _AA , _sHz', '_/ds'],
+    ['__tyCHAT', '_raTY', '_resCHAT', 'chat -- types name : __arP', '__evQB', '_cxN._NA , _AA , _sUU', '__/ds'],
+    ['_chatQUE', '__tyCHAT', '', 'question', '__enZB', '_cxNT._NA , _AT , _sUU', '_/ds'],
+    ['_chatREP', '__tyCHAT', '', 'reply', '__enZB', '_cxNT._NA , _AT , _sUU', '_/ds'],
     ['__tyCON', '_raTY', '', 'contacts -- types name : __arP', '__evQB', '_cxN._NA , _AT , _sUU', '__/ds'],
     ['_cpGSM', '__tyCON', '_gkP', 'gsm primary(personal)', '__enZB', '_cxNT._NS , _cxF._NA , _ssU', '_/ds/dso:_AA'],
     ['_csGSM', '__tyCON', '_gkS', 'gsm secondary(personal)', '__enZB', '_cxNT._NS , _cxF._NA , _ssU', '_/ds/dso:_AA'],
@@ -654,41 +663,41 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
   ];
   $src__ar['_raOBJ__arP'] = [
     [RA_cn__DS, 'cxN__DS', 'cxF__EXPR', 'expl__bvKB', 'val__tyFLD', 'rule__EXPR', 'te__EXPR', 'cn__TY', 'ext__bvKB', 'fcc__svQB'],
-    ['_i0_mAgV', '_RA', '@mA + @gV', ' -- houses + cars + ...', '__enZB', '_cxF._AR , _ZA , _zzz', '_/fcc/_/ds', '', '', 'i0'],
-    ['_i1_gV', '_RA', '@gV', ' -- ideas', '__enZB', '_cxF._AR , _ZA , _zzz', '_/fcc/_/ds', '', '', 'i1'],
-    ['_i2_cGgV', '_RA', '@cG + @gV', ' -- medtech', '__enZB', '_cxF._AR , _ZA , _zzz', '_/fcc/_/ds', '', '', 'i2'],
-    ['_i3_pIgV', '_RA', '@pI + @gV', ' -- Konkurs', '__enZB', '_cxF._AR , _ZA , _zzz', '_/fcc/_/ds', '', '', 'i3'],
-    ['_i4_gGgV', '_RA', '@gG + @gV', ' -- VSync', '__enZB', '_cxF._AR , _ZA , _zzz', '_/fcc/_/ds', '', '', 'i4'],
+    ['_i0_mAgV', '_RA', '@mA + @gV', ' -- houses + cars + ...', '__enZB', '_cxF._AR , _ZZ , _zzz', '_/fcc/_/ds', '', '', 'i0'],
+    ['_i1_gV', '_RA', '@gV', ' -- ideas', '__enZB', '_cxF._AR , _ZZ , _zzz', '_/fcc/_/ds', '', '', 'i1'],
+    ['_i2_cGgV', '_RA', '@cG + @gV', ' -- medtech', '__enZB', '_cxF._AR , _ZZ , _zzz', '_/fcc/_/ds', '', '', 'i2'],
+    ['_i3_pIgV', '_RA', '@pI + @gV', ' -- Konkurs', '__enZB', '_cxF._AR , _ZZ , _zzz', '_/fcc/_/ds', '', '', 'i3'],
+    ['_i4_gGgV', '_RA', '@gG + @gV', ' -- VSync', '__enZB', '_cxF._AR , _ZZ , _zzz', '_/fcc/_/ds', '', '', 'i4'],
     ['_wRA', '_RA', '_hieSCH', 'with -- db schema', '__enZB', '_WR , _cxN._AA , _sUU', '_/ds', '', '', ''],
-    ['_wRA_LOG', '_RA', '_hieSCH', 'log -- storage db schema', '__enZB', '_ZA , _AA , _UUz', '_/dst/_/ds', '_wRA', '', ''],
-    ['_wRA_NLP', '_RA', '_hieSCH', 'natural lang processing -- db schema', '__enZB', '_ZA , _WR , _UUz', '_/dst/_/ds', '_wRA', '', ''],
-    ['_wRA_i0_mAgV', '_i0_mAgV', '_hieSCH', '', '__enZB', '_ZA , _cxNU._UU , _zzz', '_/dst/ds', '_wRA', '', ''],
-    ['_wRA_i1_gV', '_i1_gV', '_hieSCH', '', '__enZB', '_ZA , _cxNU._UU , _zzz', '_/dst/ds', '_wRA', '', ''],
-    ['_wRA_i2_cGgV', '_i2_cGgV', '_hieSCH', '', '__enZB', '_ZA , _cxNU._UU , _zzz', '_/dst/ds', '_wRA', '', ''],
-    ['_wRA_i3_pIgV', '_i3_pIgV', '_hieSCH', '', '__enZB', '_ZA , _cxNU._UU , _zzz', '_/dst/ds', '_wRA', '', ''],
-    ['_wRA_i4_gGgV', '_i4_gGgV', '_hieSCH', '', '__enZB', '_ZA , _cxNU._UU , _zzz', '_/dst/ds', '_wRA', '', ''],
-    ['_m0_RA', '_wRA', '_hieM', ' -- main module for all initiatives', '__enZB', '_ZA , _cxN._NA , _UUU', '_/fcc/_/ds', '', '', 'm0'],
-    ['_m1_WT', '_wRA_i1_gV', '_hieM', 'wine tech -- new version for raFTI_v6', '__enZB', '_ZA , _WR , _UUU', '_/fcc/_/ds', '', '', 'm1'],
-    ['_m2_MT', '_wRA_i2_cGgV', '_hieM', 'med tech -- --//--', '__enZB', '_ZA , _WR , _UUU', '_/fcc/_/ds', '', '', 'm2'],
-    ['_m3_HT', '_wRA_i0_mAgV', '_hieM', 'house tech -- --//--', '__enZB', '_ZA , _WR , _UUU', '_/fcc/_/ds', '', '', 'm3'],
-    ['_m4_TS', '_wRA_i3_pIgV', '_hieM', 'trening systems -- new using of Konkurs', '__enZB', '_ZA , _WR , _UUU', '_/fcc/_/ds', '', '', 'm4'],
-    ['_m5_VH', '_wRA_i4_gGgV', '_hieM', 'VSync History', '__enZB', '_ZA , _WR , _UUU', '_/fcc/_/ds', '', '', 'm5'],
-    ['_mW_LOG', '_wRA_LOG', '_hieM', '', '__enZB', '_ZA , _cxNO._AA , _UUU', '_/fcc/_/ds', '', '', 'mW'],
-    ['_mZ_NLP', '_wRA_NLP', '_hieM', '', '__enZB', '_ZA , _cxNO._AA , _UUU', '_/fcc/_/ds', '', '', 'mZ'],
-    ['_a0_Core', '_RA', '_hieA', 'core -- main aggregate', '__enZB', '_ZA , _AA , _sHz', '_/fcc/_/ds', '', '', 'a0'],
-    ['_a1_DOC', '_RA', '_hieA', 'documents', '__enZB', '_ZA , _AT , _UUU', '_/fcc/_/ds', '', '', 'a1'],
-    ['_a2_TY', '_RA', '_hieA', 'types', '__enZB', '_ZA , _AD , _UUU', '_/fcc/_/ds', '', '', 'a2'],
-    ['_a3_OBJ', '_RA', '_hieA', 'objects', '__enZB', '_ZA , _AT , _UUU', '_/fcc/_/ds', '', '', 'a3'],
-    ['_a4_LOC', '_RA', '_hieA', 'locations', '__enZB', '_ZA , _AT , _UUU', '_/fcc/_/ds', '', '', 'a4'],
-    ['_a5_PER', '_RA', '_hieA', 'persons', '__enZB', '_ZA , _AT , _UUU', '_/fcc/_/ds', '', '', 'a5'],
-    ['_a6_CON', '_RA', '_hieA', 'contacts', '__enZB', '_ZA , _AT , _UUU', '_/fcc/_/ds', '', '', 'a6'],
-    ['_aR_RES', '_RA', '_hieA', 'resources', '__enZB', '_ZA , _AT , _UUU', '_/fcc/_/ds', '', '', 'aR'],
-    ['_aS_SOL', '_RA', '_hieA', 'solutions', '__enZB', '_ZA , _AT , _UUU', '_/fcc/_/ds', '', '', 'aS'],
-    ['_aU_URP', '_RA', '_hieA', 'user role permissions', '__enZB', '_ZA , _WR , _UUU', '_/fcc/_/ds', '', '', 'aU'],
-    ['_aT_TLE', '_RA', '_hieA', 'time lines events', '__enZB', '_ZA , _WR , _UUU', '_/fcc/_/ds', '', '', 'aT'],
-    ['_aV_VER', '_RA', '_hieA', 'versions', '__enZB', '_ZA , _AT , _UUU', '_/fcc/_/ds', '', '', 'aV'],
+    ['_wRA_LOG', '_RA', '_hieSCH', 'log -- storage db schema', '__enZB', '_ZZ , _AA , _UUz', '_/dst/_/ds', '_wRA', '', ''],
+    ['_wRA_NLP', '_RA', '_hieSCH', 'natural lang processing -- db schema', '__enZB', '_ZZ , _WR , _UUz', '_/dst/_/ds', '_wRA', '', ''],
+    ['_wRA_i0_mAgV', '_i0_mAgV', '_hieSCH', '', '__enZB', '_ZZ , _cxNU._UA , _zzz', '_/dst/ds', '_wRA', '', ''],
+    ['_wRA_i1_gV', '_i1_gV', '_hieSCH', '', '__enZB', '_ZZ , _cxNU._UA , _zzz', '_/dst/ds', '_wRA', '', ''],
+    ['_wRA_i2_cGgV', '_i2_cGgV', '_hieSCH', '', '__enZB', '_ZZ , _cxNU._UA , _zzz', '_/dst/ds', '_wRA', '', ''],
+    ['_wRA_i3_pIgV', '_i3_pIgV', '_hieSCH', '', '__enZB', '_ZZ , _cxNU._UA , _zzz', '_/dst/ds', '_wRA', '', ''],
+    ['_wRA_i4_gGgV', '_i4_gGgV', '_hieSCH', '', '__enZB', '_ZZ , _cxNU._UA , _zzz', '_/dst/ds', '_wRA', '', ''],
+    ['_m0_RA', '_wRA', '_hieM', ' -- main module for all initiatives', '__enZB', '_ZZ , _cxN._NA , _UUU', '_/fcc/_/ds', '', '', 'm0'],
+    ['_m1_WT', '_wRA_i1_gV', '_hieM', 'wine tech -- new version for raFTI_v6', '__enZB', '_ZZ , _WR , _UUU', '_/fcc/_/ds', '', '', 'm1'],
+    ['_m2_MT', '_wRA_i2_cGgV', '_hieM', 'med tech -- --//--', '__enZB', '_ZZ , _WR , _UUU', '_/fcc/_/ds', '', '', 'm2'],
+    ['_m3_HT', '_wRA_i0_mAgV', '_hieM', 'house tech -- --//--', '__enZB', '_ZZ , _WR , _UUU', '_/fcc/_/ds', '', '', 'm3'],
+    ['_m4_TS', '_wRA_i3_pIgV', '_hieM', 'trening systems -- new using of Konkurs', '__enZB', '_ZZ , _WR , _UUU', '_/fcc/_/ds', '', '', 'm4'],
+    ['_m5_VH', '_wRA_i4_gGgV', '_hieM', 'VSync History', '__enZB', '_ZZ , _WR , _UUU', '_/fcc/_/ds', '', '', 'm5'],
+    ['_mW_LOG', '_wRA_LOG', '_hieM', '', '__enZB', '_ZZ , _cxNO._AA , _UUU', '_/fcc/_/ds', '', '', 'mW'],
+    ['_mZ_NLP', '_wRA_NLP', '_hieM', '', '__enZB', '_ZZ , _cxNO._AA , _UUU', '_/fcc/_/ds', '', '', 'mZ'],
+    ['_a0_Core', '_RA', '_hieA', 'core -- main aggregate', '__enZB', '_ZZ , _AA , _sHz', '_/fcc/_/ds', '', '', 'a0'],
+    ['_a1_DOC', '_RA', '_hieA', 'documents', '__enZB', '_ZZ , _AT , _UUU', '_/fcc/_/ds', '', '', 'a1'],
+    ['_a2_TY', '_RA', '_hieA', 'types', '__enZB', '_ZZ , _AD , _UUU', '_/fcc/_/ds', '', '', 'a2'],
+    ['_a3_OBJ', '_RA', '_hieA', 'objects', '__enZB', '_ZZ , _AT , _UUU', '_/fcc/_/ds', '', '', 'a3'],
+    ['_a4_LOC', '_RA', '_hieA', 'locations', '__enZB', '_ZZ , _AT , _UUU', '_/fcc/_/ds', '', '', 'a4'],
+    ['_a5_PER', '_RA', '_hieA', 'persons', '__enZB', '_ZZ , _AT , _UUU', '_/fcc/_/ds', '', '', 'a5'],
+    ['_a6_CON', '_RA', '_hieA', 'contacts', '__enZB', '_ZZ , _AT , _UUU', '_/fcc/_/ds', '', '', 'a6'],
+    ['_aR_RES', '_RA', '_hieA', 'resources', '__enZB', '_ZZ , _AT , _UUU', '_/fcc/_/ds', '', '', 'aR'],
+    ['_aS_SOL', '_RA', '_hieA', 'solutions', '__enZB', '_ZZ , _AT , _UUU', '_/fcc/_/ds', '', '', 'aS'],
+    ['_aU_URP', '_RA', '_hieA', 'user role permissions', '__enZB', '_ZZ , _WR , _UUU', '_/fcc/_/ds', '', '', 'aU'],
+    ['_aT_TLE', '_RA', '_hieA', 'time lines events', '__enZB', '_ZZ , _WR , _UUU', '_/fcc/_/ds', '', '', 'aT'],
+    ['_aV_VER', '_RA', '_hieA', 'versions', '__enZB', '_ZZ , _AT , _UUU', '_/fcc/_/ds', '', '', 'aV'],
     ['_aW_WDOG', '_RA', '_hieA', 'watch-dog', '__enZB', '_AS:_ZA , _AT , _UUU', '_/fcc/_/ds', '', '', 'aW'],
-    ['_aX_EXPR', '_RA', '_hieA', 'expresions', '__enZB', '_ZA , _AQ , _UUU', '_/fcc/_/ds', '', '', 'aX'],
+    ['_aX_EXPR', '_RA', '_hieA', 'expresions', '__enZB', '_ZZ , _AQ , _UUU', '_/fcc/_/ds', '', '', 'aX'],
     ['_aY_YBUG', '_RA', '_hieA', 'yet-de-buger', '__enZB', '_AS:_ZA:_ZA , _AT , _UUU', '_/fcc/_/ds', '', '', 'aY'],
     ['_aZ_ZENG', '_RA', '_hieA', 'z-english -- referential english - ebanble all fixes for all words', '__enZB', '_AS , _AT , _UUU', '_/fcc/_/ds', '', '', 'aZ'],
     ['_raCore__arP', '_m0_RA', '_a0_Core', ' -- main aggregate unic number register', '__enZB', '_cxNO._AA , _cxFO._AA , _szz',
@@ -720,14 +729,14 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_raPER__arP', '_m0_RA', '_a5_PER', '', '__enZB', '_cxNO._AA , _cxFO._AA , _sUz', '_/ds/__/dst', '__arP',
       'COMMENT onB_MOD _mod__DS , _mod__EEXPR', 'o050a'],
     ['_raPER__acPG_hie', '_m0_RA', '_a5_PER', 'hierarchy -- __PER to __LOC or __CON or__PER grid', '__enZB', '_cxNO._AA , _cxFO._AA , _sUz',
-      '_/ds/__/dst/_/dso:_cxFO._AA', '__acPG', '', 'o051a'],
+      '_/ds/__/dst/_/dso:_AT', '__acPG', '', 'o051a'],
     ['_raCON__arP', '_m0_RA', '_a6_CON', '', '__enZB', '_cxNO._AA , _cxFO._AA , _sUz', '_/ds/__/dst', '__arP',
       'COMMENT onB_MOD _mod__DS , _mod__EEXPR', 'o060a'],
     ['_raRES__arP', '_m0_RA', '_aR_RES', '', '__enZB', '_cxNO._AA , _cxFO._AA , _sUz', '_/ds/__/dst', '__arP',
       'COMMENT onB_MOD _mod__DS , _mod__EEXPR', 'o0R0a'],
-    ['_raRES__acPD', '_m0_RA', '_aR_RES', '__RES folder', '__enZB', '_cxNO._AA , _cxFO._AA , _sUz', '_/ds/__/dst/_/dso:_cxFO._AA', '__acPD',
+    ['_raRES__acPF', '_m0_RA', '_aR_RES', 'folder', '__enZB', '_cxNO._AA , _cxFO._AA , _sUz', '_/ds/__/dst', '__acPF',
       'COMMENT onB_MOD _mod__DS , _mod__EEXPR', 'o0R1a'],
-    ['_raRES__acPG_chat', '_m0_RA', '_aR_RES', 'chat like file.md in _o0R1a_raRES__acPD', '__enZB', '_cxNO._AA , _cxFO._AA , _sUs', '_/ds/__/dst/_/dso:_AA',
+    ['_raRES__acPG_chat', '_m0_RA', '_aR_RES', 'chat like file.md in _o0R1a_raRES__acPF', '__enZB', '_cxNO._AA , _cxFO._AA , _sUz', '_/ds/__/dst/_/dso:_AA',
       '__acPG', 'COMMENT onB_MOD _mod__DS , _mod__EEXPR', 'o0R2a'],
     ['_logVER__arT', '_mW_LOG', '_aV_VER', '', '__enZB', '_cxNO._AA , _cxFO._AA , _sUz', '_/ds/__/dst', '__arT',
       'COMMENT onB_MOD _mod__DS , _mod__EEXPR', 'oWV0a'],
@@ -735,9 +744,9 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
       'COMMENT onB_MOD _mod__DS , _mod__EEXPR', 'oWV1a'],
     ['_logVER__arTD_test', '_mW_LOG', '_aV_VER', 'test', '__enZB', '_cxNO._AA , _cxFO._AA , _sUz', '_/ds/__/dst/_/dso:_AA', '__arTD',
       ' , _mod__EEXPR', 'oWV2a'],
-    ['_logVER__acTG_test_raDS_src', '_mW_LOG', '_logVER__arTD_test', '_raDS source for _raDS_trans()', '__enZB', '_cxF._AU , _cxFO._AA , _zzz',
+    ['_logVER__acTG_test_raDS_src', '_mW_LOG', '_logVER__arTD_test', '_raDS source for _raDS_trans()', '__enZB', '_cxF._UA:_ZZ , _cxFO._AA , _zzz',
       '_/dsx/__/dst/_/dsn/_/dso:_AA/_/dso:_CA', '__acTG', ' , _mod__EEXPR', 'oWV3a'],
-    ['_logVER__acTG_test_raDS_srcRET', '_mW_LOG', '_logVER__acTG_test_raDS_src', 'return of _raDS_trans()', '__enZB', '_cxFU._UU , _AT , _zUU',
+    ['_logVER__acTG_test_raDS_srcRET', '_mW_LOG', '_logVER__acTG_test_raDS_src', 'return of _raDS_trans()', '__enZB', '_cxFU._UA , _AT , _zUU',
       'ds', '__acTG', ' , _mod__EEXPR', 'oWV4a'],
     ['_logWDOG__arT', '_mW_LOG', '_aW_WDOG', '', '__enZB', '_cxNO._AA , _cxFO._AA , _sUz', '_/ds/__/dst', '__arT',
       'COMMENT onB_MOD _mod__DS , _mod__EEXPR', 'oWW0a'],
@@ -746,186 +755,190 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['_raEXPR__arP', '_m0_RA', '_aX_EXPR', '', '__enZB', '_cxNO._AA , _cxFO._AA , _sUz', '_/ds/__/dst', '__arP', '', 'o0X0a'],
     ['_raEXPR__acPG', '_m0_RA', '_aX_EXPR', 'grid of references', '__enZB', '_cxNO._AA , _cxFO._AA , _sUz', '_/ds/__/dst', '__acPG', '', 'o0X1a'],
     ['_raYBUG__arP', '_m0_RA', '_aY_YBUG', '', '__enZB', '_cxNO._AA , _cxFO._AA , _sUz', '_/ds/__/dst', '__arP', '', 'o0Y0a'],
-    ['__DS', '_raCore__arPD_DS', '__tyOBJ:_hieV', '', '__enZB', '_ZA , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
-    ['__TY', '_raTY__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZA , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
-    ['__OBJ', '_raOBJ__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZA , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
-    ['__LOC', '_raLOC__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZA , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
-    ['__PER', '_raPER__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZA , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
-    ['__CON', '_raCON__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZA , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
-    ['__RES', '_raRES__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZA , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
-    ['__EXPR', '_raEXPR__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZA , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
+    ['__DS', '_raCore__arPD_DS', '__tyOBJ:_hieV', '', '__enZB', '_ZZ , _cxNO._AA , _zzz', '__/ds', '__arP', 'NULL', ''],
+    ['__TY', '_raTY__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZZ , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
+    ['__OBJ', '_raOBJ__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZZ , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
+    ['__LOC', '_raLOC__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZZ , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
+    ['__PER', '_raPER__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZZ , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
+    ['__CON', '_raCON__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZZ , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
+    ['__RES', '_raRES__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZZ , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
+    ['__EXPR', '_raEXPR__arP', '__tyOBJ:_hieV', '', '__enZB', '_ZZ , _cxN._NA , _zzz', '__/ds', '__arP', 'NULL', ''],
     // _raCore__arP
-    ['_arP', '_raCore__arP', '_hieV', 'primary register functor', '__enZB', '_ZA , _ZA , _zzz', '_/dst', '__arP', 'NOT NULL', ''],
-    ['cre__dsDB', '_raCore__arP', '_hieV', 'create', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__dsDB', 'NOT NULL DEFAULT CURRENT_TIMESTAMP', ''],
-    ['upd__dsDB', '_raCore__arP', '_hieV', 'update', '__enZB', '_AT , _ZA , _sUz', 'ds/__/dst', '__dsDB', 'NOT NULL DEFAULT CURRENT_TIMESTAMP', ''],
-    ['PK_arP', '_raCore__arP', '_arP', '', '__enZB', '_ZA , _cxF._AA , _zzz', 'dst/_/ds', 'PK_', '', ''],
+    ['_arP', '_raCore__arP', '_hieV', 'primary register functor', '__enZB', '_ZZ , _ZZ , _zzz', '_/dst', '__arP', 'NOT NULL', ''],
+    ['cre__dsDB', '_raCore__arP', '_hieV', 'create', '__enZB', '_AT , _ZZ , _szz', 'ds/__/dst', '__dsDB', 'NOT NULL DEFAULT CURRENT_TIMESTAMP', ''],
+    ['upd__dsDB', '_raCore__arP', '_hieV', 'update', '__enZB', '_AT , _ZZ , _sUz', 'ds/__/dst', '__dsDB', 'NOT NULL DEFAULT CURRENT_TIMESTAMP', ''],
+    ['PK_arP', '_raCore__arP', '_arP', '', '__enZB', '_ZZ , _cxF._AA , _zzz', 'dst/_/ds', 'PK_', '', ''],
     // _raCore__arPD_DS
-    ['cn__arP', '_raCore__arPD_DS', '_cN:_hieV', 'reference to primary register', '__enZB', '_cxF._AA , _ZA , _ssz', 'ds/__/dst', '__arP', 'NOT NULL', ''],
-    ['_arDS', '_raCore__arPD_DS', '__arP:_hieV', ' -- primary register ds functor', '__enZB', '_ZA , _ZA , _zzz', '_/dst', '__bvPQ', 'NOT NULL', ''],
-    ['PK_cn__arP', '_raCore__arPD_DS', 'cn__arP', '', '__enZB', '_ZA , _cxFU._UU , _zzz', 'dst/_/ds', 'PK_', '', ''],
-    ['UK_arDS', '_raCore__arPD_DS', '_arDS', '', '__enZB', '_ZA , _cxF._AA , _zzz', 'dst/_/ds', 'UK_', '', ''],
-    ['FU_raCore__arPD_DS_cn', '_raCore__arPD_DS', 'cn__arP', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['cn__arP', '_raCore__arPD_DS', '_cN:_hieV', 'reference to primary register', '__enZB', '_cxF._AA , _ZZ , _ssz', 'ds/__/dst', '__arP', 'NOT NULL', ''],
+    ['_arDS', '_raCore__arPD_DS', '__arP:_hieV', ' -- primary register ds functor', '__enZB', '_cxFT._XA , _cxNO._AA , _sUU', '_/ds', '__bvPQ', 'NOT NULL', ''],
+    ['PK_cn__arP', '_raCore__arPD_DS', 'cn__arP', '', '__enZB', '_ZZ , _cxFU._UA , _zzz', 'dst/_/ds', 'PK_', '', ''],
+    ['UK_arDS', '_raCore__arPD_DS', '_arDS', '', '__enZB', '_ZZ , _cxF._AA , _zzz', 'dst/_/ds', 'UK_', '', ''],
+    ['FU_raCore__arPD_DS_cn', '_raCore__arPD_DS', 'cn__arP', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FU_', '_raCore__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
     // _raTY__arP
     ['cxN__DS', '_raTY__arP', '_cX:_hieV', 'near -- reference to primary register', '__enZB', '_cxF._AA , _AS , _sUz', 'dsx/dsn/__/dst', '__DS', 'NOT NULL', ''],
     ['cxF__EXPR', '_raTY__arP', '_cX:_hieV', 'far -- reference to expression of references', '__enZB', '_cxF._AA , _AS , _sUz', 'dsx/dsn/__/dst',
       '__EXPR', 'NULL DEFAULT NULL', ''],
-    ['expl__bvKB', '_raTY__arP', '_hieV', 'explanation', '__enZB', '_AQ , _ZA , _szz', 'ds/__/dst', '__bvKB', "NOT NULL DEFAULT ''", ''],
+    ['expl__bvKB', '_raTY__arP', '_hieV', 'explanation', '__enZB', '_AQ , _ZZ , _szz', 'ds/__/dst', '__bvKB', "NOT NULL DEFAULT ''", ''],
     ['val__tyFLD', '_raTY__arP', '__tyFLD:_hieV', 'value', '__enZB', '_AT , _cxFT._AA , _szz', 'dsx/__/dsn', '__arP', 'NOT NULL', ''],
-    ['rule__EXPR', '_raTY__arP', '_hieV', 'rule -- reference to expression of references for (ds) part', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst',
+    ['rule__EXPR', '_raTY__arP', '_hieV', 'rule -- reference to expression of references for (ds) part', '__enZB', '_AA , _ZZ , _szz', 'ds/__/dst',
       '__EXPR', 'NOT NULL', ''],
-    ['te__EXPR', '_raTY__arP', '_hieV', 'template -- reference to expression of references for all parts', '__enZB', '_AD , _ZA , _szz', 'ds/__/dst',
+    ['te__EXPR', '_raTY__arP', '_hieV', 'template -- reference to expression of references for all parts', '__enZB', '_AD , _ZZ , _szz', 'ds/__/dst',
       '__EXPR', 'NOT NULL', ''],
-    ['val__bvPQ', '_raTY__arP', 'expl__bvKB:val__tyFLD:_hieV', '', '__enZB', '_cxF._AA , _ZA , _szz', 'ds/__/dst', '__bvPQ', "NOT NULL DEFAULT ''", ''],
-    ['main__bvPQ', '_raTY__arP', 'expl__bvKB:_hieV', '', '__enZB', '_cxF._AA , _ZA , _szz', 'ds/__/dst', '__bvPQ', "NOT NULL DEFAULT ''", ''],
-    ['FU_raTY__arP_cn', '_raTY__arP', 'cn__arP', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['val__bvPQ', '_raTY__arP', 'val__tyFLD:expl__bvKB:_hieV', '', '__enZB', '_cxF._AA , _ZZ , _szz', 'ds/__/dst', '__bvPQ', "NOT NULL DEFAULT ''", ''],
+    ['main__bvPQ', '_raTY__arP', 'expl__bvKB:_hieV', 'main part of expl__bvKB - all before ( -- )[remark design]', '__enZB', '_AA , _ZZ , _szz', 'ds/__/dst', '__bvPQ', "NOT NULL DEFAULT ''", ''],
+    ['FU_raTY__arP_cn', '_raTY__arP', 'cn__arP', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FU_', '_raCore__arPD_DS (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
-    ['FK_raTY__arP_cxN', '_raTY__arP', 'cxN__DS', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['FK_raTY__arP_cxN', '_raTY__arP', 'cxN__DS', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FK_', '_raCore__arPD_DS (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
-    ['FK_raTY__arP_cxF', '_raTY__arP', 'cxF__EXPR', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['FK_raTY__arP_cxF', '_raTY__arP', 'cxF__EXPR', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FK_', '_raCore__arPD_DS (cn__arP) ON DELETE SET NULL ON UPDATE CASCADE', ''],
-    ['FK_raTY__arP_tyFLD', '_raTY__arP', 'val__tyFLD', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['FK_raTY__arP_tyFLD', '_raTY__arP', 'val__tyFLD', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxFT._AA', 'FK_', '_raCore__arPD_DS (cn__arP) ON UPDATE CASCADE', ''],
-    ['FK_raTY__arP_rule', '_raTY__arP', 'rule__EXPR', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['FK_raTY__arP_rule', '_raTY__arP', 'rule__EXPR', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FK_', '_raEXPR__arP (cn__arP) ON UPDATE CASCADE', ''],
-    ['FK_raTY__arP_te', '_raTY__arP', 'te__EXPR', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['FK_raTY__arP_te', '_raTY__arP', 'te__EXPR', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FK_', '_raCore__arPD_DS (cn__arP) ON UPDATE CASCADE', ''],
     // _raOBJ__arP - clone all fields from _raTY__arP and extend it to next fields
-    ['cn__tyOBJ', '_raOBJ__arP', '_cN:_hieV', '', '__enZB', '_cxF._AA , _ZA , _szz', 'ds/__/dst', '__tyOBJ', 'NULL DEFAULT NULL', ''],
-    ['ext__bvKB', '_raOBJ__arP', '_hieV', 'extended -- parameters of field', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst',
+    ['cn__tyOBJ', '_raOBJ__arP', '_cN:_hieV', '', '__enZB', '_cxF._AA , _ZZ , _szz', 'ds/__/dst', '__tyOBJ', 'NULL DEFAULT NULL', ''],
+    ['ext__bvKB', '_raOBJ__arP', '_hieV', 'extended -- parameters of field', '__enZB', '_AT , _ZZ , _szz', 'ds/__/dst',
       '__bvKB', "NOT NULL DEFAULT ''", ''],
-    ['fcc__svQB', '_raOBJ__arP', 'fcc:_hieV', '', '__enZB', '_cxF._AA , _ZA , _zzz', 'ds/__/dst',
+    ['fcc__svQB', '_raOBJ__arP', 'fcc:_hieV', '', '__enZB', '_cxF._AA , _ZZ , _zzz', 'ds/__/dst',
       '__svQB', 'CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL', ''],
-    ['UK_fcc', '_raOBJ__arP', 'fcc__svQB', '', '__enZB', '_ZA , _cxF._AA , _zzz', 'dst/_/ds', 'UK_', '', ''],
-    ['FK_raOBJ__arP_TY', '_raOBJ__arP', 'cn__tyOBJ', '', '__enZB', '_cxNU._UU , _ZA , _zzU',
+    ['UK_fcc', '_raOBJ__arP', 'fcc__svQB', '', '__enZB', '_ZZ , _cxF._AA , _zzz', 'dst/_/ds', 'UK_', '', ''],
+    ['FK_raOBJ__arP_TY', '_raOBJ__arP', 'cn__tyOBJ', '', '__enZB', '_cxNU._UA , _ZZ , _zzU',
       'dst/ds/_/dso:_cxFT._XA', 'FK_', '_raTY__arP (cn__arP) ON DELETE SET NULL ON UPDATE CASCADE', ''],
     // _raOBJ__acPG_hie
-    ['par__OBJ', '_raOBJ__acPG_hie', '_hieV', 'parent', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__OBJ', 'NULL', ''],
-    ['chi__OBJ', '_raOBJ__acPG_hie', '_hieV', 'child', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__OBJ', 'NULL', ''],
-    ['multi__OBJ', '_raOBJ__acPG_hie', '_hieV', 'multi -- fields keys', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst', '__OBJ', 'NULL', ''],
-    ['row__nuZB', '_raOBJ__acPG_hie', '_hieV', 'row', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__nuZB', 'NOT NULL', ''],
-    ['UKM_raOBJ__acPG_hie_par', '_raOBJ__acPG_hie', 'par__OBJ', '', '__enZB', '_cxNU._UU , _ZA , _zzz', 'dst/ds/_/dso:_cxF._AA', 'UKM_', '', ''],
-    ['FK_raOBJ__acPG_hie_par', '_raOBJ__acPG_hie', 'par__OBJ', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['par__OBJ', '_raOBJ__acPG_hie', '_hieV', 'parent', '__enZB', '_AT , _ZZ , _szz', 'ds/__/dst', '__OBJ', 'NULL', ''],
+    ['chi__OBJ', '_raOBJ__acPG_hie', '_hieV', 'child', '__enZB', '_AT , _ZZ , _szz', 'ds/__/dst', '__OBJ', 'NULL', ''],
+    ['multi__OBJ', '_raOBJ__acPG_hie', '_hieV', 'multi -- fields keys', '__enZB', '_AA , _ZZ , _szz', 'ds/__/dst', '__OBJ', 'NULL', ''],
+    ['row__nuZB', '_raOBJ__acPG_hie', '_hieV', 'row', '__enZB', '_AT , _ZZ , _szz', 'ds/__/dst', '__nuZB', 'NOT NULL', ''],
+    ['UKM_raOBJ__acPG_hie_par', '_raOBJ__acPG_hie', 'par__OBJ', '', '__enZB', '_cxNU._UA , _ZZ , _zzz', 'dst/ds/_/dso:_cxF._AA', 'UKM_', '', ''],
+    ['FK_raOBJ__acPG_hie_par', '_raOBJ__acPG_hie', 'par__OBJ', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FK_', '_raOBJ__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
-    ['FK_raOBJ__acPG_hie_chi', '_raOBJ__acPG_hie', 'chi__OBJ', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['FK_raOBJ__acPG_hie_chi', '_raOBJ__acPG_hie', 'chi__OBJ', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FK_', '_raOBJ__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
-    ['FK_raOBJ__acPG_hie_multi', '_raOBJ__acPG_hie', 'multi__OBJ', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['FK_raOBJ__acPG_hie_multi', '_raOBJ__acPG_hie', 'multi__OBJ', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FK_', '_raOBJ__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
     // _raOBJ__arPD_seg
-    ['next__nuDB', '_raOBJ__arPD_seg', '_hieV', 'next -- segment offset', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
-    ['start__nuDB', '_raOBJ__arPD_seg', '_hieV', 'start -- segment offset', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
-    ['FU_raOBJ__arPD_seg_cn', '_raOBJ__arPD_seg', 'cn__arP', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['next__nuDB', '_raOBJ__arPD_seg', '_hieV', 'next -- segment offset', '__enZB', '_AA , _ZZ , _szz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
+    ['start__nuDB', '_raOBJ__arPD_seg', '_hieV', 'start -- segment offset', '__enZB', '_AA , _ZZ , _szz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
+    ['FU_raOBJ__arPD_seg_cn', '_raOBJ__arPD_seg', 'cn__arP', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FU_', '_raCore__arP (_arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
     // _raEXPR__arP
-    ['_cnt__nuZB', '_raEXPR__arP', '_hieV', 'count', '__enZB', '_CT , _ZA , _szz', '_/ds/__/dst', '__nuZB', 'NOT NULL DEFAULT 0', ''],
-    ['cn__tySEP', '_raEXPR__arP', '__tySEP:_hieV', '_cN', '__enZB', '_AA , _ZA , _szz', 'ds/__/dso:_cxFT._AA', '__arP', 'NOT NULL', ''],
-    ['FU_raEXPR__arP_cn', '_raEXPR__arP', 'cn__arP', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['_cnt__nuZB', '_raEXPR__arP', '_hieV', 'count', '__enZB', '_CT , _ZZ , _szz', '_/ds/__/dst', '__nuZB', 'NOT NULL DEFAULT 0', ''],
+    ['cn__tySEP', '_raEXPR__arP', '__tySEP:_hieV', '_cN', '__enZB', '_AA , _ZZ , _szz', 'ds/__/dso:_cxFT._AA', '__arP', 'NOT NULL', ''],
+    ['FU_raEXPR__arP_cn', '_raEXPR__arP', 'cn__arP', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FU_', '_raCore__arPD_DS (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
-    ['FK_raEXPR__arP_tySEP', '_raEXPR__arP', 'cn__tySEP', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['FK_raEXPR__arP_tySEP', '_raEXPR__arP', 'cn__tySEP', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxFT._AA', 'FK_', '_raTY__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
     // _raEXPR__acPG
-    ['par__arP', '_raEXPR__acPG', '_hieV', 'parent', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__arP', 'NOT NULL', ''],
-    ['chi__arP', '_raEXPR__acPG', '_hieV', 'child', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__arP', 'NOT NULL', ''],
-    ['PKM_raEXPR__acPG_par', '_raEXPR__acPG', 'par__arP', '', '__enZB', '_cxNU._UU , _ZA , _zzz', 'dst/ds/_/dso:_cxF._AA', 'PKM_', '', ''],
-    ['FK_raEXPR__acPG_par', '_raEXPR__acPG', 'par__arP', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['par__arP', '_raEXPR__acPG', '_hieV', 'parent', '__enZB', '_AT , _ZZ , _szz', 'ds/__/dst', '__arP', 'NOT NULL', ''],
+    ['chi__arP', '_raEXPR__acPG', '_hieV', 'child', '__enZB', '_AT , _ZZ , _szz', 'ds/__/dst', '__arP', 'NOT NULL', ''],
+    ['PKM_raEXPR__acPG_par', '_raEXPR__acPG', 'par__arP', '', '__enZB', '_cxNU._UA , _ZZ , _zzz', 'dst/ds/_/dso:_cxF._AA', 'PKM_', '', ''],
+    ['FK_raEXPR__acPG_par', '_raEXPR__acPG', 'par__arP', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FK_', '_raEXPR__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
-    ['FK_raEXPR__acPG_chi', '_raEXPR__acPG', 'chi__arP', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['FK_raEXPR__acPG_chi', '_raEXPR__acPG', 'chi__arP', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FK_', '_raCore__arPD_DS (cn__arP) ON UPDATE CASCADE', ''],
     // _raLOC__arP
-    ['cn__tyLOC', '_raLOC__arP', '_cN:_hieV', '', '__enZB', '_cxF._AA , _ZA , _szz', 'ds/__/dst', '__tyLOC', 'NULL DEFAULT NULL', ''],
-    ['FK_raLOC__arP_TY', '_raLOC__arP', 'cn__tyLOC', '', '__enZB', '_cxNU._UU , _ZA , _zzU',
+    ['cn__tyLOC', '_raLOC__arP', '_cN:_hieV', '', '__enZB', '_cxF._AA , _ZZ , _szz', 'ds/__/dst', '__tyLOC', 'NULL DEFAULT NULL', ''],
+    ['FK_raLOC__arP_TY', '_raLOC__arP', 'cn__tyLOC', '', '__enZB', '_cxNU._UA , _ZZ , _zzU',
       'dst/ds/_/dso:_cxFT._XA', 'FK_', '_raTY__arP (cn__arP) ON UPDATE CASCADE', ''],
     // _raPER__arP
-    ['cn__tyPIJ', '_raPER__arP', '_cN:_hieV', '', '__enZB', '_cxF._AA , _ZA , _szz', 'ds/__/dst', '__tyPIJ', 'NULL DEFAULT NULL', ''],
-    ['ym__nuSB', '_raPER__arP', '_hieV', 'year mounth', '__enZB', '_WR , _ZA , _szz', 'ds/__/dst', '__nuDB', 'NULL DEFAULT NULL', ''],
-    ['FK_raPER__arP_TY', '_raPER__arP', 'cn__tyPIJ', '', '__enZB', '_cxNU._UU , _ZA , _zzU',
+    ['cn__tyPIJ', '_raPER__arP', '_cN:_hieV', '', '__enZB', '_cxF._AA , _ZZ , _szz', 'ds/__/dst', '__tyPIJ', 'NULL DEFAULT NULL', ''],
+    ['ym__nuDB', '_raPER__arP', '_hieV', 'year mounth', '__enZB', '_WR , _ZZ , _szz', 'ds/__/dst', '__nuDB', 'NULL DEFAULT NULL', ''],
+    ['FK_raPER__arP_TY', '_raPER__arP', 'cn__tyPIJ', '', '__enZB', '_cxNU._UA , _ZZ , _zzU',
       'dst/ds/_/dso:_cxFT._XA', 'FK_', '_raTY__arP (cn__arP) ON UPDATE CASCADE', ''],
     // _raPER__acPG_hie
-    ['par__DS', '_raPER__acPG_hie', '_hieV', 'parent', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__DS', 'NULL', ''],
-    ['chi__DS', '_raPER__acPG_hie', '_hieV', 'childe', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__DS', 'NULL', ''],
-    ['chi__TY', '_raPER__acPG_hie', '__tyPER + __tyCON + __tyLOC:_hieV', '', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst', '__TY', 'NULL', ''],
-    ['chi__raST', '_raPER__acPG_hie', '_hieV', 'row', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst', '__raST', 'NOT NULL', ''],
-    ['PKM_raPER__acPG_hie_par', '_raPER__acPG_hie', 'par__DS', '', '__enZB', '_cxNU._UU , _ZA , _zzz', 'dst/ds/_/dso:_cxF._AA', 'PKM_', '', ''],
-    ['FU_raPER__acPG_hie_par', '_raPER__acPG_hie', 'par__DS', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
-      'dst/ds/_/dso:_cxFT._AA', 'FU_', '_raCore__arPD_DS (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
-    ['FK_raPER__acPG_hie_chi', '_raPER__acPG_hie', 'chi__DS', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['par__DS', '_raPER__acPG_hie', '_hieV', 'parent', '__enZB', '_AT , _ZZ , _szz', 'ds/__/dst', '__DS', 'NULL', ''],
+    ['chi__DS', '_raPER__acPG_hie', '_hieV', 'child', '__enZB', '_AT , _ZZ , _szz', 'ds/__/dst', '__DS', 'NULL', ''],
+    ['chi__TY', '_raPER__acPG_hie', 'chi__DS:_hieV', '__tyPER + __tyCON + __tyLOC', '__enZB', '_cxF._AA , _ZZ , _szz', 'ds/__/dst', '__TY', 'NULL', ''],
+    ['chi__raST', '_raPER__acPG_hie', 'chi__DS:_hieV', '', '__enZB', '_cxF._AA , _ZZ , _szz', 'ds/__/dst', '__raST', 'NOT NULL', ''],
+    ['PKM_raPER__acPG_hie_par', '_raPER__acPG_hie', 'par__DS', '', '__enZB', '_cxNU._UA , _ZZ , _zzz', 'dst/ds/_/dso:_cxF._AA', 'PKM_', '', ''],
+    ['FU_raPER__acPG_hie_par', '_raPER__acPG_hie', 'par__DS', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
+      'dst/ds/_/dso:_cxF._AA', 'FU_', '_raCore__arPD_DS (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
+    ['FK_raPER__acPG_hie_chi', '_raPER__acPG_hie', 'chi__DS', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FK_', '_raCore__arPD_DS (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
-    ['FK_raPER__acPG_hie_TY', '_raPER__acPG_hie', 'chi__TY', '', '__enZB', '_cxNU._UU , _ZA , _zzU',
+    ['FK_raPER__acPG_hie_TY', '_raPER__acPG_hie', 'chi__TY', '', '__enZB', '_cxNU._UA , _ZZ , _zzU',
       'dst/ds/_/dso:_cxFT._AA', 'FK_', '_raTY__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
-    ['FK_raPER__acPG_hie_ST', '_raPER__acPG_hie', 'chi__raST', '', '__enZB', '_cxNU._UU , _ZA , _zzU',
-      'dst/ds/_/dso:_cxFT._XA', 'FK_', '_raTY__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
+    ['FK_raPER__acPG_hie_ST', '_raPER__acPG_hie', 'chi__raST', '', '__enZB', '_cxNU._UA , _ZZ , _zzU',
+      'dst/ds/_/dso:_cxFT._NA', 'FK_', '_raTY__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
     // _raCON__arP
-    ['cn__tyCON', '_raCON__arP', '_cN:_hieV', '', '__enZB', '_cxF._AA , _ZA , _szz', 'ds/__/dst', '__tyCON', 'NULL DEFAULT NULL', ''],
-    ['FK_raCON__arP_TY', '_raCON__arP', 'cn__tyCON', '', '__enZB', '_cxNU._UU , _ZA , _zzU',
+    ['cn__tyCON', '_raCON__arP', '_cN:_hieV', '', '__enZB', '_cxF._AA , _ZZ , _szz', 'ds/__/dst', '__tyCON', 'NULL DEFAULT NULL', ''],
+    ['FK_raCON__arP_TY', '_raCON__arP', 'cn__tyCON', '', '__enZB', '_cxNU._UA , _ZZ , _zzU',
       'dst/ds/_/dso:_cxFT._XA', 'FK_', '_raTY__arP (cn__arP) ON UPDATE CASCADE', ''],
       // _raRES__arP
-    ['cn__tyRES', '_raRES__arP', '_cN:_hieV', '', '__enZB', '_cxF._AA , _ZA , _szz', 'ds/__/dst', '__tyRES', 'NULL DEFAULT NULL', ''],
-    ['cn__blGB', '_raRES__arP', '_cN:_hieV', ' -- GBytes content store', '__enZB', '_cxF._AA , _ZA , _szz', 'ds/__/dst', '__blGB', 'NULL DEFAULT NULL', ''],
-    ['FK_raRES__arP_TY', '_raRES__arP', 'cn__tyRES', '', '__enZB', '_cxNU._UU , _ZA , _zzU',
+    ['cn__tyRES', '_raRES__arP', '_cN:_hieV', '', '__enZB', '_cxF._AA , _ZZ , _szz', 'ds/__/dst', '__tyRES', 'NULL DEFAULT NULL', ''],
+    ['cn__blGB', '_raRES__arP', '_cN:_hieV', ' -- GBytes content store', '__enZB', '_cxF._AA , _ZZ , _szz', 'ds/__/dst', '__blGB', 'NULL DEFAULT NULL', ''],
+    ['FK_raRES__arP_TY', '_raRES__arP', 'cn__tyRES', '', '__enZB', '_cxNU._UA , _ZZ , _zzU',
       'dst/ds/_/dso:_cxFT._XA', 'FK_', '_raTY__arP (cn__arP) ON UPDATE CASCADE', ''],
     // _raRES__acPG_chat
-    ['cn__RES', '_raRES__acPG_chat', '_cN:_hieV', '', '__enZB', '_cxNO._AA , _ZA , _zzz', 'ds/__/dst', '__RES', 'NOT NULL', ''],
-    ['line__nuSB', '_raRES__acPG_chat', '_hieV', 'line -- number in chat file', '__enZB', '_cxF._NA , _ZA , _szz', 'ds/__/dst', '__nuSB', 'NOT NULL', ''],
-    ['reply__PER', '_raRES__acPG_chat', '_hieV', 'reply __PER -- autor', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst', '__PER', 'NOT NULL', ''],
-    ['reply__tyCHAT', '_raRES__acPG_chat', 'reply__PER:_hieV', 'reply type', '__enZB', '_cxF._AA , _ZA , _szz', 'ds/__/dst', '__tyCHAT', 'NOT NULL', ''],
-    ['sum__bvKB', '_raRES__acPG_chat', '_hieV', 'summary of replica', '__enZB', '_AT , _ZA , _zzz', 'ds/__/dst', '__bvKB', 'NOT NULL', ''],
-    ['ref__EXPR', '_raRES__acPG_chat', '_hieV', 'reference if any', '__enZB', '_AT , _ZA , _zzz', 'ds/__/dst', '__EXPR', 'NOT NULL', ''],
-    ['PKM_raRES__acPG_chat_cn', '_raRES__acPG_chat', 'cn__RES', '', '__enZB', '_cxNU._UU , _ZA , _zzz', 'dst/ds/_/dso:_cxF._AA', 'PKM_', 'NOT NULL', ''],
-    ['FK_raRES__acPG_chat_RES', '_raRES__acPG_chat', 'cn__RES', '', '__enZB', '_cxNU._UU , _ZA , _zzU',
+    ['cn__RES', '_raRES__acPG_chat', '_cN:_hieV', '', '__enZB', '_cxF._AA , _ZZ , _ssz', 'ds/__/dst', '__RES', 'NOT NULL', ''],
+    ['line__nuSB', '_raRES__acPG_chat', '_hieV', 'line -- number in chat file', '__enZB', '_AA , _ZZ , _szz', 'ds/__/dst', '__nuSB', 'NOT NULL', ''],
+    ['reply__PER', '_raRES__acPG_chat', '_hieV', 'reply __PER -- autor', '__enZB', '_AA , _ZZ , _szz', 'ds/__/dst', '__PER', 'NOT NULL', ''],
+    ['reply__tyCHAT', '_raRES__acPG_chat', 'reply__PER:_hieV', 'reply type', '__enZB', '_cxF._AA , _ZZ , _szz', 'ds/__/dst', '__tyCHAT', 'NOT NULL', ''],
+    ['sum__bvKB', '_raRES__acPG_chat', '_hieV', 'summary of replica', '__enZB', '_AT , _ZZ , _zzz', 'ds/__/dst', '__bvKB', 'NOT NULL', ''],
+    ['ref__EXPR', '_raRES__acPG_chat', '_hieV', 'reference if any', '__enZB', '_AT , _ZZ , _zzz', 'ds/__/dst', '__EXPR', 'NOT NULL', ''],
+    ['PKM_raRES__acPG_chat_cn', '_raRES__acPG_chat', 'cn__RES', '', '__enZB', '_cxNU._UA , _ZZ , _zzz', 'dst/ds/_/dso:_cxF._AA', 'PKM_', 'NOT NULL', ''],
+    ['FK_raRES__acPG_chat_RES', '_raRES__acPG_chat', 'cn__RES', '', '__enZB', '_cxNU._UA , _ZZ , _zzU',
       'dst/ds/_/dso:_cxFT._AA', 'FK_', '_raRES__arP (cn__arP) ON DELETE CASCADE ON UPDATE CASCADE', ''],
-    ['FK_raRES__acPG_chat_EXPR', '_raRES__acPG_chat', 'ref__EXPR', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['FK_raRES__acPG_chat_EXPR', '_raRES__acPG_chat', 'ref__EXPR', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxFT._AA', 'FK_', '_raCore__arPD_DS (cn__arP) ON UPDATE CASCADE', ''],
-    ['FK_raRES__acPG_chat_PER', '_raRES__acPG_chat', 'reply__PER', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['FK_raRES__acPG_chat_PER', '_raRES__acPG_chat', 'reply__PER', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxFT._AA', 'FK_', '_raPER__arP (cn__arP) ON UPDATE CASCADE', ''],
-    ['FK_raRES__acPG_chat_tyCHAT', '_raRES__acPG_chat', 'reply__tyCHAT', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['FK_raRES__acPG_chat_tyCHAT', '_raRES__acPG_chat', 'reply__tyCHAT', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxFT._AA', 'FK_', '_raTY__arP (cn__arP) ON UPDATE CASCADE', ''],
     // _logVER__arT
-    ['_arT', '_logVER__arT', '_hieV', 'tertiary register functor', '__enZB', '_ZA , _ZA , _zzz', '_/dst', '__arT', 'NOT NULL', ''],
-    ['ref__svPQ', '_logVER__arT', '_hieV', 'reference -- version number', '__enZB', '_AT , _ZA , _szz', 'ds/__/dst'
+    ['_arT', '_logVER__arT', '_hieV', 'tertiary register functor', '__enZB', '_ZZ , _ZZ , _zzz', '_/dst', '__arT', 'NOT NULL', ''],
+    ['ref__svPQ', '_logVER__arT', '_hieV', 'reference -- version number', '__enZB', '_AT , _ZZ , _szz', 'ds/__/dst'
       , '__svPQ', 'CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL', ''],
-    ['major__nuDB', '_logVER__arT', '_hieV', 'major -- to event', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
-    ['minor__nuDB', '_logVER__arT', '_hieV', 'minor -- version number', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
-    ['build__nuDB', '_logVER__arT', '_hieV', 'build -- version number', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
-    ['expl__svKB', '_logVER__arT', '_hieV', 'explanation', '__enZB', '_AQ , _ZA , _szz', 'ds/__/dst', '__svKB', "NOT NULL DEFAULT ''", ''],
-    ['PK_arT', '_logVER__arT', '_arT', '', '__enZB', '_ZA , _cxF._AA , _zzz', 'dst/_/ds', 'PK_', '', ''],
-    ['UKM_logVER__arT_ref', '_logVER__arT', 'ref__svPQ', '', '__enZB', '_cxNU._UU , _ZA , _zzz', 'dst/ds/_/dso:_cxF._AA', 'UKM_', '', ''],
+    ['major__nuDB', '_logVER__arT', '_hieV', 'major -- to event', '__enZB', '_AA , _ZZ , _szz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
+    ['minor__nuDB', '_logVER__arT', '_hieV', 'minor -- version number', '__enZB', '_AA , _ZZ , _szz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
+    ['build__nuDB', '_logVER__arT', '_hieV', 'build -- version number', '__enZB', '_AA , _ZZ , _szz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
+    ['expl__svKB', '_logVER__arT', '_hieV', 'explanation', '__enZB', '_AQ , _ZZ , _szz', 'ds/__/dst', '__svKB', "NOT NULL DEFAULT ''", ''],
+    ['PK_arT', '_logVER__arT', '_arT', '', '__enZB', '_ZZ , _cxF._AA , _zzz', 'dst/_/ds', 'PK_', '', ''],
+    ['UKM_logVER__arT_ref', '_logVER__arT', 'ref__svPQ', '', '__enZB', '_cxNU._UA , _ZZ , _zzz', 'dst/ds/_/dso:_cxF._AA', 'UKM_', '', ''],
     // _logVER__acTG
-    ['cn__arT', '_logVER__acTG', '_cN:_hieV', 'reference to tertiary register', '__enZB', '_cxF._AA , _ZA , _szz', 'ds/__/dst', '__arT', 'NOT NULL', ''],
-    ['expl__svKQ', '_logVER__acTG', '_hieV', 'explanation', '__enZB', '_AQ , _ZA , _szz', 'ds/__/dst', '__svKQ', "NOT NULL DEFAULT ''", ''],
-    ['PKM_logVER__acTG_cn', '_logVER__acTG', 'cn__arT', '', '__enZB', '_cxNU._UU , _ZA , _zzz', 'dst/ds/_/dso:_cxF._AA', 'PKM_', '', ''],
-    ['FK_logVER__acTG_cn', '_logVER__acTG', 'cn__arT', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['cn__arT', '_logVER__acTG', '_cN:_hieV', 'reference to tertiary register', '__enZB', '_cxF._AA , _ZZ , _szz', 'ds/__/dst', '__arT', 'NOT NULL', ''],
+    ['expl__svKQ', '_logVER__acTG', '_hieV', 'explanation', '__enZB', '_AQ , _ZZ , _szz', 'ds/__/dst', '__svKQ', "NOT NULL DEFAULT ''", ''],
+    ['PKM_logVER__acTG_cn', '_logVER__acTG', 'cn__arT', '', '__enZB', '_cxNU._UA , _ZZ , _zzz', 'dst/ds/_/dso:_cxF._AA', 'PKM_', '', ''],
+    ['FK_logVER__acTG_cn', '_logVER__acTG', 'cn__arT', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FK_', '_logVER__arT (_arT) ON DELETE CASCADE ON UPDATE CASCADE', ''],
     // _logVER__arTD_test
-    ['seed__nuDB', '_logVER__arTD_test', '_hieV', 'seed -- for random function', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
-    ['PK_cn__arT', '_logVER__arTD_test', 'cn__arT', '', '__enZB', '_ZA , _cxFU._UU , _zzz', 'dst/_/ds', 'PK_', '', ''],
-    ['FU_logVER__arTD_test_cn', '_logVER__arTD_test', 'cn__arT', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['seed__nuDB', '_logVER__arTD_test', '_hieV', 'seed -- for random function', '__enZB', '_AA , _ZZ , _szz', 'ds/__/dst', '__nuDB', 'NOT NULL', ''],
+    ['PK_cn__arT', '_logVER__arTD_test', 'cn__arT', '', '__enZB', '_ZZ , _cxFU._UA , _zzz', 'dst/_/ds', 'PK_', '', ''],
+    ['FU_logVER__arTD_test_cn', '_logVER__arTD_test', 'cn__arT', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FU_', '_logVER__arT (_arT) ON DELETE CASCADE ON UPDATE CASCADE', ''],
     // _logVER__acTG_test_raDS_src
-    ['testObj__arT', '_logVER__acTG_test_raDS_src', '_hieV', '', '__enZB', '_cxNO._AA , _ZA , _zzz', 'ds/__/dst', '__arT', 'NOT NULL', ''],
-    ['obj__nuSB', '_logVER__acTG_test_raDS_src', '_raOBJ__arP:_hieV', '', '__enZB', '_cxF._NA , _ZA , _szz', 'ds/__/dst', '__nuSB', 'NOT NULL', ''],
-    ['obj__DS', '_logVER__acTG_test_raDS_src', '_raOBJ__arP:_hieV', '', '__enZB', '_cxF._NA , _ZA , _szz', 'ds/__/dst', '__DS', 'NOT NULL', ''],
-    ['cxF__DS', '_logVER__acTG_test_raDS_src', 'cxF__EXPR:_hieV', '', '__enZB', '_cxF._AA , _ZA , _zzz', 'ds/__/dst', '__DS', 'NOT NULL', ''],
-    ['rule__DS', '_logVER__acTG_test_raDS_src', 'rule__EXPR:_hieV', '', '__enZB', '_cxF._AA , _ZA , _zzz', 'ds/__/dst', '__DS', 'NOT NULL', ''],
-    ['te__DS', '_logVER__acTG_test_raDS_src', 'te__EXPR:_hieV', '', '__enZB', '_cxF._AA , _ZA , _zzz', 'ds/__/dst', '__DS', 'NOT NULL', ''],
-    ['PKM_logVER__acTG_test_raDS_src', '_logVER__acTG_test_raDS_src', 'testObj__arT', '', '__enZB', '_cxNU._UU , _ZA , _zzz', 'dst/ds', 'PKM_', 'NOT NULL', ''],
-    ['FU_logVER__acTG_test_raDS_src', '_logVER__acTG_test_raDS_src', 'testObj__arT', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['testObj__arT', '_logVER__acTG_test_raDS_src', '_logVER__arTD_test:_hieV', '_raOBJ__arP', '__enZB', '_cxFO._AA , _NA , _sHz',
+      'ds/__/dst', '__arT', 'NOT NULL', ''],
+    ['obj__nuSB', '_logVER__acTG_test_raDS_src', '_raOBJ__arP:_hieV', '', '__enZB', '_cxF._NA , _ZZ , _szz', 'ds/__/dst', '__nuSB', 'NOT NULL', ''],
+    ['obj__DS', '_logVER__acTG_test_raDS_src', '_raOBJ__arP:_hieV', '', '__enZB', '_cxF._NA , _ZZ , _szz', 'ds/__/dst', '__DS', 'NOT NULL', ''],
+    ['cxF__DS', '_logVER__acTG_test_raDS_src', 'cxF__EXPR:_hieV', '', '__enZB', '_cxF._AA , _ZZ , _zzz', 'ds/__/dst', '__DS', 'NOT NULL', ''],
+    ['rule__DS', '_logVER__acTG_test_raDS_src', 'rule__EXPR:_hieV', '', '__enZB', '_cxF._AA , _ZZ , _zzz', 'ds/__/dst', '__DS', 'NOT NULL', ''],
+    ['te__DS', '_logVER__acTG_test_raDS_src', 'te__EXPR:_hieV', '', '__enZB', '_cxF._AA , _ZZ , _zzz', 'ds/__/dst', '__DS', 'NOT NULL', ''],
+    ['PKM_logVER__acTG_test_raDS_src', '_logVER__acTG_test_raDS_src', 'testObj__arT', '', '__enZB', '_cxNU._UA , _ZZ , _zzz', 'dst/ds', 'PKM_', 'NOT NULL', ''],
+    ['FU_logVER__acTG_test_raDS_src', '_logVER__acTG_test_raDS_src', 'testObj__arT', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds', 'FU_', '_logVER__arTD_test (cn__arT) ON DELETE CASCADE ON UPDATE CASCADE', ''],
     // _logVER__acTG_test_raDS_srcRET
-    ['new__nuSB', '_logVER__acTG_test_raDS_srcRET', '_hieV', 'new', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst', '__nuSB', 'NOT NULL', ''],
-    ['new__DS', '_logVER__acTG_test_raDS_srcRET', 'new__nuSB:_hieV', '', '__enZB', '_cxF._NA , _ZA , _szz', 'ds/__/dst', '__DS', 'NOT NULL', ''],
-    ['log__arT', '_logVER__acTG_test_raDS_srcRET', '_logWDOG__arT:_hieV', '', '__enZB', '_cxF._XA , _ZA , _szz', 'ds/__/dst', '__arT', 'NOT NULL', ''],
-    ['log__nuZB', '_logVER__acTG_test_raDS_srcRET', 'log__arT:_hieV', ' -- 0:NO_ERR / 1:arDS_ERR / 2:PHP_ERR / 3:SQL_ERR', '__enZB', '_cxF._XA , _ZA , _szz', 'ds/__/dst', '__nuZB', 'NOT NULL DEFAULT 0', ''],
-    ['level__nuZB', '_logVER__acTG_test_raDS_srcRET', '_hieV', 'level -- 0:NO_ERR / 1:WARNING / 2:DANGER', '__enZB', '_AA , _ZA , _szz', 'ds/__/dst', '__nuZB', 'NOT NULL DEFAULT 0', ''],
-    ['PKM_logVER__acTG_test_raDS_srcRET', '_logVER__acTG_test_raDS_srcRET', 'testObj__arT', '', '__enZB', '_cxNU._UU , _ZA , _zzz', 'dst/ds', 'PKM_', 'NOT NULL', ''],
-    ['FUM_logVER__acTG_test_raDS_srcRET', '_logVER__acTG_test_raDS_srcRET', 'testObj__arT', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['new__nuSB', '_logVER__acTG_test_raDS_srcRET', '_hieV', 'new', '__enZB', '_AA , _ZZ , _szz', 'ds/__/dst', '__nuSB', 'NOT NULL', ''],
+    ['new__DS', '_logVER__acTG_test_raDS_srcRET', 'new__nuSB:_hieV', '', '__enZB', '_cxF._NA , _ZZ , _szz', 'ds/__/dst', '__DS', 'NOT NULL', ''],
+    ['log__arT', '_logVER__acTG_test_raDS_srcRET', '_logWDOG__arT:_hieV', '', '__enZB', '_cxF._XA , _ZZ , _szz', 'ds/__/dst', '__arT', 'NOT NULL', ''],
+    ['log__nuZB', '_logVER__acTG_test_raDS_srcRET', 'log__arT:_hieV', ' -- 0:NO_ERR / 1:arDS_ERR / 2:PHP_ERR / 3:SQL_ERR', '__enZB',
+      '_cxF._XA , _ZZ , _szz','ds/__/dst', '__nuZB', 'NOT NULL DEFAULT 0', ''],
+    ['level__nuZB', '_logVER__acTG_test_raDS_srcRET', '_hieV', 'level -- 0:NO_ERR / 1:WARNING / 2:DANGER', '__enZB', '_AA , _ZZ , _szz',
+      'ds/__/dst', '__nuZB', 'NOT NULL DEFAULT 0', ''],
+    ['PKM_logVER__acTG_test_raDS_srcRET', '_logVER__acTG_test_raDS_srcRET', 'testObj__arT', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
+      'dst/ds', 'PKM_', 'NOT NULL', ''],
+    ['FUM_logVER__acTG_test_raDS_srcRET', '_logVER__acTG_test_raDS_srcRET', 'testObj__arT', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds', 'FUM_', '_logVER__acTG_test_raDS_src (testObj__arT, obj__nuSB) ON DELETE CASCADE ON UPDATE CASCADE', ''],
-    ['FK_logVER__acTG_test_raDS_srcRET_log', '_logVER__acTG_test_raDS_srcRET', 'log__arT', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['FK_logVER__acTG_test_raDS_srcRET_log', '_logVER__acTG_test_raDS_srcRET', 'log__arT', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FK_', '_logWDOG__arT (_arT)', ''],
     // _logWDOG__arT
-    ['_cnt__nuDB', '_logWDOG__arT', '_hieV', 'count -- version number', '__enZB', '_CA , _ZA , _szz', '_/ds/__/dst', '__nuDB', 'NOT NULL', ''],
+    ['_cnt__nuDB', '_logWDOG__arT', '_hieV', 'count -- version number', '__enZB', '_CA , _ZZ , _szz', '_/ds/__/dst', '__nuDB', 'NOT NULL', ''],
     // _logWDOG__acTG
-    ['PKM_logWDOG__acTG_cn', '_logWDOG__acTG', 'cn__arT', '', '__enZB', '_cxNU._UU , _ZA , _zzz', 'dst/ds/_/dso:_cxF._AA', 'PKM_', '', ''],
-    ['FK_logWDOG__acTG_cn', '_logWDOG__acTG', 'cn__arT', '', '__enZB', '_cxNU._UU , _ZA , _zzz',
+    ['PKM_logWDOG__acTG_cn', '_logWDOG__acTG', 'cn__arT', '', '__enZB', '_cxNU._UA , _ZZ , _zzz', 'dst/ds/_/dso:_cxF._AA', 'PKM_', '', ''],
+    ['FK_logWDOG__acTG_cn', '_logWDOG__acTG', 'cn__arT', '', '__enZB', '_cxNU._UA , _ZZ , _zzz',
       'dst/ds/_/dso:_cxF._AA', 'FK_', '_logWDOG__arT (cn__arT) ON DELETE CASCADE ON UPDATE CASCADE', ''],
 
   ];
@@ -991,15 +1004,15 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
 
     ['_raPER__arP', '_raTY__arP', ''],
     ['_raPER__arP', 'cn__tyPIJ', 'cn__TY'],
-    ['_raPER__arP', 'ym__nuSB', ''],
+    ['_raPER__arP', 'ym__nuDB', ''],
     ['_raPER__arP', 'FK_raPER__arP_TY', ''],
 
     ['_raPER__acPG_hie', 'par__DS', ''],
-    ['_raPER__acPG_hie', 'ym__nuSB', ''],
+    ['_raPER__acPG_hie', 'ym__nuDB', ''],
     ['_raPER__acPG_hie', 'chi__DS', ''],
     ['_raPER__acPG_hie', 'chi__TY', ''],
     ['_raPER__acPG_hie', 'chi__raST', ''],
-    ['_raPER__acPG_hie', 'PKM_raPER__acPG_hie_par', 'ym__nuSB'],
+    ['_raPER__acPG_hie', 'PKM_raPER__acPG_hie_par', 'ym__nuDB'],
     ['_raPER__acPG_hie', 'FU_raPER__acPG_hie_par', ''],
     ['_raPER__acPG_hie', 'FK_raPER__acPG_hie_chi', ''],
     ['_raPER__acPG_hie', 'FK_raPER__acPG_hie_TY', ''],
@@ -1229,25 +1242,25 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     [RA_cn__DS, 'cxN__DS', 'cxF__EXPR', 'expl__bvKB', 'rule__EXPR', 'te__EXPR', 'cn__TY', 'val__tyFLD'],
     ['#NAM', '_OM', '', 'North America', '_AS:_ZA , _AD , _UUU', '#/ds', '_locTerra', '__enZB'],
     ['#SAM', '_OM', '', 'South America', '_AS:_ZA , _AD , _UUU', '#/ds', '_locTerra', '__enZB'],
-    ['#ASI', '_OM', '', 'Asia', '_AT , _ZA , _UUU', '#/ds', '_locTerra', '__enZB'],
-    ['#AFR', '_OM', '', 'Africa', '_AT , _ZA , _UUU', '#/ds', '_locTerra', '__enZB'],
-    ['#OCE', '_OM', '', 'Oceania(Australia)', '_AT , _ZA , _UUU', '#/ds', '_locTerra', '__enZB'],
-    ['#EUR', '_OM', '', 'Europe', '_AT , _ZA , _UUU', '#/ds', '_locTerra', '__enZB'],
-    ['#US', '#NAM', '', 'Unated States', '_WR , _ZA , _UUU', '#/ds', '_locTara', '__enZB'],
-    ['#MD', '#EUR', '', 'Moldova', '_CS:_ZS , _AS , _UUU', '#/ds', '_locTara', '__enZB'],
-    ['#UA', '#EUR', '', 'Ukraine', '_CS:_ZS , _AS , _UUU', '#/ds', '_locTara', '__enZB'],
-    ['#CRI', '#MD', '#MD', 'Criuleni', '_AT , _ZA , _UUU', '#/ds', '_locCity', '__enZB'],
-    ['#CHI', '#MD', '#MD', 'Chisinau', '_AT , _ZA , _UUU', '#/ds', '_locCapi', '__enZB'],
-    ['#SVL', '#UA', '#UA', 'Sevastopol', '_CD:_CL , _ZA , _UUU', '#/ds', '_locCity', '__enZB'],
-    ['#chiFLOR', '#CHI', '', 'Florilor', '_AQ , _ZA , _sUU', '#/ds', '_locStr', '__enZB'],
-    ['#chiACAD', '#CHI', '', 'Academiei', '_AQ , _ZA , _sUU', '#/ds', '_locStr', '__enZB'],
-    ['#chiTVLAD', '#CHI', '', 'Tudor Vladimirescu', '_AS:_ZA , _AQ , _sUU', '#/ds', '_locStr', '__enZB'],
-    ['#chiFLOR-34_1', '#chiFLOR', '#MD + #CHI', '34_1', '_cxFU._UU , _UU , _zzz', 'dsx/-/dsn', '_locHouse', '__enZB'],
-    ['#chiFLOR-34_1-11', '#chiFLOR-34_1', '#MD + #CHI', '11', '_cxFU._UU , _UU , _zzz', 'dsx/-/dsn', '_locApp', '__enZB'],
-    ['#criGAGA', '#CRI', '', 'Gagarina', '_AQ , _ZA , _sUU', '#/ds', '_locStr', '__enZB'],
-    ['#criGAGA-15', '#criGAGA', '', '15', '_cxFU._UU , _UU , _sUU', 'dsx/-/dsn', '_locHouse', '__enZB'],
-    ['#criMS', '#CRI', '#MD', 'Midle School', '_cxN._AA , _AT:_ZA:_AS , _sUU', '#/ds', '_locInst', '__enZB'],
-    ['#svlIMI', '#SVL', '#UA', 'Instrument Making institute', '_cxN._AA , _AT:_ZA:_AS , _sUU', '#/ds', '_locInst', '__enZB'],
+    ['#ASI', '_OM', '', 'Asia', '_AT , _ZZ , _UUU', '#/ds', '_locTerra', '__enZB'],
+    ['#AFR', '_OM', '', 'Africa', '_AT , _ZZ , _UUU', '#/ds', '_locTerra', '__enZB'],
+    ['#OCE', '_OM', '', 'Oceania(Australia)', '_AT , _ZZ , _UUU', '#/ds', '_locTerra', '__enZB'],
+    ['#EUR', '_OM', '', 'Europe', '_AT , _ZZ , _UUU', '#/ds', '_locTerra', '__enZB'],
+    ['#US', '#NAM', '', 'Unated States', '_WR , _ZZ , _UUU', '#/ds', '_locTara', '__enZB'],
+    ['#MD', '#EUR', '', 'Moldova', '_CS:_ZS , _CS , _UUU', '#/ds', '_locTara', '__enZB'],
+    ['#UA', '#EUR', '', 'Ukraine', '_VS , _VS , _UUU', '#/ds', '_locTara', '__enZB'],
+    ['#CRI', '#MD', '#MD', 'Criuleni', '_AT , _ZZ , _UUU', '#/ds', '_locCity', '__enZB'],
+    ['#CHI', '#MD', '#MD', 'Chisinau', '_AT , _ZZ , _UUU', '#/ds', '_locCapi', '__enZB'],
+    ['#SVL', '#UA', '#UA', 'Sevastopol', '_CD:_CL , _ZZ , _UUU', '#/ds', '_locCity', '__enZB'],
+    ['#chiFLOR', '#CHI', '', 'Florilor', '_cxN._AA , _AQ , _sUU', '#/ds', '_locStr', '__enZB'],
+    ['#chiACAD', '#CHI', '', 'Academiei', '_cxN._AA , _AQ , _sUU', '#/ds', '_locStr', '__enZB'],
+    ['#chiTVLAD', '#CHI', '', 'Tudor Vladimirescu', '_cxN._AA , _AS:_ZA:_AQ , _sUU', '#/ds', '_locStr', '__enZB'],
+    ['#chiFLOR-34_1', '#chiFLOR', '#MD + #CHI', '34_1', '_cxNU._UA , _UA , _zzz', 'dsx/-/dsn', '_locHouse', '__enZB'],
+    ['#chiFLOR-34_1-11', '#chiFLOR-34_1', '#MD + #CHI', '11', '_cxNU._UA , _UA , _zzz', 'dsx/-/dsn', '_locApp', '__enZB'],
+    ['#criGAGA', '#CRI', '', 'Gagarina', '_cxN._AA , _AQ , _sUU', '#/ds', '_locStr', '__enZB'],
+    ['#criGAGA-15', '#criGAGA', '', '15', '_cxNU._UA , _UA , _zzz', 'dsx/-/dsn', '_locHouse', '__enZB'],
+    ['#criMS', '#CRI', '#MD', 'Midle School', '_cxN._AA , _WR , _sUU', '#/ds', '_locInst', '__enZB'],
+    ['#svlIMI', '#SVL', '#UA', 'Instrument Making institute', '_cxN._AA , _WR , _sUU', '#/ds', '_locInst', '__enZB'],
     ['#chiSIGF', '#CHI', '', 'Signal factory', '_cxN._AA , _AT:_ZA:_AS , _sUU', '#/ds', '_locInst', '__enZB'],
     ['#chiQUANT', '#CHI', '', 'Quantum research institute', '_cxN._AA , _AP , _sUU', '#/ds', '_locInst', '__enZB'],
     ['#chiCAEB', '#CHI', '', 'Computer-Aided Engineering Bureau', '_cxN._AA , _WR , _sUU', '#/ds', '_locInst', '__enZB'],
@@ -1264,7 +1277,7 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
   ];
 
   $src__ar['_raPER__arP'] = [
-    [RA_cn__DS, 'cxN__DS', 'cxF__EXPR', 'expl__bvKB', 'rule__EXPR', 'te__EXPR', 'cn__TY', 'val__tyFLD', 'ym__nuSB'],
+    [RA_cn__DS, 'cxN__DS', 'cxF__EXPR', 'expl__bvKB', 'rule__EXPR', 'te__EXPR', 'cn__TY', 'val__tyFLD', 'ym__nuDB'],
     ['@gV', '_OM', '', 'Glinca Vitalie', '_AS:_ZA , _AS , _sUU', '@/ds', '_pijPhis', '__enZB', 196010],
     ['@mA', '_OM', '', 'Moscvin Andrei', '_AS:_ZA , _AS , _sUU', '@/ds', '_pijPhis', '__enZB', 0],
     ['@pI', '_OM', '', 'Prilepov Igor', '_AS:_ZA , _AS , _sUU', '@/ds', '_pijPhis', '__enZB', 0],
@@ -1273,7 +1286,7 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['@cP', '@ms', '', 'Copilot', '_CS , _CS , _sUU', '@/ds', '_pijReg', '__enZB', 202108],
     ['@oA', '_OM', '', 'OpenAI', '_VS:_ZS , _VS , _sUU', '@/ds', '_pijJur', '__enZB', 201512],
     ['@cG', '@oA', '', 'ChatGPT', '_CS:_ZD , _CS , _sUU', '@/ds', '_pijReg', '__enZB', 202211],
-    ['@gL', '_OM', '', 'google', '_CS , _CL , _sss', '@/ds', '_pijJur', '__enZB', 199809],
+    ['@gL', '_OM', '', 'google', '_CS , _CL , _sUU', '@/ds', '_pijJur', '__enZB', 199809],
     ['@gG', '@gL', '', 'gemeni', '_cxN._XA , _AS , _sUU', '@/ds', '_pijReg', '__enZB', 202312],
     ['@dP', '_OM', '', 'deeplace', '_CS , _CS , _sUU', '@/ds', '_pijJur', '__enZB', 200011],
     ['@gH', '_OM', '', 'github', '_CS:_ZS , _CS , _sUU', '@/ds', '_pijJur', '__enZB', 200802],
@@ -1281,7 +1294,7 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
   ];
 
   $src__ac['_raPER__acPG_hie'] = [
-    ['par__DS', 'ym__nuSB', 'chi__DS', 'chi__TY', 'chi__raST'],
+    ['par__DS', 'ym__nuDB', 'chi__DS', 'chi__TY', 'chi__raST'],
     ['@gV', 197808, '#criGAGA-15', '_perSon', '_stResid'],
     ['@gV', 202110, '#chiTVLAD', '_perHusb', '_stLeave'],
     ['@gV', 202310, '#chiACAD', '_perHusb', '_stLeave'],
@@ -1307,10 +1320,10 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
 
   $src__ar['_raCON__arP'] = [
     [RA_cn__DS, 'cxN__DS', 'cxF__EXPR', 'expl__bvKB', 'rule__EXPR', 'te__EXPR', 'cn__TY', 'val__tyFLD'],
-    ['069053162', '@gV', '', '+373-069053162', '_AA , _AA , _zzz', 'dsn', '_cpGSM', '__enZB'],
-    ['@glincavit', '@gV', '@gL', '', '_cxNM._AA._AT , _ZA , _szz', '@/ds', '_cpLogin', '__enZB'],
-    ['glincavit@gmail.com', '@glincavit', 'gmail.com', '', '_cxN._AA , _cxFU._UU , _szz', 'dsx/@/dsn', '_cpMail', '__enZB'],
-    ['vitalie.glinca@deeplace.md', '@gV', 'deeplace.md', '', '_cxNM._AA , _cxNM._AA , _ssz', 'dsn/./dsx/@/dso:_cxFU._UU', '_ctMail', '__enZB'],
+    ['069053162', '@gV', '', '(+373) 069053162', '_ZZ , _ZA:_AA , _zzz', 'dsn', '_cpGSM', '__enZB'],
+    ['@glincavit', '@gV', '@gL', '', '_cxNM._AA , _cxNM._AT , _ssz', '@/ds', '_cpLogin', '__enZB'],
+    ['glincavit@gmail.com', '@glincavit', 'gmail.com', '', '_cxN._AA , _cxFU._UA , _szz', 'dsx/@/dsn', '_cpMail', '__enZB'],
+    ['vitalie.glinca@deeplace.md', '@gV', 'deeplace.md', '', '_cxNM._AA , _cxNM._AA , _ssz', 'dsn/./dsx/@/dso:_cxFU._UA', '_ctMail', '__enZB'],
     
   ];
   
@@ -1319,19 +1332,20 @@ function _raCore_iniTables() { $pp = 'p002a-0a';
     ['gmail.com', '@gL', '_siteCom', 'mail server', '_cxN._AS , _AA , _sss', 'ds/./dso:_cxF._NA', '_resSITE', '__enZB'],
     ['youtube.com', '@gL', '_siteCom', 'youtube server', '_AA , _cxF._NA , _sss', 'dsx/./dsn', '_resSITE', '__enZB'],
     ['google.com', '@gL', '_siteCom', 'google server', '_cxNM._AA , _cxF._NA , _sss', 'dsx/./dsn', '_resSITE', '__enZB'],
-    ['drive.google.com', 'google.com', '_siteCom', 'drive google server', '_AA , _cxNU._UU , _sss', 'dsx/./dsn', '_resSITE', '__enZB'],
+    ['drive.google.com', 'google.com', '_siteCom', 'drive google server', '_AA , _cxNU._UA , _sss', 'dsx/./dsn', '_resSITE', '__enZB'],
     ['deeplace.md', '@dP', '_siteMD', 'mail server', '_cxNM._AA , _cxF._NA , _sss', 'dsx/./dsn', '_resSITE', '__enZB'],
     ['webdev3', '@dP', '', 'WEB development 3 -- my work platform (WP)', '_AA:_AT:_ZA , _AA , _sss', 'ds', '_resHOST', '__enZB'],
     ['ASUS-960', '@gV', '', 'Asus 960 -- laptop -- my home platform (HP)', '_AA , _AA , _UUU', 'dsx/-/dsn', '_resHOST', '__enZB'],
     ['Core-i3', '@gV', '', 'Core i3 -- desktop -- my graphic server (GS)', '_AA , _AA , _zzz', 'dsx/-/dsn', '_resHOST', '__enZB'],
     ['Fujitsu-i7', '@gV', '', 'Fujitsu i7 -- laptop -- my graphic work station (GWS)', '_AA , _AA , _zzz', 'dsx/-/dsn', '_resHOST', '__enZB'],
-    ['glincavit-gV', '@gV', 'glincavit@gmail.com', '', '_cxFO._AA , _cxN._AA , _zzz', 'dsx/-/dsn', '_resREPO', '__enZB'],
+    ['glincavit-gV', '@gV', '@glincavit', '', '_cxF._AA , _cxN._AA , _zzz', 'dsx/-/dsn', '_resREPO', '__enZB'],
     ['raFTI.v6', 'glincavit-gV', '_RA', 'Full Text Index : v6', '_cxF._AA , _WR , _sUz', 'ds/./dso:_exV._AA', '_resPROJ', '__evQB'],
     ['raDT', 'glincavit-gV', '_RA', 'defence tech', '_cxF._AA , _WR , _sUz', 'ds', '_resPROJ', '__evQB'],
-    ['v5_4', 'raFTI.v6', '', 'previous vresion : v5_4', '_exV._AA , _ZA , _zzz', 'ds', '_resPATH', '__evQB'],
-    ['v6', 'raFTI.v6', '', 'current vresion', '_cxNV._AA , _ZA , _zzz', 'ds', '_resPATH', '__evQB'],
-    ['_RA_v0_1_Review.md', '_raRES__acPD', '_RA', 'v0_1 Review : _fileMD', '_cxF._AA , _UU , _zzz', 'dsx/_/dsn/_/dso:_UU', '_resFILE', '__enZB'],
-    ['_raDS_v0_1_Review.md', '_raRES__acPD', '_raDS', 'v0_1 Review : _fileMD', '_cxF._AA , _UU , _zzz', 'dsx/_/dsn/_/dso:_UU', '_resFILE', '__enZB'],
+    ['v5_4', 'raFTI.v6', '', 'previous vresion : v5_4', '_exVU._UA , _ZZ , _zzz', 'ds', '_resPATH', '__evQB'],
+    ['v6', 'raFTI.v6', '', 'current vresion', '_cxNV._UA , _ZZ , _zzz', 'ds', '_resPATH', '__evQB'],
+    ['_RA_v0_1_Review.md', '_raRES__acPF', '_RA', 'v0_1_Review : _fileMD', '_cxF._AA , _UA , _zzs', '_/dsx/_/dsn/./dso:_exV._NA', '_resFILE', '__evQB'],
+    ['_raDS_v0_1_Review.md', '_raRES__acPF', '_raDS', 'v0_1_Review : _fileMD', '_cxF._AA , _UA , _zzs', '_/dsx/_/dsn/./dso:_exV._NA', '_resFILE', '__evQB'],
+    ['_raDS_d1_Description.md', '_raRES__acPF', '_raDS', 'd1_Description : _fileMD', '_cxF._AA , _UA , _zzs', '_/dsx/_/dsn/./dso:_exV._NA', '_resFILE', '__evQB'],
     
   ];
 
@@ -1774,7 +1788,18 @@ function __check_DB($table_name) { $pp = 'p002a-2a';
   }
 }
 
-function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = 'p002a-3a';
+function __expr_REG($_cnt, $sep__arP, $exprVAL) { $pp = 'p002a-3a';
+  global $RA;
+  $el__arP = __format_SQL("$_cnt, $sep__arP", '_raEXPR__arP');
+  $RA[RA_cn__DS][$exprVAL]['cn__arP'] = $el__arP;
+  $RA[RA_cn__DS][$exprVAL]['src_tab'] = '_raEXPR__arP';
+  $RA[RA_cn__DS][$exprVAL]['src_arr_i'] = $el__arP - $RA[RA_seg__DS]['_raEXPR__arP'][RA_seg__DS_start];
+  __format_SQL("$el__arP, '$exprVAL'", '_raCore__arPD_DS', 1);
+  __format_SQL("$el__arP", '_raCore__arP', 1);
+  return $el__arP;
+}
+
+function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = 'p002a-4a';
   global $RA; 
   $err = [];
   if (!isset($RA[RA_cn__DS][$exprVAL])) {
@@ -1786,14 +1811,9 @@ function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = 'p002a-3a';
 
       $ep = "$pp-e1";
       $err[] = "$ep exprVAL($exprVAL) consist the single arDS but it not defined!";
-    } else {     
-      if ($_cnt__HI > 1) {
-        $hi__arP = __format_SQL("$_cnt__HI, $sepHI__arP", '_raEXPR__arP');
-        $RA[RA_cn__DS][$exprVAL]['cn__arP'] = $hi__arP;
-        $RA[RA_cn__DS][$exprVAL]['src_tab'] = '_raEXPR__arP';
-        $RA[RA_cn__DS][$exprVAL]['src_arr_i'] = $hi__arP - $RA[RA_seg__DS]['_raEXPR__arP'][RA_seg__DS_start];
-        __format_SQL("$hi__arP, '$exprVAL'", '_raCore__arPD_DS', 1);
-        __format_SQL("$hi__arP", '_raCore__arP', 1);
+    } else {   
+      if ($_cnt__HI > 1) {  
+        $hi__arP = __expr_REG($_cnt__HI, $sepHI__arP, $exprVAL);
       }
       foreach ($exprHI as $hi_i => $hiEL) {
         $exprLO = explode($sepLO, $hiEL);
@@ -1815,14 +1835,7 @@ function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = 'p002a-3a';
           if (isset($RA[RA_cn__DS][$hiEL]['exprARR'])) {
             $RA[RA_cn__DS][$exprVAL]['exprARR'][$hiEL] = $RA[RA_cn__DS][$hiEL]['exprARR'][$hiEL];
           } else {
-            $hiEL__arP = __format_SQL("$_cnt__LO, $sepLO__arP", '_raEXPR__arP');
-            $RA[RA_cn__DS][$hiEL]['cn__arP'] = $hiEL__arP;
-            $RA[RA_cn__DS][$exprVAL]['src_tab'] = '_raEXPR__arP';
-            $RA[RA_cn__DS][$exprVAL]['src_arr_i'] = $hiEL__arP - $RA[RA_seg__DS]['_raEXPR__arP'][RA_seg__DS_start];
-            __format_SQL("$hiEL__arP, '$hiEL'", '_raCore__arPD_DS', 1);
-            __format_SQL("$hiEL__arP", '_raCore__arP', 1);
-            $loARR = [];
-            $sql__acPG = '';
+            $hiEL__arP = __expr_REG($_cnt__LO, $sepLO__arP, $hiEL);
             foreach ($exprLO as $lo_i => $loEL) {
               if (strpos($loEL, RA_sepSTRUC) !== FALSE) {
                 //dz($exprLO,$lo_i, $loEL);
@@ -1852,10 +1865,59 @@ function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = 'p002a-3a';
   }
   //if (($hiEL ?? '') == '_numB:_altNUM') du($RA[RA_cn__DS][$exprVAL], $exprVAL, $RA[RA_cn__DS][$hiEL]);
   return $err;
-
 }
+/*
+// Вариант для нового 4-мерного дизайна языка _raDS
+// Модификаторы правил (_exMT - type/option/...) станоятся 4-ым измерением со своим сепаратором: RA_sepPART
+// Вместо (_exMT._AA) - будет - (_exM._AA/t)
+function __explore_EXPR($sepHI, $sepLO, $exprVAL) { $pp = 'p002a-4a';
+  global $RA;
+  $err = [];
+  if (!isset($RA[RA_cn__DS][$exprVAL])) {
+    $exprHI = explode($sepHI, $exprVAL);
+    $_raOBJ__arP_start = $RA[RA_seg__DS]['_raOBJ__arP'][RA_seg__DS_start];
+    $sepHI__arP = $_raOBJ__arP_start + $RA[RA_cn__DS][$sepHI]['src_arr_i'];
+    $sepLO__arP = $_raOBJ__arP_start + $RA[RA_cn__DS][$sepLO]['src_arr_i'];
+    if (($_cnt__HI = count($exprHI)) == 1 && strpos($exprVAL, $sepLO) === false) {
 
-function _raCore_createSQL() { $pp = 'p002a-4a';
+      $ep = "$pp-e1";
+      $err[] = "$ep exprVAL($exprVAL) consist the single arDS but it not defined!";
+    } else {
+      $hi__arP = __expr_REG($_cnt__HI, $sepHI__arP, $exprVAL);
+      foreach ($exprHI as $hi_i => $hiEL) {
+        $exprLO = explode($sepLO, $hiEL);
+        if (isset($RA[RA_cn__DS][$hiEL]['exprARR'])) {
+          $RA[RA_cn__DS][$exprVAL]['exprARR'][$hiEL] = $RA[RA_cn__DS][$hiEL]['exprARR'][$hiEL];
+        } else {
+          $hiEL__arP = __expr_REG(count($exprLO), $sepLO__arP, $hiEL);
+          $loARR = [];
+          foreach ($exprLO as $lo_i => $loEL) {
+            if (!isset($RA[RA_cn__DS][$loEL])) {
+              if (strpos($loEL, RA_sepPART) !== FALSE) {
+                if (($err = __explore_EXPR(RA_sepPART, RA_sepSTRUC, $loEL))) return $err;
+              } elseif (strpos($loEL, RA_sepSTRUC) !== FALSE) {
+                if (($err = __explore_EXPR(RA_sepSTRUC, RA_sepSTRUC, $loEL))) return $err;
+              }
+              if (!isset($RA[RA_cn__DS][$loEL])) {
+                return ["$pp-e2 exprVAL($exprVAL) consist the not defined simple value hiEL($hiEL)!"];
+              }
+            }
+            $lo__arP = __get_cn__arP($loEL);
+            $loARR[] = $lo__arP;
+            __format_SQL("$hiEL__arP, $lo_i, $lo__arP", '_raEXPR__acPG', 1);
+          }
+          $RA[RA_cn__DS][$hiEL]['exprARR'][$hiEL] = $RA[RA_cn__DS][$exprVAL]['exprARR'][$hiEL] = $loARR;
+        }
+//de("p1-1-1", $_cnt__HI,$hi__arP ?? 0, $hi_i,$exprVAL,$hiEL);
+        if ($_cnt__HI > 1) __format_SQL("$hi__arP, $hi_i, " . $RA[RA_cn__DS][$exprVAL]['exprARR'][$hiEL][0], '_raEXPR__acPG', 1);
+      }
+    }
+  }
+  return $err;
+}
+*/
+
+function _raCore_createSQL() { $pp = 'p002a-5a';
   __crateViews();
 }
 

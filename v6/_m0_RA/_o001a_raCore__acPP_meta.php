@@ -21,7 +21,6 @@ const RA_du_src = 16;
 $RA[RA_sql_stop] = 0;
 $RA[RA_ver_stop] = 0;
 
-
 const DS_arr = 0;
 const DS_arr_cnt = 1;
 const DS_arr_i = 2;
@@ -30,7 +29,9 @@ const DS_tkn_i = 4;
 const DS_tkn_add = 5;
 const DS_cn__DS = 6;
 const DS_ruleFLD = 7;
-const DS_altTKN = 8;
+const DS_FLD = 8;
+const DS_TKN_arr = 9;
+const DS_TKN_FLD = 10;
 
 const DS_ret_dst = 0;
 const DS_ret_dso = 1;
@@ -89,6 +90,7 @@ const RA_sepPER = "@";
 const RA_sepLOC = "#";
 const RA_sepCO = "&";
 const RA_sepWORD = "\\W+";
+const RA_sepSPACE = "\\s+";
 const RA_sepSTRUC = ".";
 const RA_sepSTRUC_Q = "\\.";
 const RA_sepPHP = "\$";
@@ -115,6 +117,7 @@ $RA[RA__tySEP]['RA_sepPER'] = RA_sepPER;
 $RA[RA__tySEP]['RA_sepLOC'] = RA_sepLOC;
 $RA[RA__tySEP]['RA_sepCO'] = RA_sepCO;
 $RA[RA__tySEP]['RA_sepWORD'] = RA_sepWORD;
+$RA[RA__tySEP]['RA_sepSPACE'] = RA_sepSPACE;
 $RA[RA__tySEP]['RA_sepSTRUC'] = RA_sepSTRUC;
 $RA[RA__tySEP]['RA_sepSTRUC_Q'] = RA_sepSTRUC_Q;
 $RA[RA__tySEP]['RA_sepPHP'] = RA_sepPHP;
@@ -389,6 +392,7 @@ function duz(array $log, $ref = 'NULL') { $pp = "p001a-12a";
 
 function de(...$vars) { $pp = "p001a-13a";
   global $RA;
+  return;
   if (($sep_de = (int) explode(RA_sepFIXE, $vars[0])[1] ?? 0)) $RA[RA_du_sepNLINE] = '';
   $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1)[0];
   $file = file($trace['file']);
